@@ -9,8 +9,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class TestController {
 	
 	@GetMapping("/")
-	public String main() {
+	public String index() {
 		return "index";
 	}
+	
+	@RequestMapping("/main")
+	@ResponseBody
+	public String main() {
+		return "main page";
+	}
+	
+	@RequestMapping("/securepage")
+	@ResponseBody
+	public String securitypage() {
+		return "secure page";
+	}
+	
 	
 }
