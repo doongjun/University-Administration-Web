@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,15 +9,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>제육대학교 - 학사관리시스템 </title>
+    <title>Focus - Bootstrap Admin Dashboard </title>
     <!-- Favicon icon -->
-    <link rel="icon" type="/image/png" sizes="16x16" href="../resources/images/favicon.png">
-    <link rel="stylesheet" href="../resources/vendor/owl-carousel/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../resources/vendor/owl-carousel/css/owl.theme.default.min.css">
-    <link href="../resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="../resources/images/favicon.png">
+    <!-- Datatable -->
+    <link href="../resources/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <!-- Custom Stylesheet -->
     <link href="../resources/css/style.css" rel="stylesheet">
-
-
 
 </head>
 
@@ -155,7 +155,7 @@
                                         <i class="icon-envelope-open"></i>
                                         <span class="ml-2">Inbox </span>
                                     </a>
-                                    <a href="/logout" class="dropdown-item">
+                                    <a href="./page-login.html" class="dropdown-item">
                                         <i class="icon-key"></i>
                                         <span class="ml-2">Logout </span>
                                     </a>
@@ -170,7 +170,7 @@
             Header end ti-comment-alt
         ***********************************-->
 
-        <!--**********************************
+       <!--**********************************
             Sidebar start
         ***********************************-->
         <div class="quixnav">
@@ -224,54 +224,65 @@
             Content body start
         ***********************************-->
         <div class="content-body">
-            <!-- row -->
             <div class="container-fluid">
-                <div class="row">
-                    
+                <div class="row page-titles mx-0">
+                    <div class="col-sm-6 p-md-0">
+                        <div class="welcome-text">
+                            <h4>수강 신청</h4>
+                        </div>
                     </div>
-                    <!-- /# column -->
+                    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">수강</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0)">수강 신청</a></li>
+                        </ol>
+                    </div>
                 </div>
+                <!-- row -->
+
+
                 <div class="row">
-                    <div class="col-xl-8 col-lg-8 col-md-8">
+                    <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Sales Overview</h4>
+                                <h4 class="card-title">수강신청란</h4>
                             </div>
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-xl-12 col-lg-8">
-                                        <div id="morris-bar-chart"></div>
-                                    </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+										<thead class="table-light">
+											<tr>
+										        <th>강의번호</th>
+										        <th>학기</th>
+										        <th>강의이름</th>
+										        <th>강의실</th>
+										        <th>강의시간</th>
+										        <th>학점</th>
+									        </tr>
+										</thead>
+										<tbody>
+											<!-- 게시판 리스트 반복문 -->
+											<c:forEach var="vo" items="${vo}">
+												<tr>
+													<td>${vo.lecture_code}</td>
+													<td>${vo.grade}-${vo.semester}</a></td>
+													<td>${vo.lecture_name}</td>
+													<td>${vo.classroom}</td>
+													<td>${vo.lecture_time}</td>
+													<td>${vo.credit}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <div class="m-t-10">
-                                    <h4 class="card-title">Customer Feedback</h4>
-                                    <h2 class="mt-3">385749</h2>
-                                </div>
-                                <div class="widget-card-circle mt-5 mb-5" id="info-circle-card">
-                                    <i class="ti-control-shuffle pa"></i>
-                                </div>
-                                <ul class="widget-line-list m-b-15">
-                                    <li class="border-right">92% <br><span class="text-success"><i
-                                                class="ti-hand-point-up"></i> Positive</span></li>
-                                    <li>8% <br><span class="text-danger"><i
-                                                class="ti-hand-point-down"></i>Negative</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-4">
-                </div>
-
             </div>
         </div>
+        
+	    
         <!--**********************************
             Content body end
         ***********************************-->
@@ -297,7 +308,7 @@
            Support ticket button end
         ***********************************-->
 
-
+        
     </div>
     <!--**********************************
         Main wrapper end
@@ -310,32 +321,12 @@
     <script src="../resources/vendor/global/global.min.js"></script>
     <script src="../resources/js/quixnav-init.js"></script>
     <script src="../resources/js/custom.min.js"></script>
+    
 
 
-    <!-- Vectormap -->
-    <script src="../resources/vendor/raphael/raphael.min.js"></script>
-    <script src="../resources/vendor/morris/morris.min.js"></script>
-
-
-    <script src="../resources/vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="../resources/vendor/chart.js/Chart.bundle.min.js"></script>
-
-    <script src="../resources/vendor/gaugeJS/dist/gauge.min.js"></script>
-
-    <!--  flot-chart js -->
-    <script src="../resources/vendor/flot/jquery.flot.js"></script>
-    <script src="../resources/vendor/flot/jquery.flot.resize.js"></script>
-
-    <!-- Owl Carousel -->
-    <script src="../resources/vendor/owl-carousel/js/owl.carousel.min.js"></script>
-
-    <!-- Counter Up -->
-    <script src="../resources/vendor/jqvmap/js/jquery.vmap.min.js"></script>
-    <script src="../resources/vendor/jqvmap/js/jquery.vmap.usa.js"></script>
-    <script src="../resources/vendor/jquery.counterup/jquery.counterup.min.js"></script>
-
-
-    <script src="../resources/js/dashboard/dashboard-1.js"></script>
+    <!-- Datatable -->
+    <script src="../resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../resources/js/plugins-init/datatables.init.js"></script>
 
 </body>
 

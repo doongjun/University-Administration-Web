@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,15 +7,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>제육대학교 - 학사관리시스템 </title>
+    <title>Focus - Bootstrap Admin Dashboard </title>
     <!-- Favicon icon -->
-    <link rel="icon" type="/image/png" sizes="16x16" href="../resources/images/favicon.png">
-    <link rel="stylesheet" href="../resources/vendor/owl-carousel/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../resources/vendor/owl-carousel/css/owl.theme.default.min.css">
-    <link href="../resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="../resources/images/favicon.png">
+
+    <link href="../resources/vendor/fullcalendar/css/fullcalendar.min.css" rel="stylesheet">
     <link href="../resources/css/style.css" rel="stylesheet">
-
-
 
 </head>
 
@@ -155,7 +152,7 @@
                                         <i class="icon-envelope-open"></i>
                                         <span class="ml-2">Inbox </span>
                                     </a>
-                                    <a href="/logout" class="dropdown-item">
+                                    <a href="./page-login.html" class="dropdown-item">
                                         <i class="icon-key"></i>
                                         <span class="ml-2">Logout </span>
                                     </a>
@@ -170,7 +167,7 @@
             Header end ti-comment-alt
         ***********************************-->
 
-        <!--**********************************
+         <!--**********************************
             Sidebar start
         ***********************************-->
         <div class="quixnav">
@@ -224,50 +221,110 @@
             Content body start
         ***********************************-->
         <div class="content-body">
-            <!-- row -->
             <div class="container-fluid">
-                <div class="row">
-                    
+                <div class="row page-titles mx-0">
+                    <div class="col-sm-6 p-md-0">
+                        <div class="welcome-text">
+                            <h4>신청과목 시간표</h4>
+                        </div>
                     </div>
-                    <!-- /# column -->
+                    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">수강</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0)">시간표 조회</a></li>
+                        </ol>
+                    </div>
                 </div>
+                <!-- row -->
+
+
                 <div class="row">
-                    <div class="col-xl-8 col-lg-8 col-md-8">
+                    <!-- <div class="col-lg-3">
                         <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Sales Overview</h4>
-                            </div>
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-xl-12 col-lg-8">
-                                        <div id="morris-bar-chart"></div>
+                                <h4 class="card-intro-title">Calendar</h4>
+
+                                <div class="">
+                                    <div id="external-events" class="my-3">
+                                        <p>Drag and drop your event or click in the calendar</p>
+                                        <div class="external-event" data-class="bg-primary"><i class="fa fa-move"></i>New Theme Release</div>
+                                        <div class="external-event" data-class="bg-success"><i class="fa fa-move"></i>My Event
+                                        </div>
+                                        <div class="external-event" data-class="bg-warning"><i class="fa fa-move"></i>Meet manager</div>
+                                        <div class="external-event" data-class="bg-dark"><i class="fa fa-move"></i>Create New theme</div>
                                     </div>
+                                    checkbox
+                                    <div class="checkbox checkbox-event pt-3 pb-5">
+                                        <input id="drop-remove" class="styled-checkbox" type="checkbox">
+                                        <label class="ml-2 mb-0" for="drop-remove">Remove After Drop</label>
+                                    </div>
+                                    <a href="javascript:void()" data-toggle="modal" data-target="#add-category" class="btn btn-primary btn-event w-100">
+                                        <span class="align-middle"><i class="ti-plus"></i></span> Create New
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4">
+                    </div> -->
+                    <div class="col-lg-15">
                         <div class="card">
-                            <div class="card-body text-center">
-                                <div class="m-t-10">
-                                    <h4 class="card-title">Customer Feedback</h4>
-                                    <h2 class="mt-3">385749</h2>
-                                </div>
-                                <div class="widget-card-circle mt-5 mb-5" id="info-circle-card">
-                                    <i class="ti-control-shuffle pa"></i>
-                                </div>
-                                <ul class="widget-line-list m-b-15">
-                                    <li class="border-right">92% <br><span class="text-success"><i
-                                                class="ti-hand-point-up"></i> Positive</span></li>
-                                    <li>8% <br><span class="text-danger"><i
-                                                class="ti-hand-point-down"></i>Negative</span></li>
-                                </ul>
+                            <div class="card-body">
+                                <div id="calendar" class="app-fullcalendar"></div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4">
+                    <!-- BEGIN MODAL -->
+                    <div class="modal fade none-border" id="event-modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title"><strong>Add New Event</strong></h4>
+                                </div>
+                                <div class="modal-body"></div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success save-event waves-effect waves-light">Create
+                                        event</button>
+
+                                    <button type="button" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal Add Category -->
+                    <div class="modal fade none-border" id="add-category">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title"><strong>Add a category</strong></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label class="control-label">Category Name</label>
+                                                <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="control-label">Choose Category Color</label>
+                                                <select class="form-control form-white" data-placeholder="Choose a color..." name="category-color">
+                                                    <option value="success">Success</option>
+                                                    <option value="danger">Danger</option>
+                                                    <option value="info">Info</option>
+                                                    <option value="pink">Pink</option>
+                                                    <option value="primary">Primary</option>
+                                                    <option value="warning">Warning</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger waves-effect waves-light save-category" data-dismiss="modal">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -289,13 +346,7 @@
             Footer end
         ***********************************-->
 
-        <!--**********************************
-           Support ticket button start
-        ***********************************-->
-
-        <!--**********************************
-           Support ticket button end
-        ***********************************-->
+        
 
 
     </div>
@@ -310,32 +361,17 @@
     <script src="../resources/vendor/global/global.min.js"></script>
     <script src="../resources/js/quixnav-init.js"></script>
     <script src="../resources/js/custom.min.js"></script>
+    <!--removeIf(production)-->
+    <!-- Demo scripts -->
+    <script src="../resources/js/styleSwitcher.js"></script>
 
 
-    <!-- Vectormap -->
-    <script src="../resources/vendor/raphael/raphael.min.js"></script>
-    <script src="../resources/vendor/morris/morris.min.js"></script>
 
+    <script src="../resources/vendor/jqueryui/js/jquery-ui.min.js"></script>
+    <script src="../resources/vendor/moment/moment.min.js"></script>
 
-    <script src="../resources/vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="../resources/vendor/chart.js/Chart.bundle.min.js"></script>
-
-    <script src="../resources/vendor/gaugeJS/dist/gauge.min.js"></script>
-
-    <!--  flot-chart js -->
-    <script src="../resources/vendor/flot/jquery.flot.js"></script>
-    <script src="../resources/vendor/flot/jquery.flot.resize.js"></script>
-
-    <!-- Owl Carousel -->
-    <script src="../resources/vendor/owl-carousel/js/owl.carousel.min.js"></script>
-
-    <!-- Counter Up -->
-    <script src="../resources/vendor/jqvmap/js/jquery.vmap.min.js"></script>
-    <script src="../resources/vendor/jqvmap/js/jquery.vmap.usa.js"></script>
-    <script src="../resources/vendor/jquery.counterup/jquery.counterup.min.js"></script>
-
-
-    <script src="../resources/js/dashboard/dashboard-1.js"></script>
+    <script src="../resources/vendor/fullcalendar/js/fullcalendar.min.js"></script>
+    <script src="../resources/js/plugins-init/fullcalendar-init.js"></script>
 
 </body>
 
