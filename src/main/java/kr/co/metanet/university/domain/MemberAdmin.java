@@ -1,7 +1,5 @@
 package kr.co.metanet.university.domain;
 
-import java.util.Date;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,12 +9,14 @@ import lombok.ToString;
 @Setter
 @ToString
 @Builder
-public class Member {
+public class MemberAdmin {
 	private int id;
-	private String code;
-	private String password;
 	private String name;
 	private String roleName;
-	private Date createDate;
-	private Date modifyDate;
+	private String code;
+	private String password;
+	private String position;
+	private String email;
+	private String phone;
+	private String division;
 }

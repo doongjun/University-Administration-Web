@@ -6,7 +6,10 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import kr.co.metanet.university.domain.Member;
+import kr.co.metanet.university.domain.MemberAdmin;
+import kr.co.metanet.university.domain.MemberProfessor;
 import kr.co.metanet.university.domain.MemberRole;
+import kr.co.metanet.university.domain.MemberStudent;
 import kr.co.metanet.university.mapper.MemberMapper;
 import kr.co.metanet.university.mapper.MemberRoleMapper;
 import kr.co.metanet.university.service.MemberService;
@@ -28,6 +31,7 @@ public class MemberServiceImpl implements MemberService{
 		Member member = memberMapper.selectMemberByCode(loginUserId);
 		return new UserEntity(member.getCode(), member.getPassword());
 	}
+	
 	@Override
 	public List<UserRoleEntity> getUserRoles(String loginUserId) {
 		List<MemberRole> memberRoles = memberRoleMapper.selectMemberRoleByCode(loginUserId);
@@ -37,5 +41,25 @@ public class MemberServiceImpl implements MemberService{
 			list.add(new UserRoleEntity(loginUserId, memberRole.getRoleName()));
 		}
 		return list;
+	}
+
+	@Override
+	public Member getMemberByCode(String code) {
+		return memberMapper.selectMemberByCode(code);
+	}
+
+	@Override
+	public MemberStudent getStudentByCode(String code) {
+		return memberMapper.selectStudentByCode(code);
+	}
+
+	@Override
+	public MemberProfessor getProfessorByCode(String code) {
+		return memberMapper.selectProfessorByCode(code);
+	}
+
+	@Override
+	public MemberAdmin getAdminByCode(String code) {
+		return memberMapper.selectAdminByCode(code);
 	}
 }
