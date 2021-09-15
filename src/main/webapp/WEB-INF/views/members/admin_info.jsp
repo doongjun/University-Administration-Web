@@ -104,19 +104,6 @@
 															placeholder="비밀번호 확인">
 													</div>
 												</div>
-												<div class="form-group row">
-													<div class="col-lg-8 ml-auto">
-														<button type="submit" class="btn btn-primary">Submit</button>
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-4 col-form-label">email
-														<span class="text-danger">*</span>
-													</label>
-													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${admin.email }" readonly>
-													</div>
-												</div>
 											</div>
 											<div class="col-xl-6">
 												<div class="form-group row">
@@ -141,6 +128,19 @@
 													</label>
 													<div class="col-lg-6">
 														<input type="text" class="form-control" value="${admin.phone }" readonly>
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-lg-4 col-form-label">email
+														<span class="text-danger">*</span>
+													</label>
+													<div class="col-lg-6">
+														<input type="text" class="form-control" value="${admin.email }" readonly>
+													</div>
+												</div>
+												<div class="form-group row">
+													<div class="col-lg-8 ml-auto">
+														<button type="submit" class="btn btn-primary">Submit</button>
 													</div>
 												</div>
 											</div>
