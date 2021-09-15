@@ -46,14 +46,17 @@ public class MemberController {
 		String page = "common/404error";
 		
 		if(roleName.equals("ROLE_USER")) {
+			//학생
 			MemberStudent student = memberService.getStudentByCode(loginCode);
 			modelMap.addAttribute("member", student);
 			page = "members/student_info";
 		}else if(roleName.equals("ROLE_PROF")) {
+			//교수
 			MemberProfessor professor = memberService.getProfessorByCode(loginCode);
 			modelMap.addAttribute("professor", professor);
 			page = "members/professor_info";
 		}else {
+			//관리자
 			MemberAdmin admin = memberService.getAdminByCode(loginCode);
 			modelMap.addAttribute("admin", admin);
 			page = "members/admin_info";
