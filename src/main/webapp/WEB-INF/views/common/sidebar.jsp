@@ -26,8 +26,8 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-app-store"></i><span class="nav-text">강의 관리</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="./app-profile.html">강의계획서조회</a></li>
-                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">수강내역조회</a>
+                            <li><a href="./app-calender.html">강의계획서조회</a></li>
+                            <li><a href="/lecture/prevLecture">수강내역조회</a>
                             </li>
                             <li><a href="./app-calender.html">성적조회</a></li>
                         </ul>

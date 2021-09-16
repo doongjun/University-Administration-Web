@@ -25,6 +25,8 @@ public class LectureVO {
 	private String semester;
 	private int student_count;
 	private int credit;
+	private String section;
+	private int dept_code;
 	private String remarks;
 	private String schedule;
 }

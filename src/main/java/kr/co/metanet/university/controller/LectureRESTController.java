@@ -4,29 +4,27 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import kr.co.metanet.university.domain.LectureVO;
 import kr.co.metanet.university.service.LectureService;
 
-@Controller
-@RequestMapping(path="/lecture")
-public class LectureController {
-	
+@RestController
+public class LectureRESTController {
+		
 	@Autowired
 	@Qualifier("kr.co.metanet.university.service.impl.LectureServiceImpl")
 	private LectureService service;
 	
-	@GetMapping("/prevLecture")
-	//@RequestMapping(value="/prevLecture",method = RequestMethod.GET)
-	public String prevLecture(Model model) {
-		List<LectureVO> list = service.getAllLecture();
-		model.addAttribute("vo",list);
-		return "lecture/prevLecture";
+	public LectureRESTController() {
+		System.out.println("LectureContorller test »£√‚");
 	}
-	
+
+	@RequestMapping(value= {"/api/get-lecture"}, method=RequestMethod.GET)
+	public List<LectureVO> getLectureTest(){
+		List<LectureVO> list = service.getAllLecture();
+		return list; 
+	}
 }

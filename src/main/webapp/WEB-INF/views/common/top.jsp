@@ -7,7 +7,9 @@
             <a href="/" class="brand-logo">
                 <img class="logo-abbr" src="../resources/images/logo.png" alt="">
                 <img class="logo-compact" src="../resources/images/logo-text.png" alt="">
-                <img class="brand-title" src="../resources/images/logo-text.png" alt="">
+                <div style="margin-left:10px;">
+                	제육 대학교
+                </div>
             </a>
 
             <div class="nav-control">
