@@ -130,8 +130,8 @@
 											<c:forEach var="vo" items="${vo}">
 												<tr>
 													<td>${vo.lecture_code}</td>
-													<td>${vo.grade}-${vo.semester}</a></td>
-													<td>전공</td>
+													<td>${vo.grade}-${vo.semester}</td>
+													<td>${vo.section}</td>
 													<td>${vo.lecture_name}</td>
 													<td>${vo.classroom}</td>
 													<td>${vo.lecture_time}</td>
