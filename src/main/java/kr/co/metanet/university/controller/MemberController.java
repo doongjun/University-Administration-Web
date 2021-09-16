@@ -64,4 +64,11 @@ public class MemberController {
 		
 		return page;
 	}
+	
+	@GetMapping("/pw-change")
+	public String pwchange(Principal principal){
+		return "members/pw_change";
+	}
+	
+	
 }

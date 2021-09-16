@@ -49,9 +49,9 @@
 					<div
 						class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="javascript:void(0)">Form</a></li>
+							<li class="breadcrumb-item"><a href="javascript:void(0)">학적</a></li>
 							<li class="breadcrumb-item active"><a
-								href="javascript:void(0)">Validation</a></li>
+								href="javascript:void(0)">내 학적 정보</a></li>
 						</ol>
 					</div>
 				</div>
@@ -84,24 +84,11 @@
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-lg-4 col-form-label" for="val-password">Password
+													<label class="col-lg-4 col-form-label">Phone
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="password" class="form-control"
-															id="val-password" name="val-password"
-															placeholder="변경할 비밀번호">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-4 col-form-label"
-														for="val-confirm-password">Confirm Password <span
-														class="text-danger">*</span>
-													</label>
-													<div class="col-lg-6">
-														<input type="password" class="form-control"
-															id="val-confirm-password" name="val-confirm-password"
-															placeholder="비밀번호 확인">
+														<input type="text" class="form-control" value="${member.phone }" readonly>
 													</div>
 												</div>
 												<div class="form-group row">
@@ -131,15 +118,6 @@
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-lg-4 col-form-label">생년월일
-														<span class="text-danger">*</span>
-													</label>
-													<div class="col-lg-6">
-														<fmt:formatDate var="birthday" value="${member.birthday}" pattern="yyyy-MM-dd"/>
-														<input type="text" class="form-control" value="${birthday}" readonly>
-													</div>
-												</div>
-												<div class="form-group row">
 													<label class="col-lg-4 col-form-label">학적상태
 														<span class="text-danger">*</span>
 													</label>
@@ -157,11 +135,12 @@
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-lg-4 col-form-label">Phone
+													<label class="col-lg-4 col-form-label">생년월일
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${member.phone }" readonly>
+														<fmt:formatDate var="birthday" value="${member.birthday}" pattern="yyyy-MM-dd"/>
+														<input type="text" class="form-control" value="${birthday}" readonly>
 													</div>
 												</div>
 												<div class="form-group row">
