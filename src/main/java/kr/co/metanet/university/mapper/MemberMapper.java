@@ -1,5 +1,7 @@
 package kr.co.metanet.university.mapper;
 
+import java.util.Map;
+
 import kr.co.metanet.university.domain.Member;
 import kr.co.metanet.university.domain.MemberAdmin;
 import kr.co.metanet.university.domain.MemberProfessor;
@@ -10,4 +12,5 @@ public interface MemberMapper {
 	MemberStudent selectStudentByCode(String code);
 	MemberProfessor selectProfessorByCode(String code);
 	MemberAdmin selectAdminByCode(String code);
+	void updatePassword(Map<String, String> params);
 }
