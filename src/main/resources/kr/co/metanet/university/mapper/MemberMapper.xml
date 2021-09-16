@@ -34,6 +34,12 @@
 		JOIN ADMIN a ON m.CODE = a.CODE 
 		WHERE a.CODE = #{code}
 	</select>
-
+	
+	<update id="updatePassword" parameterType="java.util.Map">
+		UPDATE MEMBER 
+		SET PASSWORD = #{password} 
+		WHERE code = #{code}
+	</update>
+	
 </mapper>
 

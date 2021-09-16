@@ -1,29 +1,36 @@
 package kr.co.metanet.university.controller;
 
 import java.security.Principal;
+import java.util.HashMap;
 
+import org.springframework.http.MediaType;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.metanet.university.domain.Member;
 import kr.co.metanet.university.domain.MemberAdmin;
 import kr.co.metanet.university.domain.MemberProfessor;
 import kr.co.metanet.university.domain.MemberStudent;
 import kr.co.metanet.university.service.MemberService;
-import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping(path="/members")
 public class MemberController {
 	private final MemberService memberService;
+	private final PasswordEncoder passwordEncoder;
 	
-	public MemberController(MemberService memberService) {
+	public MemberController(MemberService memberService, PasswordEncoder passwordEncoder) {
 		this.memberService = memberService;
+		this.passwordEncoder = passwordEncoder;
 	}
 	
 	@GetMapping("/loginform")
@@ -65,9 +72,30 @@ public class MemberController {
 		return page;
 	}
 	
-	@GetMapping("/pw-change")
-	public String pwchange(Principal principal){
+	@GetMapping("/pw-change-form")
+	public String pwchange(){
 		return "members/pw_change";
+	}
+	
+	@PostMapping("/pw-change")
+	public String pwchange(@RequestParam("curPassword") String curPassword,
+			@RequestParam("val-password") String valPassword,
+			Principal principal,
+			RedirectAttributes ra) {
+		String loginCode = principal.getName();
+		Member member = memberService.getMemberByCode(loginCode);
+		
+		String memberPassword = member.getPassword();
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		if(!encoder.matches(curPassword, memberPassword)) {
+			ra.addFlashAttribute("message", "wrongPassword");
+			return "redirect:/members/pw-change-form";
+		}
+		
+		memberService.updatePassword(loginCode, encoder.encode(valPassword));
+		
+		return "redirect:/logout";
 	}
 	
 	
