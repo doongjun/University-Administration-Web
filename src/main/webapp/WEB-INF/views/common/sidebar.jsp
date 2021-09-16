@@ -19,7 +19,7 @@
                                 class="icon icon-app-store"></i><span class="nav-text">학적</span></a>
                         <ul aria-expanded="false">
                             <li><a href="/members/mypage">내 학적 정보</a></li>
-                            <li><a href="/members/pw-change">비밀번호 변경</a></li>
+                            <li><a href="/members/pw-change-form">비밀번호 변경</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">강의관리</li> 
