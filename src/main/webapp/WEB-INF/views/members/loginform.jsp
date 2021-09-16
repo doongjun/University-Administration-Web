@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Focus - Bootstrap Admin Dashboard </title>
+    <title>Login</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../resources/images/favicon.png">
     <link href="../resources/css/style.css" rel="stylesheet">
@@ -62,7 +62,9 @@
     <script src="../resources/vendor/global/global.min.js"></script>
     <script src="../resources/js/quixnav-init.js"></script>
     <script src="../resources/js/custom.min.js"></script>
-
+	<script>
+	
+	</script>
 </body>
 
 </html>
