@@ -11,4 +11,5 @@ public interface MemberService extends UserDbService{
 	MemberStudent getStudentByCode(String code);
 	MemberProfessor getProfessorByCode(String code);
 	MemberAdmin getAdminByCode(String code);
+	void updatePassword(String code, String password);
 }
