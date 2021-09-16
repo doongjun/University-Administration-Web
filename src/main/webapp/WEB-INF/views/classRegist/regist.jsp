@@ -56,37 +56,88 @@
                     </div>
                 </div>
                 <!-- row -->
-
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+					   		<div class="card-body">
+					   			<div style="float:left; margin-top: 5px;">구분</div>
+								<div class="col-lg-2" style="float:left; margin-bottom: 10px; margin-left: 6px">
+				        			<select name="dept" id="dept" class="form-control" >
+					                	<option value="empty">전공/전공기초</option>
+					                	<option value="empty">교양/기타</option>
+					             	</select>
+				        		</div>
+				        		<div style="float:left; margin-top: 5px;">입력 검색</div>
+				        		<div class="col-lg-3" style="float:left; margin-right: 6px">
+				        			<input type="textarea" name="rep" class="form-control" placeholder="교과목명 또는 코드 입력" value=""/>
+				        		</div>
+				        		<button name="rep-btn" type="button" class="btn btn-primary" style="float: left">확인</button>
+					   		</div>
+					   		<div>
+					   			<div style="float:left; padding-left:20px; margin-top: 5px;">학부(과)</div>
+								<div class="col-lg-2" style="float:left; margin-bottom: 10px; margin-left: 6px">
+				        			<select name="dept" id="dept" class="form-control" >
+					                	<option value="empty">선택</option>
+					             	</select>
+				        		</div>
+				        		<div style="float:left; margin-top: 5px;">구분</div>
+				        		<div class="col-lg-2" style="float:left; margin-right: 6px">
+				        			<select name="dept" id="dept" class="form-control" >
+					                	<option value="empty">전공/전공기초</option>
+					                	<option value="empty">교양/기타</option>
+					             	</select>
+				        		</div>
+				        		<div style="float:left; margin-top: 5px;">학년</div>
+				        		<div class="col-lg-2" style="float:left; margin-right: 6px">
+				        			<select name="dept" id="dept" class="form-control" >
+				        				<option value="">전체</option>
+					                	<option value="">1학년</option>
+					                	<option value="">2학년</option>
+					                	<option value="">3학년</option>
+					                	<option value="">4학년</option>
+					             	</select>
+				        		</div>	
+				        		<button name="rep-btn" type="button" class="btn btn-primary" style="float: left">확인</button>
+					   		</div>
+						</div>
+					</div>
+				</div>
 
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">수강신청란</h4>
+                                <h4 class="card-title">개설과목</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-scroll">
-										<thead class="table-light" style="color:black;">
+										<thead class="table-light" style="color:white; background-color:gray; text-align:center;">
 											<tr>
 										        <th>강의번호</th>
 										        <th>학기</th>
+										        <th>구분</th>
 										        <th>강의이름</th>
 										        <th>강의실</th>
 										        <th>강의시간</th>
+										        <th>분반</th>
 										        <th>학점</th>
+										        <th>신청</th>
 									        </tr>
 										</thead>
-										<tbody>
+										<tbody style="color:black; text-align:center;">
 											<!-- 게시판 리스트 반복문 -->
 											<c:forEach var="vo" items="${vo}">
 												<tr>
 													<td>${vo.lecture_code}</td>
 													<td>${vo.grade}-${vo.semester}</a></td>
+													<td>전공</td>
 													<td>${vo.lecture_name}</td>
 													<td>${vo.classroom}</td>
 													<td>${vo.lecture_time}</td>
+													<td>${vo.division}</td>
 													<td>${vo.credit}</td>
+													<td><button name="" type="button" class="btn btn-primary">담기</button></td>
 												</tr>
 											</c:forEach>
 										</tbody>
