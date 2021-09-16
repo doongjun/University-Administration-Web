@@ -84,24 +84,11 @@
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-lg-4 col-form-label" for="val-password">Password
+													<label class="col-lg-4 col-form-label">Phone
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="password" class="form-control"
-															id="val-password" name="val-password"
-															placeholder="변경할 비밀번호">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-4 col-form-label"
-														for="val-confirm-password">Confirm Password <span
-														class="text-danger">*</span>
-													</label>
-													<div class="col-lg-6">
-														<input type="password" class="form-control"
-															id="val-confirm-password" name="val-confirm-password"
-															placeholder="비밀번호 확인">
+														<input type="text" class="form-control" value="${admin.phone }" readonly>
 													</div>
 												</div>
 											</div>
@@ -120,14 +107,6 @@
 													</label>
 													<div class="col-lg-6">
 														<input type="text" class="form-control" value="${admin.position }" readonly>
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-4 col-form-label">Phone
-														<span class="text-danger">*</span>
-													</label>
-													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${admin.phone }" readonly>
 													</div>
 												</div>
 												<div class="form-group row">

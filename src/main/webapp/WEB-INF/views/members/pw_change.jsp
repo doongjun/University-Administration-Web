@@ -42,16 +42,16 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>My Page</h4>
-							<p class="mb-1">${professor.name } 교수</p>
+							<h4>Change Password</h4>
+							<p class="mb-1">비밀번호 변경</p>
 						</div>
 					</div>
 					<div
 						class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="javascript:void(0)">Form</a></li>
+							<li class="breadcrumb-item"><a href="javascript:void(0)">학적</a></li>
 							<li class="breadcrumb-item active"><a
-								href="javascript:void(0)">Validation</a></li>
+								href="javascript:void(0)">비밀번호 변경</a></li>
 						</ol>
 					</div>
 				</div>
@@ -68,62 +68,32 @@
 										<div class="row">
 											<div class="col-xl-6">
 												<div class="form-group row">
-													<label class="col-lg-4 col-form-label">Professor Name
+													<label class="col-lg-4 col-form-label" for="val-password">현재 비밀번호
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${professor.name }" readonly>
+														<input type="password" class="form-control">
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-lg-4 col-form-label">교수 ID
+													<label class="col-lg-4 col-form-label" for="val-password">새 비밀번호
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${professor.code }" readonly>
+														<input type="password" class="form-control"
+															id="val-password" name="val-password"
+															placeholder="">
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-lg-4 col-form-label">생년월일
+													<label class="col-lg-4 col-form-label"
+														for="val-confirm-password">새 비밀번호 확인
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<fmt:formatDate var="birthday" value="${professor.birthday}" pattern="yyyy-MM-dd"/>
-														<input type="text" class="form-control" value="${birthday }" readonly>
-													</div>
-												</div>
-											</div>
-											<div class="col-xl-6">
-												<div class="form-group row">
-													<label class="col-lg-4 col-form-label">학과
-														<span class="text-danger">*</span>
-													</label>
-													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${professor.departmentName }" readonly>
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-4 col-form-label">교수 직급
-														<span class="text-danger">*</span>
-													</label>
-													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${professor.degree }" readonly>
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-4 col-form-label">Phone
-														<span class="text-danger">*</span>
-													</label>
-													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${professor.phone }" readonly>
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-4 col-form-label">email
-														<span class="text-danger">*</span>
-													</label>
-													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${professor.email }" readonly>
+														<input type="password" class="form-control"
+															id="val-confirm-password" name="val-confirm-password"
+															placeholder="">
 													</div>
 												</div>
 												<div class="form-group row">
