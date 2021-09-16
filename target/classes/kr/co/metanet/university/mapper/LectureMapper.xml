@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.metanet.university.mapper.LectureMapper">
 
-	<select id="getAllLecture" resultType="kr.co.metanet.university.domain.Lecture">
+	<select id="getAllLecture" resultType="kr.co.metanet.university.domain.LectureVO">
 	SELECT * FROM LECTURE;
 	</select>
 
-	<select id="getLecture" parameterType="Map" resultType="kr.co.metanet.university.domain.Lecture">
-	SELECT #{} from LECTURE where;
+	<select id="getLecture" parameterType="Map" resultType="kr.co.metanet.university.domain.LectureVO">
+	
 	</select>
 </mapper>
 
