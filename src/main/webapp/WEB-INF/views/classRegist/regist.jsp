@@ -249,8 +249,8 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table">
-										<thead class="table-light">
+                                    <table class="table table-bordered table-scroll">
+										<thead class="table-light" style="color:black;">
 											<tr>
 										        <th>강의번호</th>
 										        <th>학기</th>
