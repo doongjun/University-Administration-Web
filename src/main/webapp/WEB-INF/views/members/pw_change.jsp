@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -46,15 +45,32 @@
 							<p class="mb-1">비밀번호 변경</p>
 						</div>
 					</div>
-					<div
-						class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="javascript:void(0)">학적</a></li>
-							<li class="breadcrumb-item active"><a
-								href="javascript:void(0)">비밀번호 변경</a></li>
+							<li class="breadcrumb-item active"><a href="javascript:void(0)">비밀번호 변경</a></li>
 						</ol>
 					</div>
 				</div>
+
+				<div id="myModal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog modal-sm">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Modal title</h5>
+								<button type="button" class="close" data-dismiss="modal">
+									<span>&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">Modal body text goes here.</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary">Save changes</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
 				<!-- row -->
 				<div class="row">
 					<div class="col-lg-12">
@@ -64,36 +80,28 @@
 							</div>
 							<div class="card-body">
 								<div class="form-validation">
-									<form class="form-valide" action="#" method="post">
+									<form class="form-valide" action="/members/pw-change" method="post" name="pwform">
 										<div class="row">
 											<div class="col-xl-6">
 												<div class="form-group row">
-													<label class="col-lg-4 col-form-label" for="val-password">현재 비밀번호
-														<span class="text-danger">*</span>
+													<label class="col-lg-4 col-form-label" for="val-password">현재 비밀번호 <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="password" class="form-control">
+														<input type="password" class="form-control" id="curPassword" name="curPassword">
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-lg-4 col-form-label" for="val-password">새 비밀번호
-														<span class="text-danger">*</span>
+													<label class="col-lg-4 col-form-label" for="val-password">새 비밀번호 <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="password" class="form-control"
-															id="val-password" name="val-password"
-															placeholder="">
+														<input type="password" class="form-control" id="val-password" name="val-password" placeholder="">
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-lg-4 col-form-label"
-														for="val-confirm-password">새 비밀번호 확인
-														<span class="text-danger">*</span>
+													<label class="col-lg-4 col-form-label" for="val-confirm-password">새 비밀번호 확인 <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="password" class="form-control"
-															id="val-confirm-password" name="val-confirm-password"
-															placeholder="">
+														<input type="password" class="form-control" id="val-confirm-password" name="val-confirm-password" placeholder="">
 													</div>
 												</div>
 												<div class="form-group row">
@@ -150,9 +158,16 @@
 
 
 	<!-- Jquery Validation -->
-	<script
-		src="../resources/vendor/jquery-validation/jquery.validate.min.js"></script>
+	<script src="../resources/vendor/jquery-validation/jquery.validate.min.js"></script>
 	<!-- Form validate init -->
 	<script src="../resources/js/plugins-init/jquery.validate-init.js"></script>
+
+	<script>
+		var msg = "${message}";
+		if(msg === "wrongPassword"){
+			alert("비밀번호가 틀렸습니다.");
+		}
+		console.log(msg);
+	</script>
 </body>
 </html>
