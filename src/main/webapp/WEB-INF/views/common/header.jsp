@@ -12,6 +12,7 @@
     <link rel="icon" type="/image/png" sizes="16x16" href="../resources/images/favicon.png">
     <link rel="stylesheet" href="../resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="../resources/vendor/owl-carousel/css/owl.theme.default.min.css">
+    <link href="../resources/vendor/fullcalendar/css/fullcalendar.min.css" rel="stylesheet">
     <link href="../resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
     <link href="../resources/css/style.css" rel="stylesheet">
 </head>

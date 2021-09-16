@@ -7,7 +7,8 @@
 	</select>
 
 	<select id="getLecture" parameterType="Map" resultType="kr.co.metanet.university.domain.LectureVO">
-	
 	</select>
+	
+
 </mapper>
 
