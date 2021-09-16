@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>로그인 오류</title>
+    <title>404</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../resources/images/favicon.png">
     <link href="../resources/css/style.css" rel="stylesheet">
@@ -24,11 +24,11 @@
                 <div class="col-md-5">
                     <div class="form-input-content text-center">
                         <div class="mb-5">
-                            <a class="btn btn-primary" href="/members/loginform">Back to Home</a>
+                            <a class="btn btn-primary" href="/">Back to Home</a>
                         </div>
-                        <h1 class="error-text  font-weight-bold">403</h1>
-                        <h4 class="mt-4"><i class="fa fa-times-circle text-danger"></i> 로그인 오류 </h4>
-                        <p>Check your ID or Password</p>
+                        <h1 class="error-text font-weight-bold">404</h1>
+                        <h4 class="mt-4"><i class="fa fa-exclamation-triangle text-warning"></i> The page you were looking for is not found!</h4>
+                        <p>You may have mistyped the address or the page may have moved.</p>
                     </div>
                 </div>
             </div>
