@@ -16,6 +16,7 @@ import lombok.ToString;
 @AllArgsConstructor
 public class LectureVO {
 	private int id;
+	private String lecture_year;
 	private String lecture_code;
 	private String lecture_name;
 	private int grade;
