@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.metanet.university.domain.LectureVO;
 import kr.co.metanet.university.service.ClassRegisterService;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Controller
 @RequestMapping(path="/classRegist")
 public class ClassRegistController {
@@ -20,6 +22,7 @@ public class ClassRegistController {
 	
 	@GetMapping("/calendar")
 	public String calendarGet() {
+		log.info("calendar.jsp get 요청");
 		return "classRegist/calendar";
 	}
 	
