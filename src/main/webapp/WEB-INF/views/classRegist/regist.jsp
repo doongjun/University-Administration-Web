@@ -138,7 +138,7 @@
 										</thead>
 										<tbody style="color:black; text-align:center;">
 											<!-- 게시판 리스트 반복문 -->
-											<c:forEach var="vo" items="${vo}">
+											<c:forEach var="vo" items="${vo}" varStatus="cnt">
 												<tr>
 													<td>${vo.lecture_code}</td>
 													<td>${vo.lecture_year}</td>
@@ -150,7 +150,7 @@
 													<td>${vo.lecture_time}</td>
 													<td>${vo.division}</td>
 													<td>${vo.credit}</td>
-													<td><button name="" id="putInCheckBtn" type="button" class="btn btn-primary">담기</button></td>
+													<td><button name="" id="putInCheckBtn${cnt.count}" type="button" class="btn btn-primary">담기</button></td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -207,7 +207,7 @@
 	        <p>이 강의를 신청하시겠습니까?</p>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-primary">신청</button>
+	        <button type="button" class="btn btn-primary" id="modalRegisterBtn">신청</button>
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 	      </div>
 	    </div>
@@ -233,8 +233,25 @@
     <script>
     	let modal = $(".modal");
     	
-    	$("#putInCheckBtn").click(function() {
-    		modal.modal("show");
+    	var modalRegisterBtn = $("#modalRegisterBtn");
+    	
+    	var lectureCodeSelected = "";
+    	var lectureDivisionSelected = "";
+    	
+    	for(var i = 1; i <= 3; i++) {
+    		$("#putInCheckBtn" + i).click(function() {
+    			lectureCodeSelected = $(this).closest("tr").find("td:eq(0)").text();
+    			lectureDivisionSelected = $(this).closest("tr").find("td:eq(8)").text();
+    			
+    			/* alert($(this).closest("tr").find("td:eq(0)").text());
+    			alert($(this).closest("tr").find("td:eq(8)").text()); */
+        		modal.modal("show");
+        	});
+    	}
+    	
+    	modalRegisterBtn.click(function() {
+    		alert("신청되었습니다. " + lectureCodeSelected + " " + lectureDivisionSelected);
+    		modal.modal("hide");
     	});
     </script>
 
