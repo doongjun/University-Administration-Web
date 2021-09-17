@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
+  </Appenders>
+  <Loggers>
+
+  	<!-- controller 로그 -->
+  	<Logger name="kr.co.metanet.university.controller" level="info"/>
+  	<Logger name="com.spring.approval.controller" level="info"/>
+  	<Logger name="com.spring.attendance.controller" level="info"/>
+  	<Logger name="com.spring.board.controller" level="info"/>
+  	<Logger name="com.spring.calendar.controller" level="info"/>
+  	<Logger name="com.spring.mail.controller" level="info"/>
+  	<Logger name="com.spring.member.controller" level="info"/>
+  	<Logger name="com.spring.paystub.controller" level="info"/>
+  	<Logger name="com.spring.teamView.controller" level="info"/>
+  	<Logger name="com.spring.anonymous.controller" level="info" />
+  	<!-- mapper 로그 -->
+  	<Logger name="com.spring.approval.mapper" level="debug"/>
+  	<Logger name="com.spring.attendance.mapper" level="debug"/>
+  	<Logger name="com.spring.board.mapper" level="debug"/>
+  	<Logger name="com.spring.calendar.mapper" level="debug"/>
+  	<Logger name="com.spring.mail.mapper" level="debug"/>
+  	<Logger name="com.spring.member.mapper" level="debug"/>
+  	<Logger name="com.spring.paystub.mapper" level="debug"/>
+  	<Logger name="com.spring.anonymous.mapper" level="debug" />
+  	<Logger name="com.spring.teamView.mapper" level="debug"/>
+  	<Logger name="com.spring.chat.mapper" level="debug"/>
+
+
+  	<Logger name="com.spring.mail.util" level="info"/>
+  	<Logger name="com.spring.board.util" level="info"/>
+  	
+  	<Logger name="com.spring.task" level="info"/>
+  	
+  	<Logger name="org.springframework.core" level="info"/>
+  	<Logger name="org.springframework.beans" level="info"/>
+  	<Logger name="org.springframework.context" level="info"/>
+  	<Logger name="org.springframework.web" level="debug"/>
+  	<Logger name="org.springframework.jdbc" level="debug"/>
+  	<Logger name="org.springframework.websocket" level="info"/>
+  	
+    <Root level="error">
+    <!-- 에러가 발생하면 지정한대로 출력요청 -->
+      <AppenderRef ref="Console"/>
+    </Root>
+  </Loggers>
+</Configuration>
