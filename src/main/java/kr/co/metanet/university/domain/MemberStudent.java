@@ -2,8 +2,6 @@ package kr.co.metanet.university.domain;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,11 +19,12 @@ public class MemberStudent {
 	private String password;
 	private String departmentName;
 	private int grade;
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	private Date birthday;
 	private String AcademicStatus;
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	private Date admissionDate;
 	private String email;
 	private String phone;
+	
+	
+	
 }

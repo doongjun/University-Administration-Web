@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -46,12 +45,10 @@
 							<p class="mb-1">${admin.name } 관리자</p>
 						</div>
 					</div>
-					<div
-						class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="javascript:void(0)">Form</a></li>
-							<li class="breadcrumb-item active"><a
-								href="javascript:void(0)">Validation</a></li>
+							<li class="breadcrumb-item"><a href="javascript:void(0)">학적</a></li>
+							<li class="breadcrumb-item active"><a href="javascript:void(0)">내 학적 정보</a></li>
 						</ol>
 					</div>
 				</div>
@@ -64,62 +61,56 @@
 							</div>
 							<div class="card-body">
 								<div class="form-validation">
-									<form class="form-valide" action="#" method="post">
+									<form id="myForm" class="form-valide">
 										<div class="row">
 											<div class="col-xl-6">
 												<div class="form-group row">
-													<label class="col-lg-4 col-form-label">Admin Name
-														<span class="text-danger">*</span>
+													<label class="col-lg-4 col-form-label">Admin Name <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
 														<input type="text" class="form-control" value="${admin.name }" readonly>
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-lg-4 col-form-label">관리자 번호
-														<span class="text-danger">*</span>
+													<label class="col-lg-4 col-form-label">관리자 번호 <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${admin.code }" readonly>
+														<input type="text" class="form-control" name="code" value="${admin.code }">
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-lg-4 col-form-label">Phone
-														<span class="text-danger">*</span>
+													<label class="col-lg-4 col-form-label">Phone <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${admin.phone }" readonly>
+														<input type="text" class="form-control" name="phone" value="${admin.phone }">
 													</div>
 												</div>
 											</div>
 											<div class="col-xl-6">
 												<div class="form-group row">
-													<label class="col-lg-4 col-form-label">부서
-														<span class="text-danger">*</span>
+													<label class="col-lg-4 col-form-label">부서 <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${admin.division }" readonly>
+														<input type="text" class="form-control" name="division" value="${admin.division }">
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-lg-4 col-form-label">직급
-														<span class="text-danger">*</span>
+													<label class="col-lg-4 col-form-label">직급 <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${admin.position }" readonly>
+														<input type="text" class="form-control" name="position" value="${admin.position }">
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-lg-4 col-form-label">email
-														<span class="text-danger">*</span>
+													<label class="col-lg-4 col-form-label">email <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${admin.email }" readonly>
+														<input type="text" class="form-control" name="email" value="${admin.email }">
 													</div>
 												</div>
 												<div class="form-group row">
 													<div class="col-lg-8 ml-auto">
-														<button type="submit" class="btn btn-primary">Submit</button>
+														<button class="btn btn-primary" onclick="fn_revise();">Submit</button>
 													</div>
 												</div>
 											</div>
@@ -162,6 +153,25 @@
 	<!--**********************************
         Scripts
     ***********************************-->
+	<script type="text/javascript">
+		function fn_revise() {
+			var params = $('#myForm').serializeArray();
+
+			$.ajax({
+				url : "/members/update-admin-info",
+				type : "POST",
+				data : params,
+				dataType : 'json',
+				error : function(request, status, error) {
+					alert("error");
+				},
+
+				success : function(data) {
+					alert("success");
+				}
+			})
+		}
+	</script>
 	<!-- Required vendors -->
 	<script src="../resources/vendor/global/global.min.js"></script>
 	<script src="../resources/js/quixnav-init.js"></script>
@@ -171,8 +181,7 @@
 
 
 	<!-- Jquery Validation -->
-	<script
-		src="../resources/vendor/jquery-validation/jquery.validate.min.js"></script>
+	<script src="../resources/vendor/jquery-validation/jquery.validate.min.js"></script>
 	<!-- Form validate init -->
 	<script src="../resources/js/plugins-init/jquery.validate-init.js"></script>
 </body>

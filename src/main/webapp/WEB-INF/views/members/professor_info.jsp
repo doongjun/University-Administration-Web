@@ -64,7 +64,7 @@
 							</div>
 							<div class="card-body">
 								<div class="form-validation">
-									<form class="form-valide" action="#" method="post">
+									<form id="myForm" class="form-valide">
 										<div class="row">
 											<div class="col-xl-6">
 												<div class="form-group row">
@@ -80,7 +80,7 @@
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${professor.code }" readonly>
+														<input type="text" class="form-control" name="code" value="${professor.code }" readonly>
 													</div>
 												</div>
 												<div class="form-group row">
@@ -115,7 +115,7 @@
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${professor.phone }" readonly>
+														<input type="text" class="form-control" name="phone" value="${professor.phone }">
 													</div>
 												</div>
 												<div class="form-group row">
@@ -123,12 +123,12 @@
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${professor.email }" readonly>
+														<input type="text" class="form-control" name="email" value="${professor.email }">
 													</div>
 												</div>
 												<div class="form-group row">
 													<div class="col-lg-8 ml-auto">
-														<button type="submit" class="btn btn-primary">Submit</button>
+														<button class="btn btn-primary" onclick="fn_revise();">Submit</button>
 													</div>
 												</div>
 											</div>
@@ -171,6 +171,27 @@
 	<!--**********************************
         Scripts
     ***********************************-->
+    <script type="text/javascript">
+    	function fn_revise(){
+    		var params = $('#myForm').serializeArray();
+    		
+    		$.ajax({
+    			url : "/members/update-professor-info",
+    			type:"POST",
+				data: params,
+				dataType:'json',
+				error:function(request, status, error){
+					alert("error");
+				},
+				
+				success:function(data){
+					alert("success");
+				}
+    		})
+    	}
+  
+    </script>
+    
 	<!-- Required vendors -->
 	<script src="../resources/vendor/global/global.min.js"></script>
 	<script src="../resources/js/quixnav-init.js"></script>

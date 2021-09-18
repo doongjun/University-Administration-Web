@@ -72,4 +72,21 @@ public class MemberServiceImpl implements MemberService{
 		map.put("password", password);
 		memberMapper.updatePassword(map);
 	}
+
+	@Override
+	public void updateStudentInfo(HashMap<String, String> params) {
+		memberMapper.updateStudentInfo(params);
+	}
+
+	@Override
+	public void updateProfessorInfo(HashMap<String, String> params) {
+		memberMapper.updateProfessorInfo(params);
+	}
+
+	@Override
+	public void updateAdminInfo(HashMap<String, String> params) {
+		memberMapper.updateAdminInfo(params);
+	}
+	
+	
 }
