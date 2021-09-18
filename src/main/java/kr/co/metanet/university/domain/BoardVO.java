@@ -19,6 +19,8 @@ public class BoardVO {
 	private int b_writer_id;
 	private String b_content;
 	private Date b_sysdate;
-	private int b_view;
+	private int b_views;
 	private String b_sort;
+	
+	private String writer;
 }
