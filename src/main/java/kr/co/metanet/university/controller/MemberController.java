@@ -1,7 +1,12 @@
 package kr.co.metanet.university.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -9,10 +14,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -43,6 +50,7 @@ public class MemberController {
 		return "members/loginerror";
 	}
 	
+	//마이페이지
 	@GetMapping("/mypage")
 	public String mypage(Principal principal, ModelMap modelMap) {
 		String loginCode = principal.getName();
@@ -72,16 +80,39 @@ public class MemberController {
 		return page;
 	}
 	
+	//학생 마이페이지 수정
+	@PostMapping("/update-student-info")
+	public String updateStudentInfo(@RequestParam HashMap<String, String> params) {
+		memberService.updateStudentInfo(params);
+		return "redirect:/members/mypage";
+	}
+	
+	//교수 마이페이지 수정
+	@PostMapping("/update-professor-info")
+	public String updateProfessorInfo(@RequestParam HashMap<String, String> params) {
+		memberService.updateProfessorInfo(params);
+		return "redirect:/members/mypage";
+	}
+	
+	//관리자 마이페이지 수정
+	@PostMapping("/update-admin-info")
+	public String updateAdminInfo(@RequestParam HashMap<String, String> params) {
+		memberService.updateAdminInfo(params);
+		return "redirect:/members/mypage";
+	}
+	
+	
+	
 	@GetMapping("/pw-change-form")
 	public String pwchange(){
-		return "members/pw_change";
+		return "members/pw-change-form";
 	}
 	
 	@PostMapping("/pw-change")
 	public String pwchange(@RequestParam("curPassword") String curPassword,
 			@RequestParam("val-password") String valPassword,
 			Principal principal,
-			RedirectAttributes ra) {
+			RedirectAttributes ra){
 		String loginCode = principal.getName();
 		Member member = memberService.getMemberByCode(loginCode);
 		
@@ -90,12 +121,12 @@ public class MemberController {
 		
 		if(!encoder.matches(curPassword, memberPassword)) {
 			ra.addFlashAttribute("message", "wrongPassword");
-			return "redirect:/members/pw-change-form";
+		}else {
+			memberService.updatePassword(loginCode, encoder.encode(valPassword));
+			ra.addFlashAttribute("message", "success");
 		}
 		
-		memberService.updatePassword(loginCode, encoder.encode(valPassword));
-		
-		return "redirect:/logout";
+		return "redirect:/members/pw-change-form";
 	}
 	
 	

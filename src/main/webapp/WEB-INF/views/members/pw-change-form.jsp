@@ -53,24 +53,6 @@
 					</div>
 				</div>
 
-				<div id="myModal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
-					<div class="modal-dialog modal-sm">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title">Modal title</h5>
-								<button type="button" class="close" data-dismiss="modal">
-									<span>&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">Modal body text goes here.</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary">Save changes</button>
-							</div>
-						</div>
-					</div>
-				</div>
-
 				<!-- row -->
 				<div class="row">
 					<div class="col-lg-12">
@@ -119,6 +101,7 @@
 				</div>
 			</div>
 		</div>
+									
 		<!--**********************************
             Content body end
         ***********************************-->
@@ -153,10 +136,7 @@
 	<script src="../resources/vendor/global/global.min.js"></script>
 	<script src="../resources/js/quixnav-init.js"></script>
 	<script src="../resources/js/custom.min.js"></script>
-
-
-
-
+    
 	<!-- Jquery Validation -->
 	<script src="../resources/vendor/jquery-validation/jquery.validate.min.js"></script>
 	<!-- Form validate init -->
@@ -166,8 +146,11 @@
 		var msg = "${message}";
 		if(msg === "wrongPassword"){
 			alert("비밀번호가 틀렸습니다.");
+		}else if(msg === "success"){
+			alert("비밀번호 변경 성공! 다시 로그인 해주세요.");
+			document.location.href="/logout";
 		}
-		console.log(msg);
+		
 	</script>
 </body>
 </html>

@@ -63,7 +63,11 @@
     <script src="../resources/js/quixnav-init.js"></script>
     <script src="../resources/js/custom.min.js"></script>
 	<script>
-	
+	var msg = "${message}";
+	if(msg === "wrongPassword"){
+		alert("성공");
+	}
+	console.log(msg);
 	</script>
 </body>
 

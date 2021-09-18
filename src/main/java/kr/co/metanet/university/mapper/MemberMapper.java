@@ -13,4 +13,7 @@ public interface MemberMapper {
 	MemberProfessor selectProfessorByCode(String code);
 	MemberAdmin selectAdminByCode(String code);
 	void updatePassword(Map<String, String> params);
-}
+	void updateStudentInfo(Map<String, String> params);
+	void updateProfessorInfo(Map<String, String> params);
+	void updateAdminInfo(Map<String, String> params);
+} 
