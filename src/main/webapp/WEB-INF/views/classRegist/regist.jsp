@@ -82,21 +82,30 @@
 				        		</div>
 				        		<div style="float:left; margin-top: 5px;">구분</div>
 				        		<div class="col-lg-2" style="float:left; margin-right: 6px">
-				        			<select name="dept" id="dept" class="form-control" >
+				        			<select name="section" id="section" class="form-control" >
 					                	<option value="empty">전공/전공기초</option>
 					                	<option value="empty">교양/기타</option>
 					             	</select>
 				        		</div>
 				        		<div style="float:left; margin-top: 5px;">학년</div>
 				        		<div class="col-lg-2" style="float:left; margin-right: 6px">
-				        			<select name="dept" id="dept" class="form-control" >
+				        			<select name="grade" id="grade" class="form-control" >
 				        				<option value="">전체</option>
 					                	<option value="">1학년</option>
 					                	<option value="">2학년</option>
 					                	<option value="">3학년</option>
 					                	<option value="">4학년</option>
 					             	</select>
-				        		</div>	
+				        		</div>
+				        		<div style="float:left; margin-top: 5px;">학기</div>
+				        		<div class="col-lg-2" style="float:left; margin-right: 6px">
+				        			<select name="semester" id="semester" class="form-control" >
+					                	<option value="">1학기</option>
+					                	<option value="">2학기</option>
+					                	<option value="">여름학기</option>
+					                	<option value="">겨울학기</option>
+					             	</select>
+				        		</div>		
 				        		<button name="rep-btn" type="button" class="btn btn-primary" style="float: left">확인</button>
 					   		</div>
 						</div>
@@ -115,6 +124,8 @@
 										<thead class="table-light" style="color:white; background-color:gray; text-align:center;">
 											<tr>
 										        <th>강의번호</th>
+										        <th>강의년도</th>
+										        <th>학년</th>
 										        <th>학기</th>
 										        <th>구분</th>
 										        <th>강의이름</th>
@@ -127,17 +138,19 @@
 										</thead>
 										<tbody style="color:black; text-align:center;">
 											<!-- 게시판 리스트 반복문 -->
-											<c:forEach var="vo" items="${vo}">
+											<c:forEach var="vo" items="${vo}" varStatus="cnt">
 												<tr>
 													<td>${vo.lecture_code}</td>
-													<td>${vo.grade}-${vo.semester}</td>
+													<td>${vo.lecture_year}</td>
+													<td>${vo.grade}</td>
+													<td>${vo.semester}</td>
 													<td>${vo.section}</td>
 													<td>${vo.lecture_name}</td>
 													<td>${vo.classroom}</td>
 													<td>${vo.lecture_time}</td>
 													<td>${vo.division}</td>
 													<td>${vo.credit}</td>
-													<td><button name="" type="button" class="btn btn-primary">담기</button></td>
+													<td><button name="" id="putInCheckBtn${cnt.count}" type="button" class="btn btn-primary">담기</button></td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -177,7 +190,33 @@
     <!--**********************************
         Main wrapper end
     ***********************************-->
-
+	
+	<!--**********************************
+        Modal start
+    ***********************************-->
+	<div class="modal" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">강의 신청</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body" style="margin-top:10px; color:black; text-align:center;">
+	        <p>이 강의를 신청하시겠습니까?</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" id="modalRegisterBtn">신청</button>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!--**********************************
+        Modal end
+    ***********************************-->
+	
     <!--**********************************
         Scripts
     ***********************************-->
@@ -185,12 +224,36 @@
     <script src="../resources/vendor/global/global.min.js"></script>
     <script src="../resources/js/quixnav-init.js"></script>
     <script src="../resources/js/custom.min.js"></script>
-    
-
 
     <!-- Datatable -->
     <script src="../resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="../resources/js/plugins-init/datatables.init.js"></script>
+    
+    
+    <script>
+    	let modal = $(".modal");
+    	
+    	var modalRegisterBtn = $("#modalRegisterBtn");
+    	
+    	var lectureCodeSelected = "";
+    	var lectureDivisionSelected = "";
+    	
+    	for(var i = 1; i <= 3; i++) {
+    		$("#putInCheckBtn" + i).click(function() {
+    			lectureCodeSelected = $(this).closest("tr").find("td:eq(0)").text();
+    			lectureDivisionSelected = $(this).closest("tr").find("td:eq(8)").text();
+    			
+    			/* alert($(this).closest("tr").find("td:eq(0)").text());
+    			alert($(this).closest("tr").find("td:eq(8)").text()); */
+        		modal.modal("show");
+        	});
+    	}
+    	
+    	modalRegisterBtn.click(function() {
+    		alert("신청되었습니다. " + lectureCodeSelected + " " + lectureDivisionSelected);
+    		modal.modal("hide");
+    	});
+    </script>
 
 </body>
 
