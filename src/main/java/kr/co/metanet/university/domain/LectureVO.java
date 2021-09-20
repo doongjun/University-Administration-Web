@@ -15,6 +15,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LectureVO {
+	//lecture table 용
 	private int id;
 	private String lecture_year;
 	private String lecture_code;
@@ -30,4 +31,10 @@ public class LectureVO {
 	private int dept_code;
 	private String remarks;
 	private String schedule;
+	
+	//student_lecture table 용
+	private int student_id;
+	private int lecture_id;
+	private String score;
+	private int enrolment;
 }
