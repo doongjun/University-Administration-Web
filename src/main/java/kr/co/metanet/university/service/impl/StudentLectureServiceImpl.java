@@ -19,5 +19,14 @@ public class StudentLectureServiceImpl implements StudentLectureService {
 	public List<LectureVO> getStudentLectureList() {
 		return mapper.getStudentLectureList();
 	}
-
+	
+	@Override
+	public boolean insert(int student_id, int lecture_id) {
+		return mapper.insert(student_id, lecture_id) > 0 ? true : false;
+	}
+	
+	@Override
+	public boolean delete(int student_id, int lecture_id) {
+		return mapper.delete(student_id, lecture_id) > 0 ? true : false;
+	}
 }

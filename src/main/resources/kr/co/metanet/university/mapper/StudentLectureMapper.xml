@@ -7,4 +7,13 @@
 		from lecture l, student_lecture s_l
 		where l.id = s_l.lecture_id
 	</select>
+	
+	<insert id="insert">
+		insert into student_lecture(student_id, lecture_id, score, enrolment)
+		values(#{student_id}, #{lecture_id}, 'x', 1)
+	</insert>
+	
+	<delete id="delete">
+		delete from student_lecture where student_id = #{student_id} and lecture_id = #{lecture_id}
+	</delete>
 </mapper>

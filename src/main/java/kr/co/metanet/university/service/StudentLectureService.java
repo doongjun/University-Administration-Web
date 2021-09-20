@@ -6,4 +6,6 @@ import kr.co.metanet.university.domain.LectureVO;
 
 public interface StudentLectureService {
 	public List<LectureVO> getStudentLectureList();
+	public boolean insert(int student_id, int lecture_id);
+	public boolean delete(int student_id, int lecture_id);
 }
