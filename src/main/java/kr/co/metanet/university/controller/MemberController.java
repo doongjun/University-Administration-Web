@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -52,7 +53,7 @@ public class MemberController {
 	
 	//마이페이지
 	@GetMapping("/mypage")
-	public String mypage(Principal principal, ModelMap modelMap) {
+	public String mypage(Principal principal, HttpSession session) {
 		String loginCode = principal.getName();
 
 		Member member = memberService.getMemberByCode(loginCode);
@@ -63,17 +64,20 @@ public class MemberController {
 		if(roleName.equals("ROLE_USER")) {
 			//학생
 			MemberStudent student = memberService.getStudentByCode(loginCode);
-			modelMap.addAttribute("member", student);
+			session.setAttribute("member", student);
+			//modelMap.addAttribute("member", student);
 			page = "members/student_info";
 		}else if(roleName.equals("ROLE_PROF")) {
 			//교수
 			MemberProfessor professor = memberService.getProfessorByCode(loginCode);
-			modelMap.addAttribute("professor", professor);
+			session.setAttribute("professor", professor);
+			//modelMap.addAttribute("professor", professor);
 			page = "members/professor_info";
 		}else {
 			//관리자
 			MemberAdmin admin = memberService.getAdminByCode(loginCode);
-			modelMap.addAttribute("admin", admin);
+			session.setAttribute("admin", admin);
+			//modelMap.addAttribute("admin", admin);
 			page = "members/admin_info";
 		}
 		
