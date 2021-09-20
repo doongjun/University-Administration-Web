@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.metanet.university.service.MemberService;
 
 @Controller
-public class TestController {
+public class MainController {
 	private final MemberService memberService;
 	
-	public TestController(MemberService memberService) {
+	public MainController(MemberService memberService) {
 		this.memberService = memberService;
 	}
 	@GetMapping("/")

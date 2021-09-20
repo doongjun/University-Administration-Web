@@ -45,57 +45,78 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>학사 공지</h4>
-							<p class="mb-0">제육대학교 학사공지</p>
+							<h4>수강내역 조회</h4>
 						</div>
 					</div>
 					<div
 						class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="javascript:void(0)">공지사항</a></li>
+							<li class="breadcrumb-item"><a href="javascript:void(0)">강의관리</a></li>
 							<li class="breadcrumb-item active"><a
-								href="javascript:void(0)">공지게시판</a></li>
+								href="javascript:void(0)">수강내역 조회</a></li>
 						</ol>
 					</div>
 				</div>
-				<!-- row -->
 
+				<!-- 검색 -->
 
-				<!-- 학사공지 게시글 -->
+				<div class="row page-titles mx-0">
+					<div class="col-sm-6 p-md-0"></div>
+					<div
+						class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+						<div class="form-group">
+							<select class="form-control">
+								<option>Option 1</option>
+								<option>Option 2</option>
+								<option>Option 3</option>
+							</select>
+						</div>
+						<div class="form-group">
+
+							<select class="form-control">
+								<option>Option 1</option>
+								<option>Option 2</option>
+								<option>Option 3</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<!-- 검색결과 -->
+
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">학사공지</h4>
+								<h4 class="card-title">수강내역</h4>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
-									<table class="table table-responsive-sm">
-										<thead>
+									<table class="table table-bordered table-scroll">
+										<thead class="table-light" style="color: black;">
 											<tr>
-												<th>번호</th>
-												<th>제목</th>
-												<th>작성자</th>
-												<th>등록일</th>
-												<th>조회수</th>
+												<th>강의번호</th>
+												<th>학기</th>
+												<th>강의이름</th>
+												<th>강의실</th>
+												<th>강의시간</th>
+												<th>학점</th>
 											</tr>
 										</thead>
 										<tbody>
-											<!-- DB에서 데이터 받아오기 -->
-											<c:forEach var="vo" items="${list}">
+											<!-- 게시판 리스트 반복문 -->
+											<c:forEach var="vo" items="${vo}">
 												<tr>
-													<th>${vo.b_no}</th>
-													<td>${vo.b_title}</td>
-													<td>${vo.writer}</td>
-													<td>${vo.b_sysdate}</td>
-													<td>${vo.b_views}</td>
+													<td>${vo.lecture_code}</td>
+													<td>${vo.grade}-${vo.semester}</a></td>
+													<td>${vo.lecture_name}</td>
+													<td>${vo.classroom}</td>
+													<td>${vo.lecture_time}</td>
+													<td>${vo.credit}</td>
 												</tr>
 											</c:forEach>
 										</tbody>
 									</table>
-									
-									<!-- 검색기능 추가 필요 -->
-									<!-- 페이징 추가 필요 -->
 								</div>
 							</div>
 						</div>
@@ -103,6 +124,8 @@
 				</div>
 			</div>
 		</div>
+
+
 		<!--**********************************
             Content body end
         ***********************************-->
@@ -111,14 +134,7 @@
 		<!--**********************************
             Footer start
         ***********************************-->
-		<div class="footer">
-			<div class="copyright">
-				<p>
-					Copyright © Designed &amp; Developed by <a href="#" target="_blank">Quixkit</a>
-					2019
-				</p>
-			</div>
-		</div>
+		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 		<!--**********************************
             Footer end
         ***********************************-->
@@ -147,7 +163,10 @@
 
 
 
-
+	<!-- Datatable -->
+	<script
+		src="../resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
+	<script src="../resources/js/plugins-init/datatables.init.js"></script>
 </body>
 
 </html>

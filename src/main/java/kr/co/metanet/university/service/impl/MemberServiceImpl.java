@@ -1,7 +1,9 @@
 package kr.co.metanet.university.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -62,4 +64,29 @@ public class MemberServiceImpl implements MemberService{
 	public MemberAdmin getAdminByCode(String code) {
 		return memberMapper.selectAdminByCode(code);
 	}
+
+	@Override
+	public void updatePassword(String code, String password) {
+		Map<String, String> map = new HashMap<>();
+		map.put("code", code);
+		map.put("password", password);
+		memberMapper.updatePassword(map);
+	}
+
+	@Override
+	public void updateStudentInfo(HashMap<String, String> params) {
+		memberMapper.updateStudentInfo(params);
+	}
+
+	@Override
+	public void updateProfessorInfo(HashMap<String, String> params) {
+		memberMapper.updateProfessorInfo(params);
+	}
+
+	@Override
+	public void updateAdminInfo(HashMap<String, String> params) {
+		memberMapper.updateAdminInfo(params);
+	}
+	
+	
 }

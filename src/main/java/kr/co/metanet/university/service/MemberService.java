@@ -1,5 +1,7 @@
 package kr.co.metanet.university.service;
 
+import java.util.HashMap;
+
 import kr.co.metanet.university.domain.Member;
 import kr.co.metanet.university.domain.MemberAdmin;
 import kr.co.metanet.university.domain.MemberProfessor;
@@ -11,4 +13,8 @@ public interface MemberService extends UserDbService{
 	MemberStudent getStudentByCode(String code);
 	MemberProfessor getProfessorByCode(String code);
 	MemberAdmin getAdminByCode(String code);
+	void updatePassword(String code, String password);
+	void updateStudentInfo(HashMap<String, String> params);
+	void updateProfessorInfo(HashMap<String, String> params);
+	void updateAdminInfo(HashMap<String, String> params);
 }

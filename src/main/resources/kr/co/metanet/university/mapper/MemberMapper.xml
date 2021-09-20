@@ -34,6 +34,36 @@
 		JOIN ADMIN a ON m.CODE = a.CODE 
 		WHERE a.CODE = #{code}
 	</select>
-
+	
+	<update id="updatePassword" parameterType="java.util.Map">
+		UPDATE MEMBER 
+		SET PASSWORD = #{password} 
+		WHERE code = #{code}
+	</update>
+	
+	
+	<update id="updateStudentInfo" parameterType="java.util.Map">
+		UPDATE STUDENT 
+		SET EMAIL = #{email},
+			PHONE = #{phone}
+		WHERE code = #{code}
+	</update>
+	
+	<update id="updateProfessorInfo" parameterType="java.util.Map">
+		UPDATE PROFESSOR 
+		SET EMAIL = #{email},
+			PHONE = #{phone}
+		WHERE code = #{code}
+	</update>
+	
+	<update id="updateAdminInfo" parameterType="java.util.Map">
+		UPDATE ADMIN
+		SET EMAIL = #{email},
+			PHONE = #{phone},
+			"POSITION" = #{position},
+			DIVISION = #{division}
+		WHERE code = #{code}
+	</update>
+	
 </mapper>
 
