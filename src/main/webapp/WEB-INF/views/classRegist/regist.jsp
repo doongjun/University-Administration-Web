@@ -219,6 +219,8 @@
         Modal end
     ***********************************-->
 	
+	<input type="hidden" id="s_id" value="${member.id}">
+	
     <!--**********************************
         Scripts
     ***********************************-->
@@ -237,23 +239,34 @@
     	
     	var modalRegisterBtn = $("#modalRegisterBtn");
     	
-    	var lectureCodeSelected = "";
-    	var lectureDivisionSelected = "";
+    	var student_id = $("#s_id").val();
+    	var lecture_id= "";
+
     	var lecture_cnt = "${fn:length(vo)}";
     	console.log(lecture_cnt);
     	
     	for(var i = 1; i <= lecture_cnt; i++) {
     		$("#putInCheckBtn" + i).click(function() {
-    			lectureCodeSelected = $(this).closest("tr").find("td:eq(0)").text();
-    			
-    			
+    			lecture_id = $(this).closest("tr").find("td:eq(0)").text();
     			
         		modal.modal("show");
         	});
     	}
     	
     	modalRegisterBtn.click(function() {
-    		alert("신청되었습니다. " + lectureCodeSelected + " " + lectureDivisionSelected);
+    		
+    		$.ajax({
+    			url:'/studentLecture/rest_new/' + student_id + "/" + lecture_id,
+    			type:'put',
+    			async:false,
+    			success:function(result) {
+    				console.log(result);
+    			}
+    		})
+    		
+    		
+    		
+    		alert("신청되었습니다. ");    		
     		modal.modal("hide");
     	});
     </script>
