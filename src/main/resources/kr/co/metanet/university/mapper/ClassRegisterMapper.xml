@@ -6,4 +6,8 @@
 		SELECT * FROM lecture
 	</select>
 	
+	<select id="getLectureRegisteredList" resultType="kr.co.metanet.university.domain.LectureVO">
+		SELECT * FROM student_lecture where 
+	</select>
+	
 </mapper>

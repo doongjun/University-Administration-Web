@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <body>
 
@@ -140,6 +141,7 @@
 											<!-- 게시판 리스트 반복문 -->
 											<c:forEach var="vo" items="${vo}" varStatus="cnt">
 												<tr>
+													<td style="display:none;">${vo.id}</td>
 													<td>${vo.lecture_code}</td>
 													<td>${vo.lecture_year}</td>
 													<td>${vo.grade}</td>
@@ -237,14 +239,15 @@
     	
     	var lectureCodeSelected = "";
     	var lectureDivisionSelected = "";
+    	var lecture_cnt = "${fn:length(vo)}";
+    	console.log(lecture_cnt);
     	
-    	for(var i = 1; i <= 3; i++) {
+    	for(var i = 1; i <= lecture_cnt; i++) {
     		$("#putInCheckBtn" + i).click(function() {
     			lectureCodeSelected = $(this).closest("tr").find("td:eq(0)").text();
-    			lectureDivisionSelected = $(this).closest("tr").find("td:eq(8)").text();
     			
-    			/* alert($(this).closest("tr").find("td:eq(0)").text());
-    			alert($(this).closest("tr").find("td:eq(8)").text()); */
+    			
+    			
         		modal.modal("show");
         	});
     	}
