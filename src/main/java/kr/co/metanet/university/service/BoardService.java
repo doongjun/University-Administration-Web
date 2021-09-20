@@ -1,5 +1,11 @@
 package kr.co.metanet.university.service;
 
-public interface BoardService {
+import java.util.List;
 
+import kr.co.metanet.university.domain.BoardVO;
+
+
+public interface BoardService {
+	
+	public List<BoardVO> boardlist();
 }
