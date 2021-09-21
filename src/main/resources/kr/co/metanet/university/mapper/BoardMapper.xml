@@ -6,15 +6,22 @@
 	<!-- 모든 사용자용 -->
 	<!-- 전체 리스트 조회 -->
 	<select id="list" resultType="kr.co.metanet.university.domain.BoardVO">
-	select b.b_no as b_no, b.b_title as b_title, b.b_content as b_content, b.b_sysdate as b_sysdate, b.b_views as b_views, a.division as writer
-	from board b, admin a
-	where b.b_writer_code=a.id
-	order by b_no desc
+		select b.b_no as b_no, b.b_title as b_title, b.b_content as b_content, b.b_sysdate as b_sysdate, b.b_views as b_views, a.division as writer
+		from board b, admin a
+		where b.b_writer_code=a.id
+		order by b_no desc
 	</select>
+	
+	<!-- 게시글 클릭시 조회수 증가 -->
+	<update id="addviews">
+		update board set b_views=#{b_views} where b_bo=#{b_no}
+	</update>
 
 	<!--  게시글 조회 -->
 	<select id="view" parameterType="Map" resultType="kr.co.metanet.university.domain.BoardVO">
-	select * from board where b_no=#{b_no}
+		select b.b_no as b_no, b.b_title as b_title, b.b_content as b_content, b.b_sysdate as b_sysdate, b.b_views as b_views, a.division as writer
+		from board b, admin a
+		where b.b_writer_code=a.id and b_no=#{b_no}
 	</select>
 	
 	

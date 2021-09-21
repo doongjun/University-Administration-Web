@@ -15,10 +15,22 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardMapper mapper;
 	
+	//전체 리스트
 	@Override
 	public List<BoardVO> boardlist() {
-		
 		return mapper.list();
+	}
+
+	//조회수
+	@Override
+	public boolean addviews(int b_views, int b_no) {
+		return mapper.addviews(b_views, b_no) > 0 ? true : false;
+	}
+
+	//게시글 조회
+	@Override
+	public BoardVO view(int b_no) {
+		return mapper.view(b_no);
 	}
 
 }
