@@ -28,7 +28,7 @@
             Header end ti-comment-alt
         ***********************************-->
 
-       <!--**********************************
+        <!--**********************************
             Sidebar start
         ***********************************-->
         
@@ -46,78 +46,24 @@
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
-                            <h4>수강 신청</h4>
+                            <h4>수강내역조회</h4>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">수강</a></li>
-                            <li class="breadcrumb-item active"><a href="javascript:void(0)">수강 신청</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0)">수강내역조회</a></li>
                         </ol>
                     </div>
                 </div>
                 <!-- row -->
-				<div class="row">
-					<div class="col-12">
-						<div class="card">
-					   		<div class="card-body">
-					   			<div style="float:left; margin-top: 5px;">구분</div>
-								<div class="col-lg-2" style="float:left; margin-bottom: 10px; margin-left: 6px">
-				        			<select name="dept" id="dept" class="form-control" >
-					                	<option value="empty">전공/전공기초</option>
-					                	<option value="empty">교양/기타</option>
-					             	</select>
-				        		</div>
-				        		<div style="float:left; margin-top: 5px;">입력 검색</div>
-				        		<div class="col-lg-3" style="float:left; margin-right: 6px">
-				        			<input type="textarea" name="rep" class="form-control" placeholder="교과목명 또는 코드 입력" value=""/>
-				        		</div>
-				        		<button name="rep-btn" type="button" class="btn btn-primary" style="float: left">확인</button>
-					   		</div>
-					   		<div>
-					   			<div style="float:left; padding-left:20px; margin-top: 5px;">학부(과)</div>
-								<div class="col-lg-2" style="float:left; margin-bottom: 10px; margin-left: 6px">
-				        			<select name="dept" id="dept" class="form-control" >
-					                	<option value="empty">선택</option>
-					             	</select>
-				        		</div>
-				        		<div style="float:left; margin-top: 5px;">구분</div>
-				        		<div class="col-lg-2" style="float:left; margin-right: 6px">
-				        			<select name="section" id="section" class="form-control" >
-					                	<option value="empty">전공/전공기초</option>
-					                	<option value="empty">교양/기타</option>
-					             	</select>
-				        		</div>
-				        		<div style="float:left; margin-top: 5px;">학년</div>
-				        		<div class="col-lg-2" style="float:left; margin-right: 6px">
-				        			<select name="grade" id="grade" class="form-control" >
-				        				<option value="">전체</option>
-					                	<option value="">1학년</option>
-					                	<option value="">2학년</option>
-					                	<option value="">3학년</option>
-					                	<option value="">4학년</option>
-					             	</select>
-				        		</div>
-				        		<div style="float:left; margin-top: 5px;">학기</div>
-				        		<div class="col-lg-2" style="float:left; margin-right: 6px">
-				        			<select name="semester" id="semester" class="form-control" >
-					                	<option value="">1학기</option>
-					                	<option value="">2학기</option>
-					                	<option value="">여름학기</option>
-					                	<option value="">겨울학기</option>
-					             	</select>
-				        		</div>		
-				        		<button name="rep-btn" type="button" class="btn btn-primary" style="float: left">확인</button>
-					   		</div>
-						</div>
-					</div>
-				</div>
+
 
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">개설과목</h4>
+                                <h4 class="card-title">신청과목</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -152,7 +98,7 @@
 													<td>${vo.lecture_time}</td>
 													<td>${vo.division}</td>
 													<td>${vo.credit}</td>
-													<td><button name="" id="putInCheckBtn${cnt.count}" type="button" class="btn btn-primary">담기</button></td>
+													<td><button name="" id="putInCheckBtn${cnt.count}" type="button" class="btn btn-danger">취소</button></td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -162,10 +108,9 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-        
-	    
         <!--**********************************
             Content body end
         ***********************************-->
@@ -179,17 +124,15 @@
             Footer end
         ***********************************-->
 
-        <!--**********************************
-           Support ticket button start
-        ***********************************-->
-
-        <!--**********************************
-           Support ticket button end
-        ***********************************-->
-
         
+
+
     </div>
     <!--**********************************
+        Main wrapper end
+    ***********************************-->
+	
+	<!--**********************************
         Main wrapper end
     ***********************************-->
 	
@@ -200,16 +143,16 @@
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title">강의 신청</h5>
+	        <h5 class="modal-title">강의 취소</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
 	      <div class="modal-body" style="margin-top:10px; color:black; text-align:center;">
-	        <p>이 강의를 신청하시겠습니까?</p>
+	        <p>이 강의를 취소하시겠습니까?</p>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-primary" id="modalRegisterBtn">신청</button>
+	        <button type="button" class="btn btn-primary" id="modalDeleteBtn">확인</button>
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 	      </div>
 	    </div>
@@ -228,16 +171,22 @@
     <script src="../resources/vendor/global/global.min.js"></script>
     <script src="../resources/js/quixnav-init.js"></script>
     <script src="../resources/js/custom.min.js"></script>
+    <!--removeIf(production)-->
+    <!-- Demo scripts -->
+    <script src="../resources/js/styleSwitcher.js"></script>
 
-    <!-- Datatable -->
-    <script src="../resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="../resources/js/plugins-init/datatables.init.js"></script>
-    
-    
-    <script>
+
+
+    <script src="../resources/vendor/jqueryui/js/jquery-ui.min.js"></script>
+    <script src="../resources/vendor/moment/moment.min.js"></script>
+
+    <script src="../resources/vendor/fullcalendar/js/fullcalendar.min.js"></script>
+    <script src="../resources/js/plugins-init/fullcalendar-init.js"></script>
+	
+	<script>
     	let modal = $(".modal");
     	
-    	var modalRegisterBtn = $("#modalRegisterBtn");
+    	var modalDeleteBtn = $("#modalDeleteBtn");
     	
     	var student_id = $("#s_id").val();
     	var lecture_id= "";
@@ -253,24 +202,23 @@
         	});
     	}
     	
-    	modalRegisterBtn.click(function() {
+    	modalDeleteBtn.click(function() {
     		
     		$.ajax({
-    			url:'/studentLecture/rest_new/' + student_id + "/" + lecture_id,
-    			type:'put',
+    			url:'/studentLecture/rest_delete/' + student_id + "/" + lecture_id,
+    			type:'delete',
     			async:false,
     			success:function(result) {
     				console.log(result);
     			}
     		})
     		
+    		location.href = "/studentLecture/list";
     		
-    		
-    		alert("신청되었습니다. ");    		
+    		alert("취소되었습니다. ");    		
     		modal.modal("hide");
     	});
     </script>
-
 </body>
 
 </html>
