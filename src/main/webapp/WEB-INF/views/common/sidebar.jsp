@@ -14,7 +14,7 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-single-04"></i><span class="nav-text">공지사항</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="/board/list">공지게시판</a></li>
+                            <li><a href="/board/boardlist">공지게시판</a></li>
                         </ul>
                     </li>
                      <li class="nav-label">학적</li> 

@@ -58,49 +58,58 @@
 						</ol>
 					</div>
 				</div>
-				<!-- row -->
 
-
+				<!-- 게시글 조회부분 -->
+				<!-- 디자인 찾을거,, -->
 				<!-- 학사공지 게시글 -->
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">학사공지</h4>
+								<c:set var="now" value="<%=new java.util.Date()%>" />
+								<c:set var="sys">
+									<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />
+								</c:set>
+								<h4 class="card-title">[${vo.b_no}] ${vo.b_title}</h4>
+								<ol>
+									<li><p class="mb-0">작성자 : ${vo.writer}</p></li>
+									<li><p class="mb-0">
+											등록일 :
+											<c:out value="${sys}" />
+										</p></li>
+									<li><p class="mb-0">조회수 : ${vo.b_views}</p></li>
+								</ol>
 							</div>
-							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table table-responsive-sm">
-										<thead>
-											<tr>
-												<th>번호</th>
-												<th>제목</th>
-												<th>작성자</th>
-												<th>등록일</th>
-												<th>조회수</th>
-											</tr>
-										</thead>
-										<tbody>
-											<!-- DB에서 데이터 받아오기 -->
-											<c:forEach var="vo" items="${list}">
-												<tr>
-													<th>${vo.b_no}</th>
-													<td>${vo.b_title}</td>
-													<td>${vo.writer}</td>
-													<td>${vo.b_sysdate}</td>
-													<td>${vo.b_views}</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-									
-									<!-- 검색기능 추가 필요 -->
-									<!-- 페이징 추가 필요 -->
+
+							<!-- ckeditor 추가부분 -->
+							<div class="row justify-content-md-center">
+								<div class="col_c" style="margin-bottom: 30px">
+									<div class="input-group">
+										<textarea class="form-control" id="p_content">${vo.b_content}</textarea>
+
+									</div>
 								</div>
 							</div>
+
+							<!-- 버튼추가 -->
+							
+								
+								<div class="card-body">
+									<button type="button" class="btn btn-primary">Primary</button>
+									<button type="button" class="btn btn-success">Success</button>
+									<button type="button" class="btn btn-danger">Danger</button>
+									<button type="button" class="btn btn-warning">Warning</button>
+									<button type="button" class="btn btn-light">Light</button>
+									<button type="button" class="btn btn-dark">Dark</button>
+								</div>
+							
 						</div>
 					</div>
 				</div>
+
+
+
+
 			</div>
 		</div>
 		<!--**********************************
@@ -145,6 +154,26 @@
 	<script src="../resources/js/quixnav-init.js"></script>
 	<script src="../resources/js/custom.min.js"></script>
 
+	<!-- ckeditor -->
+	<script src="../resources/ckeditor/ckeditor.js"></script>
+	<script type="text/javascript">
+                  						CKEDITOR.replace('p_content'
+                                                  , {height: 500                                                  
+                                                  });
+                 						 </script>
+
+	<!-- 구글링 깃허브 -->
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="//feather.aviary.com/imaging/v3/editor.js"></script>
+
+	<script src="//unpkg.com/grapesjs@0.10.7/dist/grapes.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/grapesjs-plugin-export@0.1.5/dist/grapesjs-plugin-export.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.9.2/ckeditor.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/grapesjs-plugin-ckeditor@0.0.9/dist/grapesjs-plugin-ckeditor.min.js"></script>
 
 
 
