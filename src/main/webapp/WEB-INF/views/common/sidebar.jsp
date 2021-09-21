@@ -23,7 +23,7 @@
                         <ul aria-expanded="false">
                             <li><a href="/members/mypage">내 학적 정보</a></li>
                             <li><a href="/members/pw-change-form">비밀번호 변경</a></li>
-                            <li><a href="#">등록금</a></li>
+                            <li><a href="/tuition/tuition-form">등록금</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">강의관리</li> 
