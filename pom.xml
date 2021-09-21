@@ -65,6 +65,11 @@
 		    <artifactId>commons-fileupload</artifactId>
 		    <version>1.4</version>
 		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.4</version>
+		</dependency>
 		
 		<!-- Jackson-Databind 객체를 리턴시 json 으로 변환 -->
 		<dependency>
