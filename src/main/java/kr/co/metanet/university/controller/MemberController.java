@@ -133,34 +133,4 @@ public class MemberController {
 
 		return "redirect:/members/pw-change-form";
 	}
-	
-	//등록금 파일 업로드 폼(관리자)
-	@GetMapping("/tuition-form")
-	public String tuition() {
-		return "members/tuition-form";
-	}
-	
-	//등록금 파일 업로드 폼(관리자)
-	@PostMapping("/upload-tuition")
-	public String uploadTuition(@RequestParam("file") MultipartFile file) {
-
-		log.info("File Name :: " + file.getOriginalFilename());
-		log.info("File Size :: " + file.getSize());
-
-		try(FileOutputStream fos = new FileOutputStream("c:/tmp/" + file.getOriginalFilename());
-				InputStream is = file.getInputStream();) {
-			int readCount = 0;
-			byte[] buffer = new byte[1024];
-			
-			while((readCount = is.read(buffer)) != -1) {
-				fos.write(buffer, 0, readCount);
-			}
-			
-		}catch(Exception e) {
-			throw new RuntimeException("File Save Error");
-		}
-
-		return "members/uploadok";
-	}
-
 }
