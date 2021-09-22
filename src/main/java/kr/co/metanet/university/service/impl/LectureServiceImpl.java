@@ -21,4 +21,15 @@ public class LectureServiceImpl implements LectureService{
 		return mapper.getAllLecture();
 	}
 
+	@Override
+	public int create(LectureVO vo) {
+		return mapper.create(vo);
+	}
+	
+	@Override
+	public String getMaxCode() {
+		return mapper.getMaxCode();
+	}
+
+
 }
