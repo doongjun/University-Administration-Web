@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -48,12 +47,10 @@
 							<h4>강의 등록</h4>
 						</div>
 					</div>
-					<div
-						class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="javascript:void(0)">강의관리</a></li>
-							<li class="breadcrumb-item active"><a
-								href="javascript:void(0)">강의 등록</a></li>
+							<li class="breadcrumb-item active"><a href="javascript:void(0)">강의 등록</a></li>
 						</ol>
 					</div>
 				</div>
@@ -69,88 +66,65 @@
 							</div>
 							<div class="card-body">
 								<div class="basic-form">
-									<form>
+									<form id="profForm" class="form-valide">
 
 										<div class="form-row">
 											<div class="form-group col-md-6">
-												<label>강의제목</label> <input type="text" class="form-control"
-													placeholder="인공지능 프로그래밍">
+												<label>강의제목</label> <input name="lecture_name" type="text" class="form-control" required>
+
 											</div>
 											<div class="form-group col-md-6">
-												<label>학과</label> <input type="text" class="form-control"
-													placeholder="Email">
+												<label>학과</label> <select name="grade" id="inputState" class="form-control">
+													<option>컴퓨터공학과</option>
+													<option>경영학과</option>
+													<option>수학과</option>
+													<option>조소과</option>
+													<option selected="">상관없음</option>
+												</select>
 											</div>
 											<div class="form-group col-md-6">
-												<label>대상학년</label> <select id="inputState"
-													class="form-control">
-													<option selected="">Choose...</option>
+												<label>대상학년</label> <select name="grade" id="inputState" class="form-control">
 													<option>1</option>
 													<option>2</option>
 													<option>3</option>
 													<option>4</option>
-													<option>상관없음</option>
+													<option selected="">상관없음</option>
 												</select>
 											</div>
 											<div class="form-group col-md-6">
-												<label>강의실</label> <input type="text" class="form-control"
-													placeholder="예) 덮밥관 201호">
+												<label>강의실</label> <input name="classroom" type="text" class="form-control" placeholder="예) 덮밥관 201호">
 											</div>
 											<div class="form-group col-md-6">
-												<label>강의시간</label> <input type="text" class="form-control"
-													placeholder="예) 수 1,2,3">
+												<label>강의시간</label> <input name="lecture_time" type="text" class="form-control" placeholder="예) 수 1,2,3">
 											</div>
 											<div class="form-group col-md-6">
-												<label>분반</label> <select id="inputState"
-													class="form-control">
-													<option selected="">Choose...</option>
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-													<option>없음</option>
+												<label>분반</label> <select name="division" id="inputState" class="form-control">
+													<option>1분반</option>
+													<option>2분반</option>
+													<option>3분반</option>
+													<option selected="">없음</option>
 												</select>
 											</div>
 											<div class="form-group col-md-6">
-												<label>학점</label> <input type="number" class="form-control"
-													placeholder="3">
+												<label>학점</label> <input name="credit" type="number" min="1" max="3" class="form-control" placeholder="3">
 											</div>
 											<div class="form-group col-md-6">
-												<label>구분</label> <select id="inputState"
-													class="form-control">
-													<option selected="">Choose...</option>
-													<option>전공/전공기초</option>
+												<label>구분</label> <select name="section" id="inputState" class="form-control">
+													<option selected="">전공/전공기초</option>
 													<option>교양/기타</option>
 												</select>
 											</div>
 											<div class="form-group col-md-6">
-												<label>수강정원</label> <input type="text" class="form-control"
-													placeholder="30"> <small id="passwordHelpBlock"
-													class="form-text text-muted"> * 정원 변경시 과사무실에 문의바랍니다.
-												</small>
+												<label>수강정원</label> <input name="student_full" type="number" min="1" max="300" class="form-control" placeholder="30"> <small id="passwordHelpBlock" class="form-text text-muted">
+													* 정원 변경시 과사무실에 문의바랍니다. </small>
 											</div>
 											<div class="form-group col-md-6">
-												<label>비고</label> <input type="text"
-													class="form-control" placeholder="생략가능. 최대 30자">
+												<label>비고</label> <input name="remarks" type="text" class="form-control" placeholder="생략가능. 최대 30자">
 											</div>
 										</div>
-										
-											
-<div class="input-group">
-  <div class="custom-file">
-    <input type="file" class="custom-file-input" id="inputGroupFile04">
-    <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-  </div>
-  <div class="input-group-append">
-    <button class="btn btn-outline-secondary" type="button">Button</button>
-  </div>
-</div>
-<form>
-  <div class="form-group">
-    <label for="exampleFormControlFile1">Example file input</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-  </div>
-</form>
-										
-										<button type="submit" class="btn btn-primary">Sign in</button>
+
+
+										<button class="btn btn-primary" onclick="fn_create();">등록</button>
 									</form>
 								</div>
 							</div>
@@ -188,8 +162,30 @@
         Main wrapper end
     ***********************************-->
 
+	<script type="text/javascript">
+		function fn_create() {
+			var params = $('#profForm').serializeArray();
+			//var params = $('#profForm').serializeObject();
+			console.log(params);
+			$.ajax({
+				url : "/api/professorLecture/create",
+				type : "POST",
+				data : params,
+				dataType : 'json',
+				error : function(request, status, error) {
+					alert("저장중 오류가 발생했습니다");
+				},
+
+				success : function(data) {
+					alert("성공적으로 저장되었습니다.");
+				}
+			})
+		}
+	</script>
 	<!--**********************************
         Scripts
+        
+        
     ***********************************-->
 	<!-- Required vendors -->
 	<script src="../resources/vendor/global/global.min.js"></script>
@@ -199,8 +195,7 @@
 
 
 	<!-- Datatable -->
-	<script
-		src="../resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
+	<script src="../resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
 	<script src="../resources/js/plugins-init/datatables.init.js"></script>
 </body>
 
