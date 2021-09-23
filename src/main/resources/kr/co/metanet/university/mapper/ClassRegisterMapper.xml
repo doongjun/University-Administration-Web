@@ -5,8 +5,8 @@
 	<select id="getLectureList" resultType="kr.co.metanet.university.domain.LectureVO">
 		<![CDATA[
 			select *
-			from (select rownum rn, lecture_code, lecture_name, professor_id, grade, classroom, division, lecture_time, lecture_year, semester, student_count, student_full, credit, section, dept_code, remarks
-			      from (select l.lecture_code, l.lecture_name, l.professor_id, l.grade, l.classroom, l.division, l.lecture_time, l.lecture_year, l.semester, l.student_count, l.student_full, l.credit, l.section, l.dept_code, l.remarks
+			from (select rownum rn, id, lecture_code, lecture_name, professor_id, grade, classroom, division, lecture_time, lecture_year, semester, student_count, student_full, credit, section, dept_code, remarks
+			      from (select l.id, l.lecture_code, l.lecture_name, l.professor_id, l.grade, l.classroom, l.division, l.lecture_time, l.lecture_year, l.semester, l.student_count, l.student_full, l.credit, l.section, l.dept_code, l.remarks
 			            from lecture l )
 			      where rownum <= (#{cri.pageNum}*#{cri.amount}))
 			where rn > ((#{cri.pageNum}-1)*#{cri.amount})
