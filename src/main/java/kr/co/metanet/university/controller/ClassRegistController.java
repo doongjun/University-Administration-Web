@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.co.metanet.university.domain.Criteria;
 import kr.co.metanet.university.domain.LectureVO;
 import kr.co.metanet.university.service.ClassRegisterService;
 import lombok.extern.log4j.Log4j2;
@@ -27,8 +28,8 @@ public class ClassRegistController {
 	}
 	
 	@GetMapping("/regist")
-	public String registGet(Model model) {
-		List<LectureVO> vo = service.getLectureList();
+	public String registGet(Criteria cri,Model model) {
+		List<LectureVO> vo = service.getLectureList(cri);
 		
 		model.addAttribute("vo",vo);
 		
