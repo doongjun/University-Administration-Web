@@ -169,7 +169,38 @@
         <!--**********************************
             Content body end
         ***********************************-->
-
+        
+        <!--**********************************
+            page start
+        ***********************************-->
+		<!-- 페이지 담당 -->
+        <div class="card-footer clearfix">
+			<div class="card-tools">
+				<ul class="pagination pagination-sm float-right">
+					<!-- 이전페이지 -->
+                	<c:if test="${pageVo.prev}">
+       	            	<li class="page-item"><a href="${pageVo.startPage-1}" class="page-link">&laquo;</a></li>
+   	                </c:if>
+   	                <li class="page-item"><a href="${pageVo.startPage-1}" class="page-link">&laquo;</a></li>
+   	                <!-- 페이지 (1,2,3,...) -->
+					<c:forEach var="idx" begin="${pageVo.startPage}" end="${pageVo.endPage}">
+                    	<li class="page-item ${pageVo.cri.pageNum==idx?'active':''}">
+                        	<a href="${idx}" class="page-link">${idx}</a>
+                        </li>
+                    </c:forEach>
+                    <!-- 다음 페이지 -->
+                    <c:if test="${pageVo.next}">
+                    	<li class="page-item"><a href="${pageVo.endPage+1}" class="page-link">&raquo;</a></li>
+                    </c:if>
+                    <li class="page-item"><a href="${pageVo.endPage+1}" class="page-link">&raquo;</a></li>
+				</ul>
+			</div>
+        </div>
+        <!-- 페이지 끝 -->
+        <!--**********************************
+            page end
+        ***********************************-->      
+             
 
         <!--**********************************
             Footer start
@@ -221,6 +252,14 @@
 	
 	<input type="hidden" id="s_id" value="${member.id}">
 	
+	<form action="" method="get" id="actionForm">
+		<input type="hidden" name="pageNum" value="${pageVo.cri.pageNum}" />
+		<input type="hidden" name="amount" value="${pageVo.cri.amount}" />
+		<input type="hidden" name="eno" value="${login.eno}" />
+		<input type="hidden" name="year" value="" />
+		<input type="hidden" name="month" value="" />
+	</form>	
+	
     <!--**********************************
         Scripts
     ***********************************-->
@@ -232,7 +271,6 @@
     <!-- Datatable -->
     <script src="../resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="../resources/js/plugins-init/datatables.init.js"></script>
-    
     
     <script>
     	let modal = $(".modal");
@@ -264,10 +302,27 @@
     			}
     		})
     		
-    		
-    		
     		alert("신청되었습니다. ");    		
     		modal.modal("hide");
+    	});
+    	
+    	// 하단 페이지 나누기 버튼 클릭시 이동
+    	var actionForm = $("#actionForm");
+    	
+    	$(".page-item a").click(function(e){
+    		e.preventDefault(); //a 속성 중지
+    		
+    		var workDay = "${workList[0].workDay}";
+    		var year = workDay.split("-")[0];
+    		var month = workDay.split("-")[1] * 1 > 9 ? workDay.split("-")[1] : workDay.split("-")[1].charAt(1);
+    		
+    		//actionForm 안에 pageNum의 값을 사용자가 선택한 번호로 변경
+    		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+    		actionForm.find("input[name='year']").val(year);
+    		actionForm.find("input[name='month']").val(month);
+    		
+    		//actionForm 보내기 
+    		actionForm.submit();
     	});
     </script>
 
