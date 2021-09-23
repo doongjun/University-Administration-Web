@@ -278,6 +278,7 @@
     	var lecture_cnt = "${fn:length(vo)}";
     	console.log(lecture_cnt);
     	
+    	// 과목 담기 버튼에게 각각 클릭 기능 붙이기
     	for(var i = 1; i <= lecture_cnt; i++) {
     		$("#putInCheckBtn" + i).click(function() {
     			lecture_id = $(this).closest("tr").find("td:eq(0)").text();
@@ -286,11 +287,28 @@
         	});
     	}
     	
+    	// 학과 select박스에 정보 넣기
+    	$.ajax({
+    		url:"/classRegist/rest_dept",
+    		type:"GET",
+    		async:false,
+    		success:function(data) {
+    			var options = "";
+    			
+    			$.each(data, function(idx, element) {
+    				options += "<option value=" + element + ">" + element + "</option>";
+    			})
+    			
+    			$("select[name='dept']").append(options);
+				
+			}
+    	});
+    	
     	modalRegisterBtn.click(function() {
     		
     		$.ajax({
     			url:'/studentLecture/rest_new/' + student_id + "/" + lecture_id,
-    			type:'put',
+    			type:'PUT',
     			async:false,
     			success:function(result) {
     				console.log(result);
