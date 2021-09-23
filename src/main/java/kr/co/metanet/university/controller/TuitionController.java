@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.metanet.university.domain.Member;
 import kr.co.metanet.university.domain.Tuition;
@@ -32,7 +33,7 @@ import lombok.extern.log4j.Log4j2;
 public class TuitionController {
 	@Autowired
 	private TuitionService tuitionService;
-	
+
 	@Autowired
 	private MemberService memberService;
 
@@ -45,7 +46,7 @@ public class TuitionController {
 	// 등록금 파일 업로드 폼(관리자)
 	@PostMapping("/upload-tuition")
 	public String uploadTuition(@RequestParam("file") MultipartFile file, @RequestParam("code") String code,
-			HttpServletRequest request) {
+			HttpServletRequest request, RedirectAttributes ra) {
 
 		final String ROOT_PATH = request.getSession().getServletContext().getRealPath("/");
 		final String ATTACH_PATH = "resources/upload/";
@@ -53,12 +54,11 @@ public class TuitionController {
 		log.info("File Name :: " + file.getOriginalFilename());
 		log.info("File Size :: " + file.getSize());
 		log.info("File ContentType :: " + file.getContentType());
-		
-		if(memberService.getMemberByCode(code) != null) {
-			//업로드 x, return 추가
-			//return "";
+
+		if (memberService.getMemberByCode(code) == null) {
+			ra.addFlashAttribute("message", "noStudent");
+			return "redirect:/tuition/tuition-form";
 		}
-		
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("code", code);
@@ -84,43 +84,45 @@ public class TuitionController {
 
 		return "tuition/uploadok";
 	}
-	
+
+	@GetMapping("tuition-view")
+	public String confirmTuition() {
+		return "";
+	}
+
 	@GetMapping("/download-tuition")
 	public void download(HttpServletRequest request, HttpServletResponse response, Principal principal) {
 		final String ROOT_PATH = request.getSession().getServletContext().getRealPath("/");
-		
+
 		String code = principal.getName();
 		Tuition tuition = tuitionService.selectTuition(code);
-		
+
 		String fileName = tuition.getFileName();
 		String saveFileName = ROOT_PATH + tuition.getFilePath() + fileName;
 		String contentType = tuition.getContentType();
-		Double fileSize = tuition.getFileSize(); 
-		
+		Double fileSize = tuition.getFileSize();
+
 		log.info("fileName :: " + fileName);
 		log.info("saveFileName :: " + saveFileName);
 		log.info("contentType :: " + contentType);
 		log.info("fileSize :: " + fileSize);
-		
+
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\";");
-        response.setHeader("Content-Transfer-Encoding", "binary");
-        response.setHeader("Content-Type", contentType);
-        response.setHeader("Content-Length", "" + fileSize);
-        response.setHeader("Pragma", "no-cache;");
-        response.setHeader("Expires", "-1;");
-        
-        try(
-                FileInputStream fis = new FileInputStream(saveFileName);
-                OutputStream out = response.getOutputStream();
-        ){
-        	    int readCount = 0;
-        	    byte[] buffer = new byte[1024];
-            while((readCount = fis.read(buffer)) != -1){
-            		out.write(buffer,0,readCount);
-            }
-        }catch(Exception ex){
-            throw new RuntimeException("file Save Error");
-        }
+		response.setHeader("Content-Transfer-Encoding", "binary");
+		response.setHeader("Content-Type", contentType);
+		response.setHeader("Content-Length", "" + fileSize);
+		response.setHeader("Pragma", "no-cache;");
+		response.setHeader("Expires", "-1;");
+
+		try (FileInputStream fis = new FileInputStream(saveFileName); OutputStream out = response.getOutputStream();) {
+			int readCount = 0;
+			byte[] buffer = new byte[1024];
+			while ((readCount = fis.read(buffer)) != -1) {
+				out.write(buffer, 0, readCount);
+			}
+		} catch (Exception ex) {
+			throw new RuntimeException("file Save Error");
+		}
 	}
-	
+
 }
