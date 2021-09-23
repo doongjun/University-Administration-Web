@@ -17,6 +17,8 @@
 		SELECT * FROM student_lecture
 	</select>
 	
-	
+	<select id="deptList" resultType="java.lang.String">
+		select department_name from department
+	</select>
 	
 </mapper>
