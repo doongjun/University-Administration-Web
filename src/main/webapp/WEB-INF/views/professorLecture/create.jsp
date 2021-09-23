@@ -75,20 +75,36 @@
 											</div>
 											<div class="form-group col-md-6">
 												<label>학과</label> <select name="grade" id="inputState" class="form-control">
-													<option>컴퓨터공학과</option>
-													<option>경영학과</option>
-													<option>수학과</option>
-													<option>조소과</option>
-													<option selected="">상관없음</option>
+													<option value="1">컴퓨터공학과</option>
+													<option value="2">경영학과</option>
+													<option value="3">경제학과</option>
+													<option value="4">관광학과</option>
+													<option value="5">광고홍보학과</option>
+													<option value="6">법학과</option>
+													<option value="7">사회학과</option>
+													<option value="8">건축학과</option>
+													<option value="9">기계공학과</option>
+													<option value="10">화학공학과</option>
+													<option value="11">전기공학과</option>
+													<option value="12">전자공학과</option>
+													<option value="13">정보통신학과</option>
+													<option value="14">조형학과</option>
+													<option value="15">산업디자인학과</option>
+													<option value="16">국악과</option>
+													<option value="17">연극영화과</option>
+													<option value="18">국어국문학과</option>
+													<option value="19">영어영문학과</option>
+													<option value="20">심리학과</option>
+													<option value="0" selected="">상관없음</option>
 												</select>
 											</div>
 											<div class="form-group col-md-6">
 												<label>대상학년</label> <select name="grade" id="inputState" class="form-control">
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-													<option>4</option>
-													<option selected="">상관없음</option>
+													<option value="1">1학년</option>
+													<option value="2">2학년</option>
+													<option value="3">3학년</option>
+													<option value="4">4학년</option>
+													<option value="0" selected="">상관없음</option>
 												</select>
 											</div>
 											<div class="form-group col-md-6">
