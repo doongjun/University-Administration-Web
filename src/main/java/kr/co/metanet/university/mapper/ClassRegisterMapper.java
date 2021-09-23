@@ -9,4 +9,5 @@ import kr.co.metanet.university.domain.LectureVO;
 
 public interface ClassRegisterMapper {
 	public List<LectureVO> getLectureList(@Param("cri") Criteria cri);
+	public List<String> deptList();
 }
