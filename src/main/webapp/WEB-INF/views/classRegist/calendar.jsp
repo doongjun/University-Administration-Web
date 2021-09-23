@@ -115,12 +115,12 @@
         // view
         dp.startDate = "2021-03-25";
         dp.viewType = "Week";
-        dp.locale = "en-us";
+        dp.locale = "en-au";
 
         dp.headerDateFormat = "dddd";
 
         // event creating
-        dp.onTimeRangeSelected = function (args) {
+        /* dp.onTimeRangeSelected = function (args) {
             var name = prompt("New event name:", "Event");
             if (!name) return;
             var e = new DayPilot.Event({
@@ -131,7 +131,7 @@
             });
             dp.events.add(e);
             dp.clearSelection();
-        };
+        }; */
 
         dp.onEventClick = function (args) {
             alert("clicked: " + args.e.id());
@@ -143,18 +143,19 @@
             start: new DayPilot.Date("2021-03-25T12:00:00"),
             end: new DayPilot.Date("2021-03-25T12:00:00").addHours(3),
             id: DayPilot.guid(),
-            text: "Special event"
+            text: "자바 개론"
         });
+        
         dp.events.add(e);
 
-        var elements = {
+        /* var elements = {
             locale: document.querySelector("#locale")
         };
 
         elements.locale.addEventListener("change", function() {
             dp.locale = elements.locale.value;
             dp.update();
-        });
+        }); */
 
     </script>
 	<script src="../resources/helpers/v2/app.js?v=2021.2.261"></script>
