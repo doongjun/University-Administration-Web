@@ -3,6 +3,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+
+<!-- ckeditor -->
+	<script src="../resources/ckeditor/ckeditor.js"></script>
 <body>
 
 	<!--*******************
@@ -66,6 +69,26 @@
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
+
+								<div class="card-body">
+									<div class="basic-form">
+										<div class="input-group mb-3">
+											<input type="text" class="form-control" placeholder="제목">
+										</div>
+									</div>
+
+									<div class="basic-form">
+										<select id="single-select">
+											<option selected>분류</option>
+											<option value="1">학사</option>
+											<option value="2">행정</option>
+											<option value="3">행사</option>
+										</select>
+									</div>
+
+								</div>
+
+								<!--  0
 								<c:set var="now" value="<%=new java.util.Date()%>" />
 								<c:set var="sys">
 									<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />
@@ -79,30 +102,38 @@
 										</p></li>
 									<li><p class="mb-0">조회수 : ${vo.b_views}</p></li>
 								</ol>
+								-->
 							</div>
 
 							<!-- ckeditor 추가부분 -->
 							<div class="row justify-content-md-center">
 								<div class="col_c" style="margin-bottom: 30px">
 									<div class="input-group">
-										<textarea class="form-control" id="p_content">${vo.b_content}</textarea>
+										<label for ="b_content">작성</label>
+										<textarea class="form-control" id="b_content"></textarea>
+										<script>
+											var ckeditor_config = {
+												resize_enaleb : false,
+												enterMode : CKEDITOR.ENTER_BR,
+												shiftEnterMode : CKEDITOR.ENTER_P,
+												filebrowserUploadUrl : "/admin/goods/ckUpload"
+											};
 
+											CKEDITOR.replace("b_content",
+													ckeditor_config);
+										</script>
 									</div>
 								</div>
 							</div>
 
 							<!-- 버튼추가 -->
-							
-								
-								<div class="card-body">
-									<button type="button" class="btn btn-primary">Primary</button>
-									<button type="button" class="btn btn-success">Success</button>
-									<button type="button" class="btn btn-danger">Danger</button>
-									<button type="button" class="btn btn-warning">Warning</button>
-									<button type="button" class="btn btn-light">Light</button>
-									<button type="button" class="btn btn-dark">Dark</button>
-								</div>
-							
+
+
+							<div class="card-body">
+								<button type="button" class="btn btn-primary">등록</button>
+
+							</div>
+
 						</div>
 					</div>
 				</div>
@@ -154,13 +185,8 @@
 	<script src="../resources/js/quixnav-init.js"></script>
 	<script src="../resources/js/custom.min.js"></script>
 
-	<!-- ckeditor -->
-	<script src="../resources/ckeditor/ckeditor.js"></script>
-	<script type="text/javascript">
-                  						CKEDITOR.replace('p_content'
-                                                  , {height: 500                                                  
-                                                  });
-                 						 </script>
+	
+
 
 	<!-- 구글링 깃허브 -->
 	<script

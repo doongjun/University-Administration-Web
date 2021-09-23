@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.metanet.university.domain.BoardCriteriaVO;
+import kr.co.metanet.university.domain.BoardPageVO;
 import kr.co.metanet.university.domain.BoardVO;
 import kr.co.metanet.university.service.BoardService;
 import lombok.extern.log4j.Log4j2;
@@ -27,10 +29,17 @@ public class BoardController {
 	
 	//공지사항 게시판 조회
 	@GetMapping("/boardlist")
-	private void boardlist(Model model) {
+	private void boardlist(Model model, BoardCriteriaVO cri) {
 		List<BoardVO> list=service.boardlist();
 		log.info("*****전체list*****");
 		model.addAttribute("list",list);
+		log.info(list);
+		int total=service.total(cri);
+		log.info(total);
+		
+		BoardPageVO BoardPageVO = new BoardPageVO(cri, total);
+		model.addAttribute("BoardPageVO", BoardPageVO);
+	
 	}
 	
 	//조회수 증가
@@ -64,5 +73,12 @@ public class BoardController {
 		
 		
 		model.addAttribute("vo",vo);
+	}
+	
+	//관리자 글작성
+	@GetMapping("/write")
+	public void write() {
+		log.info("***** 공지사항 작성 *****");
+		
 	}
 }
