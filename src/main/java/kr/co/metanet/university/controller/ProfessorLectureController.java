@@ -23,10 +23,6 @@ public class ProfessorLectureController {
 	
 	@GetMapping("/create")
 	public String create(Model model) {
-		/*
-		 * List<LectureVO> list = service.getAllLecture();
-		 * model.addAttribute("vo",list);
-		 */
 		return "professorLecture/create";
 	}
 

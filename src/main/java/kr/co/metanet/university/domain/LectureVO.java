@@ -21,7 +21,7 @@ public class LectureVO {
 	private String lecture_year;
 	private String lecture_code;
 	private String lecture_name;
-	private int grade;
+	private String grade;
 	private String classroom;
 	private String division;
 	private String lecture_time;

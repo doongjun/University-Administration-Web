@@ -9,6 +9,8 @@
 		<div class="quixnav">
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
+                
+                    <!-- 학생-->
                 	<li class="nav-label first">학생</li>
                     <li class="nav-label first">공지</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
@@ -30,7 +32,7 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-app-store"></i><span class="nav-text">강의 관리</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="./app-calender.html">강의계획서조회</a></li>
+                            <li><a href="/lecture/lecture-list">강의계획서조회</a></li>
                             <li><a href="/lecture/prevLecture">수강내역조회</a>
                             </li>
                             <li><a href="./app-calender.html">성적조회</a></li>
@@ -44,6 +46,17 @@
                             <li><a href="/classRegist/regist">수강신청</a></li>
                             <li><a href="/studentLecture/list">수강신청내역</a></li>
                             <li><a href="/classRegist/calendar">시간표조회</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- 교수 -->
+                    <li class="nav-label first">교수</li>
+                     <li class="nav-label first">강의관리</li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                                class="icon icon-single-04"></i><span class="nav-text">강의관리</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="/professorLecture/create">강의등록</a></li>
+                            <li><a href="/professorLecture/lecture-list">강의조회</a></li>
                         </ul>
                     </li>
 
