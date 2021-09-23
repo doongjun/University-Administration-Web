@@ -9,8 +9,8 @@ import kr.co.metanet.university.domain.LectureVO;
 @Mapper
 public interface LectureMapper {
 	List<LectureVO> getAllLecture();
-//	LectureVO getLecture();
-//	int create(LectureVO vo);
+	int create(LectureVO vo);
+	String getMaxCode();
 //	int update(LectureVO vo);
 	
 }
