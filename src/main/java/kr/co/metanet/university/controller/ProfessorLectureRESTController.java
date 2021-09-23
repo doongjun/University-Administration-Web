@@ -40,7 +40,7 @@ public class ProfessorLectureRESTController {
 		
 		//real input
 		lecture.setLecture_name((String)params.get("lecture_name"));
-		lecture.setGrade(Integer.valueOf(params.get("grade")));
+		lecture.setGrade(params.get("grade"));
 		lecture.setClassroom((String)params.get("classroom"));
 		lecture.setLecture_time((String)params.get("lecture_time"));
 		lecture.setSection((String)params.get("section"));
