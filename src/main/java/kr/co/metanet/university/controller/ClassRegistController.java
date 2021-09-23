@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.metanet.university.domain.Criteria;
 import kr.co.metanet.university.domain.LectureVO;
+import kr.co.metanet.university.domain.PageVO;
 import kr.co.metanet.university.service.ClassRegisterService;
 import lombok.extern.log4j.Log4j2;
 
@@ -31,6 +32,10 @@ public class ClassRegistController {
 	public String registGet(Criteria cri,Model model) {
 		List<LectureVO> vo = service.getLectureList(cri);
 		
+		int total = 8;//service.totalCnt(eno, workDay);
+		log.info("total : " + total);
+		
+		model.addAttribute("pageVo", new PageVO(cri, total));
 		model.addAttribute("vo",vo);
 		
 		return "classRegist/regist";
