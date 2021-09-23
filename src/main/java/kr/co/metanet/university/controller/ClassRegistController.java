@@ -22,12 +22,6 @@ public class ClassRegistController {
 	@Autowired
 	private ClassRegisterService service;
 	
-	@GetMapping("/calendar")
-	public String calendarGet() {
-		log.info("calendar.jsp get 요청");
-		return "classRegist/calendar";
-	}
-	
 	@GetMapping("/regist")
 	public String registGet(Criteria cri,Model model) {
 		List<LectureVO> vo = service.getLectureList(cri);
