@@ -31,4 +31,11 @@ public class StudentLectureController {
 		
 		return "classRegist/list";
 	}
+	
+	@GetMapping("/calendar")
+	public String calendar(Model model) {
+		log.info("시간표죠회 페이지 요청");
+		
+		return "classRegist/calendar";
+	}
 }

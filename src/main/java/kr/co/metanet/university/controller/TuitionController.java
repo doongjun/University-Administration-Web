@@ -40,7 +40,7 @@ public class TuitionController {
 	// 등록금 파일 업로드 폼(관리자)
 	@GetMapping("/tuition-form")
 	public String tuition() {
-		return "tuition/tuition-form";
+		return "/tuition/tuition-form";
 	}
 
 	// 등록금 파일 업로드 폼(관리자)
