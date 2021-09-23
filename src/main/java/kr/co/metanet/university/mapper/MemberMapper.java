@@ -2,6 +2,8 @@ package kr.co.metanet.university.mapper;
 
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import kr.co.metanet.university.domain.Member;
 import kr.co.metanet.university.domain.MemberAdmin;
 import kr.co.metanet.university.domain.MemberProfessor;

@@ -10,7 +10,7 @@
 	<br>
 	<br>
 	<form method="post" action="upload-tuition" enctype="multipart/form-data">
-
+		code : <input type="text" name="code"><br>
 		file : <input type="file" name="file"><br> <input type="submit">
 	</form>
 </body>
