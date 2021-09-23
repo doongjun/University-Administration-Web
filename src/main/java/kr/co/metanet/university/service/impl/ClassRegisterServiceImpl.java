@@ -20,5 +20,10 @@ public class ClassRegisterServiceImpl implements ClassRegisterService {
 	public List<LectureVO> getLectureList(Criteria cri) {
 		return mapper.getLectureList(cri);
 	}
+	
+	@Override
+	public List<String> deptList() {
+		return mapper.deptList();
+	}
 
 }

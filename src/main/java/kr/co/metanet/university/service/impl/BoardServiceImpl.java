@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.metanet.university.domain.BoardCriteriaVO;
 import kr.co.metanet.university.domain.BoardVO;
 import kr.co.metanet.university.mapper.BoardMapper;
 import kr.co.metanet.university.service.BoardService;
@@ -32,5 +33,21 @@ public class BoardServiceImpl implements BoardService {
 	public BoardVO view(int b_no) {
 		return mapper.view(b_no);
 	}
+
+	@Override
+	public int total(BoardCriteriaVO cri) {
+		return mapper.totalCnt(cri);
+	}
+
+	
+	
+	//관리자용
+	//글작성
+	@Override
+	public boolean insert(BoardVO vo) {
+		return mapper.insert(vo)>0 ? true:false;
+	}
+	
+	
 
 }
