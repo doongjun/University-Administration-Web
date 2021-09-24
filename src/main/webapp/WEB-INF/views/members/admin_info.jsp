@@ -75,14 +75,14 @@
 													<label class="col-lg-4 col-form-label">관리자 번호 <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" name="code" value="${admin.code }">
+														<input type="text" class="form-control" name="code" value="${admin.code }" readonly>
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-4 col-form-label">Phone <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" name="phone" value="${admin.phone }">
+														<input type="text" id="phone" class="form-control" name="phone" value="${admin.phone }">
 													</div>
 												</div>
 											</div>
@@ -91,21 +91,21 @@
 													<label class="col-lg-4 col-form-label">부서 <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" name="division" value="${admin.division }">
+														<input type="text" id="division" class="form-control" name="division" value="${admin.division }">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-4 col-form-label">직급 <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" name="position" value="${admin.position }">
+														<input type="text" id="position" class="form-control" name="position" value="${admin.position }">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-4 col-form-label">email <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" name="email" value="${admin.email }">
+														<input type="text" id="email" class="form-control" name="email" value="${admin.email }">
 													</div>
 												</div>
 												<div class="form-group row">
@@ -155,6 +155,21 @@
     ***********************************-->
 	<script type="text/javascript">
 		function fn_revise() {
+			if($('#phone').val() === ''){
+				alert("핸드폰 번호를 입력하세요.");
+				return;
+			}else if($('#email').val() === ''){
+				alert("이메일을 입력하세요.")
+				return;
+			}else if($('#division').val() === ''){
+				alert("부서를 입력하세요.");
+				return;
+			}else if($('#position').val() === ''){
+				alert("직급을 입력하세요.");
+				return;
+			}
+    		
+			
 			var params = $('#myForm').serializeArray();
 
 			$.ajax({
