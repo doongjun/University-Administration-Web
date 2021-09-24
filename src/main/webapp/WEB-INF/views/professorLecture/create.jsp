@@ -181,7 +181,6 @@
 	<script type="text/javascript">
 		function fn_create() {
 			var params = $('#profForm').serializeArray();
-			//var params = $('#profForm').serializeObject();
 			console.log(params);
 			$.ajax({
 				url : "/api/professorLecture/create",

@@ -13,5 +13,6 @@ public interface LectureMapper {
 	String getMaxCode();
 	int create(LectureVO vo);
 	int update(LectureVO vo);
+	int delete(int id);
 	
 }
