@@ -43,11 +43,21 @@ public class TuitionController {
 
 	// 등록금 파일 업로드 폼(관리자)
 	@GetMapping("/tuition-form")
+<<<<<<< HEAD
+<<<<<<< HEAD
 	public String tuition(Model model) {
 
 		model.addAttribute("fileList", tuitionService.getTuitionFileList());
 
 		return "tuition/tuition-form";
+=======
+	public String tuition() {
+		return "/tuition/tuition-form";
+>>>>>>> 04af674a7d042e8ccdb7cad96286327be669dc77
+=======
+	public String tuition() {
+		return "/tuition/tuition-form";
+>>>>>>> 04af674a7d042e8ccdb7cad96286327be669dc77
 	}
 
 	// 등록금 파일 업로드(관리자)
