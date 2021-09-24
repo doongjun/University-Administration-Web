@@ -155,8 +155,13 @@
 		if(msg === "wrongPassword"){
 			alert("비밀번호가 틀렸습니다.");
 		}else if(msg === "success"){
-			alert("비밀번호 변경 성공! 다시 로그인 해주세요.");
-			document.location.href="/logout";
+			swal("비밀번호 변경 성공", "다시 로그인 해주세요.", "success").then((value) => {
+				if(value){
+					document.location.href="/logout";
+				}
+			});
+			//alert("비밀번호 변경 성공! 다시 로그인 해주세요.");
+			//document.location.href="/logout";
 		}
 		
 	</script>
