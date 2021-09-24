@@ -55,7 +55,7 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-single-04"></i><span class="nav-text">강의관리</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="/professorLecture/create">강의등록</a></li>
+                            <li><a href="/professorLecture/createform">강의등록</a></li>
                             <li><a href="/professorLecture/lecture-list">강의조회</a></li>
                         </ul>
                     </li>

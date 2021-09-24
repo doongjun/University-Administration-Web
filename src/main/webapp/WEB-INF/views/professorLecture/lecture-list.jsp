@@ -90,7 +90,7 @@
 													<td>${vo.semester}</td>
 													<td>${vo.section}</td>
 													<td>${vo.lecture_name}</td>
-													<td><button name="" id="putInCheckBtn${cnt.count}" type="button" class="btn btn-danger">수정</button>
+													<td><button onclick="fn_update(${vo.id});" type="button" class="btn btn-danger">수정</button>
 													<button name="" id="putInCheckBtn${cnt.count}" type="button" class="btn btn-danger">삭제</button>
 													<button name="" id="putInCheckBtn${cnt.count}" type="button" class="btn btn-danger">수강생</button></td>
 												</tr>
@@ -182,19 +182,21 @@
     	
     	var modalDeleteBtn = $("#modalDeleteBtn");
     	
-    	var student_id = $("#s_id").val();
-    	var lecture_id= "";
+    	//var student_id = $("#s_id").val();
+    	var lecture_code= "";
 
     	var lecture_cnt = "${fn:length(vo)}";
     	console.log(lecture_cnt);
     	
     	for(var i = 1; i <= lecture_cnt; i++) {
     		$("#putInCheckBtn" + i).click(function() {
-    			lecture_id = $(this).closest("tr").find("td:eq(0)").text();
-    			
+    			lecture_code = $(this).closest("tr").find("td:eq(0)").text();
+    			console.log(lecture_code);
         		modal.modal("show");
+        		//document.location.href = "/professorLecture/updateform/"+lecture_code;
         	});
     	}
+    	
     	
     	modalDeleteBtn.click(function() {
     		
@@ -212,6 +214,12 @@
     		alert("취소되었습니다. ");    		
     		modal.modal("hide");
     	});
+    	
+    	//test
+    	
+    	function fn_update(var lecture_id) {
+    		location.href = "/professorLecture/updateform/"+lecture_id;
+		}
     </script>
 </body>
 

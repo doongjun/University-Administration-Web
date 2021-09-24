@@ -6,8 +6,12 @@
 	SELECT * FROM LECTURE
 	</select>
 
+	<select id="getLecture" parameterType="int" resultType="kr.co.metanet.university.domain.LectureVO">
+	SELECT * FROM LECTURE WHERE ID = #{id}
+	</select>
+
 	<select id="getMaxCode" resultType="String">
-	SELECT NVL(MAX(LECTURE_CODE),'000001') FROM LECTURE;
+	SELECT NVL(MAX(LECTURE_CODE),'000001') FROM LECTURE
 	</select>
 
 	<insert id="create" parameterType="kr.co.metanet.university.domain.LectureVO">
@@ -15,6 +19,11 @@
 	VALUES(#{lecture_code},#{lecture_name},#{professor_id},#{grade},#{classroom},#{division},#{lecture_time},#{lecture_year},#{semester},#{student_count},#{student_full},#{credit},#{section},#{dept_code},#{remarks})
 	</insert>
 	
+	<update id="update" parameterType="kr.co.metanet.university.domain.LectureVO">
+	UPDATE LECTURE
+	SET LECTURE_NAME= #{lecture_name},GRADE= #{grade},CLASSROOM= #{classroom},DIVISION= #{division},LECTURE_TIME= #{lecture_time},STUDENT_FULL= #{student_full},CREDIT= #{credit},SECTION= #{section},DEPT_CODE= #{dept_code},REMARKS= #{remarks}
+	WHERE ID = #{id} 
+	</update>
 
 
 </mapper>
