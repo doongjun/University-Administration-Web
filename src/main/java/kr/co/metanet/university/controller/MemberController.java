@@ -52,8 +52,9 @@ public class MemberController {
 	}
 
 	@RequestMapping("/loginerror")
-	public String loginerror(@RequestParam("login_error") String loginError) {
-		return "members/loginerror";
+	public String loginerror(@RequestParam("login_error") String loginError, RedirectAttributes ra) {
+		ra.addFlashAttribute("message", "loginError");
+		return "redirect:/members/loginform";
 	}
 
 	// 마이페이지
