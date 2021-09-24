@@ -3,7 +3,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 
 
 <!-- ckeditor -->
@@ -70,70 +71,74 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
-						<form action="" id="write_board" method="post">
-							<div class="card-header">
+							<form action="" id="write_board" method="post">
+
 
 								<div class="card-body">
-									<div class="basic-form">
-										<div class="input-group mb-3">
-											<input name="b_title" id="b_title" type="text" class="form-control" placeholder="제목">
-										</div>
-
-										<select id="single-select b_sort" name="b_sort">
+									<div class="col-lg-2"
+										style="float: left; margin-bottom: 10px; margin-left: 0px; padding-left: -15px">
+										<select name="b_sort" id="single-select b_sort"
+											class="form-control">
 											<option value="">분류</option>
 											<option value="학사">학사</option>
 											<option value="행정">행정</option>
 											<option value="행사">행사</option>
 										</select>
 									</div>
-
-								</div>
-
-								
-							</div>
-							
-
-							<!-- ckeditor 추가부분 -->
-							<div class="row justify-content-md-center">
-								<div class="col_c" style="margin-bottom: 30px">
-									<div class="input-group">
-										<label for="b_content">작성</label>
-										<textarea class="ckeditor" id="b_content" name="b_content"></textarea>
-										<script type="text/javascript">
-		
-		$(function(){
-			CKEDITOR.replace( 'b_content',{ 
-				customConfig : '../resources/ckeditor/config.js'
-			});
-		});
-		if(CKEDITOR.instances.b_content.getData().length < 1){
-			alert("내용을 입력해 주세요.");
-			return;
-		}
-
-										</script>
+									<div class="form-group col-md-6" style="float: left; margin-right: 6px">
+										<input type="text" name="b_title" class="form-control"
+											placeholder="제목" value="" />
 									</div>
 								</div>
-							</div>
-							
-							
-							
-							<input type="hidden" name="b_writer_code" value="${admin.id}"/>
-							
-							<!-- 버튼추가 -->
-							<button type="submit" class="btn btn-primary" id="write_button">등록</button>
+								
+								<br>
+								
+								<div class="card-body">
+									<!-- ckeditor 추가부분 -->
+									<div class="row justify-content-md-center">
+										<div class="col_c" style="margin-bottom: 30px">
+											<div class="input-group">
+												<textarea class="ckeditor" id="b_content" name="b_content"></textarea>
+												<script type="text/javascript">
+													$(function() {
+														CKEDITOR
+																.replace(
+																		'b_content',
+																		{
+																			customConfig : '../resources/ckeditor/config.js'
+																		});
+													});
+													if (CKEDITOR.instances.b_content
+															.getData().length < 1) {
+														alert("내용을 입력해 주세요.");
+														return;
+													}
+												</script>
+											</div>
+										</div>
+									</div>
+
+
+
+									<input type="hidden" name="b_writer_code" value="${admin.id}" />
+
+									<!-- 버튼추가 -->
+									<button type="submit" class="btn btn-primary" id="write_button">등록</button>
+								</div>
 							</form>
+
+
 						</div>
 					</div>
 				</div>
-					<script src="/resources/js/boardwrite.js"></script>
-<script>
-	$(document).ready(function(){
-	    
-	    let result = '<c:out value="${result}"/>';
-	
-	});
-</script>
+				<script src="/resources/js/boardwrite.js"></script>
+				<script>
+					$(document).ready(function() {
+
+						let result = '<c:out value="${result}"/>';
+
+					});
+				</script>
 
 
 
