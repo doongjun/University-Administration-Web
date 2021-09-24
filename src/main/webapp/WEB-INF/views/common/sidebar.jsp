@@ -45,7 +45,7 @@
 						<ul aria-expanded="false">
                             <li><a href="/classRegist/regist">수강신청</a></li>
                             <li><a href="/studentLecture/list">수강신청내역</a></li>
-                            <li><a href="/classRegist/calendar">시간표조회</a></li>
+                            <li><a href="/studentLecture/calendar">시간표조회</a></li>
                         </ul>
                     </li>
                     
