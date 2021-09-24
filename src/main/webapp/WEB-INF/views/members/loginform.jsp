@@ -26,14 +26,14 @@
                             <div class="col-xl-12">
                                 <div class="auth-form">
                                     <h4 class="text-center mb-4">Login</h4>
-                                    <form method="post" action="/authenticate">
+                                    <form method="post" action="/authenticate" onsubmit="return fn_login();">
                                         <div class="form-group">
                                             <label><strong>ID</strong></label>
-                                            <input type="text" name="code" class="form-control">
+                                            <input type="text" id="code" name="code" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label><strong>Password</strong></label>
-                                            <input type="password" name="password" class="form-control">
+                                            <input type="password" id="password" name="password" class="form-control">
                                         </div>
                                         <div class="form-row d-flex justify-content-between mt-4 mb-2">
                                             <div class="form-group">
@@ -63,7 +63,22 @@
     <script src="../resources/js/quixnav-init.js"></script>
     <script src="../resources/js/custom.min.js"></script>
 	<script>
+	var msg = "${message}";
+	if(msg === "loginError"){
+		alert("ID나 비밀번호를 확인하세요.");
+	}
 	
+	function fn_login() {
+		if ($("#code").val() == '') {
+			alert("ID를 입력하세요.");
+			return false;
+		}
+
+		if ($("#password").val() == '') {
+			alert("비밀번호를 입력하세요");
+			return false;
+		}
+	}
 	</script>
 </body>
 
