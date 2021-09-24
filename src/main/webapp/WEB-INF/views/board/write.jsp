@@ -3,9 +3,11 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 
 <!-- ckeditor -->
-	<script src="../resources/ckeditor/ckeditor.js"></script>
+<script src="../resources/ckeditor/ckeditor.js"></script>
 <body>
 
 	<!--*******************
@@ -68,76 +70,70 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
+						<form action="" id="write_board" method="post">
 							<div class="card-header">
 
 								<div class="card-body">
 									<div class="basic-form">
 										<div class="input-group mb-3">
-											<input type="text" class="form-control" placeholder="제목">
+											<input name="b_title" id="b_title" type="text" class="form-control" placeholder="제목">
 										</div>
-									</div>
 
-									<div class="basic-form">
-										<select id="single-select">
-											<option selected>분류</option>
-											<option value="1">학사</option>
-											<option value="2">행정</option>
-											<option value="3">행사</option>
+										<select id="single-select b_sort" name="b_sort">
+											<option value="">분류</option>
+											<option value="학사">학사</option>
+											<option value="행정">행정</option>
+											<option value="행사">행사</option>
 										</select>
 									</div>
 
 								</div>
 
-								<!--  0
-								<c:set var="now" value="<%=new java.util.Date()%>" />
-								<c:set var="sys">
-									<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />
-								</c:set>
-								<h4 class="card-title">[${vo.b_no}] ${vo.b_title}</h4>
-								<ol>
-									<li><p class="mb-0">작성자 : ${vo.writer}</p></li>
-									<li><p class="mb-0">
-											등록일 :
-											<c:out value="${sys}" />
-										</p></li>
-									<li><p class="mb-0">조회수 : ${vo.b_views}</p></li>
-								</ol>
-								-->
+								
 							</div>
+							
 
 							<!-- ckeditor 추가부분 -->
 							<div class="row justify-content-md-center">
 								<div class="col_c" style="margin-bottom: 30px">
 									<div class="input-group">
-										<label for ="b_content">작성</label>
-										<textarea class="form-control" id="b_content"></textarea>
-										<script>
-											var ckeditor_config = {
-												resize_enaleb : false,
-												enterMode : CKEDITOR.ENTER_BR,
-												shiftEnterMode : CKEDITOR.ENTER_P,
-												filebrowserUploadUrl : "/admin/goods/ckUpload"
-											};
+										<label for="b_content">작성</label>
+										<textarea class="ckeditor" id="b_content" name="b_content"></textarea>
+										<script type="text/javascript">
+		
+		$(function(){
+			CKEDITOR.replace( 'b_content',{ 
+				customConfig : '../resources/ckeditor/config.js'
+			});
+		});
+		if(CKEDITOR.instances.b_content.getData().length < 1){
+			alert("내용을 입력해 주세요.");
+			return;
+		}
 
-											CKEDITOR.replace("b_content",
-													ckeditor_config);
 										</script>
 									</div>
 								</div>
 							</div>
-
+							
+							
+							
+							<input type="hidden" name="b_writer_code" value="${admin.id}"/>
+							
 							<!-- 버튼추가 -->
-
-
-							<div class="card-body">
-								<button type="button" class="btn btn-primary">등록</button>
-
-							</div>
-
+							<button type="submit" class="btn btn-primary" id="write_button">등록</button>
+							</form>
 						</div>
 					</div>
 				</div>
-
+					<script src="/resources/js/boardwrite.js"></script>
+<script>
+	$(document).ready(function(){
+	    
+	    let result = '<c:out value="${result}"/>';
+	
+	});
+</script>
 
 
 
@@ -185,7 +181,7 @@
 	<script src="../resources/js/quixnav-init.js"></script>
 	<script src="../resources/js/custom.min.js"></script>
 
-	
+
 
 
 	<!-- 구글링 깃허브 -->
