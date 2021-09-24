@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <body>
 
@@ -111,9 +112,11 @@
     
     <script type="text/javascript">
         var dp = new DayPilot.Calendar("dp");
-
+		var list = "${vo}";
+		var list_length = "${fn:length(vo)}";
+		
         // view
-        dp.startDate = "2021-03-25";
+        dp.startDate = "2021-03-22"; //22 : 월요일, 23 : 화, 24 : 수, 25 : 목, 26 : 금, 27 : 토, 28 : 일
         dp.viewType = "Week";
         dp.locale = "en-au";
 
@@ -133,20 +136,68 @@
             dp.clearSelection();
         }; */
 
-        dp.onEventClick = function (args) {
+        /* dp.onEventClick = function (args) {
             alert("clicked: " + args.e.id());
-        };
+        }; */
 
         dp.init();
-
-        var e = new DayPilot.Event({
-            start: new DayPilot.Date("2021-03-25T12:00:00"),
-            end: new DayPilot.Date("2021-03-25T12:00:00").addHours(3),
-            id: DayPilot.guid(),
-            text: "자바 개론"
+        
+        var e = "";
+        var year_month = "2021-03-";
+        var leftTime = ":00:00";
+        
+        $.getJSON({
+        	url:"/studentLecture/rest_calendar",
+        	type:"GET",
+        	async:false,
+        	success:function(data) {		
+				$.each(data, function(idx, element) {
+					var day = "";
+					timeSpl = element.lecture_time.split(" ");
+					
+					if(timeSpl[0] == "월") {
+						day = "22";
+					}
+					if(timeSpl[0] == "화") {
+						day = "23";
+					}
+					if(timeSpl[0] == "수") {
+						day = "24";
+					}
+					if(timeSpl[0] == "목") {
+						day = "25";
+					}
+					if(timeSpl[0] == "금") {
+						day = "26";
+					}
+					if(timeSpl[0] == "토") {
+						day = "27";
+					}
+					
+					cnt = timeSpl[1].split(",").length;
+					
+					var startDay = year_month + day + "T";
+					
+					var startTime = ((timeSpl[1].split(",")[0] * 1) + 8) > 9? ((timeSpl[1].split(",")[0] * 1) + 8) : "0" + ((timeSpl[1].split(",")[0] * 1) + 8);
+					
+					startDay = startDay + startTime + leftTime;
+					
+					console.log(startDay);
+					console.log(cnt);
+					
+					e = new DayPilot.Event({
+		                start: new DayPilot.Date(startDay),
+		                end: new DayPilot.Date(startDay).addHours(cnt),
+		                id: DayPilot.guid(),
+		                text: element.lecture_name + "<br>" +  element.lecture_time + "<br>" + element.classroom
+		            });
+					
+					dp.events.add(e);
+				})
+			}
+        	
         });
         
-        dp.events.add(e);
 
         /* var elements = {
             locale: document.querySelector("#locale")
