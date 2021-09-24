@@ -7,8 +7,8 @@ $("button[type='submit']").click(function(e){
 	
 	let title=$("#b_title").val();
 	let sort=$("select[name='b_sort']").val();
-	let content=$("#b_content").val();
-	
+	//let content=$("textarea[name='b_content']").val();
+	let content=CKEDITOR.instances.b_content.getData();
 	console.log(content);
 	
 	if(title==""){
@@ -21,9 +21,9 @@ $("button[type='submit']").click(function(e){
 		$("#b_sort").focus();
 		return;
 	}
-	if(content==""){
+ 	if(content==""){
 		alert("내용을 작성해 주세요");
-		$("#b_content").focus();
+		$(".ckeditor").focus();
 		return;
 	}
 	

@@ -98,8 +98,8 @@
 								<div class="col_c" style="margin-bottom: 30px">
 									<div class="input-group">
 										<label for="b_content">작성</label>
-										<textarea class="form-control" id="b_content" name="b_content"></textarea>
-										<script language="javascript">
+										<textarea class="ckeditor" id="b_content" name="b_content"></textarea>
+										<script type="text/javascript">
 		
 		$(function(){
 			CKEDITOR.replace( 'b_content',{ 
