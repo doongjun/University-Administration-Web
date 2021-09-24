@@ -83,12 +83,14 @@
 							<div class="row justify-content-md-center">
 								<div class="col_c" style="margin-bottom: 30px">
 									<div class="input-group">
-										<textarea class="form-control" id="p_content"
+										<textarea class="form-control" id="b_content"
 											readonly="readonly">${vo.b_content}</textarea>
 										<script type="text/javascript">
-                  						CKEDITOR.replace('p_content'
-                                                  , {height: 500                                                  
-                                                  });
+										$(function(){
+											CKEDITOR.replace( 'b_content',{ 
+												customConfig : '../resources/ckeditor/config.js'
+											});
+										});
                  						 </script>
 
 									</div>

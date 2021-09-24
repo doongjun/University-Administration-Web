@@ -6,6 +6,10 @@ import kr.co.metanet.university.domain.LectureVO;
 
 public interface LectureService {
 	List<LectureVO> getAllLecture();
-	int create(LectureVO vo);
+	LectureVO getLecture(int id);
 	String getMaxCode();
+	int create(LectureVO vo);
+	int update(LectureVO vo);
+	int delete(int id);
+	
 }

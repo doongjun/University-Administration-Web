@@ -8,7 +8,7 @@ import kr.co.metanet.university.domain.BoardVO;
 
 public interface BoardService {
 	//전체 리스트 조회
-	public List<BoardVO> boardlist();
+	public List<BoardVO> boardlist(BoardCriteriaVO cri);
 	//조회수 증가
 	public boolean addviews(int b_views, int b_no);
 	//선택한 게시글 조회

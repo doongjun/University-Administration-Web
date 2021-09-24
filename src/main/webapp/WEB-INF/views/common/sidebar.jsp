@@ -25,7 +25,7 @@
                         <ul aria-expanded="false">
                             <li><a href="/members/mypage">내 학적 정보</a></li>
                             <li><a href="/members/pw-change-form">비밀번호 변경</a></li>
-                            <li><a href="/tuition/tuition-form">등록금</a></li>
+                            <li><a href="/tuition/tuition-view">등록금 고지서 조회</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">강의관리</li> 
@@ -45,7 +45,7 @@
 						<ul aria-expanded="false">
                             <li><a href="/classRegist/regist">수강신청</a></li>
                             <li><a href="/studentLecture/list">수강신청내역</a></li>
-                            <li><a href="/classRegist/calendar">시간표조회</a></li>
+                            <li><a href="/studentLecture/calendar">시간표조회</a></li>
                         </ul>
                     </li>
                     
@@ -55,8 +55,18 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-single-04"></i><span class="nav-text">강의관리</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="/professorLecture/create">강의등록</a></li>
+                            <li><a href="/professorLecture/createform">강의등록</a></li>
                             <li><a href="/professorLecture/lecture-list">강의조회</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- 관리자 -->
+                    <li class="nav-label first">관리자</li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                                class="icon icon-single-04"></i><span class="nav-text">학적 관리</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="#">학생 관리</a></li>
+                            <li><a href="/tuition/tuition-form">등록금 고지서 관리</a></li>
                         </ul>
                     </li>
 

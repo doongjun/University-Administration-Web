@@ -63,7 +63,7 @@
 					   		<div class="card-body">
 					   			<div style="float:left; margin-top: 5px;">구분</div>
 								<div class="col-lg-2" style="float:left; margin-bottom: 10px; margin-left: 6px">
-				        			<select name="dept" id="dept" class="form-control" >
+				        			<select name="section_up" id="section_up" class="form-control" >
 					                	<option value="empty">전공/전공기초</option>
 					                	<option value="empty">교양/기타</option>
 					             	</select>
@@ -83,7 +83,7 @@
 				        		</div>
 				        		<div style="float:left; margin-top: 5px;">구분</div>
 				        		<div class="col-lg-2" style="float:left; margin-right: 6px">
-				        			<select name="section" id="section" class="form-control" >
+				        			<select name="section_bottom" id="section_bottom" class="form-control" >
 					                	<option value="empty">전공/전공기초</option>
 					                	<option value="empty">교양/기타</option>
 					             	</select>

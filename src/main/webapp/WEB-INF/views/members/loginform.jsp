@@ -25,7 +25,7 @@
                         <div class="row no-gutters">
                             <div class="col-xl-12">
                                 <div class="auth-form">
-                                    <h4 class="text-center mb-4">Sign in your account</h4>
+                                    <h4 class="text-center mb-4">Login</h4>
                                     <form method="post" action="/authenticate">
                                         <div class="form-group">
                                             <label><strong>ID</strong></label>
@@ -63,11 +63,7 @@
     <script src="../resources/js/quixnav-init.js"></script>
     <script src="../resources/js/custom.min.js"></script>
 	<script>
-	var msg = "${message}";
-	if(msg === "wrongPassword"){
-		alert("성공");
-	}
-	console.log(msg);
+	
 	</script>
 </body>
 

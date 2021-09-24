@@ -19,6 +19,10 @@
     <link rel="stylesheet" href="../resources/vendor/owl-carousel/css/owl.theme.default.min.css">
     <link href="../resources/vendor/fullcalendar/css/fullcalendar.min.css" rel="stylesheet">
     <link href="../resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
+    
+    <!-- Datatable -->
+    <link href="../resources/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    
     <link href="../resources/css/style.css" rel="stylesheet">
     <link href="../resources/helpers/v2/main.css?v=2021.2.261" type="text/css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"/>

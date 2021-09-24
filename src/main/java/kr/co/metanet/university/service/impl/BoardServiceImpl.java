@@ -18,8 +18,8 @@ public class BoardServiceImpl implements BoardService {
 	
 	//전체 리스트
 	@Override
-	public List<BoardVO> boardlist() {
-		return mapper.list();
+	public List<BoardVO> boardlist(BoardCriteriaVO cri) {
+		return mapper.list(cri);
 	}
 
 	//조회수

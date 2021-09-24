@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -90,9 +89,11 @@
 													<td>${vo.semester}</td>
 													<td>${vo.section}</td>
 													<td>${vo.lecture_name}</td>
-													<td><button name="" id="putInCheckBtn${cnt.count}" type="button" class="btn btn-danger">수정</button>
-													<button name="" id="putInCheckBtn${cnt.count}" type="button" class="btn btn-danger">삭제</button>
-													<button name="" id="putInCheckBtn${cnt.count}" type="button" class="btn btn-danger">수강생</button></td>
+													<td>
+<!-- 											 	<button onclick="fn_update();" type="button" class="btn btn-danger">수정</button> -->
+													<button name="" id="updateBtn${cnt.count}" type="button" class="btn btn-danger">수정</button>
+													<button name="" id="deleteBtn${cnt.count}" type="button" class="btn btn-danger">삭제</button>
+													<button name="" id="studentBtn${cnt.count}" type="button" class="btn btn-danger">수강생</button></td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -143,7 +144,7 @@
 	        </button>
 	      </div>
 	      <div class="modal-body" style="margin-top:10px; color:black; text-align:center;">
-	        <p>이 강의를 취소하시겠습니까?</p>
+	        <p>이 강의를 삭제하시겠습니까? 모든 정보와 수강생 정보가 사라집니다.</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-primary" id="modalDeleteBtn">확인</button>
@@ -182,24 +183,38 @@
     	
     	var modalDeleteBtn = $("#modalDeleteBtn");
     	
-    	var student_id = $("#s_id").val();
-    	var lecture_id= "";
+    	//var student_id = $("#s_id").val();
+    	var lecture_code= "";
 
     	var lecture_cnt = "${fn:length(vo)}";
     	console.log(lecture_cnt);
     	
     	for(var i = 1; i <= lecture_cnt; i++) {
-    		$("#putInCheckBtn" + i).click(function() {
-    			lecture_id = $(this).closest("tr").find("td:eq(0)").text();
-    			
+    		$("#updateBtn" + i).click(function() {
+    			id = $(this).closest("tr").find("td:eq(0)").text();
+    			console.log(id);
+        		document.location.href = "/professorLecture/updateform?id="+id;
+        	});
+    		
+    		$("#deleteBtn" + i).click(function() {
+    			id = $(this).closest("tr").find("td:eq(0)").text();
+    			console.log(id);
+        		modal.modal("show");
+        	});
+    		
+    		$("#studentBtn" + i).click(function() {
+    			id = $(this).closest("tr").find("td:eq(0)").text();
+    			console.log(id);
         		modal.modal("show");
         	});
     	}
     	
+    	
+    	
     	modalDeleteBtn.click(function() {
     		
     		$.ajax({
-    			url:'/studentLecture/rest_delete/' + student_id + "/" + lecture_id,
+    			url:'/api/professorLecture/delete/' + id,
     			type:'delete',
     			async:false,
     			success:function(result) {
@@ -207,12 +222,12 @@
     			}
     		})
     		
-    		location.href = "/studentLecture/list";
+    		location.href = "/professorLecture/lecture-list ";
     		
-    		alert("취소되었습니다. ");    		
+    		alert("삭제되었습니다. ");    		
     		modal.modal("hide");
     	});
+    	
     </script>
 </body>
-
 </html>

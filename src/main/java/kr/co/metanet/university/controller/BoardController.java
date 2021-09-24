@@ -2,8 +2,11 @@ package kr.co.metanet.university.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.metanet.university.domain.BoardCriteriaVO;
 import kr.co.metanet.university.domain.BoardPageVO;
@@ -30,7 +35,7 @@ public class BoardController {
 	//공지사항 게시판 조회
 	@GetMapping("/boardlist")
 	private void boardlist(Model model, BoardCriteriaVO cri) {
-		List<BoardVO> list=service.boardlist();
+		List<BoardVO> list=service.boardlist(cri);
 		log.info("*****전체list*****");
 		model.addAttribute("list",list);
 		log.info(list);
@@ -76,9 +81,30 @@ public class BoardController {
 	}
 	
 	//관리자 글작성
+	
 	@GetMapping("/write")
-	public void write() {
+	public void gowrite(HttpSession session) {
+		log.info("***** 공지사항 작성하러 가기 *****");
+		
+		
+	}
+	
+	//@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+//	@PreAuthorize("hasRole('ROLE_ADMIN')"), HttpSession session, Authentication authentication
+	@PostMapping("/write")
+	public String write(BoardVO vo, RedirectAttributes rttr, HttpSession session) {
 		log.info("***** 공지사항 작성 *****");
+		//사용자정보
+		session.getAttribute("admin");
+		
+		if(service.insert(vo)) {
+			rttr.addFlashAttribute("result", "게시글 등록 성공");
+			return "redirect:boardlist";
+		}else {
+			rttr.addFlashAttribute("result", "실패");
+			return "redirect:write";
+		}
+		
 		
 	}
 }
