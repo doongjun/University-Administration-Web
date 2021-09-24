@@ -41,6 +41,10 @@ public class LectureServiceImpl implements LectureService{
 		return mapper.update(vo);
 	}
 
+	@Override
+	public int delete(int id) {
+		return mapper.delete(id);
+	}
 
 
 }

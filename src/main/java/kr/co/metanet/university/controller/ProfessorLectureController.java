@@ -29,8 +29,8 @@ public class ProfessorLectureController {
 		return "professorLecture/create";
 	}
 
-	@GetMapping("/updateform/{id}")
-	public String updateform(@PathVariable("id") int id, Model model) {
+	@GetMapping("/updateform")
+	public String updateform(@RequestParam("id") int id, Model model) {
 		LectureVO lecture = service.getLecture(id);
 		model.addAttribute("vo", lecture);
 		return "professorLecture/updateform";

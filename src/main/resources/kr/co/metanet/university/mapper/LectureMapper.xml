@@ -24,6 +24,10 @@
 	SET LECTURE_NAME= #{lecture_name},GRADE= #{grade},CLASSROOM= #{classroom},DIVISION= #{division},LECTURE_TIME= #{lecture_time},STUDENT_FULL= #{student_full},CREDIT= #{credit},SECTION= #{section},DEPT_CODE= #{dept_code},REMARKS= #{remarks}
 	WHERE ID = #{id} 
 	</update>
+	
+	<delete id="delete" parameterType="int">
+	DELETE FROM LECTURE WHERE ID = #{id}
+	</delete>
 
 
 </mapper>

@@ -6,9 +6,13 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +33,7 @@ public class ProfessorLectureRESTController {
 	private LectureService lectureService;
 
 	@PostMapping("/create")
-	public String create(@RequestParam HashMap<String, String> params) throws Exception {
+	public ResponseEntity<String> create(@RequestParam HashMap<String, String> params) throws Exception {
 		LectureVO lecture = new LectureVO();
 		// test
 		lecture.setProfessor_id(1);
@@ -53,22 +57,19 @@ public class ProfessorLectureRESTController {
 
 		int flag = lectureService.create(lecture);
 
-		if (flag > 0) {
-			// 성공창 띄워주기
-		} else {
-			// 실패창 return
+		if(flag >0) {
+			return new ResponseEntity<String>("success",HttpStatus.OK);
+		}else {
+			return new ResponseEntity<String>("failed",HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		System.out.println(flag);
-		System.out.println(lecture.toString());
 
-		return lecture.toString();
 	}
 
 	@PostMapping("/update")
-	public String update(@RequestParam HashMap<String, String> params) throws Exception {
+	public ResponseEntity<String> update(@RequestParam HashMap<String, String> params) throws Exception {
 		LectureVO lecture = new LectureVO();
 		
-		lecture.setLecture_id(Integer.valueOf(params.get("id")));
+		lecture.setId(Integer.valueOf(params.get("id")));
 		lecture.setLecture_code(params.get("lecture_code"));
 		lecture.setDept_code(Integer.valueOf(params.get("dept_code")));
 		lecture.setLecture_name(params.get("lecture_name"));
@@ -83,15 +84,24 @@ public class ProfessorLectureRESTController {
 		
 		int flag = lectureService.update(lecture);
 
-		if (flag > 0) {
-			// 성공창 띄워주기
-		} else {
-			// 실패창 return
+		if(flag >0) {
+			return new ResponseEntity<String>("success",HttpStatus.OK);
+		}else {
+			return new ResponseEntity<String>("failed",HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		System.out.println(flag);
-		System.out.println(lecture.toString());
-
-		return lecture.toString();
+		
+	}
+	
+	
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<String> delete(@PathVariable("id") int id) throws Exception {
+		int flag = lectureService.delete(id);
+		
+		if(flag >0) {
+			return new ResponseEntity<String>("success",HttpStatus.OK);
+		}else {
+			return new ResponseEntity<String>("failed",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 }

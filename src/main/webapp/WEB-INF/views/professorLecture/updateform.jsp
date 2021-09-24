@@ -71,7 +71,7 @@
 										
 										<div class="form-row">
 											<div class="form-group col-md-6">
-											<input name ="lecture_code" type="hidden" value="${vo.lecture_code}">
+											<input name ="id" type="hidden" value="${vo.id}">
 												<label>강의제목</label> <input name="lecture_name" value="${vo.lecture_name}" type="text" class="form-control" required>
 
 											</div>
@@ -143,7 +143,7 @@
 
 
 										<button class="btn btn-primary" onclick="fn_update();">저장</button>
-										<button class="btn btn-primary" onclick="history.back()">취소</button>
+										<button class="btn btn-primary" onclick="location.href='/professorLecture/lecture-list''">취소</button>
 										
 									</form>
 								</div>
@@ -190,15 +190,18 @@
 				url : "/api/professorLecture/update",
 				type : "POST",
 				data : params,
-				dataType : 'json',
+				dataType : 'text',
 				error : function(request, status, error) {
-					alert("저장중 오류가 발생했습니다");
+					alert("error code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				},
 
 				success : function(data) {
 					alert("성공적으로 저장되었습니다.");
+					location.href = "/professorLecture/lecture-list";
+
 				}
 			})
+			
 		}
 	</script>
 	<!--**********************************
