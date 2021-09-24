@@ -16,7 +16,7 @@ import lombok.ToString;
 public class BoardVO {
 	private int b_no;
 	private String b_title;
-	private int b_writer_id;
+	private int b_writer_code;
 	private String b_content;
 	private Date b_sysdate;
 	private int b_views;
