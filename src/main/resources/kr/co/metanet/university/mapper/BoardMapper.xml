@@ -65,12 +65,14 @@
 	
 	<!-- 게시글 수정 -->
 	<update id="update">
-	
+		update board
+		set b_title=#{b_title}, b_content=#{b_content}, b_sort=#{b_sort}
+		where b_no=#{b_no}
 	</update>
 
 	<!-- 게시글 삭제 -->
 	<delete id="delete">
-	
+		delete from board where b_no=#{b_no}
 	</delete>
 	
 	

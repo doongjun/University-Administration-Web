@@ -2,9 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
-<jsp:include page="/WEB-INF/views/common/header.jsp" />
+
+
+<!-- ckeditor -->
+<script src="../resources/ckeditor/ckeditor.js"></script>
 <body>
 
 	<!--*******************
@@ -28,7 +32,6 @@
 		<!--**********************************
             Header end ti-comment-alt
         ***********************************-->
-
 
 		<!--**********************************
             Sidebar start
@@ -68,69 +71,76 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
-							<div class="card-header">
-								<h4 class="card-title">[${vo.b_no}] ${vo.b_title}</h4>
-								<ol>
-									<li><p class="mb-0">작성자 : ${vo.writer}</p></li>
-									<li><p class="mb-0">
-											등록일 :
-											<fmt:formatDate value="${vo.b_sysdate}" pattern="yyyy-MM-dd" />
-										</p></li>
-									<li><p class="mb-0">조회수 : ${vo.b_views}</p></li>
-								</ol>
-							</div>
+							<form action="" id="write_board" method="post">
 
-							<!-- ckeditor 추가부분 -->
-							<div class="row justify-content-md-center">
-								<div class="col_c" style="margin-bottom: 30px">
-									<div class="input-group">
-										<textarea class="form-control" id="b_content"
-											readonly="readonly">${vo.b_content}</textarea>
-										<script type="text/javascript">
-											$(function() {
-												CKEDITOR
-														.replace(
-																'b_content',
-																{
-																	customConfig : '../resources/ckeditor/config.js'
-																});
-											});
-										</script>
 
+								<div class="card-body">
+									<div class="col-lg-2"
+										style="float: left; margin-bottom: 10px; margin-left: 0px; padding-left: -15px">
+										<select name="b_sort" id="single-select b_sort"
+											class="form-control">
+											<option value="${vo.b_sort}"selected>${vo.b_sort}</option>
+											
+											<option value="학사">학사</option>
+											<option value="행정">행정</option>
+											<option value="행사">행사</option>
+										</select>
+									</div>
+									<div class="form-group col-md-6" style="float: left; margin-right: 6px">
+										<input type="text" name="b_title" class="form-control"
+											 value="${vo.b_title}" />
 									</div>
 								</div>
-							</div>
+								
+								<br>
+								
+								<div class="card-body">
+									<!-- ckeditor 추가부분 -->
+									<div class="row justify-content-md-center">
+										<div class="col_c" style="margin-bottom: 30px">
+											<div class="input-group">
+												<textarea class="ckeditor" id="b_content" name="b_content"  value="<c:out value='${vo.b_content}'/>">${vo.b_content}</textarea>
+												<script type="text/javascript">
+													$(function() {
+														CKEDITOR
+																.replace(
+																		'b_content',
+																		{
+																			customConfig : '../resources/ckeditor/config.js'
+																		});
+													});
+													if (CKEDITOR.instances.b_content
+															.getData().length < 1) {
+														alert("내용을 입력해 주세요.");
+														return;
+													}
+												</script>
+											</div>
+										</div>
+									</div>
 
-							<!-- 버튼추가 -->
 
 
-							<div class="card-body">
-								<button type="button" class="btn btn-primary" id="list_btn"
-									>목록</button>
-								<sec:authorize access="hasRole('ROLE_ADMIN')">
-									<!-- 추후 글 작성자 전용 -->
-									
-										<button type="button" class="btn btn-light"
-											id="modify_btn">수정</button>
-										<button type="button" class="btn btn-dark" id="del_btn">삭제</button>
-									
-								</sec:authorize>
-							</div>
+									<input type="hidden" name="b_writer_code" value="${admin.id}" />
 
-							<form id="viewForm" action="" method="post">
-								<input type="hidden" id="b_no" name="b_no" value="${vo.b_no}">
+									<!-- 버튼추가 -->
+									<button type="submit" class="btn btn-primary" id="modify_button">등록</button>
+								</div>
 							</form>
-<!-- onclick="location.href='/board/boardlist'"
- onclick="location.href='modify'"
- -->
+
+
 						</div>
 					</div>
 				</div>
-				<style>
-.card-body {
-	text-align: center;
-}
-</style>
+				<script src="/resources/js/boardwrite.js"></script>
+				<script>
+					$(document).ready(function() {
+
+						let result = '<c:out value="${result}"/>';
+
+					});
+				</script>
+
 
 
 			</div>
@@ -177,31 +187,8 @@
 	<script src="../resources/js/quixnav-init.js"></script>
 	<script src="../resources/js/custom.min.js"></script>
 
-	<!-- ckeditor -->
-	<script src="../resources/ckeditor/ckeditor.js"></script>
 
-	<script>
-		let viewForm = $("#viewForm");
 
-		//Modify버튼 클릭시  get방식 /board/modify
-		$("#modify_btn").click(function() {
-			viewForm.attr('action', '/board/modify');
-			viewForm.submit();
-		})
-
-		//List버튼 클릭시 get /board/boardlist
-		$("#list_btn").click(function() {
-			viewForm.find("input[name='b_no']").remove();
-			viewForm.attr('action', '/board/boardlist');
-			viewForm.submit();
-		})
-		//delete 버튼 클릭시  post방식 /board/delete
-		$("#del_btn").click(function() {
-			viewForm.attr('action', '/board/delete');
-			viewForm.submit();
-		})
-		
-	</script>
 
 	<!-- 구글링 깃허브 -->
 	<script
