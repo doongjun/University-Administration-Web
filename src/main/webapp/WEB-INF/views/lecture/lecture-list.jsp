@@ -59,24 +59,26 @@
 				</div>
 
 				<!-- 검색 -->
-
+				
 				<div class="row page-titles mx-0">
-					<div class="justify-content-start col-sm-3 p-md-0" style="float:left;">
-					<div class="form-group">
+					<div class="justify-content-start p-md-0" style="float:left;">
+					<form class="form-inline">
 						<label>학수번호</label> <input name="lecture-code" type="text"
 							class="form-control">
 						<label>과목명</label> <input name="lecture-name" type="text"
 							class="form-control">
-						<button type="submit">검색</button>
-					</div>
+						<button type="submit" class="btn btn-primary mb-2">검색</button>
+						
+						
+					</form>
 					</div>
 				</div>
-
-
+				
+				
 				<div class="row">
-					<div class="col-xl-5 col-lg-5 col-md-05" style="margin-left:5px">
+					<div class="col-xl-3 col-lg-3 col-md-03">
 						<div class="card">
-							<div class="card-header">
+							<div class="card-header"> 
 								<h4 class="card-title">수강내역</h4>
 							</div>
 							<div class="card-body">
@@ -113,7 +115,7 @@
 						</div>
 					</div>
 					
-					<div class="col-xl-6 col-lg-6 col-md-06">
+					<div class="col-xl-7 col-lg-7 col-md-07">
 						<div class="card">
 							<div class="card-body text-center">
 								<jsp:include page="syllabus.jsp" flush="false" />
