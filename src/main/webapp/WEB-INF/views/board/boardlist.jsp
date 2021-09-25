@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <body>
 
@@ -70,22 +71,9 @@
 								<h4 class="card-title">학사공지</h4>
 							</div>
 							<div class="card-body">
-								<div class="basic-form">
-									<select id="single-select">
-										<option selected>분류</option>
-										<option value="AL">제목</option>
-										<option value="WY">내용</option>
-										<option value="WY">작성자</option>
-									</select>
 
-									<form>
-										<div class="form-group">
-											<input type="text" class="form-control input-default "
-												placeholder="입력">
-											<button type="button" class="btn btn-primary" id="search_btn">검색</button>
-										</div>
-									</form>
-								</div>
+
+
 								<!-- 테이블 시작 -->
 								<div class="table-responsive">
 									<table class="table table-responsive-sm">
@@ -119,7 +107,37 @@
 
 								</div>
 							</div>
-							<!-- 페이징 부분 -->
+
+							<!-- 검색창
+									<div class="basic-form"> -->
+							<div class="card-body">
+								<!-- <div style="float:left; margin-top: 5px;">분류</div> -->
+								<div class="col-lg-2"
+									style="float: left; margin-bottom: 10px; margin-left: 0px; padding-left: -15px">
+									<select name="section_up" id="section_up" class="form-control">
+										<option selected>분류</option>
+										<option value="empty">제목</option>
+										<option value="empty">내용</option>
+										<option value="empty">작성자</option>
+									</select>
+								</div>
+								<div class="col-lg-3" style="float: left; margin-right: 6px">
+									<input type="text" name="rep" class="form-control"
+										placeholder="검색어를 입력하세요" value="" />
+								</div>
+								<button name="rep-btn" type="button" class="btn btn-primary"
+									style="float: left" id="search_btn">검색</button>
+
+							</div>
+							<div class="card-body" style="">
+								<!-- 관리자용 작성버튼 -->
+								<sec:authorize access="hasRole('ROLE_ADMIN')">
+									<button type="button" class="btn btn-primary" id="write_btn"
+										onclick="location.href='write'">글쓰기</button>
+								</sec:authorize>
+
+							</div>
+							<!-- 페이징 부분-->
 
 							<div class="col-xl-6">
 								<div class="card-body">
@@ -147,20 +165,17 @@
 
 									</ul>
 
-									<!-- 관리자용 작성버튼 -->
-									<sec:authorize access="hasRole('ROLE_ADMIN')">
-										<button type="button" class="btn btn-primary" id="write_btn"
-											onclick="location.href='write'">글쓰기</button>
-									</sec:authorize>
 								</div>
+								<!--  -->
+								<form method="get" id="actionForm">
+									<input type="hidden" name="" value="${BoardPageVO.cri.sort}" />
+									<input type="hidden" name="" value="${BoardPageVO.cri.keyword}" />
+									<input type="hidden" name="" value="${BoardPageVO.cri.page}" />
+								</form>
 							</div>
-							<!--  -->
-							<form method="get" id="actionForm">
-								<input type="hidden" name="" value="${BoardPageVO.cri.sort}" />
-								<input type="hidden" name="" value="${BoardPageVO.cri.keyword}" />
-								<input type="hidden" name="" value="${BoardPageVO.cri.page}" />
-							</form>
 						</div>
+
+
 					</div>
 				</div>
 			</div>

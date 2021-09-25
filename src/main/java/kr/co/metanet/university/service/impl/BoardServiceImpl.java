@@ -18,8 +18,8 @@ public class BoardServiceImpl implements BoardService {
 	
 	//전체 리스트
 	@Override
-	public List<BoardVO> boardlist() {
-		return mapper.list();
+	public List<BoardVO> boardlist(BoardCriteriaVO cri) {
+		return mapper.list(cri);
 	}
 
 	//조회수
@@ -46,6 +46,16 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public boolean insert(BoardVO vo) {
 		return mapper.insert(vo)>0 ? true:false;
+	}
+	//글 수정
+	@Override
+	public boolean update(BoardVO vo) {
+		return mapper.update(vo)>0 ? true : false ;
+	}
+	//글 삭제
+	@Override
+	public boolean delete(int b_no) {
+		return mapper.delete(b_no)>0 ? true : false;
 	}
 	
 	

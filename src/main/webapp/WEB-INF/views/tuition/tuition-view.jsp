@@ -41,93 +41,27 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>등록금 고지서 등록</h4>
-							<span class="ml-1">관리자</span>
+							<h4>등록금 고지서</h4>
+							<span class="ml-1">학생</span>
 						</div>
 
 					</div>
 					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="javascript:void(0)">학적</a></li>
-							<li class="breadcrumb-item active"><a href="javascript:void(0)">등록금 고지서 등록</a></li>
+							<li class="breadcrumb-item active"><a href="javascript:void(0)">등록금 고지서 조회</a></li>
 						</ol>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xl-6 col-xxl-12">
-						<div class="card">
-							<div class="card-header">
-								<h4 class="card-title">Tuition file upload</h4>
-							</div>
-							<div class="card-body">
-								<div class="basic-form custom_file_input">
-									<form method="post" action="upload-tuition" enctype="multipart/form-data" onsubmit="return fn_registTuition();">
-										<label>학번</label>
-										<div class="form-group">
-											<input id="code" class="form-control" type="text" name="code" placeholder="학번을 입력하세요.">
-										</div>
-										<label>등록금 고지서</label>
-										<div class="custom-file">
-											<input id="input-tuition" type="file" name="file" class="custom-file-input"> <label id="label-tuition" class="custom-file-label">Choose File</label>
-										</div>
-										<label></label>
-										<div class="input-group-append">
-											<input class="btn btn-primary" type="submit" value="등록">
-										</div>
-									</form>
-								</div>
-							</div>
-							<br>
-						</div>
-					</div>
-					<div class="col-xl-6 col-xxl-12">
-						<div class="card">
-                            <div class="card-header">
-                                <h5 class="card-title">Information</h5>
-                            </div>
-                            <div class="card-body" style="padding:1.52rem;">
-                                <p class="card-text">
-                                	 해당 학생 학번을 입력 후, 등록금 고지서 업로드 해주세요.
-                                     <br/><br/><br/><br/><br/><br/>
-                                </p>
-                            </div>
-                            <div class="card-footer">
-                                <p class="card-text d-inline">제육 대학교</p>
-                                <a href="/board/boardlist" class="card-link float-right">Board link</a>
-                            </div>
-                        </div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Tuition File List</h4>
+								<h4 class="card-title">Tuition</h4>
 							</div>
 							<div class="card-body">
-								<div class="table-responsive">
-									<table id="example2" class="display" style="width: 100%">
-										<thead>
-											<tr>
-												<th>학번</th>
-												<th>이름</th>
-												<th>학과</th>
-												<th>파일명</th>
-											</tr>
-										</thead>
-										<tbody>
-											<!-- fileList 리스트 반복문 -->
-											<c:forEach var="fileList" items="${fileList}">
-												<tr>
-													<td>${fileList.code}</td>
-													<td>${fileList.name}</td>
-													<td>${fileList.departmentName}</td>
-													<td>${fileList.fileName}</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-								</div>
+								<label>${fileName }</label>
+								<iframe src="${saveFilePath }" style="width:1350px;height:700px;"></iframe>
 							</div>
 						</div>
 					</div>
