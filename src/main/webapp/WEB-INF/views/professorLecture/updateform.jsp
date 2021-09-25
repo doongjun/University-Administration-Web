@@ -44,13 +44,13 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>강의 등록</h4>
+							<h4>강의 수정</h4>
 						</div>
 					</div>
 					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="javascript:void(0)">강의관리</a></li>
-							<li class="breadcrumb-item active"><a href="javascript:void(0)">강의 등록</a></li>
+							<li class="breadcrumb-item active"><a href="javascript:void(0)">강의 수정</a></li>
 						</ol>
 					</div>
 				</div>
@@ -62,19 +62,21 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">강의등록</h4>
+								<h4 class="card-title">강의수정</h4>
 							</div>
 							<div class="card-body">
 								<div class="basic-form">
 									<form id="profForm" class="form-valide">
-
+										
+										
 										<div class="form-row">
 											<div class="form-group col-md-6">
-												<label>강의제목</label> <input name="lecture_name" type="text" class="form-control" required>
+											<input name ="id" type="hidden" value="${vo.id}">
+												<label>강의제목</label> <input name="lecture_name" value="${vo.lecture_name}" type="text" class="form-control" required>
 
 											</div>
 											<div class="form-group col-md-6">
-												<label>학과</label> <select name="dept_code" id="inputState" class="form-control">
+												<label>학과</label> <select name="dept_code" value="${vo.dept_code}" id="inputState" class="form-control">
 													<option value="1">컴퓨터공학과</option>
 													<option value="2">경영학과</option>
 													<option value="3">경제학과</option>
@@ -99,7 +101,7 @@
 												</select>
 											</div>
 											<div class="form-group col-md-6">
-												<label>대상학년</label> <select name="grade" id="inputState" class="form-control">
+												<label>대상학년</label> <select value="${vo.grade}" name="grade" id="inputState" class="form-control">
 													<option >1학년</option>
 													<option >2학년</option>
 													<option >3학년</option>
@@ -108,39 +110,41 @@
 												</select>
 											</div>
 											<div class="form-group col-md-6">
-												<label>강의실</label> <input name="classroom" type="text" class="form-control" placeholder="예) 덮밥관 201호">
+												<label>강의실</label> <input name="classroom" value="${vo.classroom}" type="text" class="form-control" placeholder="예) 덮밥관 201호">
 											</div>
 											<div class="form-group col-md-6">
-												<label>강의시간</label> <input name="lecture_time" type="text" class="form-control" placeholder="예) 수 1,2,3">
+												<label>강의시간</label> <input name="lecture_time" value="${vo.lecture_time}" type="text" class="form-control" placeholder="예) 수 1,2,3">
 											</div>
 											<div class="form-group col-md-6">
-												<label>분반</label> <select name="division" id="inputState" class="form-control">
+												<label>분반</label> <select name="division" value="${vo.division}" id="inputState" class="form-control">
 													<option>1분반</option>
 													<option>2분반</option>
 													<option>3분반</option>
-													<option selected="">-</option>
+													<option selected=""> - </option>
 												</select>
 											</div>
 											<div class="form-group col-md-6">
-												<label>학점</label> <input name="credit" type="number" min="1" max="3" class="form-control" placeholder="3">
+												<label>학점</label> <input name="credit" value="${vo.credit}" type="number" min="1" max="3" class="form-control" placeholder="3">
 											</div>
 											<div class="form-group col-md-6">
-												<label>구분</label> <select name="section" id="inputState" class="form-control">
+												<label>구분</label> <select name="section" value="${vo.section}" id="inputState" class="form-control">
 													<option selected="">전공/전공기초</option>
 													<option>교양/기타</option>
 												</select>
 											</div>
 											<div class="form-group col-md-6">
-												<label>수강정원</label> <input name="student_full" type="number" min="1" max="300" class="form-control" placeholder="30"> <small id="passwordHelpBlock" class="form-text text-muted">
+												<label>수강정원</label> <input name="student_full" value="${vo.student_full}" type="number" min="1" max="300" class="form-control" placeholder="30"> <small id="passwordHelpBlock" class="form-text text-muted">
 													* 정원 변경시 과사무실에 문의바랍니다. </small>
 											</div>
 											<div class="form-group col-md-6">
-												<label>비고</label> <input name="remarks" type="text" class="form-control" placeholder="생략가능. 최대 30자">
+												<label>비고</label> <input name="remarks" value="${vo.remarks}" type="text" class="form-control" placeholder="생략가능. 최대 30자">
 											</div>
 										</div>
 
 
-										<button class="btn btn-primary" onclick="fn_create();">등록</button>
+										<button class="btn btn-primary" onclick="fn_update();">저장</button>
+										<button class="btn btn-primary" onclick="location.href='/professorLecture/lecture-list''">취소</button>
+										
 									</form>
 								</div>
 							</div>
@@ -179,22 +183,25 @@
     ***********************************-->
 
 	<script type="text/javascript">
-		function fn_create() {
+		function fn_update() {
 			var params = $('#profForm').serializeArray();
 			console.log(params);
 			$.ajax({
-				url : "/api/professorLecture/create",
+				url : "/api/professorLecture/update",
 				type : "POST",
 				data : params,
-				dataType : 'json',
+				dataType : 'text',
 				error : function(request, status, error) {
-					alert("저장중 오류가 발생했습니다");
+					alert("error code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				},
 
 				success : function(data) {
 					alert("성공적으로 저장되었습니다.");
+					location.href = "/professorLecture/lecture-list";
+
 				}
 			})
+			
 		}
 	</script>
 	<!--**********************************

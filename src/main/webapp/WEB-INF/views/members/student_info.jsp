@@ -82,14 +82,14 @@
 													<label class="col-lg-4 col-form-label">Phone <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" name="phone" value="${member.phone }">
+														<input type="text" id="phone" class="form-control" name="phone" value="${member.phone }">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-4 col-form-label">email <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" name="email" value="${member.email }">
+														<input type="text" id="email" class="form-control" name="email" value="${member.email }">
 													</div>
 												</div>
 											</div>
@@ -179,6 +179,14 @@
 	<script type="text/javascript">
 		
 		function fn_revise(){
+			if($('#phone').val() === ''){
+				alert("핸드폰 번호를 입력하세요.");
+				return;
+			}else if($('#email').val() === ''){
+				alert("이메일을 입력하세요.")
+				return;
+			}
+			
 			var params = $('#myForm').serializeArray();
 			
 			$.ajax({
