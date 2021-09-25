@@ -47,6 +47,16 @@ public class BoardServiceImpl implements BoardService {
 	public boolean insert(BoardVO vo) {
 		return mapper.insert(vo)>0 ? true:false;
 	}
+	//글 수정
+	@Override
+	public boolean update(BoardVO vo) {
+		return mapper.update(vo)>0 ? true : false ;
+	}
+	//글 삭제
+	@Override
+	public boolean delete(int b_no) {
+		return mapper.delete(b_no)>0 ? true : false;
+	}
 	
 	
 

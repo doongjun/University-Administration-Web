@@ -24,7 +24,4 @@ public class MemberStudent {
 	private Date admissionDate;
 	private String email;
 	private String phone;
-	
-	
-	
 }

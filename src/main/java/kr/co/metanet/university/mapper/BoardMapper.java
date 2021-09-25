@@ -21,4 +21,8 @@ public interface BoardMapper {
 	//관리자용
 	//글 작성
 	public int insert(BoardVO vo);
+	//글 수정
+	public int update(BoardVO vo);
+	//글 작성
+	public int delete(int b_no);
 }
