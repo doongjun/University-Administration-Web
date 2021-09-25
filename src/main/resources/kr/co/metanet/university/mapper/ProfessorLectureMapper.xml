@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.metanet.university.mapper.LectureMapper">
+<mapper namespace="kr.co.metanet.university.mapper.ProfessorLectureMapper">
 
-	<select id="getAllLecture" resultType="kr.co.metanet.university.domain.LectureVO">
-	SELECT * FROM LECTURE
-	</select>
-
-	<select id="getNowALLLecture" parameterType="hashMap" resultType="kr.co.metanet.university.domain.LectureVO">
-	SELECT * FROM LECTURE WHERE LECTURE_YEAR = #{lecture_year}, SEMESTER = #{semester}
+	<select id="getAllLecture" parameterType="int" resultType="kr.co.metanet.university.domain.LectureVO">
+	SELECT * 
+	FROM LECTURE 
+	WHERE PROFESSOR_ID = #{professor_id}
 	</select>
 	
-	<select id="getLecture" parameterType="int" resultType="kr.co.metanet.university.domain.LectureVO">
-	SELECT * FROM LECTURE WHERE ID = #{id}
+	<select id="getNowALLLecture" parameterType="hashMap" resultType="kr.co.metanet.university.domain.LectureVO">
+	SELECT * 
+	FROM LECTURE 
+	WHERE professor_id = #{professor_id} 
+	and LECTURE_YEAR = #{lecture_year}
+	and SEMESTER = #{semester}
 	</select>
 
-	<select id="getMaxCode" resultType="String">
-	SELECT NVL(MAX(LECTURE_CODE),'000001') FROM LECTURE
+	<select id="getLecture" parameterType="int" resultType="kr.co.metanet.university.domain.LectureVO">
+	SELECT * FROM LECTURE
+	WHERE ID = #{id}
 	</select>
 
 	<insert id="create" parameterType="kr.co.metanet.university.domain.LectureVO">
