@@ -63,7 +63,7 @@
 					   		<div class="card-body">
 					   			<div style="float:left; margin-top: 5px;">구분</div>
 								<div class="col-lg-2" style="float:left; margin-bottom: 10px; margin-left: 6px">
-				        			<select name="dept" id="dept" class="form-control" >
+				        			<select name="section_up" id="section_up" class="form-control" >
 					                	<option value="empty">전공/전공기초</option>
 					                	<option value="empty">교양/기타</option>
 					             	</select>
@@ -83,7 +83,7 @@
 				        		</div>
 				        		<div style="float:left; margin-top: 5px;">구분</div>
 				        		<div class="col-lg-2" style="float:left; margin-right: 6px">
-				        			<select name="section" id="section" class="form-control" >
+				        			<select name="section_bottom" id="section_bottom" class="form-control" >
 					                	<option value="empty">전공/전공기초</option>
 					                	<option value="empty">교양/기타</option>
 					             	</select>
@@ -169,7 +169,36 @@
         <!--**********************************
             Content body end
         ***********************************-->
-
+        
+        <!--**********************************
+            page start
+        ***********************************-->
+		<!-- 페이지 담당 -->
+        <div class="card-footer clearfix">
+			<div class="card-tools">
+				<ul class="pagination pagination-sm float-right">
+					<!-- 이전페이지 -->
+                	<c:if test="${pageVo.prev}">
+       	            	<li class="page-item"><a href="${pageVo.startPage-1}" class="page-link">&laquo;</a></li>
+   	                </c:if>
+   	                <!-- 페이지 (1,2,3,...) -->
+					<c:forEach var="idx" begin="${pageVo.startPage}" end="${pageVo.endPage}">
+                    	<li class="page-item ${pageVo.cri.pageNum==idx?'active':''}">
+                        	<a href="${idx}" class="page-link">${idx}</a>
+                        </li>
+                    </c:forEach>
+                    <!-- 다음 페이지 -->
+                    <c:if test="${pageVo.next}">
+                    	<li class="page-item"><a href="${pageVo.endPage+1}" class="page-link">&raquo;</a></li>
+                    </c:if>
+				</ul>
+			</div>
+        </div>
+        <!-- 페이지 끝 -->
+        <!--**********************************
+            page end
+        ***********************************-->      
+             
 
         <!--**********************************
             Footer start
@@ -221,6 +250,11 @@
 	
 	<input type="hidden" id="s_id" value="${member.id}">
 	
+	<form action="" method="get" id="actionForm">
+		<input type="hidden" name="pageNum" value="${pageVo.cri.pageNum}" />
+		<input type="hidden" name="amount" value="${pageVo.cri.amount}" />
+	</form>	
+	
     <!--**********************************
         Scripts
     ***********************************-->
@@ -233,7 +267,6 @@
     <script src="../resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="../resources/js/plugins-init/datatables.init.js"></script>
     
-    
     <script>
     	let modal = $(".modal");
     	
@@ -245,6 +278,7 @@
     	var lecture_cnt = "${fn:length(vo)}";
     	console.log(lecture_cnt);
     	
+    	// 과목 담기 버튼에게 각각 클릭 기능 붙이기
     	for(var i = 1; i <= lecture_cnt; i++) {
     		$("#putInCheckBtn" + i).click(function() {
     			lecture_id = $(this).closest("tr").find("td:eq(0)").text();
@@ -253,21 +287,49 @@
         	});
     	}
     	
+    	// 학과 select박스에 정보 넣기
+    	$.ajax({
+    		url:"/classRegist/rest_dept",
+    		type:"GET",
+    		async:false,
+    		success:function(data) {
+    			var options = "";
+    			
+    			$.each(data, function(idx, element) {
+    				options += "<option value=" + element + ">" + element + "</option>";
+    			})
+    			
+    			$("select[name='dept']").append(options);
+				
+			}
+    	});
+    	
     	modalRegisterBtn.click(function() {
     		
     		$.ajax({
     			url:'/studentLecture/rest_new/' + student_id + "/" + lecture_id,
-    			type:'put',
+    			type:'PUT',
     			async:false,
     			success:function(result) {
     				console.log(result);
     			}
     		})
     		
-    		
-    		
     		alert("신청되었습니다. ");    		
     		modal.modal("hide");
+    	});
+    	
+    	// 하단 페이지 나누기 버튼 클릭시 이동
+    	var actionForm = $("#actionForm");
+    	
+    	$(".page-item a").click(function(e){
+    		e.preventDefault(); //a 속성 중지
+    		
+    		//actionForm 안에 pageNum의 값을 사용자가 선택한 번호로 변경
+    		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+    		
+    		//actionForm 보내기 
+    		actionForm.submit();
     	});
     </script>
 

@@ -62,7 +62,7 @@
 							</div>
 							<div class="card-body">
 								<div class="form-validation">
-									<form class="form-valide" action="/members/pw-change" method="post" name="pwform">
+									<form class="form-valide" action="/members/pw-change" method="post" name="pwform" onsubmit="return fn_submit();">
 										<div class="row">
 											<div class="col-xl-6">
 												<div class="form-group row">
@@ -143,12 +143,26 @@
 	<script src="../resources/js/plugins-init/jquery.validate-init.js"></script>
 
 	<script>
+		function fn_submit(){
+			if($('#curPassword').val() === ''){
+				alert("현재 비밀번호를 입력하세요.");
+				return false;
+			}
+		}
+		
+	
 		var msg = "${message}";
 		if(msg === "wrongPassword"){
-			alert("비밀번호가 틀렸습니다.");
+			swal("비밀번호 변경 실패", "비밀번호가 틀렸습니다.", "error");
+			//alert("비밀번호가 틀렸습니다.");
 		}else if(msg === "success"){
-			alert("비밀번호 변경 성공! 다시 로그인 해주세요.");
-			document.location.href="/logout";
+			swal("비밀번호 변경 성공", "다시 로그인 해주세요.", "success").then((value) => {
+				if(value){
+					document.location.href="/logout";
+				}
+			});
+			//alert("비밀번호 변경 성공! 다시 로그인 해주세요.");
+			//document.location.href="/logout";
 		}
 		
 	</script>
