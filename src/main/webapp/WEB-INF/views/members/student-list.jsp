@@ -10,8 +10,6 @@
 	<!--*******************
         Preloader end
     ********************-->
-
-
 	<!--**********************************
         Main wrapper start
     ***********************************-->
@@ -28,7 +26,9 @@
 		<!--**********************************
             Sidebar start
         ***********************************-->
+
 		<jsp:include page="/WEB-INF/views/common/sidebar.jsp" />
+
 		<!--**********************************
             Sidebar end
         ***********************************-->
@@ -41,67 +41,81 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>Change Password</h4>
-							<p class="mb-1">비밀번호 변경</p>
+							<h4>학생 관리</h4>
+							<span class="ml-1">관리자</span>
 						</div>
+
 					</div>
 					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="javascript:void(0)">학적</a></li>
-							<li class="breadcrumb-item active"><a href="javascript:void(0)">비밀번호 변경</a></li>
+							<li class="breadcrumb-item active"><a href="javascript:void(0)">학생 관리</a></li>
 						</ol>
 					</div>
 				</div>
-
-				<!-- row -->
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Form</h4>
+								<h4 class="card-title">Tuition File List</h4>
 							</div>
 							<div class="card-body">
-								<div class="form-validation">
-									<form class="form-valide" action="/members/pw-change" method="post" name="pwform" onsubmit="return fn_submit();">
-										<div class="row">
-											<div class="col-xl-6">
-												<div class="form-group row">
-													<label class="col-lg-4 col-form-label" for="val-password">현재 비밀번호 <span class="text-danger">*</span>
-													</label>
-													<div class="col-lg-6">
-														<input type="password" class="form-control" id="curPassword" name="curPassword">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-4 col-form-label" for="val-password">새 비밀번호 <span class="text-danger">*</span>
-													</label>
-													<div class="col-lg-6">
-														<input type="password" class="form-control" id="val-password" name="val-password" placeholder="">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-4 col-form-label" for="val-confirm-password">새 비밀번호 확인 <span class="text-danger">*</span>
-													</label>
-													<div class="col-lg-6">
-														<input type="password" class="form-control" id="val-confirm-password" name="val-confirm-password" placeholder="">
-													</div>
-												</div>
-												<div class="form-group row">
-													<div class="col-lg-8 ml-auto">
-														<button type="submit" class="btn btn-primary">Submit</button>
-													</div>
-												</div>
-											</div>
-										</div>
-									</form>
+								<div class="table-responsive">
+									<table id="example2" class="display" style="width: 100%">
+										<thead>
+											<tr>
+												<th>학번</th>
+												<th>이름</th>
+												<th>학과</th>
+											</tr>
+										</thead>
+										<tbody>
+											<!-- fileList 리스트 반복문 -->
+											<c:forEach var="fileList" items="${fileList}">
+												<tr>
+													<td>${fileList.code}</td>
+													<td>${fileList.name}</td>
+													<td>${fileList.departmentName}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
 								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Modal -->
+				<div class="modal fade bd-example-modal-sm" id="fileDownAndDelete" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog modal-sm">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="modal-title"></h5>
+								<button type="button" class="close" data-dismiss="modal">
+									<span>&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p id="studentCode"></p>
+								<p id="studentName"></p>
+
+							</div>
+							<div class="modal-footer">
+								<form action="/tuition/download-tuition">
+									<input id="downloadCodeVal" type="hidden" name="code">
+									<button type="submit" class="btn btn-primary" onclick="">Download</button>
+								</form>
+								<form action="/tuition/delete-tuition">
+									<input id="deleteCodeVal" type="hidden" name="code">
+									<button type="submit" class="btn btn-danger">Delete</button>
+								</form>
+								<button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-									
 		<!--**********************************
             Content body end
         ***********************************-->
@@ -128,43 +142,50 @@
 	<!--**********************************
         Main wrapper end
     ***********************************-->
-
 	<!--**********************************
         Scripts
     ***********************************-->
+	<script>
+		$(document).ready(
+				function() {
+					var fileTarget = $('#input-tuition');
+
+					fileTarget.on('change', function() {
+						if (window.FileReader) {
+							var fileName = $(this)[0].files[0].name;
+						} else {
+							var fileName = $(this).val().split('/').pop()
+									.split('\\').pop();
+						}
+
+						$('#label-tuition').text(fileName);
+					})
+
+					var table = $('#example2').DataTable();
+
+					$('#example2 tbody').on('click', 'tr', function() {
+						var data = table.row(this).data();
+
+						$('#fileDownAndDelete').modal('show');
+						$('#modal-title').text(data[3]);
+						$('#studentCode').text("학번 : " + data[0]);
+						$('#downloadCodeVal').val(data[0]);
+						$('#deleteCodeVal').val(data[0]);
+						$('#studentName').text("이름 : " + data[1]);
+					});
+
+				});
+	</script>
+
 	<!-- Required vendors -->
 	<script src="../resources/vendor/global/global.min.js"></script>
 	<script src="../resources/js/quixnav-init.js"></script>
 	<script src="../resources/js/custom.min.js"></script>
-    
-	<!-- Jquery Validation -->
-	<script src="../resources/vendor/jquery-validation/jquery.validate.min.js"></script>
-	<!-- Form validate init -->
-	<script src="../resources/js/plugins-init/jquery.validate-init.js"></script>
 
-	<script>
-		function fn_submit(){
-			if($('#curPassword').val() === ''){
-				alert("현재 비밀번호를 입력하세요.");
-				return false;
-			}
-		}
-		
-	
-		var msg = "${message}";
-		if(msg === "wrongPassword"){
-			swal("비밀번호 변경 실패", "비밀번호가 틀렸습니다.", "error");
-			//alert("비밀번호가 틀렸습니다.");
-		}else if(msg === "success"){
-			swal("비밀번호 변경 성공", "다시 로그인 해주세요.", "success").then((value) => {
-				if(value){
-					document.location.href="/logout";
-				}
-			});
-			//alert("비밀번호 변경 성공! 다시 로그인 해주세요.");
-			//document.location.href="/logout";
-		}
-		
-	</script>
+	<!-- Datatable -->
+	<script src="../resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
+
 </body>
+
 </html>
+

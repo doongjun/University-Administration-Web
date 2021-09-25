@@ -79,7 +79,8 @@
 										style="float: left; margin-bottom: 10px; margin-left: 0px; padding-left: -15px">
 										<select name="b_sort" id="single-select b_sort"
 											class="form-control">
-											<option value="">분류</option>
+											<option value="${vo.b_sort}"selected>${vo.b_sort}</option>
+											
 											<option value="학사">학사</option>
 											<option value="행정">행정</option>
 											<option value="행사">행사</option>
@@ -87,7 +88,7 @@
 									</div>
 									<div class="form-group col-md-6" style="float: left; margin-right: 6px">
 										<input type="text" name="b_title" class="form-control"
-											placeholder="제목" value="" />
+											 value="${vo.b_title}" />
 									</div>
 								</div>
 								
@@ -98,7 +99,7 @@
 									<div class="row justify-content-md-center">
 										<div class="col_c" style="margin-bottom: 30px">
 											<div class="input-group">
-												<textarea class="ckeditor" id="b_content" name="b_content"></textarea>
+												<textarea class="ckeditor" id="b_content" name="b_content"  value="<c:out value='${vo.b_content}'/>">${vo.b_content}</textarea>
 												<script type="text/javascript">
 													$(function() {
 														CKEDITOR
@@ -123,7 +124,7 @@
 									<input type="hidden" name="b_writer_code" value="${admin.id}" />
 
 									<!-- 버튼추가 -->
-									<button type="submit" class="btn btn-primary" id="write_button">등록</button>
+									<button type="submit" class="btn btn-primary" id="modify_button">등록</button>
 								</div>
 							</form>
 

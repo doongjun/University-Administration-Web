@@ -17,6 +17,10 @@ public interface BoardService {
 	public int total(BoardCriteriaVO cri);
 	
 	//관리자용
-	//글작성
+	//글 작성
 	public boolean insert(BoardVO vo);
+	//글 수정
+	public boolean update(BoardVO vo);
+	//글 삭제
+	public boolean delete(int b_no);
 }
