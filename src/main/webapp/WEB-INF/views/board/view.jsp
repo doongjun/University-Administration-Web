@@ -117,7 +117,7 @@
 								</sec:authorize>
 							</div>
 
-							<form id="viewForm" action="" method="post">
+							<form id="viewForm" action="" method="get">
 								<input type="hidden" id="b_no" name="b_no" value="${vo.b_no}">
 							</form>
 <!-- onclick="location.href='/board/boardlist'"
@@ -192,6 +192,7 @@
 		//List버튼 클릭시 get /board/boardlist
 		$("#list_btn").click(function() {
 			viewForm.find("input[name='b_no']").remove();
+			viewForm.find("input[name='b_view']").remove();
 			viewForm.attr('action', '/board/boardlist');
 			viewForm.submit();
 		})
