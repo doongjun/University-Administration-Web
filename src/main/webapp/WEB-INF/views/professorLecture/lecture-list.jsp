@@ -170,7 +170,6 @@
         Modal end
     ***********************************-->
 
-	<input type="hidden" id="s_id" value="${member.id}">
 
 	<!--**********************************
         Scripts
@@ -196,7 +195,6 @@
 
 		var modalDeleteBtn = $("#modalDeleteBtn");
 
-		//var student_id = $("#s_id").val();
 		var lecture_code = "";
 
 		var lecture_cnt = "${fn:length(vo)}";
@@ -219,11 +217,14 @@
 				modal.modal("show");
 			});
 
-			$("#studentBtn" + i).click(function() {
-				id = $(this).closest("tr").find("td:eq(0)").text();
-				console.log(id);
-				modal.modal("show");
-			});
+			$("#studentBtn" + i).click(
+					function() {
+						id = $(this).closest("tr").find("td:eq(0)")
+								.text();
+						console.log(id);
+						document.location.href = "/professorLecture/student-list?lecture_id="
+								+ id;
+					});
 		}
 
 		modalDeleteBtn.click(function() {

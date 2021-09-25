@@ -70,6 +70,7 @@
 								<h4 class="card-title">수강생 관리</h4>
 							</div>
 							<div class="card-body">
+								<input name="lecture_id" type="hidden" value="${lecture_id}">
 								<div class="table-responsive">
 									<table class="table table-bordered table-scroll">
 										<thead class="table-light"
@@ -88,8 +89,8 @@
 												<tr>
 													<td style="display: none;">${vo.id}</td>
 													<td>${vo.code}</td>
+													<td>${vo.departmentName}</td>
 													<td>${vo.name}</td>
-													<td>${vo.dept}</td>
 													<td>${vo.grade}</td>
 													<td>
 														<!-- 											 	<button onclick="fn_update();" type="button" class="btn btn-danger">수정</button> -->

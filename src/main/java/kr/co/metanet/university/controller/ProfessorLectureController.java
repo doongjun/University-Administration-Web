@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.co.metanet.university.domain.LectureVO;
 import kr.co.metanet.university.domain.MemberProfessor;
+import kr.co.metanet.university.domain.MemberStudent;
 import kr.co.metanet.university.service.MemberService;
 import kr.co.metanet.university.service.ProfessorLectureService;
+import kr.co.metanet.university.service.ProfessorStudentService;
 
 @Controller
 @RequestMapping(path="/professorLecture")
@@ -25,23 +27,23 @@ public class ProfessorLectureController {
 	
 	@Autowired
 	@Qualifier("kr.co.metanet.university.service.impl.ProfessorLectureServiceImpl")
-	private ProfessorLectureService service;
+	private ProfessorLectureService lectureService;
 	
-	//@Autowired
-	//@Qualifier("kr.co.metanet.university.service.impl.MemberServiceImpl")
-	//private MemberService mservice;
+	@Autowired
+	@Qualifier("kr.co.metanet.university.service.impl.ProfessorStudentServiceImpl")
+	private ProfessorStudentService studentService;
 	
-	private final MemberService mservice;
+	private final MemberService memberService;
 	
-	public ProfessorLectureController(MemberService mservice) {
-		this.mservice = mservice;
+	public ProfessorLectureController(MemberService service) {
+		this.memberService = service;
 	}
 	
 	@GetMapping("/createform")
 	public String createform(Principal principal, Model model,HttpSession session) {
 		//principal로 사용자정보 세션관리
 		String loginCode = principal.getName();
-		MemberProfessor professor = mservice.getProfessorByCode(loginCode);
+		MemberProfessor professor = memberService.getProfessorByCode(loginCode);
 		session.setAttribute("professor",professor);
 		
 		return "professorLecture/createform";
@@ -49,7 +51,7 @@ public class ProfessorLectureController {
 
 	@GetMapping("/updateform")
 	public String updateform(@RequestParam("id") int id, Model model) {
-		LectureVO lecture = service.getLecture(id);
+		LectureVO lecture = lectureService.getLecture(id);
 		model.addAttribute("vo", lecture);
 		return "professorLecture/updateform";
 	}
@@ -57,12 +59,20 @@ public class ProfessorLectureController {
 	@GetMapping("/lecture-list")
 	public String lectureList(Principal principal, Model model, HttpSession session) {
 		String loginCode = principal.getName();
-		MemberProfessor professor = mservice.getProfessorByCode(loginCode);
+		MemberProfessor professor = memberService.getProfessorByCode(loginCode);
 		session.setAttribute("professor",professor);
 		
-		List<LectureVO> list = service.getAllLecture(professor.getId());
+		List<LectureVO> list = lectureService.getAllLecture(professor.getId());
 		model.addAttribute("vo",list);
 		return "professorLecture/lecture-list";
+	}
+	
+	@GetMapping("/student-list")
+	public String studentlist(@RequestParam("lecture_id") int lecture_id, Model model) {
+		List<MemberStudent> list = studentService.getAllStudent(lecture_id);
+		model.addAttribute("vo",list);
+		model.addAttribute("lecture_id",lecture_id);
+		return "professorLecture/student-list";
 	}
 	
 }
