@@ -68,20 +68,28 @@
 					                	<option value="empty">교양/기타</option>
 					             	</select>
 				        		</div>
-				        		<div style="float:left; margin-top: 5px;">입력 검색</div>
-				        		<div class="col-lg-3" style="float:left; margin-right: 6px">
-				        			<input type="textarea" name="rep" class="form-control" placeholder="교과목명 또는 코드 입력" value=""/>
+				        		<div style="float:left; margin-top: 5px;">&nbsp;&nbsp;종류</div>
+				        		<div style="float:left; margin-top: 5px;"></div>
+								<div class="col-lg-2" style="float:left; margin-bottom: 10px; margin-left: 6px">
+				        			<select name="section_up" id="section_up" class="form-control" >
+					                	<option value="empty">교과명</option>
+					                	<option value="empty">강의번호</option>
+					             	</select>
 				        		</div>
-				        		<button name="rep-btn" type="button" class="btn btn-primary" style="float: left">확인</button>
+				        		<div style="float:left; margin-top: 5px;">&nbsp;&nbsp;&nbsp;&nbsp;입력</div>
+				        		<div class="col-lg-2" style="float:left; margin-right: 12px; ">
+				        			<input type="textarea" name="rep" class="form-control" placeholder="검색어를 입력하세요." value=""/>
+				        		</div>
+				        		<button name="rep-btn" type="button" class="btn btn-primary" style="float: left;">확인</button>
 					   		</div>
 					   		<div>
-					   			<div style="float:left; padding-left:20px; margin-top: 5px;">학부(과)</div>
+					   			<div style="float:left; padding-left:20px; margin-top: 5px;">학부</div>
 								<div class="col-lg-2" style="float:left; margin-bottom: 10px; margin-left: 6px">
 				        			<select name="dept" id="dept" class="form-control" >
 					                	<option value="empty">선택</option>
 					             	</select>
 				        		</div>
-				        		<div style="float:left; margin-top: 5px;">구분</div>
+				        		<div style="float:left; margin-top: 5px;">구분&nbsp;&nbsp;</div>
 				        		<div class="col-lg-2" style="float:left; margin-right: 6px">
 				        			<select name="section_bottom" id="section_bottom" class="form-control" >
 					                	<option value="empty">전공/전공기초</option>
@@ -97,16 +105,7 @@
 					                	<option value="">3학년</option>
 					                	<option value="">4학년</option>
 					             	</select>
-				        		</div>
-				        		<div style="float:left; margin-top: 5px;">학기</div>
-				        		<div class="col-lg-2" style="float:left; margin-right: 6px">
-				        			<select name="semester" id="semester" class="form-control" >
-					                	<option value="">1학기</option>
-					                	<option value="">2학기</option>
-					                	<option value="">여름학기</option>
-					                	<option value="">겨울학기</option>
-					             	</select>
-				        		</div>		
+				        		</div>	
 				        		<button name="rep-btn" type="button" class="btn btn-primary" style="float: left">확인</button>
 					   		</div>
 						</div>
