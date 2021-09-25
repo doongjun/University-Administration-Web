@@ -72,7 +72,8 @@
 
 										<div class="form-row">
 											<div class="form-group col-md-6">
-												<input name="id" type="hidden" value="${vo.id}"> <label>강의제목</label> <input name="lecture_name" value="${vo.lecture_name}" type="text" class="form-control" required>
+												<input name="id" type="hidden" value="${vo.id}">
+												 <label>강의제목</label> <input name="lecture_name" value="${vo.lecture_name}" type="text" class="form-control" required>
 
 											</div>
 											<div class="form-group col-md-6">
