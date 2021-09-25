@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="kr.co.metanet.university.mapper.ProfessorStudentMapper">
+
+	<select id="getStudentList" parameterType="int"
+		resultType="kr.co.metanet.university.domain.MemberStudentVO">
+		SELECT s.id, d.department_name, m.name, s.grade
+		FROM student s, department d, member m, student_lecture sl
+		WHERE s.id = sl.student_id AND sl.lecture_id = #{lecture_id}
+		AND m.id = s.id AND d.department_code = s.department_code;
+	</select>
+
+	<insert id="insert">
+		insert into student_lecture(student_id, lecture_id,
+		score, enrolment)
+		values(#{student_id}, #{lecture_id}, 'x', 1)
+	</insert>
+
+	<delete id="delete">
+		delete from student_lecture where student_id =
+		#{student_id} and lecture_id = #{lecture_id}
+	</delete>
+</mapper>
