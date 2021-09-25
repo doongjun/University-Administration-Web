@@ -121,7 +121,8 @@
         dp.locale = "en-au";
 
         dp.headerDateFormat = "dddd";
-
+        dp.showNonBusiness = false;
+        
         // event creating
         /* dp.onTimeRangeSelected = function (args) {
             var name = prompt("New event name:", "Event");
