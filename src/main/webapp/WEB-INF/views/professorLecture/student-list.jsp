@@ -48,7 +48,7 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>강의내역조회</h4>
+							<h4>수강생 관리</h4>
 						</div>
 					</div>
 					<div
@@ -56,7 +56,7 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="javascript:void(0)">강의관리</a></li>
 							<li class="breadcrumb-item active"><a
-								href="javascript:void(0)">강의내역조회</a></li>
+								href="javascript:void(0)">수강생관리</a></li>
 						</ol>
 					</div>
 				</div>
@@ -67,7 +67,7 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">내강의목록</h4>
+								<h4 class="card-title">수강생 관리</h4>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
@@ -75,12 +75,10 @@
 										<thead class="table-light"
 											style="color: white; background-color: gray; text-align: center;">
 											<tr>
-												<th>강의번호</th>
-												<th>강의년도</th>
-												<th>학기</th>
+												<th>학번</th>
+												<th>학과</th>
+												<th>이름</th>
 												<th>학년</th>
-												<th>구분</th>
-												<th>강의이름</th>
 												<th>관리</th>
 											</tr>
 										</thead>
@@ -89,20 +87,16 @@
 											<c:forEach var="vo" items="${vo}" varStatus="cnt">
 												<tr>
 													<td style="display: none;">${vo.id}</td>
-													<td>${vo.lecture_code}</td>
-													<td>${vo.lecture_year}</td>
-													<td>${vo.semester}</td>
+													<td>${vo.code}</td>
+													<td>${vo.name}</td>
+													<td>${vo.dept}</td>
 													<td>${vo.grade}</td>
-													<td>${vo.section}</td>
-													<td>${vo.lecture_name}</td>
 													<td>
 														<!-- 											 	<button onclick="fn_update();" type="button" class="btn btn-danger">수정</button> -->
-														<button name="" id="updateBtn${cnt.count}" type="button"
-															class="btn btn-danger">수정</button>
 														<button name="" id="deleteBtn${cnt.count}" type="button"
 															class="btn btn-danger">삭제</button>
-														<button name="" id="studentBtn${cnt.count}" type="button"
-															class="btn btn-danger">수강생</button>
+														<button name="" id="scoreBtn${cnt.count}" type="button"
+															class="btn btn-danger">성적입력</button>
 													</td>
 												</tr>
 											</c:forEach>
@@ -137,10 +131,9 @@
         Main wrapper end
     ***********************************-->
 
-	<!-- 관리자만 볼수있는 코드 -->
-	<sec:authorize access="hasRole('ROLE_ADMIN')">
-		<input type="hidden" id="professor_id" value="${professor.id}">
-	</sec:authorize>
+	<!--**********************************
+        Main wrapper end
+    ***********************************-->
 
 	<!--**********************************
         Modal start
@@ -157,7 +150,7 @@
 				</div>
 				<div class="modal-body"
 					style="margin-top: 10px; color: black; text-align: center;">
-					<p>이 강의를 삭제하시겠습니까? 모든 정보와 수강생 정보가 사라집니다.</p>
+					<p>수강생을 삭제하시겠습니까? 강의와 관련된 정보가 삭제됩니다.</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" id="modalDeleteBtn">확인</button>
@@ -171,7 +164,10 @@
         Modal end
     ***********************************-->
 
-	<input type="hidden" id="s_id" value="${member.id}">
+	<!-- 관리자만 볼수있는 코드 -->
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
+		<input type="hidden" id="professor_id" value="${professor.id}">
+	</sec:authorize>
 
 	<!--**********************************
         Scripts
