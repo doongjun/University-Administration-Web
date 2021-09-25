@@ -20,15 +20,30 @@ public class LectureServiceImpl implements LectureService{
 	public List<LectureVO> getAllLecture() {
 		return mapper.getAllLecture();
 	}
+	
+	@Override
+	public String getMaxCode() {
+		return mapper.getMaxCode();
+	}
+
+	@Override
+	public LectureVO getLecture(int id) {
+		return mapper.getLecture(id);
+	}
 
 	@Override
 	public int create(LectureVO vo) {
 		return mapper.create(vo);
 	}
-	
+
 	@Override
-	public String getMaxCode() {
-		return mapper.getMaxCode();
+	public int update(LectureVO vo) {
+		return mapper.update(vo);
+	}
+
+	@Override
+	public int delete(int id) {
+		return mapper.delete(id);
 	}
 
 

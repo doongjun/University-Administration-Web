@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <body>
 
@@ -59,89 +60,14 @@
 
 
                 <div class="row">
-                    <!-- <div class="col-lg-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-intro-title">Calendar</h4>
-
-                                <div class="">
-                                    <div id="external-events" class="my-3">
-                                        <p>Drag and drop your event or click in the calendar</p>
-                                        <div class="external-event" data-class="bg-primary"><i class="fa fa-move"></i>New Theme Release</div>
-                                        <div class="external-event" data-class="bg-success"><i class="fa fa-move"></i>My Event
-                                        </div>
-                                        <div class="external-event" data-class="bg-warning"><i class="fa fa-move"></i>Meet manager</div>
-                                        <div class="external-event" data-class="bg-dark"><i class="fa fa-move"></i>Create New theme</div>
-                                    </div>
-                                    checkbox
-                                    <div class="checkbox checkbox-event pt-3 pb-5">
-                                        <input id="drop-remove" class="styled-checkbox" type="checkbox">
-                                        <label class="ml-2 mb-0" for="drop-remove">Remove After Drop</label>
-                                    </div>
-                                    <a href="javascript:void()" data-toggle="modal" data-target="#add-category" class="btn btn-primary btn-event w-100">
-                                        <span class="align-middle"><i class="ti-plus"></i></span> Create New
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                     <div class="col-lg-15">
                         <div class="card">
                             <div class="card-body">
-                                <div id="calendar" class="app-fullcalendar"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- BEGIN MODAL -->
-                    <div class="modal fade none-border" id="event-modal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title"><strong>Add New Event</strong></h4>
-                                </div>
-                                <div class="modal-body"></div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success save-event waves-effect waves-light">Create
-                                        event</button>
-
-                                    <button type="button" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Modal Add Category -->
-                    <div class="modal fade none-border" id="add-category">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title"><strong>Add a category</strong></h4>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label class="control-label">Category Name</label>
-                                                <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="control-label">Choose Category Color</label>
-                                                <select class="form-control form-white" data-placeholder="Choose a color..." name="category-color">
-                                                    <option value="success">Success</option>
-                                                    <option value="danger">Danger</option>
-                                                    <option value="info">Info</option>
-                                                    <option value="pink">Pink</option>
-                                                    <option value="primary">Primary</option>
-                                                    <option value="warning">Warning</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-danger waves-effect waves-light save-category" data-dismiss="modal">Save</button>
-                                </div>
+                                
+								
+								<div id="dp"></div>
+								
+								<div id="print"></div>
                             </div>
                         </div>
                     </div>
@@ -162,8 +88,6 @@
             Footer end
         ***********************************-->
 
-        
-
 
     </div>
     <!--**********************************
@@ -181,14 +105,111 @@
     <!-- Demo scripts -->
     <script src="../resources/js/styleSwitcher.js"></script>
 
-
-
     <script src="../resources/vendor/jqueryui/js/jquery-ui.min.js"></script>
     <script src="../resources/vendor/moment/moment.min.js"></script>
+	
+    <script src="../resources/js/daypilot-all.min.js?v=2021.2.261"></script>
+    
+    <script type="text/javascript">
+        var dp = new DayPilot.Calendar("dp");
+		var list = "${vo}";
+		var list_length = "${fn:length(vo)}";
+		
+        // view
+        dp.startDate = "2021-03-22"; //22 : 월요일, 23 : 화, 24 : 수, 25 : 목, 26 : 금, 27 : 토, 28 : 일
+        dp.viewType = "Week";
+        dp.locale = "en-au";
 
-    <script src="../resources/vendor/fullcalendar/js/fullcalendar.min.js"></script>
-    <script src="../resources/js/plugins-init/fullcalendar-init.js"></script>
+        dp.headerDateFormat = "dddd";
 
+        // event creating
+        /* dp.onTimeRangeSelected = function (args) {
+            var name = prompt("New event name:", "Event");
+            if (!name) return;
+            var e = new DayPilot.Event({
+                start: args.start,
+                end: args.end,
+                id: DayPilot.guid(),
+                text: name
+            });
+            dp.events.add(e);
+            dp.clearSelection();
+        }; */
+
+        /* dp.onEventClick = function (args) {
+            alert("clicked: " + args.e.id());
+        }; */
+
+        dp.init();
+        
+        var e = "";
+        var year_month = "2021-03-";
+        var leftTime = ":00:00";
+        
+        $.getJSON({
+        	url:"/studentLecture/rest_calendar",
+        	type:"GET",
+        	async:false,
+        	success:function(data) {		
+				$.each(data, function(idx, element) {
+					var day = "";
+					timeSpl = element.lecture_time.split(" ");
+					
+					if(timeSpl[0] == "월") {
+						day = "22";
+					}
+					if(timeSpl[0] == "화") {
+						day = "23";
+					}
+					if(timeSpl[0] == "수") {
+						day = "24";
+					}
+					if(timeSpl[0] == "목") {
+						day = "25";
+					}
+					if(timeSpl[0] == "금") {
+						day = "26";
+					}
+					if(timeSpl[0] == "토") {
+						day = "27";
+					}
+					
+					cnt = timeSpl[1].split(",").length;
+					
+					var startDay = year_month + day + "T";
+					
+					var startTime = ((timeSpl[1].split(",")[0] * 1) + 8) > 9? ((timeSpl[1].split(",")[0] * 1) + 8) : "0" + ((timeSpl[1].split(",")[0] * 1) + 8);
+					
+					startDay = startDay + startTime + leftTime;
+					
+					console.log(startDay);
+					console.log(cnt);
+					
+					e = new DayPilot.Event({
+		                start: new DayPilot.Date(startDay),
+		                end: new DayPilot.Date(startDay).addHours(cnt),
+		                id: DayPilot.guid(),
+		                text: element.lecture_name + "<br>" +  element.lecture_time + "<br>" + element.classroom
+		            });
+					
+					dp.events.add(e);
+				})
+			}
+        	
+        });
+        
+
+        /* var elements = {
+            locale: document.querySelector("#locale")
+        };
+
+        elements.locale.addEventListener("change", function() {
+            dp.locale = elements.locale.value;
+            dp.update();
+        }); */
+
+    </script>
+	<script src="../resources/helpers/v2/app.js?v=2021.2.261"></script>
 </body>
 
 </html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.metanet.university.mapper.TuitionMapper">
+
+	<insert id="insertTuition" parameterType="java.util.Map">
+		INSERT INTO
+		tuition(code, file_name ,file_path, file_size, content_type)
+		VALUES (#{code}, #{fileName}, #{filePath}, #{fileSize}, #{contentType})
+	</insert>
+
+	<select id="selectTuition"
+		resultType="kr.co.metanet.university.domain.Tuition">
+		SELECT code, file_name, file_path, file_size, content_type
+		FROM TUITION
+		WHERE code = #{code}
+	</select>
+
+	<select id="checkTuitionCountByCode" resultType="int">
+		SELECT COUNT(*)
+		FROM TUITION
+		WHERE code = #{code}
+	</select>
+
+	<select id="selectTuitionFileList" resultType="kr.co.metanet.university.domain.TuitionPageVO">
+		SELECT s.CODE, m.NAME, d.DEPARTMENT_NAME, t.FILE_NAME, t.FILE_PATH, t.FILE_SIZE, t.CONTENT_TYPE
+		FROM STUDENT s
+		JOIN TUITION t ON s.CODE = t.CODE
+		JOIN "MEMBER" m ON s.CODE = m.CODE
+		JOIN DEPARTMENT d ON s.DEPARTMENT_CODE = d.DEPARTMENT_CODE
+	</select>
+	
+	<delete id="deleteTuitionByCode">
+		DELETE FROM tuition 
+		WHERE code=#{code}
+	</delete>
+
+</mapper>
+

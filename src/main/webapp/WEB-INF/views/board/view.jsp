@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <body>
 
@@ -67,16 +69,12 @@
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<c:set var="now" value="<%=new java.util.Date()%>" />
-								<c:set var="sys">
-									<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />
-								</c:set>
 								<h4 class="card-title">[${vo.b_no}] ${vo.b_title}</h4>
 								<ol>
 									<li><p class="mb-0">작성자 : ${vo.writer}</p></li>
 									<li><p class="mb-0">
 											등록일 :
-											<c:out value="${sys}" />
+											<fmt:formatDate value="${vo.b_sysdate}" pattern="yyyy-MM-dd" />
 										</p></li>
 									<li><p class="mb-0">조회수 : ${vo.b_views}</p></li>
 								</ol>
@@ -86,12 +84,18 @@
 							<div class="row justify-content-md-center">
 								<div class="col_c" style="margin-bottom: 30px">
 									<div class="input-group">
-										<textarea class="form-control" id="p_content">${vo.b_content}</textarea>
+										<textarea class="form-control" id="b_content"
+											readonly="readonly">${vo.b_content}</textarea>
 										<script type="text/javascript">
-                  						CKEDITOR.replace('p_content'
-                                                  , {height: 500                                                  
-                                                  });
-                 						 </script>
+											$(function() {
+												CKEDITOR
+														.replace(
+																'b_content',
+																{
+																	customConfig : '../resources/ckeditor/config.js'
+																});
+											});
+										</script>
 
 									</div>
 								</div>
@@ -101,20 +105,32 @@
 
 
 							<div class="card-body">
-								<button type="button" class="btn btn-primary">목록</button>
-								<!-- 추후 관리자 전용 -->
-								<button type="button" class="btn btn-light">수정</button>
-								<button type="button" class="btn btn-dark">삭제</button>
+								<button type="button" class="btn btn-primary" id="list_btn"
+									>목록</button>
+								<sec:authorize access="hasRole('ROLE_ADMIN')">
+									<!-- 추후 글 작성자 전용 -->
+									
+										<button type="button" class="btn btn-light"
+											id="modify_btn">수정</button>
+										<button type="button" class="btn btn-dark" id="del_btn">삭제</button>
+									
+								</sec:authorize>
 							</div>
 
+							<form id="viewForm" action="" method="get">
+								<input type="hidden" id="b_no" name="b_no" value="${vo.b_no}">
+							</form>
+<!-- onclick="location.href='/board/boardlist'"
+ onclick="location.href='modify'"
+ -->
 						</div>
 					</div>
 				</div>
-        <style>
-        .card-body{
-        text-align: center;
-        }
-        </style>
+				<style>
+.card-body {
+	text-align: center;
+}
+</style>
 
 
 			</div>
@@ -163,6 +179,30 @@
 
 	<!-- ckeditor -->
 	<script src="../resources/ckeditor/ckeditor.js"></script>
+
+	<script>
+		let viewForm = $("#viewForm");
+
+		//Modify버튼 클릭시  get방식 /board/modify
+		$("#modify_btn").click(function() {
+			viewForm.attr('action', '/board/modify');
+			viewForm.submit();
+		})
+
+		//List버튼 클릭시 get /board/boardlist
+		$("#list_btn").click(function() {
+			viewForm.find("input[name='b_no']").remove();
+			viewForm.find("input[name='b_view']").remove();
+			viewForm.attr('action', '/board/boardlist');
+			viewForm.submit();
+		})
+		//delete 버튼 클릭시  post방식 /board/delete
+		$("#del_btn").click(function() {
+			viewForm.attr('action', '/board/delete');
+			viewForm.submit();
+		})
+		
+	</script>
 
 	<!-- 구글링 깃허브 -->
 	<script

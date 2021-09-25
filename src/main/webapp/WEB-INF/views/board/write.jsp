@@ -3,6 +3,12 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
+
+
+<!-- ckeditor -->
+<script src="../resources/ckeditor/ckeditor.js"></script>
 <body>
 
 	<!--*******************
@@ -65,48 +71,74 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
-							<div class="card-header">
-								<c:set var="now" value="<%=new java.util.Date()%>" />
-								<c:set var="sys">
-									<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />
-								</c:set>
-								<h4 class="card-title">[${vo.b_no}] ${vo.b_title}</h4>
-								<ol>
-									<li><p class="mb-0">작성자 : ${vo.writer}</p></li>
-									<li><p class="mb-0">
-											등록일 :
-											<c:out value="${sys}" />
-										</p></li>
-									<li><p class="mb-0">조회수 : ${vo.b_views}</p></li>
-								</ol>
-							</div>
+							<form action="" id="write_board" method="post">
 
-							<!-- ckeditor 추가부분 -->
-							<div class="row justify-content-md-center">
-								<div class="col_c" style="margin-bottom: 30px">
-									<div class="input-group">
-										<textarea class="form-control" id="p_content">${vo.b_content}</textarea>
 
+								<div class="card-body">
+									<div class="col-lg-2"
+										style="float: left; margin-bottom: 10px; margin-left: 0px; padding-left: -15px">
+										<select name="b_sort" id="single-select b_sort"
+											class="form-control">
+											<option value="">분류</option>
+											<option value="학사">학사</option>
+											<option value="행정">행정</option>
+											<option value="행사">행사</option>
+										</select>
+									</div>
+									<div class="form-group col-md-6" style="float: left; margin-right: 6px">
+										<input type="text" name="b_title" class="form-control"
+											placeholder="제목" value="" />
 									</div>
 								</div>
-							</div>
-
-							<!-- 버튼추가 -->
-							
+								
+								<br>
 								
 								<div class="card-body">
-									<button type="button" class="btn btn-primary">Primary</button>
-									<button type="button" class="btn btn-success">Success</button>
-									<button type="button" class="btn btn-danger">Danger</button>
-									<button type="button" class="btn btn-warning">Warning</button>
-									<button type="button" class="btn btn-light">Light</button>
-									<button type="button" class="btn btn-dark">Dark</button>
+									<!-- ckeditor 추가부분 -->
+									<div class="row justify-content-md-center">
+										<div class="col_c" style="margin-bottom: 30px">
+											<div class="input-group">
+												<textarea class="ckeditor" id="b_content" name="b_content"></textarea>
+												<script type="text/javascript">
+													$(function() {
+														CKEDITOR
+																.replace(
+																		'b_content',
+																		{
+																			customConfig : '../resources/ckeditor/config.js'
+																		});
+													});
+													if (CKEDITOR.instances.b_content
+															.getData().length < 1) {
+														alert("내용을 입력해 주세요.");
+														return;
+													}
+												</script>
+											</div>
+										</div>
+									</div>
+
+
+
+									<input type="hidden" name="b_writer_code" value="${admin.id}" />
+
+									<!-- 버튼추가 -->
+									<button type="submit" class="btn btn-primary" id="write_button">등록</button>
 								</div>
-							
+							</form>
+
+
 						</div>
 					</div>
 				</div>
+				<script src="/resources/js/boardwrite.js"></script>
+				<script>
+					$(document).ready(function() {
 
+						let result = '<c:out value="${result}"/>';
+
+					});
+				</script>
 
 
 
@@ -154,13 +186,8 @@
 	<script src="../resources/js/quixnav-init.js"></script>
 	<script src="../resources/js/custom.min.js"></script>
 
-	<!-- ckeditor -->
-	<script src="../resources/ckeditor/ckeditor.js"></script>
-	<script type="text/javascript">
-                  						CKEDITOR.replace('p_content'
-                                                  , {height: 500                                                  
-                                                  });
-                 						 </script>
+
+
 
 	<!-- 구글링 깃허브 -->
 	<script

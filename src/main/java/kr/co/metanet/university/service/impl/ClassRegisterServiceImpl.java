@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.metanet.university.domain.Criteria;
 import kr.co.metanet.university.domain.LectureVO;
 import kr.co.metanet.university.mapper.ClassRegisterMapper;
 import kr.co.metanet.university.service.ClassRegisterService;
@@ -16,8 +17,13 @@ public class ClassRegisterServiceImpl implements ClassRegisterService {
 	private ClassRegisterMapper mapper;
 	
 	@Override
-	public List<LectureVO> getLectureList() {
-		return mapper.getLectureList();
+	public List<LectureVO> getLectureList(Criteria cri) {
+		return mapper.getLectureList(cri);
+	}
+	
+	@Override
+	public List<String> deptList() {
+		return mapper.deptList();
 	}
 
 }
