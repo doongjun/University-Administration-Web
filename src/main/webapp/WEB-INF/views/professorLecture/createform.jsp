@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <body>
 
@@ -50,12 +48,10 @@
 							<h4>강의 등록</h4>
 						</div>
 					</div>
-					<div
-						class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="javascript:void(0)">강의관리</a></li>
-							<li class="breadcrumb-item active"><a
-								href="javascript:void(0)">강의 등록</a></li>
+							<li class="breadcrumb-item active"><a href="javascript:void(0)">강의 등록</a></li>
 						</ol>
 					</div>
 				</div>
@@ -75,13 +71,16 @@
 
 										<div class="form-row">
 											<div class="form-group col-md-6">
-												<label>강의제목</label> <input name="lecture_name" type="text"
-													class="form-control" required>
+												
+												<input type="hidden" name="professor_id" id="professor_id" value="${professor.id}">
+												
+												
+												<label>강의제목</label> <input name="lecture_name" type="text" class="form-control" required>
 
 											</div>
 											<div class="form-group col-md-6">
-												<label>학과</label> <select name="dept_code" id="inputState"
-													class="form-control">
+												<label>학과</label> <select name="dept_code" id="inputState" class="form-control">
+													<option value="0" selected="">공통</option>
 													<option value="1">컴퓨터공학과</option>
 													<option value="2">경영학과</option>
 													<option value="3">경제학과</option>
@@ -102,56 +101,46 @@
 													<option value="18">국어국문학과</option>
 													<option value="19">영어영문학과</option>
 													<option value="20">심리학과</option>
-													<option value="0" selected="">공통</option>
 												</select>
 											</div>
 											<div class="form-group col-md-6">
-												<label>대상학년</label> <select name="grade" id="inputState"
-													class="form-control">
+												<label>대상학년</label> <select name="grade" id="inputState" class="form-control">
+													<option selected="">공통</option>
 													<option>1학년</option>
 													<option>2학년</option>
 													<option>3학년</option>
 													<option>4학년</option>
-													<option selected="">공통</option>
 												</select>
 											</div>
 											<div class="form-group col-md-6">
-												<label>강의실</label> <input name="classroom" type="text"
-													class="form-control" placeholder="예) 덮밥관 201호">
+												<label>강의실</label> <input name="classroom" type="text" class="form-control" placeholder="예) 000관 000호">
 											</div>
 											<div class="form-group col-md-6">
-												<label>강의시간</label> <input name="lecture_time" type="text"
-													class="form-control" placeholder="예) 수 1,2,3">
+												<label>강의시간</label> <input name="lecture_time" type="text" class="form-control" placeholder="예) 수 1,2,3">
 											</div>
 											<div class="form-group col-md-6">
-												<label>분반</label> <select name="division" id="inputState"
-													class="form-control">
+												<label>분반</label> <select name="division" id="inputState" class="form-control">
+													<option selected="">-</option>
 													<option>1분반</option>
 													<option>2분반</option>
 													<option>3분반</option>
-													<option selected="">-</option>
 												</select>
 											</div>
 											<div class="form-group col-md-6">
-												<label>학점</label> <input name="credit" type="number" min="1"
-													max="3" class="form-control" placeholder="3">
+												<label>학점</label> <input name="credit" type="number" min="1" max="3" class="form-control" placeholder="3">
 											</div>
 											<div class="form-group col-md-6">
-												<label>구분</label> <select name="section" id="inputState"
-													class="form-control">
+												<label>구분</label> <select name="section" id="inputState" class="form-control">
 													<option selected="">전공/전공기초</option>
 													<option>교양/기타</option>
 												</select>
 											</div>
 											<div class="form-group col-md-6">
-												<label>수강정원</label> <input name="student_full" type="number"
-													min="1" max="300" class="form-control" placeholder="30">
-												<small id="passwordHelpBlock" class="form-text text-muted">
+												<label>수강정원</label> <input name="student_full" type="number" min="1" max="300" class="form-control" > <small id="passwordHelpBlock" class="form-text text-muted">
 													* 정원 변경시 과사무실에 문의바랍니다. </small>
 											</div>
 											<div class="form-group col-md-6">
-												<label>비고</label> <input name="remarks" type="text"
-													class="form-control" placeholder="생략가능. 최대 30자">
+												<label>비고</label> <input name="remarks" type="text" class="form-control" placeholder="생략불가능. 최대 30자">
 											</div>
 										</div>
 
@@ -170,10 +159,7 @@
 		<!--**********************************
             Content body end
         ***********************************-->
-        <!-- 관리자만 볼수있는 코드 -->
-		<sec:authorize access="hasRole('ROLE_ADMIN')">
-			<input type="hidden" id="professor_id" value="${professor.id}">
-		</sec:authorize>
+
 
 		<!--**********************************
             Footer start
@@ -205,15 +191,19 @@
 				url : "/api/professorLecture/create",
 				type : "POST",
 				data : params,
-				dataType : 'json',
+				dataType : 'text',
 				error : function(request, status, error) {
-					alert("저장중 오류가 발생했습니다");
+					alert("error code:" + request.status + "\n" + "message:"
+							+ request.responseText + "\n" + "error:" + error);
 				},
 
 				success : function(data) {
 					alert("성공적으로 저장되었습니다.");
+					location.href = "/professorLecture/lecture-list";
+
 				}
 			})
+
 		}
 	</script>
 	<!--**********************************
@@ -229,8 +219,7 @@
 
 
 	<!-- Datatable -->
-	<script
-		src="../resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
+	<script src="../resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
 	<script src="../resources/js/plugins-init/datatables.init.js"></script>
 </body>
 

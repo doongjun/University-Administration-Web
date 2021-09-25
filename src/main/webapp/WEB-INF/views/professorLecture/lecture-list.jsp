@@ -79,8 +79,8 @@
 												<th>강의년도</th>
 												<th>학기</th>
 												<th>학년</th>
-												<th>구분</th>
 												<th>강의이름</th>
+												<th>구분</th>
 												<th>관리</th>
 											</tr>
 										</thead>
@@ -93,10 +93,9 @@
 													<td>${vo.lecture_year}</td>
 													<td>${vo.semester}</td>
 													<td>${vo.grade}</td>
-													<td>${vo.section}</td>
 													<td>${vo.lecture_name}</td>
+													<td>${vo.section}</td>
 													<td>
-														<!-- 											 	<button onclick="fn_update();" type="button" class="btn btn-danger">수정</button> -->
 														<button name="" id="updateBtn${cnt.count}" type="button"
 															class="btn btn-danger">수정</button>
 														<button name="" id="deleteBtn${cnt.count}" type="button"
