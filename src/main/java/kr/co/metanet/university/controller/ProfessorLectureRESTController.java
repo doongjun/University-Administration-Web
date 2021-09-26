@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kr.co.metanet.university.domain.LectureVO;
 import kr.co.metanet.university.service.LectureService;
+import kr.co.metanet.university.service.ProfessorStudentService;
 import kr.co.metanet.university.util.Utility;
 
 @RestController
@@ -24,7 +25,11 @@ public class ProfessorLectureRESTController {
 	@Autowired
 	@Qualifier("kr.co.metanet.university.service.impl.LectureServiceImpl")
 	private LectureService lectureService;
-
+	
+	@Autowired
+	@Qualifier("kr.co.metanet.university.service.impl.ProfessorStudentServiceImpl")
+	private ProfessorStudentService studentService;
+	
 	@PostMapping("/create")
 	public ResponseEntity<String> create(@RequestParam HashMap<String, String> params) throws Exception {
 		LectureVO lecture = new LectureVO();
@@ -95,5 +100,36 @@ public class ProfessorLectureRESTController {
 			return new ResponseEntity<String>("failed",HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@PostMapping("/updateScore")
+	public ResponseEntity<String> updateScore(@RequestParam HashMap<String, String> params) throws Exception {
+		String score = params.get("score");
+		int student_id = Integer.valueOf(params.get("student_id"));
+		int lecture_id = Integer.valueOf(params.get("lecture_id"));
+		
+		int flag = studentService.updateScore(score, student_id, lecture_id);
+
+		if(flag >0) {
+			return new ResponseEntity<String>("success",HttpStatus.OK);
+		}else {
+			return new ResponseEntity<String>("failed",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@DeleteMapping("/deleteStudent/{student_id}/{lecture_id}")
+	public ResponseEntity<String> deleteStudent(@PathVariable("student_id") int student_id, @PathVariable("lecture_id") int lecture_id) throws Exception {
+		int flag = studentService.deleteStudent(student_id, lecture_id);
+		
+		if(flag >0) {
+			return new ResponseEntity<String>("success",HttpStatus.OK);
+		}else {
+			return new ResponseEntity<String>("failed",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	
+		
+	
+	
 
 }

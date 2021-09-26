@@ -6,5 +6,7 @@ import kr.co.metanet.university.domain.MemberStudent;
 
 public interface ProfessorStudentService {
 	List<MemberStudent> getAllStudent(int lecture_id);
+	int updateScore(String score, int student_id, int lecture_id);
+	int deleteStudent(int student_id, int lecture_id);
 }
 	
