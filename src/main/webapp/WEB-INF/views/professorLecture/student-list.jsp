@@ -68,6 +68,11 @@
 						<div class="card">
 							<div class="card-header">
 								<h4 class="card-title">수강생 관리</h4>
+								<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+									<button id="showScoreBtn" name="showScoreBtn" type="button" class="btn btn-primary ">성적입력</button>
+									<button id="inputScoreBtn" style="margin-left: 5px; display: none; " name="inputScoreBtn" type="button" class="btn btn-primary">성적저장</button>
+									<button id="cancelBtn" style="margin-left: 5px; display: none; " name="cancelBtn" type="button" class="btn btn-primary" onclick="location.reload();">취소</button>
+								</div>
 							</div>
 							<div class="card-body">
 								<input name="lecture_id" type="hidden" value="${lecture_id}">
@@ -80,7 +85,12 @@
 												<th>학과</th>
 												<th>이름</th>
 												<th>학년</th>
-												<th>관리</th>
+												<th id="delete">관리</th>
+												<th id="score" style="display:none;">중간</th>
+												<th id="score" style="display:none;">기말</th>
+												<th id="score" style="display:none;">과제</th>
+												<th id="score" style="display:none;">출석</th>
+												<th id="score" style="display:none;">총점</th>
 											</tr>
 										</thead>
 										<tbody style="color: black; text-align: center;">
@@ -92,13 +102,36 @@
 													<td>${vo.departmentName}</td>
 													<td>${vo.name}</td>
 													<td>${vo.grade}</td>
-													<td>
-														<!-- 											 	<button onclick="fn_update();" type="button" class="btn btn-danger">수정</button> -->
+													<td id="delete">
 														<button name="" id="deleteBtn${cnt.count}" type="button"
 															class="btn btn-danger">삭제</button>
-														<button name="" id="scoreBtn${cnt.count}" type="button"
-															class="btn btn-danger">성적입력</button>
 													</td>
+													<td id="score" style="display:none;">
+														<input class="input-sm" name="midterm">
+													 </td>
+													<td id="score" style="display:none;"> 
+														<input name="finals">
+													</td>
+													<td id="score" style="display:none;">
+														<input name="attendance">
+													 </td>
+													<td id="score" style="display:none;">
+														<input name="total">
+													 </td>
+													<td id="score" style="display:none;">
+														<select name="grade" id="inputScore" class="form-control">
+															<option selected="">A+</option>
+															<option>A</option>
+															<option>B+</option>
+															<option>B</option>
+															<option>C+</option>
+															<option>C</option>
+															<option>D+</option>
+															<option>D</option>
+															<option>F</option>
+														</select>
+													</td>
+													
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -190,11 +223,26 @@
 	<script src="../resources/js/plugins-init/fullcalendar-init.js"></script>
 
 	<script>
+		//성적입력버튼처리
+		$('#showScoreBtn').click(function(){
+			
+			$('#cancelBtn').show();
+			$('#inputScoreBtn').show();
+			
+			$('td:nth-child(6),th:nth-child(5)').hide();
+			$('td:nth-child(7),th:nth-child(6)').show();
+			$('td:nth-child(8),th:nth-child(7)').show();
+			$('td:nth-child(9),th:nth-child(8)').show();
+			$('td:nth-child(10),th:nth-child(9)').show();
+			$('td:nth-child(11),th:nth-child(10)').show(); 
+			
+		})
+		
+	
 		let modal = $(".modal");
 
 		var modalDeleteBtn = $("#modalDeleteBtn");
 
-		//var student_id = $("#s_id").val();
 		var lecture_code = "";
 
 		var lecture_cnt = "${fn:length(vo)}";

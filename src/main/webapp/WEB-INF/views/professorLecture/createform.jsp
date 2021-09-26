@@ -131,8 +131,10 @@
 											</div>
 											<div class="form-group col-md-6">
 												<label>구분</label> <select name="section" id="inputState" class="form-control">
-													<option selected="">전공/전공기초</option>
-													<option>교양/기타</option>
+													<option selected="">기타</option>
+													<option>전공</option>
+													<option>전공기초</option>
+													<option>교양</option>
 												</select>
 											</div>
 											<div class="form-group col-md-6">
