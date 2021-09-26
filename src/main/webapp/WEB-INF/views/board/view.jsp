@@ -182,13 +182,11 @@
 
 	<script>
 		let viewForm = $("#viewForm");
-
 		//Modify버튼 클릭시  get방식 /board/modify
 		$("#modify_btn").click(function() {
 			viewForm.attr('action', '/board/modify');
 			viewForm.submit();
 		})
-
 		//List버튼 클릭시 get /board/boardlist
 		$("#list_btn").click(function() {
 			viewForm.find("input[name='b_no']").remove();

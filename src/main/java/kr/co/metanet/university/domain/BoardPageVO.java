@@ -24,7 +24,7 @@ public class BoardPageVO {
 		this.startPage=this.endPage-9;
 		
 		//마지막
-		int realEnd  =(int)(Math.ceil(total/1.0)/20);
+		int realEnd  =(int)(Math.ceil((total/1.0)/20));
 		if(realEnd<this.endPage) {
 			this.endPage=realEnd;
 		}
