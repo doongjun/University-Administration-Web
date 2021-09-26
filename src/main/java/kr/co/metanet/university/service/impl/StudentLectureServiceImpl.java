@@ -16,8 +16,8 @@ public class StudentLectureServiceImpl implements StudentLectureService {
 	private StudentLectureMapper mapper;
 	
 	@Override
-	public List<LectureVO> getStudentLectureList() {
-		return mapper.getStudentLectureList();
+	public List<LectureVO> getStudentLectureList(int student_id) {
+		return mapper.getStudentLectureList(student_id);
 	}
 	
 	@Override
