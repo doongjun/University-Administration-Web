@@ -111,23 +111,24 @@
 							<!-- 검색창
 									<div class="basic-form"> -->
 							<div class="card-body">
-								<!-- <div style="float:left; margin-top: 5px;">분류</div> -->
+								<form action="" id="searchForm" class="">
 								<div class="col-lg-2"
 									style="float: left; margin-bottom: 10px; margin-left: 0px; padding-left: -15px">
-									<select name="section_up" id="section_up" class="form-control">
-										<option selected>분류</option>
-										<option value="empty">제목</option>
-										<option value="empty">내용</option>
-										<option value="empty">작성자</option>
+									<select name="sort" id="type" class="form-control">
+									<option value="">분류</option>
+									<option value="제목"<c:out value="${BoardPageVO.cri.sort=='제목'?'selected':''}"/>>제목</option>
+									<option value="내용"<c:out value="${BoardPageVO.cri.sort=='내용'?'selected':''}"/>>내용</option>
+									<option value="작성자"<c:out value="${BoardPageVO.cri.sort=='작성자'?'selected':''}"/>>작성자</option>
 									</select>
 								</div>
 								<div class="col-lg-3" style="float: left; margin-right: 6px">
-									<input type="text" name="rep" class="form-control"
+									<input type="text" name="keyword" class="form-control"
 										placeholder="검색어를 입력하세요" value="" />
 								</div>
+								<input type="hidden" name="page" value="${BoardPageVO.cri.page}"/>
 								<button name="rep-btn" type="button" class="btn btn-primary"
 									style="float: left" id="search_btn">검색</button>
-
+							</form>
 							</div>
 							<div class="card-body" style="">
 								<!-- 관리자용 작성버튼 -->
@@ -145,7 +146,7 @@
 
 										<c:if test="${BoardPageVO.prev}">
 											<li class="mypage-item prev"><a
-												href="${BoardVO.startPage-1}" class="mypage-link"><button
+												href="${BoardPageVO.startPage-1}" class="mypage-link"><button
 														type="button" class="btn btn-primary"> << </button></a></li>
 										</c:if>
 
@@ -159,7 +160,7 @@
 
 										<c:if test="${BoardPageVO.next}">
 											<li class="mypage-item next"><a
-												href="${BoardVO.endPage+1}" class="mypage-link"><button
+												href="${BoardPageVO.endPage+1}" class="mypage-link"><button
 														type="button" class="btn btn-primary"> >> </button></a></li>
 										</c:if>
 
@@ -168,9 +169,9 @@
 								</div>
 								<!--  -->
 								<form method="get" id="actionForm">
-									<input type="hidden" name="" value="${BoardPageVO.cri.sort}" />
-									<input type="hidden" name="" value="${BoardPageVO.cri.keyword}" />
-									<input type="hidden" name="" value="${BoardPageVO.cri.page}" />
+									<input type="hidden" name="sort" value="${BoardPageVO.cri.sort}" />
+									<input type="hidden" name="keyword" value="${BoardPageVO.cri.keyword}" />
+									<input type="hidden" name="page" value="${BoardPageVO.cri.page}" />
 								</form>
 							</div>
 						</div>
@@ -233,22 +234,18 @@
 	<script src="/resources/js/boardlist.js"></script>
 	<script>
 		/**let actionForm = $("#actionForm");
-
 		$(".viewarticle").on(
 				"click",
 				function(e) {
 					e.preventDefault();
-
 					actionForm.attr("action", "view");
 					actionForm
 							.append("<input type='hidden' name='b_no' value='"
 									+ $(this).attr("href") + "'>");
 					actionForm.submit();
 				});
-
 		/*아작스 시도하다가 실패*/
 		let result = '${result}';
-
 		var csrfHeaderName = "${_csrf.headerName}";
 		var csrfTokenValue = "${_csrf.token}";
 	</script>
