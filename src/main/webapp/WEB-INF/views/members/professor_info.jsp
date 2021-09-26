@@ -43,7 +43,7 @@
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
 							<h4>My Page</h4>
-							<p class="mb-1">${professor.name } 교수</p>
+							<p class="mb-1">${member.name } 교수</p>
 						</div>
 					</div>
 					<div
@@ -72,7 +72,7 @@
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${professor.name }" readonly>
+														<input type="text" class="form-control" value="${member.name }" readonly>
 													</div>
 												</div>
 												<div class="form-group row">
@@ -80,7 +80,7 @@
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" name="code" value="${professor.code }" readonly>
+														<input type="text" class="form-control" name="code" value="${member.code }" readonly>
 													</div>
 												</div>
 												<div class="form-group row">
@@ -88,7 +88,7 @@
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<fmt:formatDate var="birthday" value="${professor.birthday}" pattern="yyyy-MM-dd"/>
+														<fmt:formatDate var="birthday" value="${member.birthday}" pattern="yyyy-MM-dd"/>
 														<input type="text" class="form-control" value="${birthday }" readonly>
 													</div>
 												</div>
@@ -99,7 +99,7 @@
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${professor.departmentName }" readonly>
+														<input type="text" class="form-control" value="${member.departmentName }" readonly>
 													</div>
 												</div>
 												<div class="form-group row">
@@ -107,7 +107,7 @@
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${professor.degree }" readonly>
+														<input type="text" class="form-control" value="${member.degree }" readonly>
 													</div>
 												</div>
 												<div class="form-group row">
@@ -115,7 +115,7 @@
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" id="phone" class="form-control" name="phone" value="${professor.phone }">
+														<input type="text" id="phone" class="form-control" name="phone" value="${member.phone }">
 													</div>
 												</div>
 												<div class="form-group row">
@@ -123,7 +123,7 @@
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" id="email" class="form-control" name="email" value="${professor.email }">
+														<input type="text" id="email" class="form-control" name="email" value="${member.email }">
 													</div>
 												</div>
 												<div class="form-group row">
