@@ -12,7 +12,18 @@ public class Criteria {
 	private int amount; // 하나의 페이지에 보여줄 게시물 갯수
 	
 	private String type;   //검색조건
+	
+	private String flag; // 수강신청 검색 1 or 2 판단
+	
+	// 수강신청 검색 1
+	private String sectionType1; // 구분
+	private String kind; // 종류
 	private String keyword; //검색어
+	
+	// 수강신청 검색 2
+	private String department; // 학과
+	private String sectionType2; // 구분
+	private String grade; // 학년
 	
 	
 	public Criteria() {

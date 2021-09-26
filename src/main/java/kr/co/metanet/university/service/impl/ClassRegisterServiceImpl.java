@@ -25,5 +25,30 @@ public class ClassRegisterServiceImpl implements ClassRegisterService {
 	public List<String> deptList() {
 		return mapper.deptList();
 	}
-
+	
+	@Override
+	public List<LectureVO> getSearchList1(Criteria cri) {
+		return mapper.getSearchList1(cri);
+	}
+	
+	@Override
+	public List<LectureVO> getSearchList2(Criteria cri) {
+		return mapper.getSearchList2(cri);
+	}
+	
+	@Override
+	public int LectureListTotal(Criteria cri) {
+		return mapper.LectureListTotal(cri);
+	}
+	
+	@Override
+	public int searchList1Total(Criteria cri) {
+		return mapper.searchList1Total(cri);
+	}
+	
+	@Override
+	public int searchList2Total(Criteria cri) {
+		return mapper.searchList2Total(cri);
+	}
 }
+
