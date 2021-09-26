@@ -74,7 +74,7 @@
 							<form action="" id="write_board" method="post">
 
 
-								<div class="card-body">
+								<div class="card-body"  style="text-align: center">
 									<div class="col-lg-2"
 										style="float: left; margin-bottom: 10px; margin-left: 0px; padding-left: -15px">
 										<select name="b_sort" id="single-select b_sort"
@@ -120,8 +120,8 @@
 
 
 
-									<input type="hidden" name="b_writer_code" value="${admin.id}" />
-
+									<input type="hidden" name="b_writer_code" value="${member.id}" />
+									
 									<!-- 버튼추가 -->
 									<button type="submit" class="btn btn-primary" id="write_button">등록</button>
 								</div>
