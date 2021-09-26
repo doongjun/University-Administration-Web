@@ -109,22 +109,22 @@
 														<button name="" id="deleteBtn${cnt.count}" type="button"
 															class="btn btn-danger">삭제</button>
 													</td>
-													<td id="score" style="display:none;">
-														<input name="midterm_exam${cnt.count}">
+													<td style="display:none;width:10%;">
+														<input id="midterm_exam" style="width:60%" name="midterm_exam${cnt.count}" type="number" placeholder="0" onchange="calculate()">
 													 </td>
-													<td id="score" style="display:none;"> 
-														<input name="final_exam${cnt.count}">
+													<td style="display:none;width:10%;"> 
+														<input id="final_exam" style="width:60%" name="final_exam${cnt.count}" type="number" placeholder="0" onchange="calculate()">
 													</td>
-													<td id="score" style="display:none;">
-														<input name="assignment${cnt.count}">
+													<td style="display:none;width:10%;">
+														<input id="assignment" style="width:60%" name="assignment${cnt.count}" type="number" placeholder="0" onchange="calculate()">
 													 </td>
-													<td id="score" style="display:none;">
-														<input name="attendance${cnt.count}">
+													<td style="display:none;width:10%;">
+														<input id="attendance" style="width:60%" name="attendance${cnt.count}" type="number" placeholder="0" onchange="calculate()">
 													 </td>
-													<td id="score" style="display:none;">
-														<input name="total${cnt.count}">
+													<td style="display:none;width:10%;">
+														<input id="total" style="width:60%" name="total${cnt.count}" type="number">
 													 </td>
-													<td id="score" style="display:none;">
+													<td id="score" style="display:none;width:7%;">
 														<select name="score${cnt.count}" id="inputScore" class="form-control">
 															<option selected="">A+</option>
 															<option>A</option>
@@ -263,6 +263,16 @@
 		});
 	
 	
+		function calculate(){
+			var v1 = Number(document.getElementById('midterm_exam').value);
+			var v2 = Number(document.getElementById('final_exam').value);
+			var v3 = Number(document.getElementById('assignment').value);
+			var v4 = Number(document.getElementById('attendance').value);
+			var res = v1+v2+v3+v4;
+			console.log(res);
+			document.getElementById('total').value = res;
+		}
+		
 		
 		let modal = $(".modal");
 
