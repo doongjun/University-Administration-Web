@@ -88,7 +88,7 @@
 					   			<div style="float:left; padding-left:20px; margin-top: 5px;">학부</div>
 								<div class="col-lg-2" style="float:left; margin-bottom: 10px; margin-left: 6px">
 				        			<select name="dept" id="dept" class="form-control" >
-					                	<option value="empty">선택</option>
+					                	<option value="선택">선택</option>
 					             	</select>
 				        		</div>
 				        		<div style="float:left; margin-top: 5px;">구분&nbsp;&nbsp;</div>
@@ -350,35 +350,44 @@
     	$("#searchBtn1").click(function(e){
     		e.preventDefault(); //a 속성 중지
     		
-    		actionForm.attr("action", "/classRegist/search");
+    		if($("#searchKeyword").val() == "") {
+    			swal("검색어를 입력해주세요.","", "error");
+    		} else {
+    			actionForm.attr("action", "/classRegist/search");
+        		
+        		//actionForm 안에 pageNum의 값을 사용자가 선택한 번호로 변경
+        		actionForm.find("input[name='pageNum']").val(1);
+        		actionForm.find("input[name='flag']").val("1");
+        		
+        		actionForm.find("input[name='sectionType1']").val($("#section_up option:selected").val());
+        		actionForm.find("input[name='kind']").val($("#kind option:selected").val());
+        		actionForm.find("input[name='keyword']").val($("#searchKeyword").val());
+        		
+        		//actionForm 보내기 
+        		actionForm.submit();
+    		}
     		
-    		//actionForm 안에 pageNum의 값을 사용자가 선택한 번호로 변경
-    		actionForm.find("input[name='pageNum']").val(1);
-    		actionForm.find("input[name='flag']").val("1");
-    		
-    		actionForm.find("input[name='sectionType1']").val($("#section_up option:selected").val());
-    		actionForm.find("input[name='kind']").val($("#kind option:selected").val());
-    		actionForm.find("input[name='keyword']").val($("#searchKeyword").val());
-    		
-    		//actionForm 보내기 
-    		actionForm.submit();
     	});
     	
     	$("#searchBtn2").click(function(e){
 			e.preventDefault(); //a 속성 중지
     		
-    		actionForm.attr("action", "/classRegist/search");
-    		
-    		//actionForm 안에 pageNum의 값을 사용자가 선택한 번호로 변경
-    		actionForm.find("input[name='pageNum']").val(1);
-    		actionForm.find("input[name='flag']").val("2");
-    		
-    		actionForm.find("input[name='department']").val($("#dept option:selected").val());
-    		actionForm.find("input[name='sectionType2']").val($("#section_bottom option:selected").val());
-    		actionForm.find("input[name='grade']").val($("#grade option:selected").val());
-    		
-    		//actionForm 보내기 
-    		actionForm.submit();
+			if($("#dept option:selected").val() == "선택") {
+    			swal("학과를 선택해주세요.","","error");
+    		} else {
+    			actionForm.attr("action", "/classRegist/search");
+        		
+        		//actionForm 안에 pageNum의 값을 사용자가 선택한 번호로 변경
+        		actionForm.find("input[name='pageNum']").val(1);
+        		actionForm.find("input[name='flag']").val("2");
+        		
+        		actionForm.find("input[name='department']").val($("#dept option:selected").val());
+        		actionForm.find("input[name='sectionType2']").val($("#section_bottom option:selected").val());
+        		actionForm.find("input[name='grade']").val($("#grade option:selected").val());
+        		
+        		//actionForm 보내기 
+        		actionForm.submit();
+    		}
     	});
     	
     	
