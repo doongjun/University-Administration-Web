@@ -32,7 +32,7 @@ public class LectureVO {
 	private String section;
 	private int dept_code;
 	private String remarks;
-
+	private String department_name;
 	
 	//student_lecture table 용
 	private int student_id;
