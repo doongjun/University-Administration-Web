@@ -44,7 +44,7 @@
                                 class="icon icon-world-2"></i><span class="nav-text">수강신청</span></a>
 						<ul aria-expanded="false">
                             <li><a href="/classRegist/regist">수강신청</a></li>
-                            <li><a href="/studentLecture/list">수강신청내역</a></li>
+                            <li><a href="/studentLecture/list?student_id=${member.id}">수강신청내역</a></li>
                             <li><a href="/studentLecture/calendar">시간표조회</a></li>
                         </ul>
                     </li>

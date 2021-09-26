@@ -148,7 +148,7 @@
         var leftTime = ":00:00";
         
         $.getJSON({
-        	url:"/studentLecture/rest_calendar",
+        	url:"/studentLecture/rest_calendar/${member.id}",
         	type:"GET",
         	async:false,
         	success:function(data) {		
