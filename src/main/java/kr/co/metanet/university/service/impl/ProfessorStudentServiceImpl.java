@@ -23,11 +23,16 @@ public class ProfessorStudentServiceImpl implements ProfessorStudentService {
 	}
 
 	@Override
-	public int updateScore(String score, int student_id, int lecture_id) {
+	public int updateScore(String score, int student_id, int lecture_id, double midterm_exam, double final_exam, double assignment, double attendance, double total) {
 		Map<String,Object> map = new HashMap<>();
 		map.put("score", score);
 		map.put("student_id", student_id);
 		map.put("lecture_id", lecture_id);
+		map.put("midterm_exam", midterm_exam);
+		map.put("final_exam", final_exam);
+		map.put("assignment", assignment);
+		map.put("attendance", attendance);
+		map.put("total", total);
 		return mapper.updateScore(map);
 	}
 

@@ -75,6 +75,7 @@
 								</div>
 							</div>
 							<div class="card-body">
+								<form id="profForm" class="form-valide">
 								<input name="lecture_id" type="hidden" value="${lecture_id}">
 								<div class="table-responsive">
 									<table class="table table-bordered table-scroll">
@@ -91,11 +92,13 @@
 												<th id="score" style="display:none;">과제</th>
 												<th id="score" style="display:none;">출석</th>
 												<th id="score" style="display:none;">총점</th>
+												<th id="score" style="display:none;">학점</th>
 											</tr>
 										</thead>
 										<tbody style="color: black; text-align: center;">
 											<!-- 게시판 리스트 반복문 -->
 											<c:forEach var="vo" items="${vo}" varStatus="cnt">
+											<input name="student_id${cnt.count}" type="hidden" value="${vo.id}">
 												<tr>
 													<td style="display: none;">${vo.id}</td>
 													<td>${vo.code}</td>
@@ -107,19 +110,22 @@
 															class="btn btn-danger">삭제</button>
 													</td>
 													<td id="score" style="display:none;">
-														<input class="input-sm" name="midterm">
+														<input name="midterm_exam${cnt.count}">
 													 </td>
 													<td id="score" style="display:none;"> 
-														<input name="finals">
+														<input name="final_exam${cnt.count}">
 													</td>
 													<td id="score" style="display:none;">
-														<input name="attendance">
+														<input name="assignment${cnt.count}">
 													 </td>
 													<td id="score" style="display:none;">
-														<input name="total">
+														<input name="attendance${cnt.count}">
 													 </td>
 													<td id="score" style="display:none;">
-														<select name="grade" id="inputScore" class="form-control">
+														<input name="total${cnt.count}">
+													 </td>
+													<td id="score" style="display:none;">
+														<select name="score${cnt.count}" id="inputScore" class="form-control">
 															<option selected="">A+</option>
 															<option>A</option>
 															<option>B+</option>
@@ -137,6 +143,7 @@
 										</tbody>
 									</table>
 								</div>
+									</form>
 							</div>
 						</div>
 					</div>
@@ -176,7 +183,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">강의 취소</h5>
+					<h5 class="modal-title">수강생 삭제</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -197,11 +204,6 @@
 	<!--**********************************
         Modal end
     ***********************************-->
-
-	<!-- 관리자만 볼수있는 코드 -->
-	<sec:authorize access="hasRole('ROLE_ADMIN')">
-		<input type="hidden" id="professor_id" value="${professor.id}">
-	</sec:authorize>
 
 	<!--**********************************
         Scripts
@@ -234,11 +236,34 @@
 			$('td:nth-child(8),th:nth-child(7)').show();
 			$('td:nth-child(9),th:nth-child(8)').show();
 			$('td:nth-child(10),th:nth-child(9)').show();
-			$('td:nth-child(11),th:nth-child(10)').show(); 
+			$('td:nth-child(11),th:nth-child(10)').show();
+			$('td:nth-child(12),th:nth-child(11)').show();
 			
-		})
+		});
 		
+		$('#inputScoreBtn').click(function(){
+			
+				var params = $('#profForm').serializeArray();
+				console.log(params);
+				$.ajax({
+					url : "/api/professorLecture/updateScore",
+					type : "POST",
+					data : params,
+					dataType : 'text',
+					error : function(request, status, error) {
+						alert("error code:" + request.status + "\n" + "message:"
+								+ request.responseText + "\n" + "error:" + error);
+					},
+
+					success : function(data) {
+						alert("성공적으로 저장되었습니다.");
+						location.replace(location.href); //post 데이터 포함하지않고 새로고침
+				}
+			})
+		});
 	
+	
+		
 		let modal = $(".modal");
 
 		var modalDeleteBtn = $("#modalDeleteBtn");
@@ -265,11 +290,6 @@
 				modal.modal("show");
 			});
 
-			$("#studentBtn" + i).click(function() {
-				id = $(this).closest("tr").find("td:eq(0)").text();
-				console.log(id);
-				modal.modal("show");
-			});
 		}
 
 		modalDeleteBtn.click(function() {
