@@ -67,15 +67,15 @@ public class BoardController {
 	
 	//글 조회
 	@GetMapping("/view")
-	public void view(int b_no, Model  model) {
+	public void view(int b_no,int b_view, Model model) {
 		log.info("*****게시글 조회*****"+b_no);
 		
 		//현재 조회수 가져오기
 		BoardVO vo=service.view(b_no);
-//		int views=vo.getB_views();
-//		if (b_views - views == 1 || b_views == 1){			
-//			service.addviews(b_views, b_no);
-//		}
+		int views=vo.getB_views();
+		if (b_view - views == 1 || b_view == 1){			
+			service.addviews(b_view, b_no);
+		}
 		
 		
 		model.addAttribute("vo",vo);
