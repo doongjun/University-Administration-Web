@@ -16,7 +16,7 @@
 	
 	<!-- 게시글 클릭시 조회수 증가 -->
 	<update id="addviews">
-		update board set b_views=#{b_views} where b_bo=#{b_no}
+		update board set b_views=#{b_views} where b_no=#{b_no}
 	</update>
 
 	<!--  게시글 조회 -->
