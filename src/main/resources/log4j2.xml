@@ -11,7 +11,7 @@
   	<Logger name="kr.co.metanet.university.controller" level="info"/>
   	
   	<!-- mapper 로그 -->
-  	<Logger name="kr.co.metanet.university.mapper" level="info"/>
+  	<Logger name="kr.co.metanet.university.mapper" level="debug"/>
 
   	
   	<Logger name="com.spring.task" level="info"/>

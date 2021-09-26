@@ -28,7 +28,7 @@ public class LectureController {
 		//student id와 연동되어야함
 		List<LectureVO> list = service.getAllLecture();
 		model.addAttribute("vo",list);
-		return "lecture/prevLecture";
+		return "/lecture/prevLecture";
 	}
 	
 	//모든 강의/강의계획서 조회
@@ -37,7 +37,7 @@ public class LectureController {
 	public String list(Model model) {
 		List<LectureVO> list = service.getAllLecture();
 		model.addAttribute("vo",list);
-		return "lecture/lecture-list";
+		return "/lecture/lecture-list";
 	}
 	
 }

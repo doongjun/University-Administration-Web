@@ -41,11 +41,11 @@ public class StudentLectureRestController {
 				: new ResponseEntity<String>("failed",HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@GetMapping("/rest_calendar")
-	public ResponseEntity<List<LectureVO>> calendar() {
+	@GetMapping("/rest_calendar/{student_id}")
+	public ResponseEntity<List<LectureVO>> calendar(@PathVariable("student_id") int student_id) {
 		log.info("시간표죠회 페이지 요청");
 		
-		List<LectureVO> vo = service.getStudentLectureList();
+		List<LectureVO> vo = service.getStudentLectureList(student_id);
 		
 		return new ResponseEntity<List<LectureVO>>(vo, HttpStatus.OK);
 	}

@@ -22,10 +22,10 @@ public class StudentLectureController {
 	
 	
 	@GetMapping("/list")
-	public String listGet(Model model) {
+	public String listGet(int student_id, Model model) {
 		log.info("수강내역조회 페이지 요청");
 		
-		List<LectureVO> vo = service.getStudentLectureList();
+		List<LectureVO> vo = service.getStudentLectureList(student_id);
 		
 		model.addAttribute("vo",vo);
 		
