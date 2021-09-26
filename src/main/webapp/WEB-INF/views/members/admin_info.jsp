@@ -42,7 +42,7 @@
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
 							<h4>My Page</h4>
-							<p class="mb-1">${admin.name } 관리자</p>
+							<p class="mb-1">${member.name } 관리자</p>
 						</div>
 					</div>
 					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -68,21 +68,21 @@
 													<label class="col-lg-4 col-form-label">Admin Name <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${admin.name }" readonly>
+														<input type="text" class="form-control" value="${member.name }" readonly>
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-4 col-form-label">관리자 번호 <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" name="code" value="${admin.code }" readonly>
+														<input type="text" class="form-control" name="code" value="${member.code }" readonly>
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-4 col-form-label">Phone <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" id="phone" class="form-control" name="phone" value="${admin.phone }">
+														<input type="text" id="phone" class="form-control" name="phone" value="${member.phone }">
 													</div>
 												</div>
 											</div>
@@ -91,21 +91,21 @@
 													<label class="col-lg-4 col-form-label">부서 <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" id="division" class="form-control" name="division" value="${admin.division }">
+														<input type="text" id="division" class="form-control" name="division" value="${member.division }">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-4 col-form-label">직급 <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" id="position" class="form-control" name="position" value="${admin.position }">
+														<input type="text" id="position" class="form-control" name="position" value="${member.position }">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-4 col-form-label">email <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" id="email" class="form-control" name="email" value="${admin.email }">
+														<input type="text" id="email" class="form-control" name="email" value="${member.email }">
 													</div>
 												</div>
 												<div class="form-group row">

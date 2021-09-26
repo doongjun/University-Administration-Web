@@ -1,8 +1,5 @@
 package kr.co.metanet.university.domain;
 
-import java.util.Date;
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,7 +29,7 @@ public class LectureVO {
 	private String section;
 	private int dept_code;
 	private String remarks;
-
+	private String department_name;
 	
 	//student_lecture table 용
 	private int student_id;

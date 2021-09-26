@@ -48,7 +48,7 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>강의내역조회</h4>
+							<h4>수강생 관리</h4>
 						</div>
 					</div>
 					<div
@@ -56,7 +56,7 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="javascript:void(0)">강의관리</a></li>
 							<li class="breadcrumb-item active"><a
-								href="javascript:void(0)">강의내역조회</a></li>
+								href="javascript:void(0)">수강생관리</a></li>
 						</ol>
 					</div>
 				</div>
@@ -67,21 +67,30 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">내강의목록</h4>
+								<h4 class="card-title">수강생 관리</h4>
+								<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+									<button id="showScoreBtn" name="showScoreBtn" type="button" class="btn btn-primary ">성적입력</button>
+									<button id="inputScoreBtn" style="margin-left: 5px; display: none; " name="inputScoreBtn" type="button" class="btn btn-primary">성적저장</button>
+									<button id="cancelBtn" style="margin-left: 5px; display: none; " name="cancelBtn" type="button" class="btn btn-primary" onclick="location.reload();">취소</button>
+								</div>
 							</div>
 							<div class="card-body">
+								<input name="lecture_id" type="hidden" value="${lecture_id}">
 								<div class="table-responsive">
 									<table class="table table-bordered table-scroll">
 										<thead class="table-light"
 											style="color: white; background-color: gray; text-align: center;">
 											<tr>
-												<th>강의번호</th>
-												<th>강의년도</th>
-												<th>학기</th>
+												<th>학번</th>
+												<th>학과</th>
+												<th>이름</th>
 												<th>학년</th>
-												<th>강의이름</th>
-												<th>구분</th>
-												<th>관리</th>
+												<th id="delete">관리</th>
+												<th id="score" style="display:none;">중간</th>
+												<th id="score" style="display:none;">기말</th>
+												<th id="score" style="display:none;">과제</th>
+												<th id="score" style="display:none;">출석</th>
+												<th id="score" style="display:none;">총점</th>
 											</tr>
 										</thead>
 										<tbody style="color: black; text-align: center;">
@@ -89,20 +98,40 @@
 											<c:forEach var="vo" items="${vo}" varStatus="cnt">
 												<tr>
 													<td style="display: none;">${vo.id}</td>
-													<td>${vo.lecture_code}</td>
-													<td>${vo.lecture_year}</td>
-													<td>${vo.semester}</td>
+													<td>${vo.code}</td>
+													<td>${vo.departmentName}</td>
+													<td>${vo.name}</td>
 													<td>${vo.grade}</td>
-													<td>${vo.lecture_name}</td>
-													<td>${vo.section}</td>
-													<td>
-														<button name="" id="updateBtn${cnt.count}" type="button"
-															class="btn btn-danger">수정</button>
+													<td id="delete">
 														<button name="" id="deleteBtn${cnt.count}" type="button"
 															class="btn btn-danger">삭제</button>
-														<button name="" id="studentBtn${cnt.count}" type="button"
-															class="btn btn-danger">수강생</button>
 													</td>
+													<td id="score" style="display:none;">
+														<input class="input-sm" name="midterm">
+													 </td>
+													<td id="score" style="display:none;"> 
+														<input name="finals">
+													</td>
+													<td id="score" style="display:none;">
+														<input name="attendance">
+													 </td>
+													<td id="score" style="display:none;">
+														<input name="total">
+													 </td>
+													<td id="score" style="display:none;">
+														<select name="grade" id="inputScore" class="form-control">
+															<option selected="">A+</option>
+															<option>A</option>
+															<option>B+</option>
+															<option>B</option>
+															<option>C+</option>
+															<option>C</option>
+															<option>D+</option>
+															<option>D</option>
+															<option>F</option>
+														</select>
+													</td>
+													
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -136,10 +165,9 @@
         Main wrapper end
     ***********************************-->
 
-	<!-- 관리자만 볼수있는 코드 -->
-	<sec:authorize access="hasRole('ROLE_ADMIN')">
-		<input type="hidden" id="professor_id" value="${professor.id}">
-	</sec:authorize>
+	<!--**********************************
+        Main wrapper end
+    ***********************************-->
 
 	<!--**********************************
         Modal start
@@ -156,7 +184,7 @@
 				</div>
 				<div class="modal-body"
 					style="margin-top: 10px; color: black; text-align: center;">
-					<p>이 강의를 삭제하시겠습니까? 모든 정보와 수강생 정보가 사라집니다.</p>
+					<p>수강생을 삭제하시겠습니까? 강의와 관련된 정보가 삭제됩니다.</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" id="modalDeleteBtn">확인</button>
@@ -170,6 +198,10 @@
         Modal end
     ***********************************-->
 
+	<!-- 관리자만 볼수있는 코드 -->
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
+		<input type="hidden" id="professor_id" value="${professor.id}">
+	</sec:authorize>
 
 	<!--**********************************
         Scripts
@@ -191,6 +223,22 @@
 	<script src="../resources/js/plugins-init/fullcalendar-init.js"></script>
 
 	<script>
+		//성적입력버튼처리
+		$('#showScoreBtn').click(function(){
+			
+			$('#cancelBtn').show();
+			$('#inputScoreBtn').show();
+			
+			$('td:nth-child(6),th:nth-child(5)').hide();
+			$('td:nth-child(7),th:nth-child(6)').show();
+			$('td:nth-child(8),th:nth-child(7)').show();
+			$('td:nth-child(9),th:nth-child(8)').show();
+			$('td:nth-child(10),th:nth-child(9)').show();
+			$('td:nth-child(11),th:nth-child(10)').show(); 
+			
+		})
+		
+	
 		let modal = $(".modal");
 
 		var modalDeleteBtn = $("#modalDeleteBtn");
@@ -217,14 +265,11 @@
 				modal.modal("show");
 			});
 
-			$("#studentBtn" + i).click(
-					function() {
-						id = $(this).closest("tr").find("td:eq(0)")
-								.text();
-						console.log(id);
-						document.location.href = "/professorLecture/student-list?lecture_id="
-								+ id;
-					});
+			$("#studentBtn" + i).click(function() {
+				id = $(this).closest("tr").find("td:eq(0)").text();
+				console.log(id);
+				modal.modal("show");
+			});
 		}
 
 		modalDeleteBtn.click(function() {

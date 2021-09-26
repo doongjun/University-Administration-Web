@@ -49,7 +49,40 @@ public class MemberController {
 		ra.addFlashAttribute("message", "loginError");
 		return "redirect:/members/loginform";
 	}
+	
+	// 세션 할당
+	@GetMapping("/home")
+	public String home(Principal principal, HttpSession session) {
+		String loginCode = principal.getName();
 
+		Member member = memberService.getMemberByCode(loginCode);
+		String roleName = member.getRoleName();
+
+		String page = "common/404error";
+
+		if (roleName.equals("ROLE_USER")) {
+			// 학생
+			MemberStudent student = memberService.getStudentByCode(loginCode);
+			session.setAttribute("member", student);
+			page = "/board/boardlist";
+			
+		} else if (roleName.equals("ROLE_PROF")) {
+			// 교수
+			MemberProfessor professor = memberService.getProfessorByCode(loginCode);
+			session.setAttribute("member", professor);
+			page = "/board/boardlist";
+			
+		} else if (roleName.equals("ROLE_ADMIN")) {
+			// 관리자
+			MemberAdmin admin = memberService.getAdminByCode(loginCode);
+			session.setAttribute("member", admin);
+			page = "/board/boardlist";
+			
+		}
+
+		return "redirect:" + page;
+	}
+	
 	// 마이페이지
 	@GetMapping("/mypage")
 	public String mypage(Principal principal, HttpSession session) {
@@ -62,20 +95,20 @@ public class MemberController {
 
 		if (roleName.equals("ROLE_USER")) {
 			// 학생
-			MemberStudent student = memberService.getStudentByCode(loginCode);
-			session.setAttribute("member", student);
+			//MemberStudent student = memberService.getStudentByCode(loginCode);
+			//session.setAttribute("member", student);
 			//modelMap.addAttribute("member", student);
 			page = "members/student_info";
 		} else if (roleName.equals("ROLE_PROF")) {
 			// 교수
-			MemberProfessor professor = memberService.getProfessorByCode(loginCode);
-			session.setAttribute("professor", professor);
+			//MemberProfessor professor = memberService.getProfessorByCode(loginCode);
+			//session.setAttribute("professor", professor);
 			//modelMap.addAttribute("professor", professor);
 			page = "members/professor_info";
 		} else if (roleName.equals("ROLE_ADMIN")) {
 			// 관리자
-			MemberAdmin admin = memberService.getAdminByCode(loginCode);
-			session.setAttribute("admin", admin);
+			//MemberAdmin admin = memberService.getAdminByCode(loginCode);
+			//session.setAttribute("admin", admin);
 			//modelMap.addAttribute("admin", admin);
 			page = "members/admin_info";
 		}

@@ -143,24 +143,24 @@
 								<div class="card-body">
 									<ul class="btn-group mr-2 mb-2">
 
-										<c:if test="${BoardVO.prev}">
+										<c:if test="${BoardPageVO.prev}">
 											<li class="mypage-item prev"><a
 												href="${BoardVO.startPage-1}" class="mypage-link"><button
-														type="button" class="btn btn-primary"><<</button></a></li>
+														type="button" class="btn btn-primary"> << </button></a></li>
 										</c:if>
 
-										<c:forEach var="i" begin="${BoardVO.startPage}"
-											end="${BoardVO.endPage}">
+										<c:forEach var="i" begin="${BoardPageVO.startPage}"
+											end="${BoardPageVO.endPage}">
 											<li class="mypage-item"><a href="${i}"
 												class="mypage-link ${BoardVO.cri.page==i?'activecolor':''}">
 													<button type="button" class="btn btn-primary">${i}</button>
 											</a></li>
 										</c:forEach>
 
-										<c:if test="${BoardVO.next}">
+										<c:if test="${BoardPageVO.next}">
 											<li class="mypage-item next"><a
 												href="${BoardVO.endPage+1}" class="mypage-link"><button
-														type="button" class="btn btn-primary">>></button></a></li>
+														type="button" class="btn btn-primary"> >> </button></a></li>
 										</c:if>
 
 									</ul>
@@ -232,7 +232,7 @@
 
 	<script src="/resources/js/boardlist.js"></script>
 	<script>
-		let actionForm = $("#actionForm");
+		/**let actionForm = $("#actionForm");
 
 		$(".viewarticle").on(
 				"click",
