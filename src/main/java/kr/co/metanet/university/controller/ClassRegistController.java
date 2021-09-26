@@ -24,10 +24,40 @@ public class ClassRegistController {
 	
 	@GetMapping("/regist")
 	public String registGet(Criteria cri,Model model) {
+		log.info("수강신청 페이지 요청");
+		
 		List<LectureVO> vo = service.getLectureList(cri);
 		
-		int total = 8;//service.totalCnt(eno, workDay);
+		int total = service.LectureListTotal(cri);//service.totalCnt(eno, workDay);
 		log.info("total : " + total);
+		
+		model.addAttribute("pageVo", new PageVO(cri, total));
+		model.addAttribute("vo",vo);
+		
+		return "classRegist/regist";
+	}
+	
+	@GetMapping("/search")
+	public String searchGet(Criteria cri,Model model) {
+		log.info("수강신청 페이지 검색 요청 : " + cri.getFlag());
+		
+		List<LectureVO> vo = null;
+		
+		int total = 0;
+		
+		if(cri.getFlag().equals("1")) {
+			total = service.searchList1Total(cri);
+			log.info("total : " + total);
+			
+			vo = service.getSearchList1(cri);
+		}
+		
+		if(cri.getFlag().equals("2")) {
+			total = service.searchList2Total(cri);
+			log.info("total : " + total);
+			
+			vo = service.getSearchList2(cri);
+		}		
 		
 		model.addAttribute("pageVo", new PageVO(cri, total));
 		model.addAttribute("vo",vo);

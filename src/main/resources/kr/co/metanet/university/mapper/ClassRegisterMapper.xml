@@ -5,20 +5,103 @@
 	<select id="getLectureList" resultType="kr.co.metanet.university.domain.LectureVO">
 		<![CDATA[
 			select *
-			from (select rownum rn, id, lecture_code, lecture_name, professor_id, grade, classroom, division, lecture_time, lecture_year, semester, student_count, student_full, credit, section, dept_code, remarks
-			      from (select l.id, l.lecture_code, l.lecture_name, l.professor_id, l.grade, l.classroom, l.division, l.lecture_time, l.lecture_year, l.semester, l.student_count, l.student_full, l.credit, l.section, l.dept_code, l.remarks
-			            from lecture l )
+			from (select rownum rn, id, lecture_code, lecture_name, professor_id, grade, classroom, division, lecture_time, lecture_year, semester, student_count, student_full, credit, section, dept_code, remarks, department_name
+			      from (select l.id, l.lecture_code, l.lecture_name, l.professor_id, l.grade, l.classroom, l.division, l.lecture_time, l.lecture_year, l.semester, l.student_count, l.student_full, l.credit, l.section, l.dept_code, l.remarks, d.department_name
+			            from lecture l, department d
+			            where l.dept_code = d.department_code )
 			      where rownum <= (#{cri.pageNum}*#{cri.amount}))
 			where rn > ((#{cri.pageNum}-1)*#{cri.amount})
 		]]>
 	</select>
 	
-	<select id="getLectureRegisteredList" resultType="kr.co.metanet.university.domain.LectureVO">
-		SELECT * FROM student_lecture
+	<select id="LectureListTotal" resultType="int">
+		<![CDATA[
+			select count(*)
+			from (select id, lecture_code, lecture_name, professor_id, grade, classroom, division, lecture_time, lecture_year, semester, student_count, student_full, credit, section, dept_code, remarks
+			      from (select l.id, l.lecture_code, l.lecture_name, l.professor_id, l.grade, l.classroom, l.division, l.lecture_time, l.lecture_year, l.semester, l.student_count, l.student_full, l.credit, l.section, l.dept_code, l.remarks
+			            from lecture l )
+			      )
+		]]>
+	</select>
+	
+	<select id="getSearchList1" resultType="kr.co.metanet.university.domain.LectureVO">
+		<![CDATA[
+			select *
+			from (select rownum rn, id, lecture_code, lecture_name, professor_id, grade, classroom, division, lecture_time, lecture_year, semester, student_count, student_full, credit, section, dept_code, remarks, department_name
+			      from (select l.id, l.lecture_code, l.lecture_name, l.professor_id, l.grade, l.classroom, l.division, l.lecture_time, l.lecture_year, l.semester, l.student_count, l.student_full, l.credit, l.section, l.dept_code, l.remarks, d.department_name
+			            from lecture l , department d
+			            where l.dept_code = d.department_code)
+			      where (section = #{cri.sectionType1} and ]]> <include refid="criteria"></include>
+			      <![CDATA[
+			      ) and rownum <= (#{cri.pageNum}*#{cri.amount}))
+			where rn > ((#{cri.pageNum}-1)*#{cri.amount})
+		]]>
+	</select>
+	
+	<select id="searchList1Total" resultType="int">
+		<![CDATA[
+			select count(*)
+			from (select rownum rn, id, lecture_code, lecture_name, professor_id, grade, classroom, division, lecture_time, lecture_year, semester, student_count, student_full, credit, section, dept_code, remarks
+			      from (select l.id, l.lecture_code, l.lecture_name, l.professor_id, l.grade, l.classroom, l.division, l.lecture_time, l.lecture_year, l.semester, l.student_count, l.student_full, l.credit, l.section, l.dept_code, l.remarks
+			            from lecture l )
+			      where (section = #{cri.sectionType1} and ]]> <include refid="criteria"></include>
+			      <![CDATA[
+			      ) )
+		]]>
+	</select>
+	
+	<select id="getSearchList2" resultType="kr.co.metanet.university.domain.LectureVO">
+		<![CDATA[
+			select *
+			from (select rownum rn, id, lecture_code, lecture_name, professor_id, grade, classroom, division, lecture_time, lecture_year, semester, student_count, student_full, credit, section, dept_code, remarks, department_name
+			      from (select l.id, l.lecture_code, l.lecture_name, l.professor_id, l.grade, l.classroom, l.division, l.lecture_time, l.lecture_year, l.semester, l.student_count, l.student_full, l.credit, l.section, l.dept_code, l.remarks, d.department_name
+			            from lecture l, department d
+			            where l.dept_code = d.department_code )
+			      where (department_name = #{cri.department}]]> <include refid="criteria2"></include>
+			      <![CDATA[
+			      ) and rownum <= (#{cri.pageNum}*#{cri.amount}))
+			where rn > ((#{cri.pageNum}-1)*#{cri.amount})
+		]]>
+	</select>
+	
+	<select id="searchList2Total" resultType="int">
+		<![CDATA[
+			select count(*)
+			from (select rownum rn, id, lecture_code, lecture_name, professor_id, grade, classroom, division, lecture_time, lecture_year, semester, student_count, student_full, credit, section, dept_code, remarks, department_name
+			      from (select l.id, l.lecture_code, l.lecture_name, l.professor_id, l.grade, l.classroom, l.division, l.lecture_time, l.lecture_year, l.semester, l.student_count, l.student_full, l.credit, l.section, l.dept_code, l.remarks, d.department_name
+			            from lecture l, department d
+			            where l.dept_code = d.department_code )
+			      where (department_name = #{cri.department}]]> <include refid="criteria2"></include>
+			      <![CDATA[
+			      ) )
+		]]>
 	</select>
 	
 	<select id="deptList" resultType="java.lang.String">
 		select department_name from department
 	</select>
 	
+	<sql id="criteria">
+		<choose>
+			<when test="cri.kind=='교과명'.toString()">
+				lower(lecture_name) like '%'||lower(#{cri.keyword})||'%'
+			</when>
+			<when test="cri.kind=='강의번호'.toString()">
+				lower(lecture_code) = lower(#{cri.keyword})
+			</when>
+		</choose>
+	</sql>
+	
+	<sql id="criteria2">
+		<if test="cri.sectionType2 !='전체'.toString()">
+			<trim prefix="AND">
+				section = #{cri.sectionType2}
+			</trim>
+		</if>
+		<if test="cri.grade !='전체'.toString()">
+			<trim prefix="AND">
+				grade = #{cri.grade}
+			</trim>
+		</if>
+	</sql>
 </mapper>

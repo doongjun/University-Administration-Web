@@ -213,10 +213,12 @@
     			}
     		})
     		
-    		location.href = "/studentLecture/list";
     		
-    		alert("취소되었습니다. ");    		
-    		modal.modal("hide");
+    		swal("수강 취소 완료", "수강신청이 취소 되었습니다.", "success").then(function() {
+    			modal.modal("hide");
+    			location.href = "/studentLecture/list?student_id=" + student_id;
+    		});  			
+   		
     	});
     </script>
 </body>

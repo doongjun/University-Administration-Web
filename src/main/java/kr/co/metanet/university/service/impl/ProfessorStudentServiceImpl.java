@@ -1,0 +1,42 @@
+package kr.co.metanet.university.service.impl;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import kr.co.metanet.university.domain.MemberStudent;
+import kr.co.metanet.university.mapper.ProfessorStudentMapper;
+import kr.co.metanet.university.service.ProfessorStudentService;
+
+@Service("kr.co.metanet.university.service.impl.ProfessorStudentServiceImpl")
+public class ProfessorStudentServiceImpl implements ProfessorStudentService {
+
+	@Autowired
+	private ProfessorStudentMapper mapper;
+	
+	@Override
+	public List<MemberStudent> getAllStudent(int lecture_id) {
+		return mapper.getAllStudent(lecture_id);
+	}
+
+	@Override
+	public int updateScore(String score, int student_id, int lecture_id) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("score", score);
+		map.put("student_id", student_id);
+		map.put("lecture_id", lecture_id);
+		return mapper.updateScore(map);
+	}
+
+	@Override
+	public int deleteStudent(int student_id, int lecture_id) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("student_id", student_id);
+		map.put("lecture_id", lecture_id);
+		return mapper.deleteStudent(map);
+	}
+
+}

@@ -64,50 +64,54 @@
 					   			<div style="float:left; margin-top: 5px;">구분</div>
 								<div class="col-lg-2" style="float:left; margin-bottom: 10px; margin-left: 6px">
 				        			<select name="section_up" id="section_up" class="form-control" >
-					                	<option value="empty">전공/전공기초</option>
-					                	<option value="empty">교양/기타</option>
+					                	<option value="전공">전공</option>
+					                	<option value="전공기초">전공기초</option>
+					                	<option value="교양">교양</option>
+					                	<option value="기타">기타</option>
 					             	</select>
 				        		</div>
-				        		<div style="float:left; margin-top: 5px;">입력 검색</div>
-				        		<div class="col-lg-3" style="float:left; margin-right: 6px">
-				        			<input type="textarea" name="rep" class="form-control" placeholder="교과목명 또는 코드 입력" value=""/>
+				        		<div style="float:left; margin-top: 5px;">&nbsp;&nbsp;종류</div>
+				        		<div style="float:left; margin-top: 5px;"></div>
+								<div class="col-lg-2" style="float:left; margin-bottom: 10px; margin-left: 6px">
+				        			<select name="kind" id="kind" class="form-control" >
+					                	<option value="교과명">교과명</option>
+					                	<option value="강의번호">강의번호</option>
+					             	</select>
 				        		</div>
-				        		<button name="rep-btn" type="button" class="btn btn-primary" style="float: left">확인</button>
+				        		<div style="float:left; margin-top: 5px;">&nbsp;&nbsp;&nbsp;&nbsp;입력</div>
+				        		<div class="col-lg-2" style="float:left; margin-right: 12px; ">
+				        			<input type="text" name="searchKeyword" id="searchKeyword" class="form-control" placeholder="검색어를 입력하세요." value=""/>
+				        		</div>
+				        		<button name="searchBtn1" id="searchBtn1" type="button" class="btn btn-primary" style="float: left;">확인</button>
 					   		</div>
 					   		<div>
-					   			<div style="float:left; padding-left:20px; margin-top: 5px;">학부(과)</div>
+					   			<div style="float:left; padding-left:20px; margin-top: 5px;">학부</div>
 								<div class="col-lg-2" style="float:left; margin-bottom: 10px; margin-left: 6px">
 				        			<select name="dept" id="dept" class="form-control" >
-					                	<option value="empty">선택</option>
+					                	<option value="선택">선택</option>
 					             	</select>
 				        		</div>
-				        		<div style="float:left; margin-top: 5px;">구분</div>
+				        		<div style="float:left; margin-top: 5px;">구분&nbsp;&nbsp;</div>
 				        		<div class="col-lg-2" style="float:left; margin-right: 6px">
 				        			<select name="section_bottom" id="section_bottom" class="form-control" >
-					                	<option value="empty">전공/전공기초</option>
-					                	<option value="empty">교양/기타</option>
+				        				<option value="전체">전체</option>
+					                	<option value="전공">전공</option>
+					                	<option value="전공기초">전공기초</option>
+					                	<option value="교양">교양</option>
+					                	<option value="기타">기타</option>
 					             	</select>
 				        		</div>
 				        		<div style="float:left; margin-top: 5px;">학년</div>
 				        		<div class="col-lg-2" style="float:left; margin-right: 6px">
 				        			<select name="grade" id="grade" class="form-control" >
-				        				<option value="">전체</option>
-					                	<option value="">1학년</option>
-					                	<option value="">2학년</option>
-					                	<option value="">3학년</option>
-					                	<option value="">4학년</option>
+				        				<option value="전체">전체</option>
+					                	<option value="1학년">1학년</option>
+					                	<option value="2학년">2학년</option>
+					                	<option value="3학년">3학년</option>
+					                	<option value="4학년">4학년</option>
 					             	</select>
-				        		</div>
-				        		<div style="float:left; margin-top: 5px;">학기</div>
-				        		<div class="col-lg-2" style="float:left; margin-right: 6px">
-				        			<select name="semester" id="semester" class="form-control" >
-					                	<option value="">1학기</option>
-					                	<option value="">2학기</option>
-					                	<option value="">여름학기</option>
-					                	<option value="">겨울학기</option>
-					             	</select>
-				        		</div>		
-				        		<button name="rep-btn" type="button" class="btn btn-primary" style="float: left">확인</button>
+				        		</div>	
+				        		<button name="searchBtn2" id="searchBtn2" type="button" class="btn btn-primary" style="float: left">확인</button>
 					   		</div>
 						</div>
 					</div>
@@ -125,9 +129,8 @@
 										<thead class="table-light" style="color:white; background-color:gray; text-align:center;">
 											<tr>
 										        <th>강의번호</th>
-										        <th>강의년도</th>
+										        <th>학과</th>
 										        <th>학년</th>
-										        <th>학기</th>
 										        <th>구분</th>
 										        <th>강의이름</th>
 										        <th>강의실</th>
@@ -143,9 +146,8 @@
 												<tr>
 													<td style="display:none;">${vo.id}</td>
 													<td>${vo.lecture_code}</td>
-													<td>${vo.lecture_year}</td>
+													<td>${vo.department_name}</td>
 													<td>${vo.grade}</td>
-													<td>${vo.semester}</td>
 													<td>${vo.section}</td>
 													<td>${vo.lecture_name}</td>
 													<td>${vo.classroom}</td>
@@ -250,9 +252,21 @@
 	
 	<input type="hidden" id="s_id" value="${member.id}">
 	
-	<form action="" method="get" id="actionForm">
+	<form action="/classRegist/regist" method="get" id="actionForm">
 		<input type="hidden" name="pageNum" value="${pageVo.cri.pageNum}" />
 		<input type="hidden" name="amount" value="${pageVo.cri.amount}" />
+		<input type="hidden" name="flag" value="${pageVo.cri.flag}" />
+		
+		<!-- 검색 1  -->
+		<input type="hidden" name="sectionType1" value="${pageVo.cri.sectionType1}" />
+		<input type="hidden" name="kind" value="${pageVo.cri.kind}" />
+		<input type="hidden" name="keyword" value="${pageVo.cri.keyword}" />
+		
+		<!-- 검색 2 -->
+		<input type="hidden" name="department" value="${pageVo.cri.department}" />
+		<input type="hidden" name="sectionType2" value="${pageVo.cri.sectionType2}" />
+		<input type="hidden" name="grade" value="${pageVo.cri.grade}" />
+		
 	</form>	
 	
     <!--**********************************
@@ -305,6 +319,7 @@
     	});
     	
     	modalRegisterBtn.click(function() {
+    		console.log(student_id);
     		
     		$.ajax({
     			url:'/studentLecture/rest_new/' + student_id + "/" + lecture_id,
@@ -315,7 +330,7 @@
     			}
     		})
     		
-    		alert("신청되었습니다. ");    		
+    		swal("신청 완료", "수강신청 되었습니다.", "success");   		
     		modal.modal("hide");
     	});
     	
@@ -331,6 +346,51 @@
     		//actionForm 보내기 
     		actionForm.submit();
     	});
+    	
+    	$("#searchBtn1").click(function(e){
+    		e.preventDefault(); //a 속성 중지
+    		
+    		if($("#searchKeyword").val() == "") {
+    			swal("검색어를 입력해주세요.","", "error");
+    		} else {
+    			actionForm.attr("action", "/classRegist/search");
+        		
+        		//actionForm 안에 pageNum의 값을 사용자가 선택한 번호로 변경
+        		actionForm.find("input[name='pageNum']").val(1);
+        		actionForm.find("input[name='flag']").val("1");
+        		
+        		actionForm.find("input[name='sectionType1']").val($("#section_up option:selected").val());
+        		actionForm.find("input[name='kind']").val($("#kind option:selected").val());
+        		actionForm.find("input[name='keyword']").val($("#searchKeyword").val());
+        		
+        		//actionForm 보내기 
+        		actionForm.submit();
+    		}
+    		
+    	});
+    	
+    	$("#searchBtn2").click(function(e){
+			e.preventDefault(); //a 속성 중지
+    		
+			if($("#dept option:selected").val() == "선택") {
+    			swal("학과를 선택해주세요.","","error");
+    		} else {
+    			actionForm.attr("action", "/classRegist/search");
+        		
+        		//actionForm 안에 pageNum의 값을 사용자가 선택한 번호로 변경
+        		actionForm.find("input[name='pageNum']").val(1);
+        		actionForm.find("input[name='flag']").val("2");
+        		
+        		actionForm.find("input[name='department']").val($("#dept option:selected").val());
+        		actionForm.find("input[name='sectionType2']").val($("#section_bottom option:selected").val());
+        		actionForm.find("input[name='grade']").val($("#grade option:selected").val());
+        		
+        		//actionForm 보내기 
+        		actionForm.submit();
+    		}
+    	});
+    	
+    	
     </script>
 
 </body>

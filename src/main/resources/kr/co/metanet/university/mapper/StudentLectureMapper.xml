@@ -5,7 +5,7 @@
 	<select id="getStudentLectureList" resultType="kr.co.metanet.university.domain.LectureVO">
 		select *
 		from lecture l, student_lecture s_l
-		where l.id = s_l.lecture_id
+		where l.id = s_l.lecture_id and student_id = #{student_id}
 	</select>
 	
 	<insert id="insert">
