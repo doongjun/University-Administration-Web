@@ -288,7 +288,8 @@
     	
     	var student_id = $("#s_id").val();
     	var lecture_id= "";
-
+		var lecture_time = "";
+		
     	var lecture_cnt = "${fn:length(vo)}";
     	console.log(lecture_cnt);
     	
@@ -296,6 +297,7 @@
     	for(var i = 1; i <= lecture_cnt; i++) {
     		$("#putInCheckBtn" + i).click(function() {
     			lecture_id = $(this).closest("tr").find("td:eq(0)").text();
+    			lecture_time = $(this).closest("tr").find("td:eq(7)").text();
     			
         		modal.modal("show");
         	});
@@ -321,17 +323,65 @@
     	modalRegisterBtn.click(function() {
     		console.log(student_id);
     		
-    		$.ajax({
-    			url:'/studentLecture/rest_new/' + student_id + "/" + lecture_id,
-    			type:'PUT',
-    			async:false,
-    			success:function(result) {
-    				console.log(result);
-    			}
-    		})
+    		var isflag = true;
+    		var timeFlag = true;
     		
-    		swal("신청 완료", "수강신청 되었습니다.", "success");   		
-    		modal.modal("hide");
+    		$.getJSON({
+            	url:"/studentLecture/rest_student_lecture/${member.id}",
+            	type:"GET",
+            	async:false,
+            	success:function(data) {		
+            		console.log(data);
+    				$.each(data, function(idx, element) {
+    					console.log(element.id + " : " + lecture_id);
+    					console.log(element.lecture_time + " : " + lecture_time);
+    					console.log(element.id == lecture_id);
+    					if(element.id == lecture_id) {
+    						isflag = false;
+    						return false;
+    					}
+    					
+    					var e_time_spl = element.lecture_time.split(" ");
+    					var l_time_spl = lecture_time.split(" ");
+    					
+    					if(e_time_spl[0] == l_time_spl[0]) {
+    						var e_time = e_time_spl[1].split(",");
+    						var l_time = l_time_spl[1].split(",");
+    						
+    						for(var i = 0; i < e_time.length; i++) {
+    							for(var j = 0; j <  l_time.length; j++) {
+    								if(e_time[i] == l_time[j]) {
+        								timeFlag = false;
+        								return false;
+        							}
+    							}
+    						}
+    					}
+    				})		
+    			}
+            	
+            });
+    		
+    		if(!isflag) {
+    			swal("강의 중복", "이미 신청한 과목입니다.", "error"); 
+    			modal.modal("hide");
+    		} else if(!timeFlag){
+    			swal("강의 시간 중복", "강의 시간이 중복됩니다.", "error"); 
+    			modal.modal("hide");
+    		} else {
+    			$.ajax({
+        			url:'/studentLecture/rest_new/' + student_id + "/" + lecture_id,
+        			type:'PUT',
+        			async:false,
+        			success:function(result) {
+        				console.log(result);
+        			}
+        		})
+        		
+        		swal("신청 완료", "수강신청 되었습니다.", "success");   		
+        		modal.modal("hide");
+    		}
+    		
     	});
     	
     	// 하단 페이지 나누기 버튼 클릭시 이동
