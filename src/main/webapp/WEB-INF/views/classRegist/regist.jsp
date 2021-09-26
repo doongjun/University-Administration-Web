@@ -349,9 +349,11 @@
     						var l_time = l_time_spl[1].split(",");
     						
     						for(var i = 0; i < e_time.length; i++) {
-    							if(e_time[i] == l_time[i]) {
-    								timeFlag = false;
-    								return false;
+    							for(var j = 0; j <  l_time.length; j++) {
+    								if(e_time[i] == l_time[j]) {
+        								timeFlag = false;
+        								return false;
+        							}
     							}
     						}
     					}
