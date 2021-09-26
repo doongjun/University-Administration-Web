@@ -18,6 +18,14 @@
 		WHERE m.CODE = #{code}
 	</select>
 	
+	<select id="selectStudentList" resultType="kr.co.metanet.university.domain.MemberStudent">
+		SELECT m.ID, m.NAME, mr.ROLE_NAME, m.code, m.PASSWORD, d.DEPARTMENT_NAME, s.GRADE, s.BIRTHDAY, s.ACADEMIC_STATUS, s.ADMISSION_DATE, s.EMAIL, s.PHONE 
+		FROM MEMBER_ROLE mr 
+		JOIN "MEMBER" m ON mr.MEMBER_ID = m.ID
+		JOIN STUDENT s ON m.CODE = s.CODE 
+		JOIN DEPARTMENT d ON s.DEPARTMENT_CODE = d.DEPARTMENT_CODE
+	</select>
+	
 	<select id="selectProfessorByCode" resultType="kr.co.metanet.university.domain.MemberProfessor">
 		SELECT m.id, m.NAME, mr.ROLE_NAME, m.CODE, m.PASSWORD, d.DEPARTMENT_NAME, p.BIRTHDAY, p.EMAIL, p.PHONE, p."DEGREE" 
 		FROM MEMBER_ROLE mr 
@@ -64,6 +72,8 @@
 			DIVISION = #{division}
 		WHERE code = #{code}
 	</update>
+	
+	
 	
 </mapper>
 

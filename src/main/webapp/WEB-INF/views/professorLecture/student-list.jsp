@@ -75,7 +75,8 @@
 								</div>
 							</div>
 							<div class="card-body">
-								<input name="lecture_id" type="hidden" value="${lecture_id}">
+								<form id="profForm" class="form-valide">
+								<input id="lecture_id" name="lecture_id" type="hidden" value="${lecture_id}">
 								<div class="table-responsive">
 									<table class="table table-bordered table-scroll">
 										<thead class="table-light"
@@ -91,11 +92,13 @@
 												<th id="score" style="display:none;">과제</th>
 												<th id="score" style="display:none;">출석</th>
 												<th id="score" style="display:none;">총점</th>
+												<th id="score" style="display:none;">학점</th>
 											</tr>
 										</thead>
 										<tbody style="color: black; text-align: center;">
 											<!-- 게시판 리스트 반복문 -->
 											<c:forEach var="vo" items="${vo}" varStatus="cnt">
+											<input name="student_id${cnt.count}" type="hidden" value="${vo.id}">
 												<tr>
 													<td style="display: none;">${vo.id}</td>
 													<td>${vo.code}</td>
@@ -106,20 +109,23 @@
 														<button name="" id="deleteBtn${cnt.count}" type="button"
 															class="btn btn-danger">삭제</button>
 													</td>
-													<td id="score" style="display:none;">
-														<input class="input-sm" name="midterm">
+													<td style="display:none;width:10%;">
+														<input id="midterm_exam" style="width:60%" name="midterm_exam${cnt.count}" type="number" placeholder="0" onchange="calculate()">
 													 </td>
-													<td id="score" style="display:none;"> 
-														<input name="finals">
+													<td style="display:none;width:10%;"> 
+														<input id="final_exam" style="width:60%" name="final_exam${cnt.count}" type="number" placeholder="0" onchange="calculate()">
 													</td>
-													<td id="score" style="display:none;">
-														<input name="attendance">
+													<td style="display:none;width:10%;">
+														<input id="assignment" style="width:60%" name="assignment${cnt.count}" type="number" placeholder="0" onchange="calculate()">
 													 </td>
-													<td id="score" style="display:none;">
-														<input name="total">
+													<td style="display:none;width:10%;">
+														<input id="attendance" style="width:60%" name="attendance${cnt.count}" type="number" placeholder="0" onchange="calculate()">
 													 </td>
-													<td id="score" style="display:none;">
-														<select name="grade" id="inputScore" class="form-control">
+													<td style="display:none;width:10%;">
+														<input id="total" style="width:60%" name="total${cnt.count}" type="number">
+													 </td>
+													<td id="score" style="display:none;width:7%;">
+														<select name="score${cnt.count}" id="inputScore" class="form-control">
 															<option selected="">A+</option>
 															<option>A</option>
 															<option>B+</option>
@@ -137,6 +143,7 @@
 										</tbody>
 									</table>
 								</div>
+									</form>
 							</div>
 						</div>
 					</div>
@@ -176,7 +183,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">강의 취소</h5>
+					<h5 class="modal-title">수강생 삭제</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -184,7 +191,7 @@
 				</div>
 				<div class="modal-body"
 					style="margin-top: 10px; color: black; text-align: center;">
-					<p>수강생을 삭제하시겠습니까? 강의와 관련된 정보가 삭제됩니다.</p>
+					<p>해당학생을 강의에서 삭제하시겠습니까? 강의와 관련된 정보가 삭제되며 수강할수 없게됩니다.</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" id="modalDeleteBtn">확인</button>
@@ -197,11 +204,6 @@
 	<!--**********************************
         Modal end
     ***********************************-->
-
-	<!-- 관리자만 볼수있는 코드 -->
-	<sec:authorize access="hasRole('ROLE_ADMIN')">
-		<input type="hidden" id="professor_id" value="${professor.id}">
-	</sec:authorize>
 
 	<!--**********************************
         Scripts
@@ -234,48 +236,67 @@
 			$('td:nth-child(8),th:nth-child(7)').show();
 			$('td:nth-child(9),th:nth-child(8)').show();
 			$('td:nth-child(10),th:nth-child(9)').show();
-			$('td:nth-child(11),th:nth-child(10)').show(); 
+			$('td:nth-child(11),th:nth-child(10)').show();
+			$('td:nth-child(12),th:nth-child(11)').show();
 			
-		})
+		});
 		
+		$('#inputScoreBtn').click(function(){
+			
+				var params = $('#profForm').serializeArray();
+				console.log(params);
+				$.ajax({
+					url : "/api/professorLecture/updateScore",
+					type : "POST",
+					data : params,
+					dataType : 'text',
+					error : function(request, status, error) {
+						alert("error code:" + request.status + "\n" + "message:"
+								+ request.responseText + "\n" + "error:" + error);
+					},
+
+					success : function(data) {
+						alert("성공적으로 저장되었습니다.");
+						location.replace(location.href); //post 데이터 포함하지않고 새로고침
+				}
+			})
+		});
 	
+		//총점계산기
+		function calculate(){
+			var v1 = Number(document.getElementById('midterm_exam').value);
+			var v2 = Number(document.getElementById('final_exam').value);
+			var v3 = Number(document.getElementById('assignment').value);
+			var v4 = Number(document.getElementById('attendance').value);
+			var res = v1+v2+v3+v4;
+			console.log(res);
+			document.getElementById('total').value = res;
+		}
+		
+		
 		let modal = $(".modal");
 
 		var modalDeleteBtn = $("#modalDeleteBtn");
 
-		var lecture_code = "";
+		var lecture_id = document.getElementById('lecture_id').value;
+		console.log(lecture_id);
 
 		var lecture_cnt = "${fn:length(vo)}";
 		console.log(lecture_cnt);
 
 		for (var i = 1; i <= lecture_cnt; i++) {
-			$("#updateBtn" + i)
-					.click(
-							function() {
-								id = $(this).closest("tr").find("td:eq(0)")
-										.text();
-								console.log(id);
-								document.location.href = "/professorLecture/updateform?id="
-										+ id;
-							});
-
 			$("#deleteBtn" + i).click(function() {
 				id = $(this).closest("tr").find("td:eq(0)").text();
 				console.log(id);
 				modal.modal("show");
 			});
 
-			$("#studentBtn" + i).click(function() {
-				id = $(this).closest("tr").find("td:eq(0)").text();
-				console.log(id);
-				modal.modal("show");
-			});
 		}
 
 		modalDeleteBtn.click(function() {
 
 			$.ajax({
-				url : '/api/professorLecture/delete/' + id,
+				url : '/api/professorLecture/deleteStudent/' + id +'/'+ lecture_id,
 				type : 'delete',
 				async : false,
 				success : function(result) {
@@ -283,7 +304,7 @@
 				}
 			})
 
-			location.href = "/professorLecture/lecture-list ";
+			location.href = "/professorLecture/student-list?lecture_id="+lecture_id;
 
 			alert("삭제되었습니다. ");
 			modal.modal("hide");
