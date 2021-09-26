@@ -1,5 +1,6 @@
 package kr.co.metanet.university.mapper;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -12,6 +13,7 @@ import kr.co.metanet.university.domain.MemberStudent;
 public interface MemberMapper {
 	Member selectMemberByCode(String code);
 	MemberStudent selectStudentByCode(String code);
+	List<MemberStudent> selectStudentList();
 	MemberProfessor selectProfessorByCode(String code);
 	MemberAdmin selectAdminByCode(String code);
 	void updatePassword(Map<String, String> params);

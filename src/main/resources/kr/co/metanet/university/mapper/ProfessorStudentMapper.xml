@@ -8,13 +8,13 @@
 		WHERE s.id = sl.student_id AND sl.lecture_id = #{lecture_id}
 		AND m.id = s.id AND d.department_code = s.department_code
 		AND mr.member_id = m.id
-		ORDER BY s.department_code ASC, m.code ASC, m.name ASC   
+		ORDER BY s.department_code ASC, s.grade DESC, m.name ASC   
 	</select>
 	
 	<update id="updateScore" parameterType="Map">
 		UPDATE STUDENT_LECTURE
-		SET score = #{score} 
-		WEHRE student_id = #{student_id} and lecture_id = #{lecture_id}
+		SET score = #{score}, midterm_exam = #{midterm_exam}, final_exam = #{final_exam},assignment = #{assignment}, attendance = #{attendance}, total = #{total}
+		WHERE student_id = #{student_id} and lecture_id = #{lecture_id}
 	</update>
 	
 	<delete id="deleteStudent" parameterType="Map">

@@ -77,13 +77,11 @@
 	                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
 	                                class="icon icon-single-04"></i><span class="nav-text">학적 관리</span></a>
 	                        <ul aria-expanded="false">
-	                            <li><a href="#">학생 관리</a></li>
+	                            <li><a href="/members/student-list">학생 관리</a></li>
 	                            <li><a href="/tuition/tuition-form">등록금 고지서 관리</a></li>
 	                        </ul>
 	                    </li>
                     </c:if>
-                    
-
                 </ul>
             </div>
 
