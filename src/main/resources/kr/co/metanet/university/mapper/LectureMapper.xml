@@ -3,34 +3,44 @@
 <mapper namespace="kr.co.metanet.university.mapper.LectureMapper">
 
 	<select id="getAllLecture" resultType="kr.co.metanet.university.domain.LectureVO">
-	SELECT * FROM LECTURE
+		SELECT * FROM LECTURE
 	</select>
 
 	<select id="getNowALLLecture" parameterType="hashMap" resultType="kr.co.metanet.university.domain.LectureVO">
-	SELECT * FROM LECTURE WHERE LECTURE_YEAR = #{lecture_year}, SEMESTER = #{semester}
+		SELECT * FROM LECTURE WHERE LECTURE_YEAR = #{lecture_year}, SEMESTER = #{semester}
 	</select>
-	
+
 	<select id="getLecture" parameterType="int" resultType="kr.co.metanet.university.domain.LectureVO">
-	SELECT * FROM LECTURE WHERE ID = #{id}
+		SELECT * FROM LECTURE WHERE ID = #{id}
 	</select>
 
 	<select id="getMaxCode" resultType="String">
-	SELECT NVL(MAX(LECTURE_CODE),'000001') FROM LECTURE
+		SELECT NVL(MAX(LECTURE_CODE),'000001') FROM LECTURE
+	</select>
+
+	<select id="getScoreList" parameterType="Map" resultType="kr.co.metanet.university.domain.StudentLectureVO">
+		SELECT s.id, l.id, l.division, l.lecture_year, l.semester, l.section, l.credit, l.lecture_name, l.lecture_code, sl.midterm_exam, sl.final_exam, sl.assignment, sl.total, sl.attendance, sl.score,
+		sl.total,sl.score
+		FROM STUDENT S, STUDENT_LECTURE SL, lecture l
+		WHERE s.id = sl.student_id and sl.lecture_id = l.id
+		and s.id = #{student_id} and l.lecture_year = #{lecture_year} and l.semester = #{semester}
+		ORDER BY l.id, l.lecture_name ASC
 	</select>
 
 	<insert id="create" parameterType="kr.co.metanet.university.domain.LectureVO">
-	INSERT INTO LECTURE(LECTURE_CODE,LECTURE_NAME,PROFESSOR_ID,GRADE,CLASSROOM,DIVISION,LECTURE_TIME,LECTURE_YEAR,SEMESTER,STUDENT_COUNT,STUDENT_FULL,CREDIT,SECTION,DEPT_CODE,REMARKS)
-	VALUES(#{lecture_code},#{lecture_name},#{professor_id},#{grade},#{classroom},#{division},#{lecture_time},#{lecture_year},#{semester},#{student_count},#{student_full},#{credit},#{section},#{dept_code},#{remarks})
+		INSERT INTO LECTURE(LECTURE_CODE,LECTURE_NAME,PROFESSOR_ID,GRADE,CLASSROOM,DIVISION,LECTURE_TIME,LECTURE_YEAR,SEMESTER,STUDENT_COUNT,STUDENT_FULL,CREDIT,SECTION,DEPT_CODE,REMARKS)
+		VALUES(#{lecture_code},#{lecture_name},#{professor_id},#{grade},#{classroom},#{division},#{lecture_time},#{lecture_year},#{semester},#{student_count},#{student_full},#{credit},#{section},#{dept_code},#{remarks})
 	</insert>
-	
+
 	<update id="update" parameterType="kr.co.metanet.university.domain.LectureVO">
-	UPDATE LECTURE
-	SET LECTURE_NAME= #{lecture_name},GRADE= #{grade},CLASSROOM= #{classroom},DIVISION= #{division},LECTURE_TIME= #{lecture_time},STUDENT_FULL= #{student_full},CREDIT= #{credit},SECTION= #{section},DEPT_CODE= #{dept_code},REMARKS= #{remarks}
-	WHERE ID = #{id} 
+		UPDATE LECTURE
+		SET LECTURE_NAME= #{lecture_name},GRADE= #{grade},CLASSROOM= #{classroom},DIVISION= #{division},LECTURE_TIME= #{lecture_time},STUDENT_FULL= #{student_full},CREDIT= #{credit},SECTION=
+		#{section},DEPT_CODE= #{dept_code},REMARKS= #{remarks}
+		WHERE ID = #{id}
 	</update>
-	
+
 	<delete id="delete" parameterType="int">
-	DELETE FROM LECTURE WHERE ID = #{id}
+		DELETE FROM LECTURE WHERE ID = #{id}
 	</delete>
 
 

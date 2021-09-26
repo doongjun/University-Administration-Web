@@ -32,7 +32,7 @@
 	                            <li><a href="/lecture/lecture-list">강의계획서조회</a></li>
 	                            <li><a href="/lecture/prevLecture">수강내역조회</a>
 	                            </li>
-	                            <li><a href="./app-calender.html">성적조회</a></li>
+	                            <li><a href="/lecture/score-list">성적조회</a></li>
 	                        </ul>
 	                    </li>
 	                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
