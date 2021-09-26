@@ -54,6 +54,11 @@ public class MemberServiceImpl implements MemberService{
 	public MemberStudent getStudentByCode(String code) {
 		return memberMapper.selectStudentByCode(code);
 	}
+	
+	@Override
+	public List<MemberStudent> selectStudentList() {
+		return memberMapper.selectStudentList();
+	}
 
 	@Override
 	public MemberProfessor getProfessorByCode(String code) {
@@ -87,6 +92,4 @@ public class MemberServiceImpl implements MemberService{
 	public void updateAdminInfo(HashMap<String, String> params) {
 		memberMapper.updateAdminInfo(params);
 	}
-	
-	
 }

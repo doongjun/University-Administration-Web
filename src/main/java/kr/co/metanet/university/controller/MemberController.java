@@ -1,17 +1,23 @@
 package kr.co.metanet.university.controller;
 
 import java.security.Principal;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.metanet.university.domain.Member;
@@ -124,7 +130,19 @@ public class MemberController {
 	
 	//학생 관리 (관리자)
 	@GetMapping("/student-list")
-	public String studentList() {
+	public String studentList(Model model) {
+		List<MemberStudent> studentList = memberService.selectStudentList();
+		model.addAttribute("studentList", studentList);
 		return "members/student-list";
+	}
+	
+	//학생 상세 정보
+	@GetMapping("/student-info")
+	@ResponseBody
+	public MemberStudent studentInfo(HttpServletRequest request) {
+		String code = request.getParameter("code");
+		log.info("result ::: " + code);
+		MemberStudent memberStudent = memberService.getStudentByCode(code);
+		return memberStudent;
 	}
 }
