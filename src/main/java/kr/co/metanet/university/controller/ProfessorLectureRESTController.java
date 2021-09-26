@@ -1,6 +1,7 @@
 package kr.co.metanet.university.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -103,17 +104,45 @@ public class ProfessorLectureRESTController {
 	
 	@PostMapping("/updateScore")
 	public ResponseEntity<String> updateScore(@RequestParam HashMap<String, String> params) throws Exception {
-		String score = params.get("score");
-		int student_id = Integer.valueOf(params.get("student_id"));
-		int lecture_id = Integer.valueOf(params.get("lecture_id"));
-		
-		int flag = studentService.updateScore(score, student_id, lecture_id);
+			int lecture_id = Integer.valueOf(params.get("lecture_id"));
+			int count = (params.size()-1)/7;
+		for (int i =1 ; i<=count; i++) {
+			String score = params.get("score"+i);
+			int student_id = Integer.valueOf(params.get("student_id"+i));
+			double midterm_exam = Double.valueOf(params.get("midterm_exam"+i));
+			double final_exam = Double.valueOf(params.get("final_exam"+i));
+			double assignment = Double.valueOf(params.get("assignment"+i));
+			double attendance = Double.valueOf(params.get("attendance"+i));
+			double total = Double.valueOf(params.get("total"+i));
+			
+			System.out.println(score+","+student_id+","+lecture_id+","+midterm_exam+","+final_exam+","+assignment+","+attendance+","+total);
+			
+			int flag = studentService.updateScore(score, student_id, lecture_id, midterm_exam, final_exam,assignment,attendance,total);
+			if (flag <= 0)
+				return new ResponseEntity<String>("failed", HttpStatus.INTERNAL_SERVER_ERROR);
 
-		if(flag >0) {
-			return new ResponseEntity<String>("success",HttpStatus.OK);
-		}else {
-			return new ResponseEntity<String>("failed",HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+		return new ResponseEntity<String>("success", HttpStatus.OK);
+		
+		
+		/*
+		 * //jason 객체, list<hashmap>이용시 for (HashMap<String, String> param : params) {
+		 * String score = param.get("score"); int student_id =
+		 * Integer.valueOf(param.get("student_id")); int lecture_id =
+		 * Integer.valueOf(param.get("lecture_id")); double midterm_exam =
+		 * Double.valueOf(param.get("midterm_exam")); double final_exam =
+		 * Double.valueOf(param.get("final_exam")); double attendance =
+		 * Double.valueOf(param.get("attendance")); double total =
+		 * Double.valueOf(param.get("total"));
+		 * 
+		 * int flag = studentService.updateScore(score, student_id, lecture_id,
+		 * midterm_exam, final_exam, attendance, total); if (flag <= 0) return new
+		 * ResponseEntity<String>("failed", HttpStatus.INTERNAL_SERVER_ERROR);
+		 * 
+		 * } return new ResponseEntity<String>("success", HttpStatus.OK);
+		 */
+
+
 	}
 	
 	@DeleteMapping("/deleteStudent/{student_id}/{lecture_id}")
