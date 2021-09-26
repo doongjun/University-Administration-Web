@@ -96,8 +96,9 @@ public class BoardController {
 	public String write(BoardVO vo, RedirectAttributes rttr, HttpSession session) {
 		log.info("***** 공지사항 작성 *****");
 		//사용자정보
-		session.getAttribute("admin");
+		session.getAttribute("member");
 		
+		log.info(session.getAttribute("member"));
 		if(service.insert(vo)) {
 			rttr.addFlashAttribute("result", "게시글 등록 성공");
 			return "redirect:boardlist";

@@ -182,6 +182,7 @@
 
 	<script>
 		let viewForm = $("#viewForm");
+		
 		//Modify버튼 클릭시  get방식 /board/modify
 		$("#modify_btn").click(function() {
 			viewForm.attr('action', '/board/modify');
@@ -196,6 +197,7 @@
 		})
 		//delete 버튼 클릭시  post방식 /board/delete
 		$("#del_btn").click(function() {
+			viewForm.attr("method","POST");
 			viewForm.attr('action', '/board/delete');
 			viewForm.submit();
 		})
