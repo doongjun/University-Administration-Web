@@ -76,7 +76,7 @@
 							</div>
 							<div class="card-body">
 								<form id="profForm" class="form-valide">
-								<input name="lecture_id" type="hidden" value="${lecture_id}">
+								<input id="lecture_id" name="lecture_id" type="hidden" value="${lecture_id}">
 								<div class="table-responsive">
 									<table class="table table-bordered table-scroll">
 										<thead class="table-light"
@@ -191,7 +191,7 @@
 				</div>
 				<div class="modal-body"
 					style="margin-top: 10px; color: black; text-align: center;">
-					<p>수강생을 삭제하시겠습니까? 강의와 관련된 정보가 삭제됩니다.</p>
+					<p>해당학생을 강의에서 삭제하시겠습니까? 강의와 관련된 정보가 삭제되며 수강할수 없게됩니다.</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" id="modalDeleteBtn">확인</button>
@@ -262,7 +262,7 @@
 			})
 		});
 	
-	
+		//총점계산기
 		function calculate(){
 			var v1 = Number(document.getElementById('midterm_exam').value);
 			var v2 = Number(document.getElementById('final_exam').value);
@@ -278,22 +278,13 @@
 
 		var modalDeleteBtn = $("#modalDeleteBtn");
 
-		var lecture_code = "";
+		var lecture_id = document.getElementById('lecture_id').value;
+		console.log(lecture_id);
 
 		var lecture_cnt = "${fn:length(vo)}";
 		console.log(lecture_cnt);
 
 		for (var i = 1; i <= lecture_cnt; i++) {
-			$("#updateBtn" + i)
-					.click(
-							function() {
-								id = $(this).closest("tr").find("td:eq(0)")
-										.text();
-								console.log(id);
-								document.location.href = "/professorLecture/updateform?id="
-										+ id;
-							});
-
 			$("#deleteBtn" + i).click(function() {
 				id = $(this).closest("tr").find("td:eq(0)").text();
 				console.log(id);
@@ -305,7 +296,7 @@
 		modalDeleteBtn.click(function() {
 
 			$.ajax({
-				url : '/api/professorLecture/delete/' + id,
+				url : '/api/professorLecture/deleteStudent/' + id +'/'+ lecture_id,
 				type : 'delete',
 				async : false,
 				success : function(result) {
@@ -313,7 +304,7 @@
 				}
 			})
 
-			location.href = "/professorLecture/lecture-list ";
+			location.href = "/professorLecture/student-list?lecture_id="+lecture_id;
 
 			alert("삭제되었습니다. ");
 			modal.modal("hide");
