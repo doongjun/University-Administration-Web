@@ -1,6 +1,5 @@
 package kr.co.metanet.university.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import kr.co.metanet.university.domain.LectureVO;
