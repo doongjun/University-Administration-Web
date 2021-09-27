@@ -23,4 +23,5 @@ public class BoardVO {
 	private String b_sort;
 	
 	private String writer;
+
 }
