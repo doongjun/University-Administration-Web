@@ -3,7 +3,15 @@
 <mapper namespace="kr.co.metanet.university.mapper.LectureMapper">
 
 	<select id="getAllLecture" resultType="kr.co.metanet.university.domain.LectureVO">
-		SELECT * FROM LECTURE ORDER BY lecture_code ASC
+		<![CDATA[
+			select *
+			from (select rownum rn, id, lecture_code, lecture_name, professor_id, grade, classroom, division, lecture_time, lecture_year, semester, student_count, student_full, credit, section, dept_code, remarks, department_name
+			      from (select l.id, l.lecture_code, l.lecture_name, l.professor_id, l.grade, l.classroom, l.division, l.lecture_time, l.lecture_year, l.semester, l.student_count, l.student_full, l.credit, l.section, l.dept_code, l.remarks, d.department_name
+			            from lecture l, department d
+			            where (division = '1분반' or division = '-') and (l.dept_code = d.department_code) ORDER BY lecture_code ASC)
+			      where rownum <= (#{cri.pageNum}*#{cri.amount}))
+			where rn > ((#{cri.pageNum}-1)*#{cri.amount})
+		]]>
 	</select>
 
 	<select id="getNowALLLecture" parameterType="hashMap" resultType="kr.co.metanet.university.domain.LectureVO">
