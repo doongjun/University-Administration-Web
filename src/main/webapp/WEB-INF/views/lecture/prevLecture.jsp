@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <body>
 
@@ -53,78 +55,96 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="javascript:void(0)">강의관리</a></li>
 							<li class="breadcrumb-item active"><a
-								href="javascript:void(0)">수강내역 조회</a></li>
+								href="javascript:void(0)">이전수강내역 조회</a></li>
 						</ol>
 					</div>
 				</div>
 
 				<!-- 검색 -->
-
+				
 				<div class="row page-titles mx-0">
-					<div class="col-sm-6 p-md-0"></div>
-					<div
-						class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-						<div class="form-group">
-							<select class="form-control">
-								<option>Option 1</option>
-								<option>Option 2</option>
-								<option>Option 3</option>
+					<div class="justify-content-start p-md-0" style="float:left;">
+					<form class="form-inline">
+							<label>수강년도</label>
+							 <select id="lecture_year" value="${lecture_year}" style="margin-left:10px;">
+								<option selected="">2021</option>
+								<option>2020</option>
+								<option>2019</option>
+								<option>2018</option>
+							</select> 
+							
+							<label style="margin-left:20px;" >학기</label> 
+							<select id="semester" style="margin-left:10px;" value="${semester}">
+								<option selected="">1학기</option>
+								<option>2학기</option>
+								<option>여름계절학기</option>
+								<option>겨울계절학기</option>
 							</select>
-						</div>
-						<div class="form-group">
-
-							<select class="form-control">
-								<option>Option 1</option>
-								<option>Option 2</option>
-								<option>Option 3</option>
-							</select>
-						</div>
+							
+							<button id="searchBtn" type="button" class="btn btn-primary" style="margin-left:15px;" >조회</button>
+								
+					</form>
 					</div>
 				</div>
 
 				<!-- 검색결과 -->
 
-				<div class="row">
-					<div class="col-12">
-						<div class="card">
-							<div class="card-header">
-								<h4 class="card-title">수강내역</h4>
-							</div>
-							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table table-bordered table-scroll">
-										<thead class="table-light" style="color: black;">
+				<!-- row -->
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">이전수강내역</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-scroll">
+										<thead class="table-light" style="color:white; background-color:gray; text-align:center;">
 											<tr>
-												<th>강의번호</th>
-												<th>학기</th>
-												<th>강의이름</th>
-												<th>강의실</th>
-												<th>강의시간</th>
-												<th>학점</th>
-											</tr>
+										        <th>강의번호</th>
+										        <th>수강년도</th>
+										        <th>학기</th>
+										        <th>학년</th>
+										        <th>구분</th>
+										        <th>강의이름</th>
+										        <th>강의실</th>
+										        <th>강의시간</th>
+										        <th>분반</th>
+										        <th>학점</th>
+									        </tr>
 										</thead>
-										<tbody>
+										<tbody style="color:black; text-align:center;">
 											<!-- 게시판 리스트 반복문 -->
-											<c:forEach var="vo" items="${vo}">
+											<c:forEach var="vo" items="${vo}" varStatus="cnt">
 												<tr>
+													<td style="display:none;">${vo.id}</td>
 													<td>${vo.lecture_code}</td>
-													<td>${vo.grade}-${vo.semester}</a></td>
+													<td>${vo.lecture_year}</td>
+													<td>${vo.semester}</td>
+													<td>${vo.grade}</td>
+													<td>${vo.section}</td>
 													<td>${vo.lecture_name}</td>
 													<td>${vo.classroom}</td>
 													<td>${vo.lecture_time}</td>
+													<td>${vo.division}</td>
 													<td>${vo.credit}</td>
 												</tr>
 											</c:forEach>
 										</tbody>
 									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 			</div>
 		</div>
 
+		
+		<input type="hidden" id="student_id" value="${student_id}">
+		
 
 		<!--**********************************
             Content body end
@@ -152,7 +172,27 @@
 	<!--**********************************
         Main wrapper end
     ***********************************-->
+	<script>
+		$("#lecture_year").val(lecture_year).attr("selected", "selected");
+		$("#semester").val(semester).attr("selected", "selected");
 
+		$('#searchBtn')
+				.click(
+						function() {
+							var student_id = document
+									.getElementById('student_id').value;
+							var lecture_year = document
+									.getElementById('lecture_year').value;
+							var semester = document.getElementById('semester').value;
+							console.log(student_id + "," + lecture_year + ','
+									+ semester);
+							location.href = "/lecture/selected-prevLecture?student_id="
+									+ student_id
+									+ "&lecture_year="
+									+ lecture_year + "&semester=" + semester;
+
+						});
+	</script>
 	<!--**********************************
         Scripts
     ***********************************-->
