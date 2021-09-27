@@ -56,6 +56,13 @@
 	                        </ul>
 	                    </li>
 	                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+	                                class="icon icon-app-store"></i><span class="nav-text">마이페이지</span></a>
+	                        <ul aria-expanded="false">
+	                            <li><a href="/members/mypage">내 정보</a></li>
+	                            <li><a href="/members/pw-change-form">비밀번호 변경</a></li>
+	                        </ul>
+	                    </li>
+	                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
 	                                class="icon icon-single-04"></i><span class="nav-text">강의관리</span></a>
 	                        <ul aria-expanded="false">
 	                            <li><a href="/professorLecture/createform">강의등록</a></li>
@@ -72,6 +79,13 @@
 	                                class="icon icon-single-04"></i><span class="nav-text">공지사항</span></a>
 	                        <ul aria-expanded="false">
 	                            <li><a href="/board/boardlist">공지게시판</a></li>
+	                        </ul>
+	                    </li>
+	                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+	                                class="icon icon-app-store"></i><span class="nav-text">마이페이지</span></a>
+	                        <ul aria-expanded="false">
+	                            <li><a href="/members/mypage">내 정보</a></li>
+	                            <li><a href="/members/pw-change-form">비밀번호 변경</a></li>
 	                        </ul>
 	                    </li>
 	                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
