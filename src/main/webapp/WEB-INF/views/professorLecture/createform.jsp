@@ -48,16 +48,18 @@
 							<h4>강의 등록</h4>
 						</div>
 					</div>
-					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+					<div
+						class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="javascript:void(0)">강의관리</a></li>
-							<li class="breadcrumb-item active"><a href="javascript:void(0)">강의 등록</a></li>
+							<li class="breadcrumb-item active"><a
+								href="javascript:void(0)">강의 등록</a></li>
 						</ol>
 					</div>
 				</div>
 
 
-				<!-- 검색결과 -->
+				<!-- 강의등록폼 -->
 
 				<div class="row">
 					<div class="col-12">
@@ -68,18 +70,39 @@
 							<div class="card-body">
 								<div class="basic-form">
 									<form id="profForm" class="form-valide">
-
-										<div class="form-row">
-											<div class="form-group col-md-6">
-												
-												<input type="hidden" name="professor_id" id="professor_id" value="${professor.id}">
-												
-												
-												<label>강의제목</label> <input name="lecture_name" type="text" class="form-control" required>
-
+										<input type="hidden" name="professor_id" id="professor_id"
+											value="${professor.id}">
+										<div class="form-group row">
+											<label class="control-label col-sm-2">강의번호</label>
+											<div class="col-sm-10">
+												<input name="lecture_code" type="text" class="form-control" style="width:30%;"
+													required placeholder="예)000000">
 											</div>
-											<div class="form-group col-md-6">
-												<label>학과</label> <select name="dept_code" id="inputState" class="form-control">
+										</div>
+										<div class="form-group row">
+											<label class="control-label col-sm-2">강의학기</label>
+											<div class="col-sm-10">
+													<select name="semester" id="inputState" class="form-control" style="width:30%;">
+													<option selected=""></option>
+													<option>1학기</option>
+													<option>2학기</option>
+													<option>여름계절학기</option>
+													<option>겨울계절학기</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="control-label col-sm-2">강의이름</label>
+											<div class="col-sm-10">
+												<input name="lecture_name" type="text" class="form-control" style="width:50%;"
+													required>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="control-label col-sm-2">학과</label>
+											<div class="col-sm-10">
+												<select name="dept_code" id="inputState"
+													class="form-control" style="width:30%;">
 													<option value="0" selected="">공통</option>
 													<option value="1">컴퓨터공학과</option>
 													<option value="2">경영학과</option>
@@ -103,8 +126,11 @@
 													<option value="20">심리학과</option>
 												</select>
 											</div>
-											<div class="form-group col-md-6">
-												<label>대상학년</label> <select name="grade" id="inputState" class="form-control">
+										</div>
+										<div class="form-group row ">
+											<label class="control-label col-sm-2">대상학년</label>
+											<div class="col-sm-10">
+												<select name="grade" id="inputState" class="form-control" style="width:30%;">
 													<option selected="">공통</option>
 													<option>1학년</option>
 													<option>2학년</option>
@@ -112,43 +138,75 @@
 													<option>4학년</option>
 												</select>
 											</div>
-											<div class="form-group col-md-6">
-												<label>강의실</label> <input name="classroom" type="text" class="form-control" placeholder="예) 000관 000호">
+										</div>
+										<div class="form-group row">
+											<label  class="control-label col-sm-2">강의실</label>
+											<div class="col-sm-10">
+												<input name="classroom" type="text" style="width:50%;" class="form-control"
+													placeholder="예) 000관 000호" >
 											</div>
-											<div class="form-group col-md-6">
-												<label>강의시간</label> <input name="lecture_time" type="text" class="form-control" placeholder="예) 수 1,2,3">
+										</div>
+										<div class="form-group row">
+											<label  class="control-label col-sm-2">강의시간</label>
+											<div class="col-sm-10">
+												<input name="lecture_time" type="text" style="width:50%;" class="form-control"
+													placeholder="예) 수 1,2,3">
 											</div>
-											<div class="form-group col-md-6">
-												<label>분반</label> <select name="division" id="inputState" class="form-control">
+										</div>
+										<div class="form-group row">
+											<label  class="control-label col-sm-2">분반</label>
+											<div class="col-sm-10">
+												<select name="division" id="inputState" style="width:30%;" class="form-control">
 													<option selected="">-</option>
 													<option>1분반</option>
 													<option>2분반</option>
 													<option>3분반</option>
 												</select>
 											</div>
-											<div class="form-group col-md-6">
-												<label>학점</label> <input name="credit" type="number" min="1" max="3" class="form-control" placeholder="3">
+										</div>
+										<div class="form-group row">
+											<label for="password" class="control-label col-sm-2">학점</label>
+											<div class="col-sm-10">
+												<input name="credit" type="number" style="width:30%;" min="1" max="3"
+													class="form-control" placeholder="3">
 											</div>
-											<div class="form-group col-md-6">
-												<label>구분</label> <select name="section" id="inputState" class="form-control">
+										</div>
+										<div class="form-group row">
+											<label for="password" class="control-label col-sm-2">구분</label>
+											<div class="col-sm-10">
+												<select name="section" id="inputState" style="width:30%;" class="form-control">
 													<option selected="">기타</option>
 													<option>전공</option>
 													<option>전공기초</option>
 													<option>교양</option>
 												</select>
 											</div>
-											<div class="form-group col-md-6">
-												<label>수강정원</label> <input name="student_full" type="number" min="1" max="300" class="form-control" > <small id="passwordHelpBlock" class="form-text text-muted">
+										</div>
+										<div class="form-group row">
+											<label for="password" class="control-label col-sm-2">수강정원</label>
+											<div class="col-sm-10">
+												<input name="student_full" type="number" min="1" max="300" style="width:30%;"
+													class="form-control"> <small
+													id="passwordHelpBlock" class="form-text text-muted">
 													* 정원 변경시 과사무실에 문의바랍니다. </small>
 											</div>
-											<div class="form-group col-md-6">
-												<label>비고</label> <input name="remarks" type="text" class="form-control" placeholder="생략불가능. 최대 30자">
+										</div>
+										<div class="form-group row">
+											<label for="password" class="control-label col-sm-2">비고</label>
+											<div class="col-sm-10">
+												<input name="remarks" type="text" class="form-control"
+													placeholder="생략불가능. 최대 30자">
 											</div>
 										</div>
-
-
-										<button class="btn btn-primary" onclick="fn_create();">등록</button>
+										<div class="form-group row">
+											<div class="offset-sm-2 col-sm-10 pull-right">
+												<button class="btn btn-primary" onclick="fn_create();">등록
+													</button>
+											</div>
+										</div>
 									</form>
+
+
 								</div>
 							</div>
 						</div>

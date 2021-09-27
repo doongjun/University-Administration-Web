@@ -118,6 +118,7 @@
 							</div>
 
 							<form id="viewForm" action="" method="get">
+							<input type="hidden" name="b_writer_code" value="${member.id}" />
 								<input type="hidden" id="b_no" name="b_no" value="${vo.b_no}">
 							</form>
 <!-- onclick="location.href='/board/boardlist'"
@@ -182,12 +183,41 @@
 
 	<script>
 		let viewForm = $("#viewForm");
-		
+		//sweetalert-warning 추가예정
 		//Modify버튼 클릭시  get방식 /board/modify
-		$("#modify_btn").click(function() {
-			viewForm.attr('action', '/board/modify');
-			viewForm.submit();
+		$("#modify_btn").click(function(e) {
+			
+			e.preventDefault();
+			
+			swal({
+				text : '글을 수정하시겠습니까?',
+				icon:'info',
+				closeOnclickOutside : false,
+				buttons:{
+					cancle:{
+						text : '취소',
+						value:false
+					},
+					confirm:{
+						text : '수정',
+						value : true
+					}
+				}
+			}).then((result) => {
+				if(result){
+					
+					viewForm.attr('action', '/board/modify');
+					viewForm.submit();
+							
+				}else{
+					return;
+				}
+			});
+			
+			
 		})
+		
+		
 		//List버튼 클릭시 get /board/boardlist
 		$("#list_btn").click(function() {
 			viewForm.find("input[name='b_no']").remove();
@@ -195,11 +225,41 @@
 			viewForm.attr('action', '/board/boardlist');
 			viewForm.submit();
 		})
+		
 		//delete 버튼 클릭시  post방식 /board/delete
-		$("#del_btn").click(function() {
-			viewForm.attr("method","POST");
-			viewForm.attr('action', '/board/delete');
-			viewForm.submit();
+		$("#del_btn").click(function(e) {
+			e.preventDefault();
+			
+			swal({
+				text : '글을 삭제하시겠습니까?',
+				icon:'warning',
+				closeOnclickOutside : false,
+				buttons:{
+					cancle:{
+						text : '취소',
+						value:false
+					},
+					confirm:{
+						text : '삭제',
+						value : true
+					}
+				}
+			}).then((result) => {
+				if(result){
+					swal('글 삭제','글을 삭제합니다','success',{
+					closeOnclickOutside : false
+					
+					})
+					viewForm.attr("method","POST");
+					viewForm.attr('action', '/board/delete');
+					viewForm.submit();
+							
+				}else{
+					return;
+				}
+			});
+			
+			
 		})
 		
 	</script>
