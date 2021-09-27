@@ -131,15 +131,15 @@
 											<div class="form-group row">
 												<label class="col-lg-5 col-form-label">생년월일 <span class="text-danger">*</span></label>
 												<div class="col-lg-10">
-													<input type="text" class="form-control" id="infoBirthday" name="birthday">
+													<input type="date" class="form-control" id="infoBirthday" name="birthday">
 												</div>
-											</div>	
+											</div>
 										</div>
 										<div class="col-xl-6">
 											<div class="form-group row">
 												<label class="col-lg-5 col-form-label">학년 <span class="text-danger">*</span></label>
 												<div class="col-lg-10">
-													<input type="text" class="form-control" id="infoGrade" name="grade">
+													<input type="number" min="1" max="4" class="form-control" id="infoGrade" name="grade">
 												</div>
 											</div>
 											<div class="form-group row">
@@ -151,29 +151,51 @@
 											<div class="form-group row">
 												<label class="col-lg-5 col-form-label">입학날짜 <span class="text-danger">*</span></label>
 												<div class="col-lg-10">
-													<input type="text" class="form-control" id="infoAdmissionDate" name="admissionDate">
+													<input type="date" class="form-control" id="infoAdmissionDate" name="admissionDate">
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-lg-5 col-form-label">학과 <span class="text-danger">*</span></label>
 												<div class="col-lg-10">
-													<input type="text" class="form-control" id="infoDepartmentName" name="departmentName">
+													<select name="departmentCode" id="departmentCodeList" class="form-control">
+														<option value="0" selected="">공통</option>
+														<option value="1">컴퓨터공학과</option>
+														<option value="2">경영학과</option>
+														<option value="3">경제학과</option>
+														<option value="4">관광학과</option>
+														<option value="5">광고홍보학과</option>
+														<option value="6">법학과</option>
+														<option value="7">사회학과</option>
+														<option value="8">건축학과</option>
+														<option value="9">기계공학과</option>
+														<option value="10">화학공학과</option>
+														<option value="11">전기공학과</option>
+														<option value="12">전자공학과</option>
+														<option value="13">정보통신학과</option>
+														<option value="14">조형학과</option>
+														<option value="15">산업디자인학과</option>
+														<option value="16">국악과</option>
+														<option value="17">연극영화과</option>
+														<option value="18">국어국문학과</option>
+														<option value="19">영어영문학과</option>
+														<option value="20">심리학과</option>
+													</select>
 												</div>
-											</div>							
+											</div>
 										</div>
 									</div>
 								</form>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-danger">Delete</button>
-								<button type="button" class="btn btn-primary">Save changes</button>
+								<button type="button" class="btn btn-danger" onclick="fn_delete();">Delete</button>
+								<button type="button" class="btn btn-primary" onclick="fn_revise();">Save changes</button>
 								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-								
+
 							</div>
 						</div>
 					</div>
 				</div>
-				
+
 				<!-- 학생 추가 Modal -->
 				<div class="modal fade" id="studentAddModal">
 					<div class="modal-dialog modal-dialog-centered" role="document">
@@ -243,28 +265,28 @@
 												<label class="col-lg-5 col-form-label">학과 <span class="text-danger">*</span></label>
 												<div class="col-lg-10">
 													<select name="departmentCode" id="inputState" class="form-control">
-													<option value="0" selected="">공통</option>
-													<option value="1">컴퓨터공학과</option>
-													<option value="2">경영학과</option>
-													<option value="3">경제학과</option>
-													<option value="4">관광학과</option>
-													<option value="5">광고홍보학과</option>
-													<option value="6">법학과</option>
-													<option value="7">사회학과</option>
-													<option value="8">건축학과</option>
-													<option value="9">기계공학과</option>
-													<option value="10">화학공학과</option>
-													<option value="11">전기공학과</option>
-													<option value="12">전자공학과</option>
-													<option value="13">정보통신학과</option>
-													<option value="14">조형학과</option>
-													<option value="15">산업디자인학과</option>
-													<option value="16">국악과</option>
-													<option value="17">연극영화과</option>
-													<option value="18">국어국문학과</option>
-													<option value="19">영어영문학과</option>
-													<option value="20">심리학과</option>
-												</select>
+														<option value="0" selected="">공통</option>
+														<option value="1">컴퓨터공학과</option>
+														<option value="2">경영학과</option>
+														<option value="3">경제학과</option>
+														<option value="4">관광학과</option>
+														<option value="5">광고홍보학과</option>
+														<option value="6">법학과</option>
+														<option value="7">사회학과</option>
+														<option value="8">건축학과</option>
+														<option value="9">기계공학과</option>
+														<option value="10">화학공학과</option>
+														<option value="11">전기공학과</option>
+														<option value="12">전자공학과</option>
+														<option value="13">정보통신학과</option>
+														<option value="14">조형학과</option>
+														<option value="15">산업디자인학과</option>
+														<option value="16">국악과</option>
+														<option value="17">연극영화과</option>
+														<option value="18">국어국문학과</option>
+														<option value="19">영어영문학과</option>
+														<option value="20">심리학과</option>
+													</select>
 												</div>
 											</div>
 											<div class="form-group row">
@@ -316,11 +338,18 @@
         Scripts
     ***********************************-->
 	<script>
+		var msg = "${message}";
+		if (msg === "alreadyExist") {
+			alert("해당 학생이 이미 존재합니다.");
+		}
+		
+		var conditionCode;
 		$(document).ready(function() {
 			var table = $('#example2').DataTable();
 			
 			$('#example2 tbody').on('click', 'tr', function() {
 				var data = table.row(this).data();
+				conditionCode = data[0];
 				$.ajax({
 					url:"/members/student-info",
 					data: {'code' : data[0]},
@@ -331,7 +360,7 @@
 					},
 					success:function(data){
 						$('#studentInfoModal').modal('show');
-						console.log(data);
+
 						$('#infoName').val(data.name);
 						$('#infoCode').val(data.code);
 						$('#infoPhone').val(data.phone);
@@ -340,7 +369,17 @@
 						$('#infoGrade').val(data.grade);
 						$('#infoAcademicStatus').val(data.academicStatus);
 						$('#infoAdmissionDate').val(data.admissionDate);
-						$('#infoDepartmentName').val(data.departmentName);
+						//$('#infoDepartmentName').val(data.departmentName);
+						
+						var departmentList = $("#departmentCodeList").find('option').map(function() {
+							return $(this).text();
+							}).get();
+
+						for(var i=0; i<21; i++){
+							if(departmentList[i] === data.departmentName){
+								$("#departmentCodeList").val(i).prop("selected", true);
+							}
+						}
 					}
 				})
 				
@@ -353,12 +392,105 @@
 
 		});
 		
-		function fn_regist(){
-			if($('#name').val() === ''){
+		function fn_delete(){
+			$.ajax({
+				url : "/members/delete-student",
+				type : "POST",
+				data: {'code' : conditionCode},
+				error : function(request, status, error) {
+					alert("code:"+request.status+"\n"+"error:"+error);
+				},
+				success : function(data) {
+					swal("학생 삭제 완료","제육대학교 학생", "success").then((value) => {
+						if(value){
+							document.location.href="/members/student-list";
+						}
+				});
+				}
+			})
+		}
+		
+		function fn_revise(){
+			if($('#infoName').val() === ''){
 				alert("이름을 입력하세요.");
 				return;
+			}else if($('#infoCode').val() === ''){
+				alert("학번을 입력하세요.")
+				return;
+			}else if($('#infoPhone').val() === ''){
+				alert("핸드폰번호를 입력하세요.")
+				return;
+			}else if($('#infoEmail').val() === ''){
+				alert("이메일을 입력하세요.")
+				return;
+			}else if($('#infoBirthday').val() === ''){
+				alert("생년월일을 입력하세요")
+				return;
+			}else if($('#infoGrade').val() === ''){
+				alert("학년을 입력하세요.")
+				return;
+			}else if($('#infoAcademicStatus').val() === ''){
+				alert("학적상태를 입력하세요.")
+				return;
+			}else if($('#infoAdmissionDate').val() === 0){
+				alert("입학날짜를 입력하세요.")
+				return;
+			}else if($('#departmentCodeList').val() === 0){
+				alert("학과를 선택하세요.")
+				return;
+			}
+			
+			var params = $('#studentInfoForm').serializeArray();
+			params.push({name: 'conditionCode', value: conditionCode});
+			console.log(params);
+			
+			$.ajax({
+				url : "/members/edit-student",
+				type : "POST",
+				data : params,
+				error : function(request, status, error) {
+					alert("code:"+request.status+"\n"+"error:"+error);
+				},
+				success : function(data) {
+					swal("학생 수정 완료","제육대학교 학생", "success").then((value) => {
+						if(value){
+							document.location.href="/members/student-list";
+						}
+				});
+				}
+			})
+		}
+		
+		function fn_regist(){
+			if($('#name').val() === ''){
+				swal("이름을 입력하세요.");
+				return;
 			}else if($('#code').val() === ''){
-				alert("학번 입력하세요.")
+				alert("학번을 입력하세요.")
+				return;
+			}else if($('#password').val() === ''){
+				alert("비밀번호를 입력하세요.")
+				return;
+			}else if($('#phone').val() === ''){
+				alert("핸드폰번호를 입력하세요.")
+				return;
+			}else if($('#email').val() === ''){
+				alert("이메일을 입력하세요.")
+				return;
+			}else if($('#grade').val() === ''){
+				alert("학년을 입력하세요.")
+				return;
+			}else if($('#academicStatus').val() === ''){
+				alert("학적상태를 입력하세요.")
+				return;
+			}else if($('#admissionDate').val() === ''){
+				alert("입학날짜를 입력하세요.")
+				return;
+			}else if($('#departmentCode').val() === 0){
+				alert("학과를 선택하세요.")
+				return;
+			}else if($('#birthday').val() === ''){
+				alert("생년월일을 입력하세요.")
 				return;
 			}
 			
@@ -370,7 +502,7 @@
 				type : "POST",
 				data : params,
 				error : function(request, status, error) {
-					alert("code:"+request.status+"\n"+"error:"+error);
+					swal("code:"+request.status+"\n"+"error:"+error);
 				},
 				success : function(data) {
 					swal("학생 추가 완료","제육대학교 학생", "success").then((value) => {
@@ -390,7 +522,7 @@
 
 	<!-- Datatable -->
 	<script src="../resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
-	
+
 	<script type="text/javascript" src="../resources/js/jquery.serializejson.js"></script>
 
 </body>

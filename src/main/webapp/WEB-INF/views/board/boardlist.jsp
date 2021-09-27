@@ -80,7 +80,7 @@
 								<div class="table-responsive">
 									<table class="table table-responsive-sm">
 										<thead>
-											<tr>
+											<tr style="color :black">
 												<th>번호</th>
 												<th>제목</th>
 												<th>작성자</th>
@@ -88,13 +88,13 @@
 												<th>조회수</th>
 											</tr>
 										</thead>
-										<tbody style="color:black;">
+										<tbody style="color :black">
 											<!-- DB에서 데이터 받아오기 -->
 											<c:forEach var="vo" items="${list}">
 												<tr>
 													<th>${vo.b_no}</th>
 													<td><a class="viewarticle"
-														href='<c:out value="${vo.b_no}"/>' style="color:black;">[${vo.b_sort}]
+														href='<c:out value="${vo.b_no}"/>' style="color :black">[${vo.b_sort}]
 															${vo.b_title}</a></td>
 													<td>${vo.writer}</td>
 													<td><fmt:formatDate value="${vo.b_sysdate}"
