@@ -20,16 +20,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.co.metanet.university.domain.LectureVO;
 import kr.co.metanet.university.domain.MemberStudent;
 import kr.co.metanet.university.domain.StudentLectureVO;
+import kr.co.metanet.university.domain.Tuition;
 import kr.co.metanet.university.service.LectureService;
 import kr.co.metanet.university.service.MemberService;
+import kr.co.metanet.university.service.TuitionService;
+import lombok.extern.log4j.Log4j2;
 
 @Controller
+@Log4j2
 @RequestMapping(path="/lecture")
 public class LectureController {
 	
 	@Autowired
 	@Qualifier("kr.co.metanet.university.service.impl.LectureServiceImpl")
 	private LectureService service;
+	
+	@Autowired
+	private TuitionService tuitionService;
 	
 	private final MemberService memberService;
 	
@@ -48,9 +55,28 @@ public class LectureController {
 	
 	//모든 강의/강의계획서 조회
 	@GetMapping("/lecture-list")
-	public String list(Model model) {
+	public String list(Principal principal, Model model) {
 		List<LectureVO> list = service.getAllLecture();
 		model.addAttribute("vo",list);
+		
+		// 강의계획표 부분
+		String code = principal.getName();
+		
+		Tuition tuition = tuitionService.selectTuition(code);
+		String filePath = tuition.getFilePath();
+		String fileName = tuition.getFileName();
+		
+		log.info("filePath ::: " + filePath);
+		log.info("fileName ::: " + fileName);
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("../").append(filePath).append(fileName);
+		
+		log.info("saveFilePath ::: " + sb.toString());
+		
+		model.addAttribute("fileName", fileName);
+		model.addAttribute("saveFilePath", sb.toString());
+		
 		return "/lecture/lecture-list";
 	}
 	

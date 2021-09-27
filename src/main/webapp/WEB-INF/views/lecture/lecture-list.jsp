@@ -76,7 +76,7 @@
 				
 				
 				<div class="row">
-					<div class="col-xl-3 col-lg-3 col-md-03">
+					<div class="col-xl-12 col-lg-12 col-md-12">
 						<div class="card">
 							<div class="card-header"> 
 								<h4 class="card-title">수강내역</h4>
@@ -111,17 +111,22 @@
 										</tbody>
 									</table>
 								</div>
+								<div align="center">
+									<label>${fileName }</label>
+									<iframe src="${saveFilePath }" style="width:1000px;height:700px;"></iframe>
+								</div>
+								
 							</div>
 						</div>
 					</div>
 					
-					<div class="col-xl-7 col-lg-7 col-md-07">
+					<%-- <div class="col-xl-7 col-lg-7 col-md-07">
 						<div class="card">
 							<div class="card-body text-center">
 								<jsp:include page="syllabus.jsp" flush="false" />
 							</div>
 						</div>
-					</div>
+					</div> --%>
 					
 				</div>
 				<!-- 검색결과 -->
