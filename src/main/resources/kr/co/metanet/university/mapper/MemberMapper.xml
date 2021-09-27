@@ -73,6 +73,26 @@
 		WHERE code = #{code}
 	</update>
 	
+	<!-- 유저 추가 -->
+	<insert id="insertMember" parameterType="java.util.Map">
+		<selectKey keyProperty="createdKey" resultType="int" order="AFTER">
+			select SEQ_ID.CURRVAL FROM DUAL
+		</selectKey>
+		INSERT INTO "MEMBER" 
+		VALUES (SEQ_ID.nextval, #{name}, #{code}, #{password}, sysdate, sysdate)
+	</insert>
+	
+	<!-- 유저 Role 추가 -->
+	<insert id="insertMemberRole" parameterType="java.util.Map">
+		INSERT INTO MEMBER_ROLE 
+		VALUES (SEQ_ID.nextval, #{memberId}, #{roleName})
+	</insert>
+	
+	<!-- 학생 추가 -->
+	<insert id="insertStudent" parameterType="java.util.Map">
+		INSERT INTO STUDENT 
+		VALUES (SEQ_ID.nextval, #{code}, #{departmentCode}, #{grade}, #{birthday}, #{email}, #{phone}, #{academicStatus}, #{admissionDate})
+	</insert>
 	
 	
 </mapper>

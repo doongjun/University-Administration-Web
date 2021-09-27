@@ -1,5 +1,5 @@
 /**
- *  board/write.jsp
+ *  board/modify.jsp
  */
 
 $("button[type='submit']").click(function(e){
@@ -28,7 +28,7 @@ $("button[type='submit']").click(function(e){
 	}
 	
 	swal({
-		text : '글을 등록하시겠습니까?',
+		text : '글을 수정하시겠습니까?',
 		icon:'info',
 		closeOnclickOutside : false,
 		buttons:{
@@ -37,18 +37,18 @@ $("button[type='submit']").click(function(e){
 				value:false
 			},
 			confirm:{
-				text : '등록',
+				text : '수정',
 				value : true
 			}
 		}
 	}).then((result) => {
 		if(result){
-			swal('글 작성','글을 작성합니다','success',{
+			swal('글 수정','글을 수정합니다','success',{
 			closeOnclickOutside : false
 			
 			})
 		var form=$("#write_board");
-		form.attr("action","write");
+		form.attr("action","modify");
 		form.submit();
 					
 		}else{

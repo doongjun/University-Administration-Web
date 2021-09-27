@@ -64,6 +64,9 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">신청과목</h4>
+                                <h4 class="card-title float-right" style="color: #593bdb">
+                                	${year} > ${semester}
+                                </h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -71,16 +74,13 @@
 										<thead class="table-light" style="color:white; background-color:gray; text-align:center;">
 											<tr>
 										        <th>강의번호</th>
-										        <th>강의년도</th>
 										        <th>학년</th>
-										        <th>학기</th>
 										        <th>구분</th>
 										        <th>강의이름</th>
 										        <th>강의실</th>
 										        <th>강의시간</th>
-										        <th>분반</th>
 										        <th>학점</th>
-										        <th>신청</th>
+										        <th></th>
 									        </tr>
 										</thead>
 										<tbody style="color:black; text-align:center;">
@@ -89,14 +89,11 @@
 												<tr>
 													<td style="display:none;">${vo.id}</td>
 													<td>${vo.lecture_code}</td>
-													<td>${vo.lecture_year}</td>
 													<td>${vo.grade}</td>
-													<td>${vo.semester}</td>
 													<td>${vo.section}</td>
 													<td>${vo.lecture_name}</td>
 													<td>${vo.classroom}</td>
 													<td>${vo.lecture_time}</td>
-													<td>${vo.division}</td>
 													<td>${vo.credit}</td>
 													<td><button name="" id="putInCheckBtn${cnt.count}" type="button" class="btn btn-danger">취소</button></td>
 												</tr>

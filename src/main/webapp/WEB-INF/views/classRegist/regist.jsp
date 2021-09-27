@@ -122,6 +122,9 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">개설과목</h4>
+                                <h4 class="card-title float-right" style="color: #593bdb"> 
+                                 	${year} > ${semester}
+                            	</h4> 
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -137,7 +140,7 @@
 										        <th>강의시간</th>
 										        <th>분반</th>
 										        <th>학점</th>
-										        <th>신청</th>
+										        <th></th>
 									        </tr>
 										</thead>
 										<tbody style="color:black; text-align:center;">
@@ -289,6 +292,7 @@
     	var student_id = $("#s_id").val();
     	var lecture_id= "";
 		var lecture_time = "";
+		var lecture_code = "";
 		
     	var lecture_cnt = "${fn:length(vo)}";
     	console.log(lecture_cnt);
@@ -298,6 +302,7 @@
     		$("#putInCheckBtn" + i).click(function() {
     			lecture_id = $(this).closest("tr").find("td:eq(0)").text();
     			lecture_time = $(this).closest("tr").find("td:eq(7)").text();
+    			lecture_code = $(this).closest("tr").find("td:eq(1)").text();
     			
         		modal.modal("show");
         	});
@@ -333,10 +338,11 @@
             	success:function(data) {		
             		console.log(data);
     				$.each(data, function(idx, element) {
-    					console.log(element.id + " : " + lecture_id);
+    					console.log(element.lecture_code + " : " + lecture_code);
     					console.log(element.lecture_time + " : " + lecture_time);
-    					console.log(element.id == lecture_id);
-    					if(element.id == lecture_id) {
+    					console.log(element.lecture_code == lecture_code);
+    					
+    					if(element.lecture_code == lecture_code) {
     						isflag = false;
     						return false;
     					}
