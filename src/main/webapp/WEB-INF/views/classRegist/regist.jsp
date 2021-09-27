@@ -122,6 +122,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">개설과목</h4>
+                                 <h4 class="card-title float-right" style="color: blue;">${year} > ${semester}</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -137,7 +138,7 @@
 										        <th>강의시간</th>
 										        <th>분반</th>
 										        <th>학점</th>
-										        <th>신청</th>
+										        <th></th>
 									        </tr>
 										</thead>
 										<tbody style="color:black; text-align:center;">
