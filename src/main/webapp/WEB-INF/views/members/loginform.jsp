@@ -13,7 +13,9 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../resources/images/favicon.png">
     <link href="../resources/css/style.css" rel="stylesheet">
-
+	
+	<!-- SweetAlert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body class="h-100">
@@ -65,17 +67,17 @@
 	<script>
 	var msg = "${message}";
 	if(msg === "loginError"){
-		alert("ID나 비밀번호를 확인하세요.");
+		swal("로그인 실패", "ID나 비밀번호를 확인하세요.","info");
 	}
 	
 	function fn_login() {
 		if ($("#code").val() == '') {
-			alert("ID를 입력하세요.");
+			swal("ID를 입력하세요.");
 			return false;
 		}
 
 		if ($("#password").val() == '') {
-			alert("비밀번호를 입력하세요");
+			swal("비밀번호를 입력하세요");
 			return false;
 		}
 	}
