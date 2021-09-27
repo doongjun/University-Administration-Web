@@ -6,7 +6,11 @@
 	prefix="sec"%>
 	<link href="../resources/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-
+<style>
+.listbb{
+	color:black;
+}
+</style>
 <body>
 
 	<!--*******************
@@ -66,7 +70,7 @@
 
 
 				<!-- 학사공지 게시글 -->
-				<div class="row">
+				<div class="row listbb">
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
