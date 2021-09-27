@@ -37,4 +37,26 @@ public interface MemberMapper {
 
 	// 학생 추가
 	void insertStudent(Map<String, Object> params);
+	
+	// 유저 수정
+	void editMember(Map<String, Object> params);
+	
+	// 학생 수정
+	void editStudent(Map<String, Object> params);
+	
+	//getKey
+	int selectMemberKey(String code);
+	
+	//MemberRole 삭제
+	void deleteMemberRole(int memberId);
+	
+	//Member 삭제
+	void deleteMember(int memberId);
+	
+	//Student 삭제
+	void deleteStudent(String code);
+	
+	//유저 카운트
+	//여기부터
+	int selectUserCount(String code);
 }
