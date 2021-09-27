@@ -6,6 +6,7 @@
 	SELECT * 
 	FROM LECTURE 
 	WHERE PROFESSOR_ID = #{professor_id}
+	ORDER BY lecture_code ASC
 	</select>
 	
 	<select id="getNowALLLecture" parameterType="hashMap" resultType="kr.co.metanet.university.domain.LectureVO">
@@ -14,6 +15,7 @@
 	WHERE professor_id = #{professor_id} 
 	and LECTURE_YEAR = #{lecture_year}
 	and SEMESTER = #{semester}
+	ORDER BY lecture_code ASC
 	</select>
 
 	<select id="getLecture" parameterType="int" resultType="kr.co.metanet.university.domain.LectureVO">
