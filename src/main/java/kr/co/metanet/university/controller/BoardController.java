@@ -111,7 +111,7 @@ public class BoardController {
 	
 	
 	@GetMapping("/modify")
-	public void modify(int b_no, Model model) { //, @ModelAttribute("cri") BoardCriteriaVO cri
+	public void modify(int b_no, Model model, BoardCriteriaVO cri) {
 		log.info("***** 공지사항 수정하러 가기 *****");
 		
 		BoardVO vo = service.view(b_no);
@@ -132,9 +132,10 @@ public class BoardController {
 			rttr.addAttribute("sort", cri.getSort());
 			rttr.addAttribute("key", cri.getKeyword());
 			rttr.addAttribute("page", cri.getPage());
+		
 			return "redirect:boardlist";
 		}else {
-			return "redirect:view?b_no"+vo.getB_no();
+			return "redirect:view?b_no="+vo.getB_no()+"&page="+cri.getPage()+"&keyword="+cri.getKeyword()+"&sort="+cri.getSort();
 		}
 	}
 	
@@ -142,7 +143,7 @@ public class BoardController {
 	
 	
 	@PostMapping("/delete")
-	public String delete(int b_no, String b_writer,RedirectAttributes rttr, BoardCriteriaVO cri) {
+	public String delete(int b_no, int b_writer_code,RedirectAttributes rttr, BoardCriteriaVO cri) {
 		log.info("***** 공지사항 삭제 *****");
 		
 		if(service.delete(b_no)) {
@@ -153,8 +154,8 @@ public class BoardController {
 			
 			return "redirect:boardlist";
 		}else {
-			return "redirect:modify?b_no="+b_no;
-			//+"&page="+cri.getPage()+"&keyword="+cri.getKeyword()+"&sort="+cri.getSort()
+			return "redirect:modify?b_no="+b_no+"&page="+cri.getPage()+"&keyword="+cri.getKeyword()+"&sort="+cri.getSort();
+			
 		}
 	}
 	

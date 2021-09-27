@@ -4,7 +4,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
+	<link href="../resources/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+
 <body>
 
 	<!--*******************
@@ -233,25 +235,13 @@
 
 	<script src="/resources/js/boardlist.js"></script>
 	<script>
-		/**let actionForm = $("#actionForm");
-		$(".viewarticle").on(
-				"click",
-				function(e) {
-					e.preventDefault();
-					actionForm.attr("action", "view");
-					actionForm
-							.append("<input type='hidden' name='b_no' value='"
-									+ $(this).attr("href") + "'>");
-					actionForm.submit();
-				});
+		
 		/*아작스 시도하다가 실패*/
 		let result = '${result}';
 		var csrfHeaderName = "${_csrf.headerName}";
 		var csrfTokenValue = "${_csrf.token}";
 	</script>
-
-
-
+	
 </body>
 
 </html>
