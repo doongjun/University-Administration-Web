@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.metanet.university.domain.Member;
 import kr.co.metanet.university.domain.MemberAdmin;
@@ -91,5 +92,35 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void updateAdminInfo(HashMap<String, String> params) {
 		memberMapper.updateAdminInfo(params);
+	}
+	
+	@Override
+	public void addMemberStudent(Map<String, Object> params) {
+		//유저 추가
+		Map<String, Object> memberParams = new HashMap<>();
+		memberParams.put("name", params.get("name"));
+		memberParams.put("code", params.get("code"));
+		memberParams.put("password", params.get("password"));
+		memberMapper.insertMember(memberParams);
+		int createdKey = (int)memberParams.get("createdKey");
+		
+		//유저 Role 추가
+		Map<String, Object> memberRoleParams = new HashMap<>();
+		memberRoleParams.put("memberId", createdKey);
+		memberRoleParams.put("roleName", "ROLE_USER");
+		memberMapper.insertMemberRole(memberRoleParams);
+		
+		//학생 추가
+		Map<String, Object> studentParams = new HashMap<>();
+		studentParams.put("code", params.get("code"));
+		studentParams.put("departmentCode", params.get("departmentCode"));
+		studentParams.put("grade", params.get("grade"));
+		studentParams.put("birthday", params.get("birthday"));
+		studentParams.put("email", params.get("email"));
+		studentParams.put("phone", params.get("phone"));
+		studentParams.put("academicStatus", params.get("academicStatus"));
+		studentParams.put("admissionDate", params.get("admissionDate"));
+		memberMapper.insertStudent(studentParams);
+		
 	}
 }

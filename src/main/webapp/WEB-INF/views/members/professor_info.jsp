@@ -72,7 +72,7 @@
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${member.name }" readonly>
+														<input type="text" class="form-control" value="${professor.name }" readonly>
 													</div>
 												</div>
 												<div class="form-group row">
@@ -80,7 +80,7 @@
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" name="code" value="${member.code }" readonly>
+														<input type="text" class="form-control" name="code" value="${professor.code }" readonly>
 													</div>
 												</div>
 												<div class="form-group row">
@@ -88,7 +88,7 @@
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<fmt:formatDate var="birthday" value="${member.birthday}" pattern="yyyy-MM-dd"/>
+														<fmt:formatDate var="birthday" value="${professor.birthday}" pattern="yyyy-MM-dd"/>
 														<input type="text" class="form-control" value="${birthday }" readonly>
 													</div>
 												</div>
@@ -99,7 +99,7 @@
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${member.departmentName }" readonly>
+														<input type="text" class="form-control" value="${professor.departmentName }" readonly>
 													</div>
 												</div>
 												<div class="form-group row">
@@ -107,7 +107,7 @@
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" value="${member.degree }" readonly>
+														<input type="text" class="form-control" value="${professor.degree }" readonly>
 													</div>
 												</div>
 												<div class="form-group row">
@@ -115,7 +115,7 @@
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" id="phone" class="form-control" name="phone" value="${member.phone }">
+														<input type="text" id="phone" class="form-control" name="phone" value="${professor.phone }">
 													</div>
 												</div>
 												<div class="form-group row">
@@ -123,7 +123,7 @@
 														<span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
-														<input type="text" id="email" class="form-control" name="email" value="${member.email }">
+														<input type="text" id="email" class="form-control" name="email" value="${professor.email }">
 													</div>
 												</div>
 												<div class="form-group row">

@@ -1,6 +1,9 @@
 package kr.co.metanet.university.controller;
 
 import java.security.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,7 +53,7 @@ public class MemberController {
 		ra.addFlashAttribute("message", "loginError");
 		return "redirect:/members/loginform";
 	}
-	
+
 	// 세션 할당
 	@GetMapping("/home")
 	public String home(Principal principal, HttpSession session) {
@@ -65,27 +69,27 @@ public class MemberController {
 			MemberStudent student = memberService.getStudentByCode(loginCode);
 			session.setAttribute("member", student);
 			page = "/board/boardlist";
-			
+
 		} else if (roleName.equals("ROLE_PROF")) {
 			// 교수
 			MemberProfessor professor = memberService.getProfessorByCode(loginCode);
 			session.setAttribute("member", professor);
 			page = "/board/boardlist";
-			
+
 		} else if (roleName.equals("ROLE_ADMIN")) {
 			// 관리자
 			MemberAdmin admin = memberService.getAdminByCode(loginCode);
 			session.setAttribute("member", admin);
 			page = "/board/boardlist";
-			
+
 		}
 
 		return "redirect:" + page;
 	}
-	
+
 	// 마이페이지
 	@GetMapping("/mypage")
-	public String mypage(Principal principal, HttpSession session) {
+	public String mypage(Principal principal, ModelMap modelMap) {
 		String loginCode = principal.getName();
 
 		Member member = memberService.getMemberByCode(loginCode);
@@ -95,21 +99,21 @@ public class MemberController {
 
 		if (roleName.equals("ROLE_USER")) {
 			// 학생
-			//MemberStudent student = memberService.getStudentByCode(loginCode);
-			//session.setAttribute("member", student);
-			//modelMap.addAttribute("member", student);
+			MemberStudent student = memberService.getStudentByCode(loginCode);
+			// session.setAttribute("member", student);
+			modelMap.addAttribute("member", student);
 			page = "members/student_info";
 		} else if (roleName.equals("ROLE_PROF")) {
 			// 교수
-			//MemberProfessor professor = memberService.getProfessorByCode(loginCode);
-			//session.setAttribute("professor", professor);
-			//modelMap.addAttribute("professor", professor);
+			MemberProfessor professor = memberService.getProfessorByCode(loginCode);
+			// session.setAttribute("professor", professor);
+			modelMap.addAttribute("professor", professor);
 			page = "members/professor_info";
 		} else if (roleName.equals("ROLE_ADMIN")) {
 			// 관리자
-			//MemberAdmin admin = memberService.getAdminByCode(loginCode);
-			//session.setAttribute("admin", admin);
-			//modelMap.addAttribute("admin", admin);
+			MemberAdmin admin = memberService.getAdminByCode(loginCode);
+			// session.setAttribute("admin", admin);
+			modelMap.addAttribute("admin", admin);
 			page = "members/admin_info";
 		}
 
@@ -160,16 +164,16 @@ public class MemberController {
 
 		return "redirect:/members/pw-change-form";
 	}
-	
-	//학생 관리 (관리자)
+
+	// 학생 관리 (관리자)
 	@GetMapping("/student-list")
 	public String studentList(Model model) {
 		List<MemberStudent> studentList = memberService.selectStudentList();
 		model.addAttribute("studentList", studentList);
 		return "members/student-list";
 	}
-	
-	//학생 상세 정보
+
+	// 학생 상세 정보
 	@GetMapping("/student-info")
 	@ResponseBody
 	public MemberStudent studentInfo(HttpServletRequest request) {
@@ -177,5 +181,28 @@ public class MemberController {
 		log.info("result ::: " + code);
 		MemberStudent memberStudent = memberService.getStudentByCode(code);
 		return memberStudent;
+	}
+
+	// 학생 추가(관리자)
+	@PostMapping("/add-student")
+	public String addStudent(@RequestParam Map<String, Object> params) throws ParseException {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String pw = (String) params.get("password");
+		params.put("password", encoder.encode(pw));
+		params.put("grade", Integer.parseInt((String) params.get("grade")));
+		params.put("departmentCode", Integer.parseInt((String) params.get("departmentCode")));
+		
+		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+		String birthdayString = (String) params.get("birthday");
+		String admissionDateString = (String) params.get("admissionDate");
+		
+		Date birthday= fm.parse(birthdayString);
+		Date admissionDate= fm.parse(admissionDateString);
+		
+		params.put("birthday", birthday);
+		params.put("admissionDate", admissionDate);
+		
+		memberService.addMemberStudent(params);
+		return "redirect:/members/student-list";
 	}
 }
