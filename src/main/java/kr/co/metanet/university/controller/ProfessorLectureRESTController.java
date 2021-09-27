@@ -66,6 +66,7 @@ public class ProfessorLectureRESTController {
 		LectureVO lecture = new LectureVO();
 		
 		lecture.setId(Integer.valueOf(params.get("id")));
+		lecture.setSemester(params.get("semester"));
 		lecture.setLecture_code(params.get("lecture_code"));
 		lecture.setDept_code(Integer.valueOf(params.get("dept_code")));
 		lecture.setLecture_name(params.get("lecture_name"));
