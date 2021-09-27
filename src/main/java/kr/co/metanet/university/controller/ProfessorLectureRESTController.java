@@ -34,12 +34,10 @@ public class ProfessorLectureRESTController {
 	@PostMapping("/create")
 	public ResponseEntity<String> create(@RequestParam HashMap<String, String> params) throws Exception {
 		LectureVO lecture = new LectureVO();
-		// test
-		String lecture_code = "000004";
-		lecture.setLecture_code(lecture_code);
-		// real input
+
+		lecture.setLecture_code(params.get("lecture_code"));
 		lecture.setLecture_year(String.valueOf(Utility.getYear()));
-		lecture.setSemester(Utility.getSemester());
+		lecture.setSemester(params.get("semester"));
 		lecture.setProfessor_id(Integer.valueOf(params.get("professor_id")));
 		lecture.setDept_code(Integer.valueOf(params.get("dept_code")));
 		lecture.setLecture_name(params.get("lecture_name"));
@@ -68,6 +66,7 @@ public class ProfessorLectureRESTController {
 		LectureVO lecture = new LectureVO();
 		
 		lecture.setId(Integer.valueOf(params.get("id")));
+		lecture.setSemester(params.get("semester"));
 		lecture.setLecture_code(params.get("lecture_code"));
 		lecture.setDept_code(Integer.valueOf(params.get("dept_code")));
 		lecture.setLecture_name(params.get("lecture_name"));
