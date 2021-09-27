@@ -1,6 +1,5 @@
 package kr.co.metanet.university.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import kr.co.metanet.university.domain.LectureVO;
@@ -14,4 +13,7 @@ public interface LectureService {
 	int update(LectureVO vo);
 	int delete(int id);
 	List<StudentLectureVO> getScoreList(int student_id, String lecture_year, String semester);
+	List<LectureVO> getPrevLectureList(String semester, String this_year, String last_year, int student_id);
+	List<LectureVO> getSelectedPrevLectureList(String semester, String lecture_year, int student_id);
+	
 }

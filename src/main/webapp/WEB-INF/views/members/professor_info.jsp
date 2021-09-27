@@ -205,9 +205,6 @@
 	<script src="../resources/js/quixnav-init.js"></script>
 	<script src="../resources/js/custom.min.js"></script>
 
-
-
-
 	<!-- Jquery Validation -->
 	<script
 		src="../resources/vendor/jquery-validation/jquery.validate.min.js"></script>

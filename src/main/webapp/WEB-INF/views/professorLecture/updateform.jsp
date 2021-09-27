@@ -72,7 +72,7 @@
 										<div class="form-group row">
 											<label class="control-label col-sm-2">강의학기</label>
 											<div class="col-sm-10">
-												<select name="semester" id="inputState" class="form-control" style="width: 30%;">
+												<select name="semester" id="semester" class="form-control" style="width: 30%;" required>
 													<option selected=""></option>
 													<option>1학기</option>
 													<option>2학기</option>
@@ -84,13 +84,13 @@
 										<div class="form-group row">
 											<label class="control-label col-sm-2">강의이름</label>
 											<div class="col-sm-10">
-												<input name="lecture_name" value="${vo.lecture_name}" type="text" class="form-control" style="width: 50%;" required>
+												<input name="lecture_name" id="lecture_name" value="${vo.lecture_name}" type="text" class="form-control" style="width: 50%;" required>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="control-label col-sm-2">학과</label>
 											<div class="col-sm-10">
-												<select name="dept_code" id="inputState" value="${vo.dept_code}" class="form-control" style="width: 30%;">
+												<select name="dept_code" id="dept_code" value="${vo.dept_code}" class="form-control" style="width: 30%;" required>
 													<option value="0" selected="">공통</option>
 													<option value="1">컴퓨터공학과</option>
 													<option value="2">경영학과</option>
@@ -118,7 +118,7 @@
 										<div class="form-group row ">
 											<label class="control-label col-sm-2">대상학년</label>
 											<div class="col-sm-10">
-												<select name="grade" value="${vo.grade}" id="inputState" class="form-control" style="width: 30%;">
+												<select name="grade" value="${vo.grade}" id="grade" class="form-control" style="width: 30%;" required>
 													<option selected="">공통</option>
 													<option>1학년</option>
 													<option>2학년</option>
@@ -130,19 +130,19 @@
 										<div class="form-group row">
 											<label class="control-label col-sm-2">강의실</label>
 											<div class="col-sm-10">
-												<input name="classroom" value="${vo.classroom}" type="text" style="width: 50%;" class="form-control" placeholder="예) 000관 000호">
+												<input name="classroom" id="classroom" value="${vo.classroom}" type="text" style="width: 50%;" class="form-control" placeholder="예) 000관 000호" required>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="control-label col-sm-2">강의시간</label>
 											<div class="col-sm-10">
-												<input name="lecture_time" value="${vo.lecture_time}" type="text" style="width: 50%;" class="form-control" placeholder="예) 수 1,2,3">
+												<input name="lecture_time" id="lecture_time" value="${vo.lecture_time}" type="text" style="width: 50%;" class="form-control" placeholder="예) 수 1,2,3" required>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="control-label col-sm-2">분반</label>
 											<div class="col-sm-10">
-												<select name="division" value="${vo.division}" id="inputState" style="width: 30%;" class="form-control">
+												<select name="division" value="${vo.division}" id="division" style="width: 30%;" class="form-control" required>
 													<option selected="">-</option>
 													<option>1분반</option>
 													<option>2분반</option>
@@ -153,13 +153,13 @@
 										<div class="form-group row">
 											<label for="password" class="control-label col-sm-2">학점</label>
 											<div class="col-sm-10">
-												<input name="credit" value="${vo.credit}" type="number" style="width: 30%;" min="1" max="3" class="form-control" placeholder="3">
+												<input name="credit" vid="credit" alue="${vo.credit}" type="number" style="width: 30%;" min="1" max="3" class="form-control" placeholder="3" required>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label for="password" class="control-label col-sm-2">구분</label>
 											<div class="col-sm-10">
-												<select name="section" value="${vo.section}" id="inputState" style="width: 30%;" class="form-control">
+												<select name="section" value="${vo.section}" id="section" style="width: 30%;" class="form-control" required>
 													<option selected="">기타</option>
 													<option>전공</option>
 													<option>전공기초</option>
@@ -170,16 +170,17 @@
 										<div class="form-group row">
 											<label for="password" class="control-label col-sm-2">수강정원</label>
 											<div class="col-sm-10">
-												<input name="student_full" value="${vo.student_full}" type="number" min="1" max="300" style="width: 30%;" class="form-control"> <small id="passwordHelpBlock"
+												<input name="student_full" value="${vo.student_full}" type="number" min="1" max="300" style="width: 30%;" class="form-control" required> <small id="passwordHelpBlock"
 													class="form-text text-muted"> * 정원 변경시 과사무실에 문의바랍니다. </small>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label for="password" class="control-label col-sm-2">비고</label>
 											<div class="col-sm-10">
-												<input name="remarks" value="${vo.remarks}" type="text" class="form-control" placeholder="생략불가능. 최대 30자">
+												<input name="remarks" value="${vo.remarks}" type="text" class="form-control" placeholder="생략불가능. 최대 30자" required>
 											</div>
 										</div>
+									</form>
 										<div class="form-group row">
 											<div class="offset-sm-2 col-sm-10 pull-right">
 
@@ -187,7 +188,6 @@
 												<button class="btn btn-primary" onclick="history.back(-1);return false;">취소</button>
 											</div>
 										</div>
-									</form>
 
 
 								</div>
@@ -225,7 +225,82 @@
     ***********************************-->
 
 	<script type="text/javascript">
-		function fn_update() {
+	
+	function fn_update() {
+		//validation
+
+		if ($("select[name='semester']").val() == ""){
+			swal("학기를 선택해주세요");
+			$("select[name='semester']").focus();
+			return false;
+		}else if ($("input[name='lecture_name']").val() == ""){
+			swal("강의이름을 입력해주세요");
+			$("input[name='lecture_name']").focus();
+			return false;
+		}else if ($("select[name='dept_code']").val() == ""){
+			swal("학과를 선택해주세요");
+			$("select[name='dept_code']").focus();
+			return false;
+		}else if ($("select[name='grade']").val() == ""){
+			swal("대상학년을 선택해주세요");
+			$("select[name='grade']").focus();
+			return false;
+		}else if ($("input[name='classroom']").val() == ""){
+			swal("강의실을 입력해주세요");
+			$("input[name='classroom']").focus();
+			return false;
+		}else if ($("input[name='lecture_time']").val() == ""){
+			swal("강의시간을 입력해주세요");
+			$("input[name='lecture_time']").focus();
+			return false;
+		}else if ($("select[name='division']").val() == ""){
+			swal("분반을 선택해주세요");
+			$("select[name='division']").focus();
+			return false;
+		}else if ($("input[name='credit']").val() == ""){
+			swal("학점을 입력해주세요");
+			$("input[name='credit']").focus();
+			return false;
+		}else if ($("select[name='section']").val() == ""){
+			swal("구분을 선택해주세요");
+			$("select[name='section']").focus();
+			return false;
+		}else if ($("input[name='student_full']").val() == ""){
+			swal("수강정원을 입력해주세요");
+			$("input[name='student_full']").focus();
+			return false;
+		}else if ($("input[name='remarks']").val() == ""){
+			swal("비고를 입력해주세요");
+			$("input[name='remarks']").focus();
+			return false;
+		}else{
+		
+		
+		var params = $('#profForm').serializeArray();
+		console.log(params);
+		$.ajax({
+			url : "/api/professorLecture/update",
+			type : "POST",
+			data : params,
+			dataType : 'text',
+			error : function(request, status, error) {
+				alert("error code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n" + "error:" + error);
+			},
+
+			success : function(data) {
+				swal("성공적으로 저장되었습니다.").then((value) => {
+					if(value){
+						document.location.href = "/professorLecture/lecture-list";
+					}
+				});
+				
+
+			}
+		})
+	}
+	}
+		/* function fn_update() {
 			var params = $('#profForm').serializeArray();
 			console.log(params);
 			$.ajax({
@@ -245,7 +320,7 @@
 				}
 			})
 
-		}
+		} */
 	</script>
 	<!--**********************************
         Scripts
