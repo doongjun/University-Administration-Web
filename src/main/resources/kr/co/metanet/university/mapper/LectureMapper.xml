@@ -3,11 +3,11 @@
 <mapper namespace="kr.co.metanet.university.mapper.LectureMapper">
 
 	<select id="getAllLecture" resultType="kr.co.metanet.university.domain.LectureVO">
-		SELECT * FROM LECTURE
+		SELECT * FROM LECTURE ORDER BY lecture_code ASC
 	</select>
 
 	<select id="getNowALLLecture" parameterType="hashMap" resultType="kr.co.metanet.university.domain.LectureVO">
-		SELECT * FROM LECTURE WHERE LECTURE_YEAR = #{lecture_year}, SEMESTER = #{semester}
+		SELECT * FROM LECTURE WHERE LECTURE_YEAR = #{lecture_year}, SEMESTER = #{semester} ORDER BY lecture_code ASC
 	</select>
 
 	<select id="getLecture" parameterType="int" resultType="kr.co.metanet.university.domain.LectureVO">
