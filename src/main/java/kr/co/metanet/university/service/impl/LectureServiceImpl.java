@@ -1,11 +1,13 @@
 package kr.co.metanet.university.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.metanet.university.domain.LectureVO;
+import kr.co.metanet.university.domain.StudentLectureVO;
 import kr.co.metanet.university.mapper.LectureMapper;
 import kr.co.metanet.university.service.LectureService;
 
@@ -44,6 +46,15 @@ public class LectureServiceImpl implements LectureService{
 	@Override
 	public int delete(int id) {
 		return mapper.delete(id);
+	}
+
+	@Override
+	public List<StudentLectureVO> getScoreList(int student_id, String lecture_year, String semester) {
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		map.put("student_id", student_id);
+		map.put("lecture_year", lecture_year);
+		map.put("semester", semester);
+		return mapper.getScoreList(map);
 	}
 
 
