@@ -67,7 +67,7 @@
 	<script>
 	var msg = "${message}";
 	if(msg === "loginError"){
-		swal("로그인 실패", "ID나 비밀번호를 확인하세요.","info");
+		swal("로그인 실패", "ID나 비밀번호를 확인하세요.","error");
 	}
 	
 	function fn_login() {
