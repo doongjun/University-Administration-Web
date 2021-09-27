@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import kr.co.metanet.university.domain.Member;
 import kr.co.metanet.university.domain.MemberAdmin;
 import kr.co.metanet.university.domain.MemberProfessor;
@@ -21,4 +23,7 @@ public interface MemberService extends UserDbService{
 	void updateProfessorInfo(HashMap<String, String> params);
 	void updateAdminInfo(HashMap<String, String> params);
 	void addMemberStudent(Map<String, Object> params);
+	void editMemberStudent(Map<String, Object> params);
+	void deleteMemberStudent(String code);
+	int getUserCount(String code);
 }

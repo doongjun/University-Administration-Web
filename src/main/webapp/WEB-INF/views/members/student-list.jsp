@@ -157,7 +157,7 @@
 											<div class="form-group row">
 												<label class="col-lg-5 col-form-label">학과 <span class="text-danger">*</span></label>
 												<div class="col-lg-10">
-													<select name="departmentCodeList" id="departmentCodeList" class="form-control">
+													<select name="departmentCode" id="departmentCodeList" class="form-control">
 														<option value="0" selected="">공통</option>
 														<option value="1">컴퓨터공학과</option>
 														<option value="2">경영학과</option>
@@ -187,8 +187,8 @@
 								</form>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-danger">Delete</button>
-								<button type="button" class="btn btn-primary">Save changes</button>
+								<button type="button" class="btn btn-danger" onclick="fn_delete();">Delete</button>
+								<button type="button" class="btn btn-primary" onclick="fn_revise();">Save changes</button>
 								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
 							</div>
@@ -338,11 +338,18 @@
         Scripts
     ***********************************-->
 	<script>
+		var msg = "${message}";
+		if (msg === "alreadyExist") {
+			alert("해당 학생이 이미 존재합니다.");
+		}
+		
+		var conditionCode;
 		$(document).ready(function() {
 			var table = $('#example2').DataTable();
 			
 			$('#example2 tbody').on('click', 'tr', function() {
 				var data = table.row(this).data();
+				conditionCode = data[0];
 				$.ajax({
 					url:"/members/student-info",
 					data: {'code' : data[0]},
@@ -385,12 +392,105 @@
 
 		});
 		
+		function fn_delete(){
+			$.ajax({
+				url : "/members/delete-student",
+				type : "POST",
+				data: {'code' : conditionCode},
+				error : function(request, status, error) {
+					alert("code:"+request.status+"\n"+"error:"+error);
+				},
+				success : function(data) {
+					swal("학생 삭제 완료","제육대학교 학생", "success").then((value) => {
+						if(value){
+							document.location.href="/members/student-list";
+						}
+				});
+				}
+			})
+		}
+		
+		function fn_revise(){
+			if($('#infoName').val() === ''){
+				alert("이름을 입력하세요.");
+				return;
+			}else if($('#infoCode').val() === ''){
+				alert("학번을 입력하세요.")
+				return;
+			}else if($('#infoPhone').val() === ''){
+				alert("핸드폰번호를 입력하세요.")
+				return;
+			}else if($('#infoEmail').val() === ''){
+				alert("이메일을 입력하세요.")
+				return;
+			}else if($('#infoBirthday').val() === ''){
+				alert("생년월일을 입력하세요")
+				return;
+			}else if($('#infoGrade').val() === ''){
+				alert("학년을 입력하세요.")
+				return;
+			}else if($('#infoAcademicStatus').val() === ''){
+				alert("학적상태를 입력하세요.")
+				return;
+			}else if($('#infoAdmissionDate').val() === 0){
+				alert("입학날짜를 입력하세요.")
+				return;
+			}else if($('#departmentCodeList').val() === 0){
+				alert("학과를 선택하세요.")
+				return;
+			}
+			
+			var params = $('#studentInfoForm').serializeArray();
+			params.push({name: 'conditionCode', value: conditionCode});
+			console.log(params);
+			
+			$.ajax({
+				url : "/members/edit-student",
+				type : "POST",
+				data : params,
+				error : function(request, status, error) {
+					alert("code:"+request.status+"\n"+"error:"+error);
+				},
+				success : function(data) {
+					swal("학생 수정 완료","제육대학교 학생", "success").then((value) => {
+						if(value){
+							document.location.href="/members/student-list";
+						}
+				});
+				}
+			})
+		}
+		
 		function fn_regist(){
 			if($('#name').val() === ''){
 				alert("이름을 입력하세요.");
 				return;
 			}else if($('#code').val() === ''){
-				alert("학번 입력하세요.")
+				alert("학번을 입력하세요.")
+				return;
+			}else if($('#password').val() === ''){
+				alert("비밀번호를 입력하세요.")
+				return;
+			}else if($('#phone').val() === ''){
+				alert("핸드폰번호를 입력하세요.")
+				return;
+			}else if($('#email').val() === ''){
+				alert("이메일을 입력하세요.")
+				return;
+			}else if($('#grade').val() === ''){
+				alert("학년을 입력하세요.")
+				return;
+			}else if($('#academicStatus').val() === ''){
+				alert("학적상태를 입력하세요.")
+				return;
+			}else if($('#admissionDate').val() === ''){
+				alert("입학날짜를 입력하세요.")
+				return;
+			}else if($('#departmentCode').val() === 0){
+				alert("학과를 선택하세요.")
+				return;
+			}else if($('#birthday').val() === ''){
+				alert("생년월일을 입력하세요.")
 				return;
 			}
 			
