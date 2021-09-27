@@ -118,6 +118,7 @@
 							</div>
 
 							<form id="viewForm" action="" method="get">
+							<input type="hidden" name="b_writer_code" value="${member.id}" />
 								<input type="hidden" id="b_no" name="b_no" value="${vo.b_no}">
 							</form>
 <!-- onclick="location.href='/board/boardlist'"
