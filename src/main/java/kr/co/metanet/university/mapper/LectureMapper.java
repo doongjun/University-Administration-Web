@@ -17,5 +17,7 @@ public interface LectureMapper {
 	int update(LectureVO vo);
 	int delete(int id);
 	List<StudentLectureVO> getScoreList(HashMap<String,Object> map);
+	List<LectureVO> getPrevLectureList(HashMap<String,Object> map);
+	List<LectureVO> getSelectedPrevLectureList(HashMap<String,Object> map);
 	
 }
