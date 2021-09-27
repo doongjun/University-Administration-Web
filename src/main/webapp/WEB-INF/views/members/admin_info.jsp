@@ -156,16 +156,16 @@
 	<script type="text/javascript">
 		function fn_revise() {
 			if($('#phone').val() === ''){
-				alert("핸드폰 번호를 입력하세요.");
+				swal("핸드폰 번호를 입력하세요.");
 				return;
 			}else if($('#email').val() === ''){
-				alert("이메일을 입력하세요.")
+				swal("이메일을 입력하세요.")
 				return;
 			}else if($('#division').val() === ''){
-				alert("부서를 입력하세요.");
+				swal("부서를 입력하세요.");
 				return;
 			}else if($('#position').val() === ''){
-				alert("직급을 입력하세요.");
+				swal("직급을 입력하세요.");
 				return;
 			}
     		

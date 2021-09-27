@@ -61,8 +61,8 @@
 								<h4 class="card-title">Form</h4>
 							</div>
 							<div class="card-body">
-								<div class="form-validation">
-									<form class="form-valide" action="/members/pw-change" method="post" name="pwform" onsubmit="return fn_submit();">
+								<div class="form-validation"><!--  onsubmit="return fn_submit();"-->
+									<form class="form-valide" action="/members/pw-change" method="post" name="pwform" >
 										<div class="row">
 											<div class="col-xl-6">
 												<div class="form-group row">
@@ -143,12 +143,35 @@
 	<script src="../resources/js/plugins-init/jquery.validate-init.js"></script>
 
 	<script>
-		function fn_submit(){
-			if($('#curPassword').val() === ''){
-				alert("현재 비밀번호를 입력하세요.");
-				return false;
+	
+	$("button[type='submit']").click(function(e){
+		e.preventDefault();
+		
+			let curPassword=$("input[name='curPassword']").val();
+			let valpassword=$("input[name='val-password']").val();
+			let valconfirmpassword=$("input[name='val-confirm-password']").val();
+		if(curPassword==""){
+			swal("현재 비밀번호를 입력하세요.");
+			$("input[name='curPassword']").focus();
+			return;
 			}
-		}
+		if(valpassword==""){
+			swal("새 비밀번호를 입력하세요.");
+			$("input[name='val-password']").focus();
+			return;
+			}
+		if(valconfirmpassword==""){
+			swal("새 비밀번호를 확인하세요.");
+			$("input[name='val-password']").focus();
+			return;
+			}
+			
+		var form=$(".form-valide");
+			form.submit();
+		})
+			
+			
+		
 		
 	
 		var msg = "${message}";
