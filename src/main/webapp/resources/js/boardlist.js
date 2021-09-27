@@ -70,12 +70,12 @@ $(function(){
       //keyword 가져오기
       var keyword = $("input[name='keyword']").val();
       
-      if(type===''){
-         alert("검색 기준을 확인하세요");
+      if(sort===''){
+         swal("검색 기준을 확인하세요");
          $("select[name='sort']").focus();
          return false;
       }else if(keyword===''){
-         alert("검색어를 확인하세요");
+         swal("검색어를 확인하세요");
          $("input[name='keyword']").focus();
          return false;
       }

@@ -101,7 +101,7 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form id="studentForm" class="form-valide">
+								<form id="studentInfoForm" class="form-valide">
 									<div class="row">
 										<div class="col-xl-6">
 											<div class="form-group row">
@@ -131,15 +131,15 @@
 											<div class="form-group row">
 												<label class="col-lg-5 col-form-label">생년월일 <span class="text-danger">*</span></label>
 												<div class="col-lg-10">
-													<input type="text" class="form-control" id="infoBirthday" name="birthday">
+													<input type="date" class="form-control" id="infoBirthday" name="birthday">
 												</div>
-											</div>	
+											</div>
 										</div>
 										<div class="col-xl-6">
 											<div class="form-group row">
 												<label class="col-lg-5 col-form-label">학년 <span class="text-danger">*</span></label>
 												<div class="col-lg-10">
-													<input type="text" class="form-control" id="infoGrade" name="grade">
+													<input type="number" min="1" max="4" class="form-control" id="infoGrade" name="grade">
 												</div>
 											</div>
 											<div class="form-group row">
@@ -151,15 +151,37 @@
 											<div class="form-group row">
 												<label class="col-lg-5 col-form-label">입학날짜 <span class="text-danger">*</span></label>
 												<div class="col-lg-10">
-													<input type="text" class="form-control" id="infoAdmissionDate" name="admissionDate">
+													<input type="date" class="form-control" id="infoAdmissionDate" name="admissionDate">
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-lg-5 col-form-label">학과 <span class="text-danger">*</span></label>
 												<div class="col-lg-10">
-													<input type="text" class="form-control" id="infoDepartmentName" name="departmentName">
+													<select name="departmentCodeList" id="departmentCodeList" class="form-control">
+														<option value="0" selected="">공통</option>
+														<option value="1">컴퓨터공학과</option>
+														<option value="2">경영학과</option>
+														<option value="3">경제학과</option>
+														<option value="4">관광학과</option>
+														<option value="5">광고홍보학과</option>
+														<option value="6">법학과</option>
+														<option value="7">사회학과</option>
+														<option value="8">건축학과</option>
+														<option value="9">기계공학과</option>
+														<option value="10">화학공학과</option>
+														<option value="11">전기공학과</option>
+														<option value="12">전자공학과</option>
+														<option value="13">정보통신학과</option>
+														<option value="14">조형학과</option>
+														<option value="15">산업디자인학과</option>
+														<option value="16">국악과</option>
+														<option value="17">연극영화과</option>
+														<option value="18">국어국문학과</option>
+														<option value="19">영어영문학과</option>
+														<option value="20">심리학과</option>
+													</select>
 												</div>
-											</div>							
+											</div>
 										</div>
 									</div>
 								</form>
@@ -168,12 +190,12 @@
 								<button type="button" class="btn btn-danger">Delete</button>
 								<button type="button" class="btn btn-primary">Save changes</button>
 								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-								
+
 							</div>
 						</div>
 					</div>
 				</div>
-				
+
 				<!-- 학생 추가 Modal -->
 				<div class="modal fade" id="studentAddModal">
 					<div class="modal-dialog modal-dialog-centered" role="document">
@@ -184,82 +206,103 @@
 									<span>&times;</span>
 								</button>
 							</div>
-							<div class="modal-body">
-								<form id="studentForm" class="form-valide">
+
+							<form id="studentAddForm" class="form-valide">
+								<div class="modal-body">
 									<div class="row">
 										<div class="col-xl-6">
 											<div class="form-group row">
 												<label class="col-lg-5 col-form-label">이름 <span class="text-danger">*</span></label>
 												<div class="col-lg-10">
-													<input type="text" class="form-control" id="addName" name="name">
+													<input type="text" class="form-control" id="name" name="name">
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-lg-5 col-form-label">학번 <span class="text-danger">*</span></label>
 												<div class="col-lg-10">
-													<input type="text" class="form-control" id="addCode" name="code">
+													<input type="text" class="form-control" id="code" name="code">
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-lg-5 col-form-label">비밀번호 <span class="text-danger">*</span></label>
 												<div class="col-lg-10">
-													<input type="password" class="form-control" id="addPassword" name="password">
+													<input type="password" class="form-control" id="password" name="password">
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-lg-5 col-form-label">Phone <span class="text-danger">*</span></label>
 												<div class="col-lg-10">
-													<input type="text" class="form-control" id="addPhone" name="phone">
+													<input type="text" class="form-control" id="phone" name="phone">
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-lg-5 col-form-label">Email <span class="text-danger">*</span></label>
 												<div class="col-lg-10">
-													<input type="text" class="form-control" id="addEmail" name="email">
+													<input type="text" class="form-control" id="email" name="email">
 												</div>
 											</div>
-												
 										</div>
 										<div class="col-xl-6">
 											<div class="form-group row">
 												<label class="col-lg-5 col-form-label">학년 <span class="text-danger">*</span></label>
 												<div class="col-lg-10">
-													<input type="text" class="form-control" id="addGrade" name="grade">
+													<input type="number" min="0" max="4" class="form-control" id="grade" name="grade">
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-lg-5 col-form-label">학적상태 <span class="text-danger">*</span></label>
 												<div class="col-lg-10">
-													<input type="text" class="form-control" id="addAcademicStatus" name="academicStatus">
+													<input type="text" class="form-control" id="academicStatus" name="academicStatus">
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-lg-5 col-form-label">입학날짜 <span class="text-danger">*</span></label>
 												<div class="col-lg-10">
-													<input type="text" class="form-control" id="addAdmissionDate" name="admissionDate">
+													<input type="date" class="form-control" id="admissionDate" name="admissionDate">
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-lg-5 col-form-label">학과 <span class="text-danger">*</span></label>
 												<div class="col-lg-10">
-													<input type="text" class="form-control" id="addDepartmentName" name="departmentName">
+													<select name="departmentCode" id="inputState" class="form-control">
+														<option value="0" selected="">공통</option>
+														<option value="1">컴퓨터공학과</option>
+														<option value="2">경영학과</option>
+														<option value="3">경제학과</option>
+														<option value="4">관광학과</option>
+														<option value="5">광고홍보학과</option>
+														<option value="6">법학과</option>
+														<option value="7">사회학과</option>
+														<option value="8">건축학과</option>
+														<option value="9">기계공학과</option>
+														<option value="10">화학공학과</option>
+														<option value="11">전기공학과</option>
+														<option value="12">전자공학과</option>
+														<option value="13">정보통신학과</option>
+														<option value="14">조형학과</option>
+														<option value="15">산업디자인학과</option>
+														<option value="16">국악과</option>
+														<option value="17">연극영화과</option>
+														<option value="18">국어국문학과</option>
+														<option value="19">영어영문학과</option>
+														<option value="20">심리학과</option>
+													</select>
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-lg-5 col-form-label">생년월일 <span class="text-danger">*</span></label>
 												<div class="col-lg-10">
-													<input type="text" class="form-control" id="addBirthday" name="birthday">
+													<input type="date" class="form-control" id="birthday" name="birthday">
 												</div>
-											</div>							
+											</div>
 										</div>
 									</div>
-								</form>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-primary">Add</button>
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-								
-							</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary" onclick="fn_regist();">Add</button>
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -310,7 +353,7 @@
 					},
 					success:function(data){
 						$('#studentInfoModal').modal('show');
-						console.log(data);
+
 						$('#infoName').val(data.name);
 						$('#infoCode').val(data.code);
 						$('#infoPhone').val(data.phone);
@@ -319,7 +362,17 @@
 						$('#infoGrade').val(data.grade);
 						$('#infoAcademicStatus').val(data.academicStatus);
 						$('#infoAdmissionDate').val(data.admissionDate);
-						$('#infoDepartmentName').val(data.departmentName);
+						//$('#infoDepartmentName').val(data.departmentName);
+						
+						var departmentList = $("#departmentCodeList").find('option').map(function() {
+							return $(this).text();
+							}).get();
+
+						for(var i=0; i<21; i++){
+							if(departmentList[i] === data.departmentName){
+								$("#departmentCodeList").val(i).prop("selected", true);
+							}
+						}
 					}
 				})
 				
@@ -331,6 +384,35 @@
 			});
 
 		});
+		
+		function fn_regist(){
+			if($('#name').val() === ''){
+				alert("이름을 입력하세요.");
+				return;
+			}else if($('#code').val() === ''){
+				alert("학번 입력하세요.")
+				return;
+			}
+			
+			var params = $('#studentAddForm').serializeArray();
+			console.log(params);
+			
+			$.ajax({
+				url : "/members/add-student",
+				type : "POST",
+				data : params,
+				error : function(request, status, error) {
+					alert("code:"+request.status+"\n"+"error:"+error);
+				},
+				success : function(data) {
+					swal("학생 추가 완료","제육대학교 학생", "success").then((value) => {
+						if(value){
+							document.location.href="/members/student-list";
+						}
+				});
+				}
+			})
+		}
 	</script>
 
 	<!-- Required vendors -->
@@ -340,6 +422,8 @@
 
 	<!-- Datatable -->
 	<script src="../resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
+
+	<script type="text/javascript" src="../resources/js/jquery.serializejson.js"></script>
 
 </body>
 
