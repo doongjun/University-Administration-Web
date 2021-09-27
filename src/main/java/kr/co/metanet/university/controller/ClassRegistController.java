@@ -12,6 +12,7 @@ import kr.co.metanet.university.domain.Criteria;
 import kr.co.metanet.university.domain.LectureVO;
 import kr.co.metanet.university.domain.PageVO;
 import kr.co.metanet.university.service.ClassRegisterService;
+import kr.co.metanet.university.util.Utility;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -26,6 +27,9 @@ public class ClassRegistController {
 	public String registGet(Criteria cri,Model model) {
 		log.info("수강신청 페이지 요청");
 		
+		int year = Utility.getYear();
+		String semester = Utility.getSemester();
+		
 		List<LectureVO> vo = service.getLectureList(cri);
 		
 		int total = service.LectureListTotal(cri);//service.totalCnt(eno, workDay);
@@ -33,6 +37,8 @@ public class ClassRegistController {
 		
 		model.addAttribute("pageVo", new PageVO(cri, total));
 		model.addAttribute("vo",vo);
+		model.addAttribute("year",year);
+		model.addAttribute("semester",semester);
 		
 		return "classRegist/regist";
 	}
@@ -44,6 +50,8 @@ public class ClassRegistController {
 		List<LectureVO> vo = null;
 		
 		int total = 0;
+		int year = Utility.getYear();
+		String semester = Utility.getSemester();
 		
 		if(cri.getFlag().equals("1")) {
 			total = service.searchList1Total(cri);
@@ -61,6 +69,8 @@ public class ClassRegistController {
 		
 		model.addAttribute("pageVo", new PageVO(cri, total));
 		model.addAttribute("vo",vo);
+		model.addAttribute("year",year);
+		model.addAttribute("semester",semester);
 		
 		return "classRegist/regist";
 	}
