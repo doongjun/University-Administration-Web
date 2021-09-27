@@ -2,11 +2,13 @@ package kr.co.metanet.university.service;
 
 import java.util.List;
 
+
+import kr.co.metanet.university.domain.Criteria;
 import kr.co.metanet.university.domain.LectureVO;
 import kr.co.metanet.university.domain.StudentLectureVO;
 
 public interface LectureService {
-	List<LectureVO> getAllLecture();
+	List<LectureVO> getAllLecture(Criteria cri);
 	LectureVO getLecture(int id);
 	String getMaxCode();
 	int create(LectureVO vo);

@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.metanet.university.domain.Criteria;
 import kr.co.metanet.university.domain.LectureVO;
 import kr.co.metanet.university.domain.MemberStudent;
+import kr.co.metanet.university.domain.PageVO;
 import kr.co.metanet.university.domain.StudentLectureVO;
 import kr.co.metanet.university.domain.Tuition;
 import kr.co.metanet.university.service.LectureService;
@@ -56,12 +58,28 @@ public class LectureController {
 		model.addAttribute("vo", list);
 		return "/lecture/prevLecture";
 	}
-	
-	//모든 강의/강의계획서 조회
-	@GetMapping("/lecture-list")
-	public String list(Principal principal, Model model) {
-		List<LectureVO> list = service.getAllLecture();
-		model.addAttribute("vo",list);
+
+	// 선택수강내역조회
+	@GetMapping("/selected-prevLecture")
+	public String selectedPrevLecture(@RequestParam int student_id, @RequestParam String lecture_year,
+			@RequestParam String semester, Principal principal, HttpSession session, Model model) {
+		String loginCode = principal.getName();
+		MemberStudent student = memberService.getStudentByCode(loginCode);
+		session.setAttribute("student_id", student.getId());
+		
+		List<LectureVO> list = service.getSelectedPrevLectureList(semester,lecture_year,student.getId());
+		model.addAttribute("vo", list);
+		return "/lecture/prevLecture";
+	}
+
+	// 모든 강의/강의계획서 조회
+	@GetMapping("/syllabus")
+	public String list(Principal principal, Criteria cri, Model model) {
+		int total = 12;
+		
+		List<LectureVO> list = service.getAllLecture(cri);
+		model.addAttribute("vo", list);
+		model.addAttribute("pageVo", new PageVO(cri, total));
 		
 		// 강의계획표 부분
 		String code = principal.getName();
@@ -81,27 +99,6 @@ public class LectureController {
 		model.addAttribute("fileName", fileName);
 		model.addAttribute("saveFilePath", sb.toString());
 		
-		return "/lecture/lecture-list";
-	}
-
-	// 선택수강내역조회
-	@GetMapping("/selected-prevLecture")
-	public String selectedPrevLecture(@RequestParam int student_id, @RequestParam String lecture_year,
-			@RequestParam String semester, Principal principal, HttpSession session, Model model) {
-		String loginCode = principal.getName();
-		MemberStudent student = memberService.getStudentByCode(loginCode);
-		session.setAttribute("student_id", student.getId());
-		
-		List<LectureVO> list = service.getSelectedPrevLectureList(semester,lecture_year,student.getId());
-		model.addAttribute("vo", list);
-		return "/lecture/prevLecture";
-	}
-
-	// 모든 강의/강의계획서 조회
-	@GetMapping("/syllabus")
-	public String list(Model model) {
-		List<LectureVO> list = service.getAllLecture();
-		model.addAttribute("vo", list);
 		return "/lecture/syllabus";
 	}
 
