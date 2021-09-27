@@ -57,5 +57,26 @@ public class LectureServiceImpl implements LectureService{
 		return mapper.getScoreList(map);
 	}
 
+	@Override
+	public List<LectureVO> getPrevLectureList(String semester, String this_year, String last_year, int student_id) {
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		map.put("semester", semester);
+		map.put("this_year", this_year);
+		map.put("last_year", last_year);
+		map.put("student_id", student_id);
+		return mapper.getPrevLectureList(map);
+	}
+
+	@Override
+	public List<LectureVO> getSelectedPrevLectureList(String semester, String lecture_year,
+			int student_id) {
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		map.put("semester", semester);
+		map.put("lecture_year", lecture_year);
+		map.put("student_id", student_id);
+		return mapper.getSelectedPrevLectureList(map);
+	}
+
+
 
 }
