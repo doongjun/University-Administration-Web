@@ -221,6 +221,7 @@
 		//List버튼 클릭시 get /board/boardlist
 		$("#list_btn").click(function() {
 			viewForm.find("input[name='b_no']").remove();
+			viewForm.find("input[name='b_writer_code']").remove();
 			viewForm.find("input[name='b_view']").remove();
 			viewForm.attr('action', '/board/boardlist');
 			viewForm.submit();

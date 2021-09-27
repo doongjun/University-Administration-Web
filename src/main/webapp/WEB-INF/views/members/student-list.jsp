@@ -463,7 +463,7 @@
 		
 		function fn_regist(){
 			if($('#name').val() === ''){
-				alert("이름을 입력하세요.");
+				swal("이름을 입력하세요.");
 				return;
 			}else if($('#code').val() === ''){
 				alert("학번을 입력하세요.")
@@ -502,7 +502,7 @@
 				type : "POST",
 				data : params,
 				error : function(request, status, error) {
-					alert("code:"+request.status+"\n"+"error:"+error);
+					swal("code:"+request.status+"\n"+"error:"+error);
 				},
 				success : function(data) {
 					swal("학생 추가 완료","제육대학교 학생", "success").then((value) => {
