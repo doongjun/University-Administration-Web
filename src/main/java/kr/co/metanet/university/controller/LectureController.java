@@ -63,11 +63,11 @@ public class LectureController {
 	}
 
 	// 모든 강의/강의계획서 조회
-	@GetMapping("/lecture-list")
+	@GetMapping("/syllabus")
 	public String list(Model model) {
 		List<LectureVO> list = service.getAllLecture();
 		model.addAttribute("vo", list);
-		return "/lecture/lecture-list";
+		return "/lecture/syllabus";
 	}
 
 	// 성적조회페이지

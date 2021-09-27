@@ -244,7 +244,72 @@
     ***********************************-->
 
 	<script type="text/javascript">
+	
 		function fn_create() {
+
+			//validation
+			if ($("input[name='lecture_code']").val() == ""){
+				swal("강의번호를 입력해주세요");
+				$("input[name='lecture_code']").focus();
+				return false;
+			}
+			if ($("select[name='semester']").val() == ""){
+				swal("학기를 선택해주세요");
+				$("select[name='semester']").focus();
+				return false;
+			}
+			if ($("input[name='lecture_name']").val() == ""){
+				swal("강의이름을 입력해주세요");
+				$("input[name='lecture_name']").focus();
+				return false;
+			}
+			if ($("select[name='dept_code']").val() == ""){
+				swal("학과를 선택해주세요");
+				$("select[name='dept_code']").focus();
+				return false;
+			}
+			if ($("select[name='grade']").val() == ""){
+				swal("대상학년을 선택해주세요");
+				$("select[name='grade']").focus();
+				return false;
+			}
+			if ($("input[name='classroom']").val() == ""){
+				swal("강의실을 입력해주세요");
+				$("input[name='classroom']").focus();
+				return false;
+			}
+			if ($("input[name='lecture_time']").val() == ""){
+				swal("강의시간을 입력해주세요");
+				$("input[name='lecture_time']").focus();
+				return false;
+			}
+			if ($("select[name='division']").val() == ""){
+				swal("분반을 선택해주세요");
+				$("select[name='division']").focus();
+				return;
+			}
+			if ($("input[name='credit']").val() == ""){
+				swal("학점을 입력해주세요");
+				$("input[name='credit']").focus();
+				return;
+			}
+			if ($("select[name='section']").val() == ""){
+				swal("구분을 선택해주세요");
+				$("select[name='section']").focus();
+				return;
+			}
+			if ($("input[name='student_full']").val() == ""){
+				swal("수강정원을 입력해주세요");
+				$("input[name='student_full']").focus();
+				return;
+			}
+			if ($("input[name='remarks']").val() == ""){
+				swal("비고를 입력해주세요");
+				$("input[name='remarks']").focus();
+				return false;
+			}
+			
+			
 			var params = $('#profForm').serializeArray();
 			console.log(params);
 			$.ajax({
@@ -258,12 +323,11 @@
 				},
 
 				success : function(data) {
-					alert("성공적으로 저장되었습니다.");
+					swal("성공적으로 저장되었습니다.");
 					location.href = "/professorLecture/lecture-list";
 
 				}
 			})
-
 		}
 	</script>
 	<!--**********************************

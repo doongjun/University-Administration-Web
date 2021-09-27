@@ -29,7 +29,7 @@
 	                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
 	                                class="icon icon-app-store"></i><span class="nav-text">강의 관리</span></a>
 	                        <ul aria-expanded="false">
-	                            <li><a href="/lecture/lecture-list">강의계획서조회</a></li>
+	                            <li><a href="/lecture/syllabus">강의계획서조회</a></li>
 	                            <li><a href="/lecture/prevLecture">수강내역조회</a>
 	                            </li>
 	                            <li><a href="/lecture/score-list">성적조회</a></li>
