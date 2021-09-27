@@ -14,6 +14,7 @@ public class BoardCriteriaVO {
 	
 	private String sort;
 	private String keyword;
+	//private int b_views;
 	
 	public BoardCriteriaVO() {
 		this(1);

@@ -121,8 +121,8 @@
 
 
 
-									<input type="hidden" name="b_writer_code" value="${admin.id}" />
-
+									<input type="hidden" name="b_writer_code" value="${member.id}" />
+									<input type="hidden" name="b_no" value="${vo.b_no}"/>
 									<!-- 버튼추가 -->
 									<button type="submit" class="btn btn-primary" id="modify_button">등록</button>
 								</div>
@@ -132,7 +132,7 @@
 						</div>
 					</div>
 				</div>
-				<script src="/resources/js/boardwrite.js"></script>
+				<script src="/resources/js/boardmodify.js"></script>
 				<script>
 					$(document).ready(function() {
 
