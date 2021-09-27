@@ -28,11 +28,11 @@ public class LectureRESTController {
 		System.out.println("LectureContorller test ȣ��");
 	}
 
-	@RequestMapping(value= {"/get-lecture"}, method=RequestMethod.GET)
-	public List<LectureVO> getLectureTest(){
-		List<LectureVO> list = service.getAllLecture();
-		return list; 
-	}
+	/*
+	 * @RequestMapping(value= {"/get-lecture"}, method=RequestMethod.GET) public
+	 * List<LectureVO> getLectureTest(){ List<LectureVO> list =
+	 * service.getAllLecture(cri); return list; }
+	 */
 	
 	@GetMapping("/get-scorelist/{student_id}/{lecture_year}/{semester}")
 	public ResponseEntity<List<StudentLectureVO>> getScoreList(@PathVariable int student_id, @PathVariable String lecture_year, @PathVariable String semester){

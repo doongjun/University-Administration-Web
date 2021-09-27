@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.metanet.university.domain.Criteria;
 import kr.co.metanet.university.domain.LectureVO;
 import kr.co.metanet.university.domain.StudentLectureVO;
 import kr.co.metanet.university.mapper.LectureMapper;
@@ -19,8 +20,8 @@ public class LectureServiceImpl implements LectureService{
 	private LectureMapper mapper;
 	
 	@Override
-	public List<LectureVO> getAllLecture() {
-		return mapper.getAllLecture();
+	public List<LectureVO> getAllLecture(Criteria cri) {
+		return mapper.getAllLecture(cri);
 	}
 	
 	@Override
