@@ -97,7 +97,7 @@
 									<div class="row justify-content-md-center">
 										<div class="col_c" style="margin-bottom: 30px">
 											<div class="input-group">
-												<textarea class="ckeditor" id="b_content" name="b_content"style="width: 1000px; height: 500px"></textarea>
+												<textarea class="ckeditor" id="b_content" name="b_content"style="width: 1500px; height: 500px"></textarea>
 												<script type="text/javascript">
 													$(function() {
 													CKEDITOR.replace("description",{
@@ -107,7 +107,7 @@
 														CKEDITOR
 																.replace(
 																	'b_content',
-								{width:'1800px',height:'500px',
+								{
 									customConfig : '../resources/ckeditor/configg.js'
 								});
 													});
@@ -144,9 +144,7 @@
 				<script src="/resources/js/boardwrite.js"></script>
 				<script>
 					$(document).ready(function() {
-
 						let result = '<c:out value="${result}"/>';
-
 					});
 				</script>
 
@@ -203,7 +201,6 @@
 $(document).ready(
 		function() {
 			var fileTarget = $('#input-tuition');
-
 			fileTarget.on('change', function() {
 				if (window.FileReader) {
 					var fileName = $(this)[0].files[0].name;
@@ -211,10 +208,8 @@ $(document).ready(
 					var fileName = $(this).val().split('/').pop()
 							.split('\\').pop();
 				}
-
 				$('#label-tuition').text(fileName);
 			})
-
 			var table = $('#example2').DataTable();
 		})
 </script>

@@ -82,7 +82,7 @@
 							</div>
 
 							<!-- ckeditor 추가부분 -->
-							<div class="row justify-content-md-center" style="">
+							<div class="row justify-content-md-center" style="color:black">
 								<div class="col_c" style="margin-bottom: 30px">
 									<div class="input-group">
 										<textarea class="form-control" id="b_content" 
