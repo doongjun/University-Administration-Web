@@ -75,6 +75,7 @@
 								</div>
 							</div>
 							<div class="card-body">
+							<div class="row-sm-8" style="overflow-y:scroll; width:100%; height:650px;">
 								<form id="profForm" class="form-valide">
 								<input id="lecture_id" name="lecture_id" type="hidden" value="${lecture_id}">
 								<div class="table-responsive">
@@ -143,7 +144,9 @@
 										</tbody>
 									</table>
 								</div>
+								
 									</form>
+									</div>
 							</div>
 						</div>
 					</div>

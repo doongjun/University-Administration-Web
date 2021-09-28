@@ -91,7 +91,6 @@
 				<div class="row">
 					<div class="col-12">
 							<div class="card-body">
-								<form id="profForm" class="form-valide">
 								<input id="student_id" name="student_id" type="hidden" value="${student_id}">
 								<div class="table-responsive">
 									<table class="table table-bordered table-scroll">
@@ -112,7 +111,7 @@
 											</tr>
 										</thead>
 										<tbody style="color: black; text-align: center;">
-											<!-- 게시판 리스트 반복문 -->
+											<!-- 리스트 반복문 -->
 											<c:forEach var="vo" items="${vo}" varStatus="cnt">
 												<tr>
 													<td>${vo.lecture_code}</td>
@@ -131,7 +130,6 @@
 										</tbody>
 									</table>
 								</div>
-									</form>
 							</div>
 						</div>
 					</div>
