@@ -25,6 +25,11 @@ public class LectureServiceImpl implements LectureService{
 	}
 	
 	@Override
+	public List<LectureVO> getSearchLecture(Criteria cri) {
+		return mapper.getSearchLecture(cri);
+	}
+	
+	@Override
 	public String getMaxCode() {
 		return mapper.getMaxCode();
 	}
@@ -78,6 +83,14 @@ public class LectureServiceImpl implements LectureService{
 		return mapper.getSelectedPrevLectureList(map);
 	}
 
-
+	@Override
+	public int allLectureTotal(Criteria cri) {
+		return mapper.allLectureTotal(cri);
+	}
+	
+	@Override
+	public int searchLectureTotal(Criteria cri) {
+		return mapper.searchLectureTotal(cri);
+	}
 
 }
