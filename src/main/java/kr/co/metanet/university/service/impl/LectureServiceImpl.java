@@ -83,6 +83,14 @@ public class LectureServiceImpl implements LectureService{
 		return mapper.getSelectedPrevLectureList(map);
 	}
 
-
+	@Override
+	public int allLectureTotal(Criteria cri) {
+		return mapper.allLectureTotal(cri);
+	}
+	
+	@Override
+	public int searchLectureTotal(Criteria cri) {
+		return mapper.searchLectureTotal(cri);
+	}
 
 }

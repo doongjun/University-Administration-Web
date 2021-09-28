@@ -75,7 +75,7 @@ public class LectureController {
 	// 모든 강의/강의계획서 조회
 	@GetMapping("/syllabus")
 	public String list(Principal principal, Criteria cri, Model model) {
-		int total = 12;
+		int total = service.allLectureTotal(cri);
 		
 		List<LectureVO> list = service.getAllLecture(cri);
 		model.addAttribute("vo", list);
@@ -87,7 +87,7 @@ public class LectureController {
 	// 강의계획서 검색
 	@GetMapping("/search")
 	public String search(Principal principal, Criteria cri, Model model) {
-		int total = 12;
+		int total = service.searchLectureTotal(cri);
 		
 		List<LectureVO> list = service.getSearchLecture(cri);
 		model.addAttribute("vo", list);
