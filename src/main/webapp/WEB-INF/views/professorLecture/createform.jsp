@@ -309,7 +309,7 @@
 								+ request.responseText + "\n" + "error:" + error);
 					},
 					success : function(data) {
-						swal("성공적으로 저장되었습니다.").then((value) => {
+						swal("성공적으로 저장되었습니다.", "" ,"success").then((value) => {
 							if(value){
 								document.location.href = "/professorLecture/lecture-list";
 							}
