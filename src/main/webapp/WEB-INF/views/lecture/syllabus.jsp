@@ -58,23 +58,26 @@
 						</ol>
 					</div>
 				</div>
-
-				<!-- 검색 -->
 				
-				<div class="row page-titles mx-0">
-					<div class="justify-content-start p-md-0" style="float:left;">
-					<form class="form-inline">
-						<label>학수번호&nbsp;&nbsp;</label> <input name="lecture-code" type="text"
-							class="form-control" style="margin-right:10px;">
-						<label>과목명&nbsp;&nbsp;</label> <input name="lecture-name" type="text"
-							class="form-control" style="margin-right:10px;">
-						<button type="submit" class="btn btn-primary mb-2" style="margin-top:7px;">검색</button>
-						
-						
-					</form>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+					   		<div class="card-body">
+					   			<div style="float:left; margin-top: 7px;">검색</div>
+								<div class="col-lg-2" style="float:left;">
+				        			<select name="kind" id="kind" class="form-control" >
+					                	<option value="강의번호">강의번호</option>
+					                	<option value="교과명">교과명</option>
+					             	</select>
+				        		</div>
+				        		<div class="col-lg-2" style="float:left; margin-left: -20px">
+				        			<input type="text" name="searchKeyword" id="searchKeyword" class="form-control" placeholder="검색어를 입력하세요." value=""/>
+				        		</div>
+				        		<button name="searchBtn1" id="searchBtn1" type="button" class="btn btn-primary" style="float: left;">검색</button>
+					   		</div>
+						</div>
 					</div>
 				</div>
-				
 				
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12">
@@ -111,7 +114,11 @@
 												</tr>
 											</c:forEach>
 										</tbody>
+										
 									</table>
+									<c:if test="${empty vo}">
+												  	<div style="text-align: center; margin-top: 10px;">검색결과가 없습니다</div>
+									</c:if>
 								</div>
 								<div align="center">
 									<iframe src="../resources/upload/lecture_000001.pdf" id="syllFrame" style="width:1000px;height:700px;display:none;"></iframe>
@@ -187,6 +194,9 @@
 	<form action="/lecture/syllabus" method="get" id="actionForm">
 		<input type="hidden" name="pageNum" value="${pageVo.cri.pageNum}" />
 		<input type="hidden" name="amount" value="${pageVo.cri.amount}" />
+		
+		<input type="hidden" name="kind" value="${pageVo.cri.kind}" />
+		<input type="hidden" name="keyword" value="${pageVo.cri.keyword}" />
 	</form>	
 	
 	<!--**********************************
@@ -235,6 +245,27 @@
     		
     		//actionForm 보내기 
     		actionForm.submit();
+    	});
+    	
+    	// 검색
+    	$("#searchBtn1").click(function(e){
+    		e.preventDefault(); //a 속성 중지
+    		
+    		if($("#searchKeyword").val() == "") {
+    			swal("검색어를 입력해주세요.","", "error");
+    		} else {
+    			actionForm.attr("action", "/lecture/search");
+        		
+        		//actionForm 안에 pageNum의 값을 사용자가 선택한 번호로 변경
+        		actionForm.find("input[name='pageNum']").val(1);
+
+        		actionForm.find("input[name='kind']").val($("#kind option:selected").val());
+        		actionForm.find("input[name='keyword']").val($("#searchKeyword").val());
+        		
+        		//actionForm 보내기 
+        		actionForm.submit();
+    		}
+    		
     	});
 	</script>
 </body>

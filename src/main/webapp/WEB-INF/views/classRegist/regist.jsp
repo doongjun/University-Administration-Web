@@ -162,6 +162,9 @@
 											</c:forEach>
 										</tbody>
 									</table>
+									<c:if test="${empty vo}">
+												  	<div style="text-align: center; margin-top: 10px;">검색결과가 없습니다</div>
+									</c:if>
                                 </div>
                             </div>
                         </div>

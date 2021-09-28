@@ -25,6 +25,11 @@ public class LectureServiceImpl implements LectureService{
 	}
 	
 	@Override
+	public List<LectureVO> getSearchLecture(Criteria cri) {
+		return mapper.getSearchLecture(cri);
+	}
+	
+	@Override
 	public String getMaxCode() {
 		return mapper.getMaxCode();
 	}
