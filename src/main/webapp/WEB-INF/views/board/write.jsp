@@ -101,9 +101,13 @@
 												<textarea class="ckeditor" id="b_content" name="b_content"></textarea>
 												<script type="text/javascript">
 													$(function() {
+													CKEDITOR.replace("description",{
+													    filebrowserUploadUrl : "board/imageUpload.do"
+													    //filebrowserUploadUrl : "${pageContext.request.contextPath}/adm/fileupload.do"
+													});
 														CKEDITOR
 																.replace(
-																		'b_content',
+								d										'b_content',
 																		{
 																			customConfig : '../resources/ckeditor/config.js'
 																		});
@@ -121,8 +125,9 @@
 
 
 									<input type="hidden" name="b_writer_code" value="${member.id}" />
-									
+									</div >
 									<!-- 버튼추가 -->
+									<div class="card-body" style="text-align:right">
 									<button type="submit" class="btn btn-primary" id="write_button">등록</button>
 								</div>
 							</form>
@@ -187,6 +192,7 @@
 	<script src="../resources/js/custom.min.js"></script>
 
 
+<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction('콜백의 식별 ID 값', '파일의 URL', '전송완료 메시지')</script>
 
 
 	<!-- 구글링 깃허브 -->

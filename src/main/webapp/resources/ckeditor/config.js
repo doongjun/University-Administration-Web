@@ -41,4 +41,11 @@ CKEDITOR.editorConfig = function( config ) {
 	config.filebrowserUploadUrl      = '/upload.do?type=Files',
 	config.filebrowserImageUploadUrl = '/upload.do?type=Images',
 	config.filebrowserUploadMethod='form'; //파일 오류났을때 alert띄워줌
+
+	CKEDITOR.editorConfig = function( config ) {
+    config.enterMode = CKEDITOR.ENTER_BR
+
+
+};
+
 };
