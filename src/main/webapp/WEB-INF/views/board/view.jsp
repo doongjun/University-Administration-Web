@@ -85,10 +85,16 @@
 							<div class="row justify-content-md-center" style="">
 								<div class="col_c" style="margin-bottom: 30px">
 									<div class="input-group">
-										<textarea class="form-control" id="b_content"
+										<textarea class="form-control" id="b_content" 
 											readonly="readonly" name="content"
-											style="width: 1000px; height: 500px">${vo.b_content}</textarea>
+											style="display:none">${vo.b_content}</textarea>
+										<script>
 
+										val = $("textarea#b_content").val();
+										document.write(val);
+
+
+											</script>
 
 
 									</div>

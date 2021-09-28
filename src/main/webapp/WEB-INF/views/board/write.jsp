@@ -107,7 +107,7 @@
 														CKEDITOR
 																.replace(
 																	'b_content',
-								{width:'1000px',height:'500px',
+								{width:'1800px',height:'500px',
 									customConfig : '../resources/ckeditor/configg.js'
 								});
 													});
