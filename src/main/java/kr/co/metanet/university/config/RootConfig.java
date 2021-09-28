@@ -57,8 +57,6 @@ public class RootConfig {
 		return pool;
 	}
     
-    
-	
 	//mybatis
 	@Bean
 	public SqlSessionFactory sqlSessionFactory() throws Exception{

@@ -58,7 +58,7 @@
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Form</h4>
+								<h4 class="card-title">Password</h4>
 							</div>
 							<div class="card-body">
 								<div class="form-validation"><!--  onsubmit="return fn_submit();"-->
@@ -170,10 +170,6 @@
 			form.submit();
 		})
 			
-			
-		
-		
-	
 		var msg = "${message}";
 		if(msg === "wrongPassword"){
 			swal("비밀번호 변경 실패", "비밀번호가 틀렸습니다.", "error");

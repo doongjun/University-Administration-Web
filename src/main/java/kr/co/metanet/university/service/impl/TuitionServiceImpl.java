@@ -20,6 +20,10 @@ public class TuitionServiceImpl implements TuitionService{
 	@Autowired
 	private TuitionMapper tuitionMapper;
 	
+	public TuitionServiceImpl() {
+		
+	}
+	
 	@Override
 	public void addTuition(Map<String, Object> params, String code) {
 		tuitionMapper.insertTuition(params);

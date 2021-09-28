@@ -66,19 +66,19 @@
 					<div class="justify-content-start p-md-0" style="float:left;">
 					<form class="form-inline">
 							<label>수강년도</label>
-							 <select id="lecture_year" value="${lecture_year}" style="margin-left:10px;">
-								<option selected="">2021</option>
-								<option>2020</option>
-								<option>2019</option>
-								<option>2018</option>
+							 <select id="lecture_year"  style="margin-left:10px;">
+								<option value="2021" selected="">2021</option>
+								<option value="2020">2020</option>
+								<option value="2019">2019</option>
+								<option value="2018">2018</option>
 							</select> 
 							
 							<label style="margin-left:20px;" >학기</label> 
-							<select id="semester" style="margin-left:10px;" value="${semester}">
-								<option selected="">1학기</option>
-								<option>2학기</option>
-								<option>여름계절학기</option>
-								<option>겨울계절학기</option>
+							<select id="semester" style="margin-left:10px;">
+								<option value="1학기" selected="">1학기</option>
+								<option value="2학기">2학기</option>
+								<option value="여름계절학기">여름계절학기</option>
+								<option value="겨울계쩔학기">겨울계절학기</option>
 							</select>
 							
 							<button id="searchBtn" type="button" class="btn btn-primary" style="margin-left:15px;" >조회</button>
@@ -99,6 +99,7 @@
                                 <h4 class="card-title">이전수강내역</h4>
                             </div>
                             <div class="card-body">
+                            	<div class="row-sm-8" style="overflow-y:scroll; width:100%; height:650px;">
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-scroll">
 										<thead class="table-light" style="color:white; background-color:gray; text-align:center;">
@@ -116,7 +117,7 @@
 									        </tr>
 										</thead>
 										<tbody style="color:black; text-align:center;">
-											<!-- 게시판 리스트 반복문 -->
+											<!-- 리스트 반복문 -->
 											<c:forEach var="vo" items="${vo}" varStatus="cnt">
 												<tr>
 													<td style="display:none;">${vo.id}</td>
@@ -134,6 +135,7 @@
 											</c:forEach>
 										</tbody>
 									</table>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -173,9 +175,13 @@
         Main wrapper end
     ***********************************-->
 	<script>
-		$("#lecture_year").val(lecture_year).attr("selected", "selected");
-		$("#semester").val(semester).attr("selected", "selected");
-
+	//검색결과저장, select 초기화
+	$(document).ready(function(){
+		$("#lecture_year").val("${year}").prop("selected",true);
+		$("#semester").val("${semester}").prop("selected",true);
+	});
+	
+		
 		$('#searchBtn')
 				.click(
 						function() {
