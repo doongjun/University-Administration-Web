@@ -14,6 +14,8 @@ import kr.co.metanet.university.domain.StudentLectureVO;
 public interface LectureMapper {
 	List<LectureVO> getAllLecture(@Param("cri") Criteria cri);
 	List<LectureVO> getSearchLecture(@Param("cri") Criteria cri);
+	int allLectureTotal(@Param("cri") Criteria cri);
+	int searchLectureTotal(@Param("cri") Criteria cri);
 	
 	LectureVO getLecture(int id);
 	String getMaxCode();
