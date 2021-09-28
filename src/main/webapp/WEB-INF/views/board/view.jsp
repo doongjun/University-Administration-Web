@@ -49,7 +49,7 @@
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
 							<h4>학사 공지</h4>
-							<p class="mb-0">제육대학교 학사공지</p>
+							<p class="mb-0">메타대학교 학사공지</p>
 						</div>
 					</div>
 					<div
