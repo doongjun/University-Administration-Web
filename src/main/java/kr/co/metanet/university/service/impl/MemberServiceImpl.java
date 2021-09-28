@@ -94,6 +94,7 @@ public class MemberServiceImpl implements MemberService{
 		memberMapper.updateAdminInfo(params);
 	}
 	
+	@Transactional
 	@Override
 	public void addMemberStudent(Map<String, Object> params) {
 		//유저 추가
@@ -133,7 +134,8 @@ public class MemberServiceImpl implements MemberService{
 		
 		memberMapper.editStudent(params);
 	}
-
+	
+	@Transactional
 	@Override
 	public void deleteMemberStudent(String code) {
 		int memberId = memberMapper.selectMemberKey(code);

@@ -42,7 +42,7 @@
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
 							<h4>My Page</h4>
-							<p class="mb-1">${member.name } 관리자</p>
+							<p class="mb-1">${member.name }관리자</p>
 						</div>
 					</div>
 					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -57,7 +57,7 @@
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Form Validation</h4>
+								<h4 class="card-title">Info</h4>
 							</div>
 							<div class="card-body">
 								<div class="form-validation">
@@ -108,14 +108,14 @@
 														<input type="text" id="email" class="form-control" name="email" value="${admin.email }">
 													</div>
 												</div>
-												<div class="form-group row">
-													<div class="col-lg-8 ml-auto">
-														<button class="btn btn-primary" onclick="fn_revise();">Submit</button>
-													</div>
-												</div>
 											</div>
 										</div>
 									</form>
+									<div class="form-group row">
+										<div class="col-lg-2 ml-auto">
+										<button class="btn btn-primary" onclick="fn_revise();">Submit</button>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -154,36 +154,42 @@
         Scripts
     ***********************************-->
 	<script type="text/javascript">
-	var params = $('#myForm').serializeArray();
-	console.log(params);
+		var params = $('#myForm').serializeArray();
+		console.log(params);
 		function fn_revise() {
-			if($('#phone').val() === ''){
+			if ($('#phone').val() === '') {
 				swal("핸드폰 번호를 입력하세요.");
 				return;
-			}else if($('#email').val() === ''){
+			}
+			if ($('#email').val() === '') {
 				swal("이메일을 입력하세요.")
 				return;
-			}else if($('#division').val() === ''){
+			}
+			if ($('#division').val() === '') {
 				swal("부서를 입력하세요.");
 				return;
-			}else if($('#position').val() === ''){
+			}
+			if ($('#position').val() === '') {
 				swal("직급을 입력하세요.");
 				return;
 			}
-    		
-			
+
 			var params = $('#myForm').serializeArray();
 			console.log(params);
-			
+
 			$.ajax({
 				url : "/members/update-admin-info",
 				type : "POST",
 				data : params,
 				error : function(request, status, error) {
-					alert("error");
+					swal("error","","error");
 				},
 				success : function(data) {
-					alert("success");
+					swal("성공적으로 저장되었습니다.", "" ,"success").then((value) => {
+						if(value){
+							document.location.href = "/members/mypage";
+						}
+					});
 				}
 			})
 		}
