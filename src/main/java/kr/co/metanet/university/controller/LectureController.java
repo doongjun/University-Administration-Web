@@ -75,29 +75,23 @@ public class LectureController {
 	// 모든 강의/강의계획서 조회
 	@GetMapping("/syllabus")
 	public String list(Principal principal, Criteria cri, Model model) {
-		int total = 12;
+		int total = service.allLectureTotal(cri);
 		
 		List<LectureVO> list = service.getAllLecture(cri);
 		model.addAttribute("vo", list);
 		model.addAttribute("pageVo", new PageVO(cri, total));
 		
-		// 강의계획표 부분
-		String code = principal.getName();
+		return "/lecture/syllabus";
+	}
+	
+	// 강의계획서 검색
+	@GetMapping("/search")
+	public String search(Principal principal, Criteria cri, Model model) {
+		int total = service.searchLectureTotal(cri);
 		
-		Tuition tuition = tuitionService.selectTuition(code);
-		String filePath = tuition.getFilePath();
-		String fileName = tuition.getFileName();
-		
-		log.info("filePath ::: " + filePath);
-		log.info("fileName ::: " + fileName);
-		
-		StringBuffer sb = new StringBuffer();
-		sb.append("../").append(filePath).append(fileName);
-		
-		log.info("saveFilePath ::: " + sb.toString());
-		
-		model.addAttribute("fileName", fileName);
-		model.addAttribute("saveFilePath", sb.toString());
+		List<LectureVO> list = service.getSearchLecture(cri);
+		model.addAttribute("vo", list);
+		model.addAttribute("pageVo", new PageVO(cri, total));
 		
 		return "/lecture/syllabus";
 	}
