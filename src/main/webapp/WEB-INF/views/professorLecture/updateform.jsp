@@ -289,7 +289,7 @@
 			},
 
 			success : function(data) {
-				swal("성공적으로 저장되었습니다.").then((value) => {
+				swal("Good job!","성공적으로 저장되었습니다.","success").then((value) => {
 					if(value){
 						document.location.href = "/professorLecture/lecture-list";
 					}
@@ -300,27 +300,7 @@
 		})
 	}
 	}
-		/* function fn_update() {
-			var params = $('#profForm').serializeArray();
-			console.log(params);
-			$.ajax({
-				url : "/api/professorLecture/update",
-				type : "POST",
-				data : params,
-				dataType : 'text',
-				error : function(request, status, error) {
-					alert("error code:" + request.status + "\n" + "message:"
-							+ request.responseText + "\n" + "error:" + error);
-				},
 
-				success : function(data) {
-					alert("성공적으로 저장되었습니다.");
-					location.href = "/professorLecture/lecture-list";
-
-				}
-			})
-
-		} */
 	</script>
 	<!--**********************************
         Scripts
