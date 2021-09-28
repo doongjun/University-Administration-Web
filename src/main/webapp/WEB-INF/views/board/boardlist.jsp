@@ -246,8 +246,7 @@
 		
 		/*아작스 시도하다가 실패*/
 		let result = '${result}';
-		var csrfHeaderName = "${_csrf.headerName}";
-		var csrfTokenValue = "${_csrf.token}";
+		
 	</script>
 	
 </body>
