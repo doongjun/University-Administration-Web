@@ -94,6 +94,7 @@ public class MemberServiceImpl implements MemberService{
 		memberMapper.updateAdminInfo(params);
 	}
 	
+	@Transactional
 	@Override
 	public void addMemberStudent(Map<String, Object> params) {
 		//유저 추가
@@ -121,6 +122,31 @@ public class MemberServiceImpl implements MemberService{
 		studentParams.put("academicStatus", params.get("academicStatus"));
 		studentParams.put("admissionDate", params.get("admissionDate"));
 		memberMapper.insertStudent(studentParams);
+	}
+
+	@Override
+	public void editMemberStudent(Map<String, Object> params) {
+		Map<String, Object> memberParams = new HashMap<>();
+		memberParams.put("name", params.get("name"));
+		memberParams.put("code", params.get("code"));
+		memberParams.put("conditionCode", params.get("conditionCode"));
+		memberMapper.editMember(memberParams);
 		
+		memberMapper.editStudent(params);
+	}
+	
+	@Transactional
+	@Override
+	public void deleteMemberStudent(String code) {
+		int memberId = memberMapper.selectMemberKey(code);
+		System.out.println(memberId);
+		memberMapper.deleteMemberRole(memberId);
+		memberMapper.deleteMember(memberId);
+		memberMapper.deleteStudent(code);
+	}
+
+	@Override
+	public int getUserCount(String code) {
+		return memberMapper.selectUserCount(code);
 	}
 }

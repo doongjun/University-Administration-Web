@@ -75,6 +75,7 @@
 								</div>
 							</div>
 							<div class="card-body">
+							<div class="row-sm-8" style="overflow-y:scroll; width:100%; height:650px;">
 								<form id="profForm" class="form-valide">
 								<input id="lecture_id" name="lecture_id" type="hidden" value="${lecture_id}">
 								<div class="table-responsive">
@@ -110,19 +111,19 @@
 															class="btn btn-danger">삭제</button>
 													</td>
 													<td style="display:none;width:10%;">
-														<input id="midterm_exam" style="width:60%" name="midterm_exam${cnt.count}" type="number" placeholder="0" onchange="calculate()">
+														<input id="midterm_exam${cnt.count}" style="width:60%" name="midterm_exam${cnt.count}" type="number" placeholder="0" onchange="calculate(${cnt.count})">
 													 </td>
 													<td style="display:none;width:10%;"> 
-														<input id="final_exam" style="width:60%" name="final_exam${cnt.count}" type="number" placeholder="0" onchange="calculate()">
+														<input id="final_exam${cnt.count}" style="width:60%" name="final_exam${cnt.count}" type="number" placeholder="0" onchange="calculate(${cnt.count})">
 													</td>
 													<td style="display:none;width:10%;">
-														<input id="assignment" style="width:60%" name="assignment${cnt.count}" type="number" placeholder="0" onchange="calculate()">
+														<input id="assignment${cnt.count}" style="width:60%" name="assignment${cnt.count}" type="number" placeholder="0" onchange="calculate(${cnt.count})">
 													 </td>
 													<td style="display:none;width:10%;">
-														<input id="attendance" style="width:60%" name="attendance${cnt.count}" type="number" placeholder="0" onchange="calculate()">
+														<input id="attendance${cnt.count}" style="width:60%" name="attendance${cnt.count}" type="number" placeholder="0" onchange="calculate(${cnt.count})">
 													 </td>
 													<td style="display:none;width:10%;">
-														<input id="total" style="width:60%" name="total${cnt.count}" type="number">
+														<input id="total${cnt.count}" style="width:60%" name="total${cnt.count}" type="number">
 													 </td>
 													<td id="score" style="display:none;width:7%;">
 														<select name="score${cnt.count}" id="inputScore" class="form-control">
@@ -143,7 +144,9 @@
 										</tbody>
 									</table>
 								</div>
+								
 									</form>
+									</div>
 							</div>
 						</div>
 					</div>
@@ -256,21 +259,27 @@
 					},
 
 					success : function(data) {
-						alert("성공적으로 저장되었습니다.");
+/* 						alert("성공적으로 저장되었습니다.");
 						location.replace(location.href); //post 데이터 포함하지않고 새로고침
+						 */
+						swal("Good job!","성공적으로 저장되었습니다.","success").then((value) => {
+							if(value){
+								location.replace(location.href);
+							}
+						});
 				}
 			})
 		});
 	
 		//총점계산기
-		function calculate(){
-			var v1 = Number(document.getElementById('midterm_exam').value);
-			var v2 = Number(document.getElementById('final_exam').value);
-			var v3 = Number(document.getElementById('assignment').value);
-			var v4 = Number(document.getElementById('attendance').value);
+		function calculate(cnt){
+			var v1 = Number(document.getElementById('midterm_exam'+cnt).value);
+			var v2 = Number(document.getElementById('final_exam'+cnt).value);
+			var v3 = Number(document.getElementById('assignment'+cnt).value);
+			var v4 = Number(document.getElementById('attendance'+cnt).value);
 			var res = v1+v2+v3+v4;
 			console.log(res);
-			document.getElementById('total').value = res;
+			document.getElementById('total'+cnt).value = res;
 		}
 		
 		

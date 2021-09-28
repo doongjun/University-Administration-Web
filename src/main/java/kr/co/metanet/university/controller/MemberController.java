@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -35,13 +36,19 @@ import lombok.extern.log4j.Log4j2;
 @Controller
 @RequestMapping(path = "/members")
 public class MemberController {
-	private final MemberService memberService;
-	private final PasswordEncoder passwordEncoder;
-
+	@Autowired
+	private MemberService memberService;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	public MemberController() {
+		
+	}
+	/*
 	public MemberController(MemberService memberService, PasswordEncoder passwordEncoder) {
 		this.memberService = memberService;
 		this.passwordEncoder = passwordEncoder;
-	}
+	}*/
 
 	@GetMapping("/loginform")
 	public String loginform() {
@@ -185,7 +192,16 @@ public class MemberController {
 
 	// 학생 추가(관리자)
 	@PostMapping("/add-student")
-	public String addStudent(@RequestParam Map<String, Object> params) throws ParseException {
+	@ResponseBody
+	public Map<String, Object> addStudent(@RequestParam Map<String, Object> params) throws ParseException {
+		Map<String, Object> map = new HashMap<>();
+		map.put("cnt", 0);
+		int cnt = memberService.getUserCount((String)params.get("code"));
+		if(cnt > 0) {
+			map.put("cnt", cnt);
+			return map;
+		}
+		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String pw = (String) params.get("password");
 		params.put("password", encoder.encode(pw));
@@ -203,6 +219,46 @@ public class MemberController {
 		params.put("admissionDate", admissionDate);
 		
 		memberService.addMemberStudent(params);
+		return map;
+	}
+	
+	// 학생 수정(관리자)
+	@PostMapping("/edit-student")
+	@ResponseBody
+	public Map<String, Object> editStudent(@RequestParam Map<String, Object> params) throws ParseException {
+		Map<String, Object> map = new HashMap<>();
+		map.put("cnt", 0);
+		
+		if(!params.get("code").equals(params.get("conditionCode"))){
+			int cnt = memberService.getUserCount((String)params.get("code"));
+			if(cnt > 0) {
+				map.put("cnt", cnt);
+				return map;
+			}
+		}
+		
+		params.put("grade", Integer.parseInt((String) params.get("grade")));
+		params.put("departmentCode", Integer.parseInt((String) params.get("departmentCode")));
+		
+		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+		String birthdayString = (String) params.get("birthday");
+		String admissionDateString = (String) params.get("admissionDate");
+		
+		Date birthday= fm.parse(birthdayString);
+		Date admissionDate= fm.parse(admissionDateString);
+		
+		params.put("birthday", birthday);
+		params.put("admissionDate", admissionDate);
+		
+		memberService.editMemberStudent(params);
+		
+		return map;
+	}
+	
+	//학생 삭제(관리자)
+	@PostMapping("/delete-student")
+	public String deleteStudent(@RequestParam String code) {
+		memberService.deleteMemberStudent(code);
 		return "redirect:/members/student-list";
 	}
 }

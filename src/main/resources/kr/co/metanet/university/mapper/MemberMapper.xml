@@ -73,6 +73,13 @@
 		WHERE code = #{code}
 	</update>
 	
+	<select id="selectUserCount" resultType="int">
+		SELECT count(*) 
+		FROM "MEMBER" 
+		WHERE CODE = #{code}
+	</select>
+	
+	<!-- 추가 로직 시작 -->
 	<!-- 유저 추가 -->
 	<insert id="insertMember" parameterType="java.util.Map">
 		<selectKey keyProperty="createdKey" resultType="int" order="AFTER">
@@ -93,7 +100,50 @@
 		INSERT INTO STUDENT 
 		VALUES (SEQ_ID.nextval, #{code}, #{departmentCode}, #{grade}, #{birthday}, #{email}, #{phone}, #{academicStatus}, #{admissionDate})
 	</insert>
+	<!-- 추가 로직 끝 -->
 	
+	<!-- 수정 로직 시작 -->
+	<!-- 유저 수정 -->
+	<update id="editMember" parameterType="java.util.Map">
+		UPDATE "MEMBER" 
+		SET name = #{name}, code = #{code}
+		WHERE code = #{conditionCode}
+	</update>
+	
+	<!-- 학생 수정 -->
+	<update id="editStudent" parameterType="java.util.Map">
+		UPDATE STUDENT 
+		SET code = #{code}, DEPARTMENT_CODE = #{departmentCode}, GRADE = #{grade}, BIRTHDAY = #{birthday}, EMAIL = #{email}, PHONE = #{phone}, ACADEMIC_STATUS = #{academicStatus}, ADMISSION_DATE = #{admissionDate}
+		WHERE code = #{conditionCode}
+	</update>
+	<!-- 수정 로직 끝 -->
+	
+	<!-- 삭제 로직 시작 -->
+	<!-- getKey -->
+	<select id="selectMemberKey" resultType="int">
+		SELECT id 
+		FROM "MEMBER"
+		WHERE code = #{code}
+	</select>
+	
+	<!-- MemberRole 삭제 -->
+	<delete id="deleteMemberRole">
+		DELETE FROM MEMBER_ROLE
+		WHERE MEMBER_ID = #{memberId}
+	</delete>
+	
+	<!-- Member 삭제 -->
+	<delete id="deleteMember">
+		DELETE FROM "MEMBER"
+		WHERE ID = #{memberId}
+	</delete>
+	
+	<!-- Student 삭제 -->
+	<delete id="deleteStudent">
+		DELETE FROM STUDENT
+		WHERE CODE = #{code}
+	</delete>
+	<!-- 삭제 로직 끝 -->
 	
 </mapper>
 

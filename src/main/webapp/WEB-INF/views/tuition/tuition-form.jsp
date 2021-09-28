@@ -92,7 +92,7 @@
                                 </p>
                             </div>
                             <div class="card-footer">
-                                <p class="card-text d-inline">제육 대학교</p>
+                                <p class="card-text d-inline">메타 대학교</p>
                                 <a href="/board/boardlist" class="card-link float-right">Board link</a>
                             </div>
                         </div>
@@ -195,21 +195,21 @@
 	<script>
 		function fn_registTuition() {
 			if ($("#code").val() == '') {
-				alert("학번을 입력하세요.");
+				swal("학번을 입력하세요.");
 				return false;
 			}
 
 			if ($("#label-tuition").text() == 'Choose File') {
-				alert("등록금 고지서 파일을 첨부하세요.");
+				swal("등록금 고지서 파일을 첨부하세요.");
 				return false;
 			}
 		}
 
 		var msg = "${message}";
 		if (msg === "noStudent") {
-			alert("해당 학생이 존재하지 않습니다.");
+			swal("등록금 고지서 등록 실패","해당 학생이 존재하지 않습니다.","error");
 		} else if (msg === "overFile") {
-			alert("해당 학생은 파일이 이미 등록되어 있습니다.");
+			swal("등록금 고지서 등록 실패","해당 학생은 파일이 이미 등록되어 있습니다.","warning");
 		}
 
 		$(document).ready(
