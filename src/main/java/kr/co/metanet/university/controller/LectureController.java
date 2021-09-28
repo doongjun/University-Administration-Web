@@ -69,6 +69,8 @@ public class LectureController {
 		
 		List<LectureVO> list = service.getSelectedPrevLectureList(semester,lecture_year,student.getId());
 		model.addAttribute("vo", list);
+		model.addAttribute("year",lecture_year);
+		model.addAttribute("semester",semester);
 		return "/lecture/prevLecture";
 	}
 
@@ -111,6 +113,8 @@ public class LectureController {
 			@RequestParam String semester, Model model) {
 		List<StudentLectureVO> vo = service.getScoreList(student_id, lecture_year, semester);
 		model.addAttribute("vo", vo);
+		model.addAttribute("year",lecture_year);
+		model.addAttribute("semester",semester);
 		return "lecture/score-list";
 	}
 
