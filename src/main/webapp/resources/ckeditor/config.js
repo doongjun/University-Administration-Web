@@ -32,7 +32,8 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Set the most common block elements.
 	config.format_tags = 'p;h1;h2;h3;pre';
-
+	config.height = '500px';		//Editor 높이  
+	config.width = '1000px';			//Editor 넓이
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 	

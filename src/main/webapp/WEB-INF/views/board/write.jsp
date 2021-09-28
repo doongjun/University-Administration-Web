@@ -58,9 +58,8 @@
 					<div
 						class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="javascript:void(0)">공지사항</a></li>
-							<li class="breadcrumb-item active"><a
-								href="javascript:void(0)">공지게시판</a></li>
+							<li class="breadcrumb-item">공지사항</li>
+							<li class="breadcrumb-item active">공지게시판</li>
 						</ol>
 					</div>
 				</div>
@@ -98,7 +97,7 @@
 									<div class="row justify-content-md-center">
 										<div class="col_c" style="margin-bottom: 30px">
 											<div class="input-group">
-												<textarea class="ckeditor" id="b_content" name="b_content"></textarea>
+												<textarea class="ckeditor" id="b_content" name="b_content"style="width: 1000px; height: 500px"></textarea>
 												<script type="text/javascript">
 													$(function() {
 													CKEDITOR.replace("description",{
@@ -107,10 +106,10 @@
 													});
 														CKEDITOR
 																.replace(
-								d										'b_content',
-																		{
-																			customConfig : '../resources/ckeditor/config.js'
-																		});
+																	'b_content',
+								{width:'1000px',height:'500px',
+									customConfig : '../resources/ckeditor/configg.js'
+								});
 													});
 													if (CKEDITOR.instances.b_content
 															.getData().length < 1) {
@@ -119,6 +118,11 @@
 													}
 												</script>
 											</div>
+											<div class="custom-file">
+											<input id="input-tuition" type="file" name="file" class="custom-file-input"> <label id="label-tuition" class="custom-file-label">Choose File</label>
+										</div>
+										
+										
 										</div>
 									</div>
 
@@ -127,7 +131,8 @@
 									<input type="hidden" name="b_writer_code" value="${member.id}" />
 									</div >
 									<!-- 버튼추가 -->
-									<div class="card-body" style="text-align:right">
+									<div class="card-body" style="text-align:center">
+									<button type="submit" class="btn btn-primary" id="list_button">취소</button>
 									<button type="submit" class="btn btn-primary" id="write_button">등록</button>
 								</div>
 							</form>
@@ -193,7 +198,26 @@
 
 
 <script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction('콜백의 식별 ID 값', '파일의 URL', '전송완료 메시지')</script>
+<script>
+/*파일 업로드 부분*/
+$(document).ready(
+		function() {
+			var fileTarget = $('#input-tuition');
 
+			fileTarget.on('change', function() {
+				if (window.FileReader) {
+					var fileName = $(this)[0].files[0].name;
+				} else {
+					var fileName = $(this).val().split('/').pop()
+							.split('\\').pop();
+				}
+
+				$('#label-tuition').text(fileName);
+			})
+
+			var table = $('#example2').DataTable();
+		})
+</script>
 
 	<!-- 구글링 깃허브 -->
 	<script

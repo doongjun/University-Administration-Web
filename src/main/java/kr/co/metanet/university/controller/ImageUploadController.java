@@ -15,7 +15,10 @@ package kr.co.metanet.university.controller;
 	import org.springframework.stereotype.Controller;
 	import org.springframework.web.bind.annotation.RequestMapping;
 	import org.springframework.web.multipart.MultipartFile;
+
+import lombok.extern.log4j.Log4j2;
 	@RequestMapping(path="/board")
+	@Log4j2
 	@Controller
 	public class ImageUploadController {
 	 
@@ -42,7 +45,7 @@ package kr.co.metanet.university.controller;
 	        "C:\\DEV\\projectsource\\University-Administration-Web\\src\\main\\webapp\\WEB-INF\\views\\images\\";
 	        OutputStream out=new FileOutputStream(
 	                new File(uploadPath+fileName));
-	 
+	
 	        //서버로 업로드
 	        out.write(bytes);
 	        //클라이언트에 결과 표시
