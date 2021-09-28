@@ -99,6 +99,7 @@
                                 <h4 class="card-title">이전수강내역</h4>
                             </div>
                             <div class="card-body">
+                            	<div class="row-sm-8" style="overflow-y:scroll; width:100%; height:650px;">
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-scroll">
 										<thead class="table-light" style="color:white; background-color:gray; text-align:center;">
@@ -116,7 +117,7 @@
 									        </tr>
 										</thead>
 										<tbody style="color:black; text-align:center;">
-											<!-- 게시판 리스트 반복문 -->
+											<!-- 리스트 반복문 -->
 											<c:forEach var="vo" items="${vo}" varStatus="cnt">
 												<tr>
 													<td style="display:none;">${vo.id}</td>
@@ -134,6 +135,7 @@
 											</c:forEach>
 										</tbody>
 									</table>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -173,9 +175,10 @@
         Main wrapper end
     ***********************************-->
 	<script>
-		$("#lecture_year").val(lecture_year).attr("selected", "selected");
-		$("#semester").val(semester).attr("selected", "selected");
-
+		var lecture_year = $("#lecture_year").val(lecture_year).attr("selected", "selected");;
+		var semester = $("#semester").val(semester).attr("selected", "selected");
+	
+		
 		$('#searchBtn')
 				.click(
 						function() {

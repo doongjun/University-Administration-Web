@@ -30,8 +30,8 @@
 	<![CDATA[
 		SELECT  distinct  l.lecture_code, l.lecture_name, l.professor_id, l.grade, l.classroom, l.division, l.lecture_time, l.lecture_year, l.semester, l.student_count, l.student_full, l.credit, l.section, l.dept_code, l.remarks
 		FROM lecture l, student_lecture sl, student s
-		WHERE  s.id =#{student_id} and s.id = sl.student_id and l.id = sl.lecture_id and( not l.semester =  #{semester}  and l.lecture_year = #{this_year} )
-		or l.lecture_year <= #{last_year} 
+		WHERE  s.id = #{student_id} and s.id = sl.student_id and l.id = sl.lecture_id and(( not l.semester =  #{semester}  and l.lecture_year = #{this_year} )
+		or l.lecture_year <= #{last_year} )
 		ORDER BY l.lecture_code ASC
 		]]>
 	</select>
