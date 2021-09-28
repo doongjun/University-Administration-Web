@@ -304,6 +304,9 @@
 					type : "POST",
 					data : params,
 					dataType : 'text',
+					beforeSend : function(xhr){
+					    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+					},
 					error : function(request, status, error) {
 						alert("error code:" + request.status + "\n" + "message:"
 								+ request.responseText + "\n" + "error:" + error);

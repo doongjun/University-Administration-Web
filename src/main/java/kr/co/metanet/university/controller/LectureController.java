@@ -13,20 +13,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.metanet.university.domain.Criteria;
 import kr.co.metanet.university.domain.LectureVO;
 import kr.co.metanet.university.domain.MemberStudent;
+import kr.co.metanet.university.domain.PageVO;
 import kr.co.metanet.university.domain.StudentLectureVO;
+import kr.co.metanet.university.domain.Tuition;
 import kr.co.metanet.university.service.LectureService;
 import kr.co.metanet.university.service.MemberService;
+
+import kr.co.metanet.university.service.TuitionService;
+import lombok.extern.log4j.Log4j2;
 import kr.co.metanet.university.util.Utility;
 
 @Controller
-@RequestMapping(path = "/lecture")
+@Log4j2
+@RequestMapping(path="/lecture")
 public class LectureController {
 
 	@Autowired
 	@Qualifier("kr.co.metanet.university.service.impl.LectureServiceImpl")
 	private LectureService service;
+	
+	@Autowired
+	private TuitionService tuitionService;
 
 	private final MemberService memberService;
 
@@ -64,9 +74,25 @@ public class LectureController {
 
 	// 모든 강의/강의계획서 조회
 	@GetMapping("/syllabus")
-	public String list(Model model) {
-		List<LectureVO> list = service.getAllLecture();
+	public String list(Principal principal, Criteria cri, Model model) {
+		int total = service.allLectureTotal(cri);
+		
+		List<LectureVO> list = service.getAllLecture(cri);
 		model.addAttribute("vo", list);
+		model.addAttribute("pageVo", new PageVO(cri, total));
+		
+		return "/lecture/syllabus";
+	}
+	
+	// 강의계획서 검색
+	@GetMapping("/search")
+	public String search(Principal principal, Criteria cri, Model model) {
+		int total = service.searchLectureTotal(cri);
+		
+		List<LectureVO> list = service.getSearchLecture(cri);
+		model.addAttribute("vo", list);
+		model.addAttribute("pageVo", new PageVO(cri, total));
+		
 		return "/lecture/syllabus";
 	}
 
