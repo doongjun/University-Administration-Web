@@ -192,10 +192,14 @@ public class MemberController {
 
 	// 학생 추가(관리자)
 	@PostMapping("/add-student")
-	public String addStudent(@RequestParam Map<String, Object> params, RedirectAttributes ra) throws ParseException {
-		if(memberService.getUserCount((String)params.get("code")) > 0) {
-			ra.addFlashAttribute("message", "alreadyExist");
-			return "redirect:/members/student-list";
+	@ResponseBody
+	public Map<String, Object> addStudent(@RequestParam Map<String, Object> params) throws ParseException {
+		Map<String, Object> map = new HashMap<>();
+		map.put("cnt", 0);
+		int cnt = memberService.getUserCount((String)params.get("code"));
+		if(cnt > 0) {
+			map.put("cnt", cnt);
+			return map;
 		}
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -214,15 +218,25 @@ public class MemberController {
 		params.put("birthday", birthday);
 		params.put("admissionDate", admissionDate);
 		
-		
-		ra.addFlashAttribute("message", "success");
 		memberService.addMemberStudent(params);
-		return "redirect:/members/student-list";
+		return map;
 	}
 	
 	// 학생 수정(관리자)
 	@PostMapping("/edit-student")
-	public String editStudent(@RequestParam Map<String, Object> params) throws ParseException {
+	@ResponseBody
+	public Map<String, Object> editStudent(@RequestParam Map<String, Object> params) throws ParseException {
+		Map<String, Object> map = new HashMap<>();
+		map.put("cnt", 0);
+		
+		if(!params.get("code").equals(params.get("conditionCode"))){
+			int cnt = memberService.getUserCount((String)params.get("code"));
+			if(cnt > 0) {
+				map.put("cnt", cnt);
+				return map;
+			}
+		}
+		
 		params.put("grade", Integer.parseInt((String) params.get("grade")));
 		params.put("departmentCode", Integer.parseInt((String) params.get("departmentCode")));
 		
@@ -238,7 +252,7 @@ public class MemberController {
 		
 		memberService.editMemberStudent(params);
 		
-		return "redirect:/members/student-list";
+		return map;
 	}
 	
 	//학생 삭제(관리자)

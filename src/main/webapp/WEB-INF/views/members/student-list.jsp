@@ -412,31 +412,31 @@
 		
 		function fn_revise(){
 			if($('#infoName').val() === ''){
-				alert("이름을 입력하세요.");
+				swal("이름을 입력하세요.");
 				return;
 			}else if($('#infoCode').val() === ''){
-				alert("학번을 입력하세요.")
+				swal("학번을 입력하세요.")
 				return;
 			}else if($('#infoPhone').val() === ''){
-				alert("핸드폰번호를 입력하세요.")
+				swal("핸드폰번호를 입력하세요.")
 				return;
 			}else if($('#infoEmail').val() === ''){
-				alert("이메일을 입력하세요.")
+				swal("이메일을 입력하세요.")
 				return;
 			}else if($('#infoBirthday').val() === ''){
-				alert("생년월일을 입력하세요")
+				swal("생년월일을 입력하세요")
 				return;
 			}else if($('#infoGrade').val() === ''){
-				alert("학년을 입력하세요.")
+				swal("학년을 입력하세요.")
 				return;
 			}else if($('#infoAcademicStatus').val() === ''){
-				alert("학적상태를 입력하세요.")
+				swal("학적상태를 입력하세요.")
 				return;
 			}else if($('#infoAdmissionDate').val() === 0){
-				alert("입학날짜를 입력하세요.")
+				swal("입학날짜를 입력하세요.")
 				return;
 			}else if($('#departmentCodeList').val() === 0){
-				alert("학과를 선택하세요.")
+				swal("학과를 선택하세요.")
 				return;
 			}
 			
@@ -452,11 +452,19 @@
 					alert("code:"+request.status+"\n"+"error:"+error);
 				},
 				success : function(data) {
-					swal("학생 수정 완료","제육대학교 학생", "success").then((value) => {
-						if(value){
-							document.location.href="/members/student-list";
-						}
-				});
+					if(data.cnt > 0){
+						swal("학생 수정 실패","이미 존재하는 학번입니다.", "error").then((value) => {
+							if(value){
+								$('#infoCode').focus();
+							}
+						});
+					}else{
+						swal("학생 수정 완료","제육대학교 학생", "success").then((value) => {
+							if(value){
+								document.location.href="/members/student-list";
+							}
+						});
+					}
 				}
 			})
 		}
@@ -466,31 +474,31 @@
 				swal("이름을 입력하세요.");
 				return;
 			}else if($('#code').val() === ''){
-				alert("학번을 입력하세요.")
+				swal("학번을 입력하세요.")
 				return;
 			}else if($('#password').val() === ''){
-				alert("비밀번호를 입력하세요.")
+				swal("비밀번호를 입력하세요.")
 				return;
 			}else if($('#phone').val() === ''){
-				alert("핸드폰번호를 입력하세요.")
+				swal("핸드폰번호를 입력하세요.")
 				return;
 			}else if($('#email').val() === ''){
-				alert("이메일을 입력하세요.")
+				swal("이메일을 입력하세요.")
 				return;
 			}else if($('#grade').val() === ''){
-				alert("학년을 입력하세요.")
+				swal("학년을 입력하세요.")
 				return;
 			}else if($('#academicStatus').val() === ''){
-				alert("학적상태를 입력하세요.")
+				swal("학적상태를 입력하세요.")
 				return;
 			}else if($('#admissionDate').val() === ''){
-				alert("입학날짜를 입력하세요.")
+				swal("입학날짜를 입력하세요.")
 				return;
 			}else if($('#departmentCode').val() === 0){
-				alert("학과를 선택하세요.")
+				swal("학과를 선택하세요.")
 				return;
 			}else if($('#birthday').val() === ''){
-				alert("생년월일을 입력하세요.")
+				swal("생년월일을 입력하세요.")
 				return;
 			}
 			
@@ -505,11 +513,19 @@
 					swal("code:"+request.status+"\n"+"error:"+error);
 				},
 				success : function(data) {
-					swal("학생 추가 완료","제육대학교 학생", "success").then((value) => {
-						if(value){
-							document.location.href="/members/student-list";
-						}
-				});
+					if(data.cnt > 0){
+						swal("학생 추가 실패","이미 존재하는 학생입니다.", "error").then((value) => {
+							if(value){
+								$('#code').focus();
+							}
+						});
+					}else{
+						swal("학생 추가 완료","제육대학교 학생", "success").then((value) => {
+							if(value){
+								document.location.href="/members/student-list";
+							}
+						});
+					}				
 				}
 			})
 		}
