@@ -189,9 +189,10 @@
 	<script src="../resources/js/plugins-init/fullcalendar-init.js"></script>
 
 	<script>
-	
-	$("#lecture_year").val(lecture_year).attr("selected", "selected");
-	$("#semester").val(semester).attr("selected", "selected");
+	$(document).ready(function(){
+		$("#lecture_year").val("${year}").prop("selected",true);
+		$("#semester").val("${semester}").prop("selected",true);
+	});
 
 		$('#searchBtn').click(function(){
 			var student_id = document.getElementById('student_id').value;

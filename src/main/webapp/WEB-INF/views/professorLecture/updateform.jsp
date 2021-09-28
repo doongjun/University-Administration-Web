@@ -74,10 +74,10 @@
 											<div class="col-sm-10">
 												<select name="semester" id="semester" class="form-control" style="width: 30%;" required>
 													<option selected=""></option>
-													<option>1학기</option>
-													<option>2학기</option>
-													<option>여름계절학기</option>
-													<option>겨울계절학기</option>
+													<option value="1학기">1학기</option>
+													<option value="2학기">2학기</option>
+													<option value="여름계절학기">여름계절학기</option>
+													<option value="겨울계쩔학기">겨울계절학기</option>
 												</select>
 											</div>
 										</div>
@@ -90,8 +90,8 @@
 										<div class="form-group row">
 											<label class="control-label col-sm-2">학과</label>
 											<div class="col-sm-10">
-												<select name="dept_code" id="dept_code" value="${vo.dept_code}" class="form-control" style="width: 30%;" required>
-													<option value="0" selected="">공통</option>
+												<select name="dept_code" id="dept_code" class="form-control" style="width: 30%;" required>
+													<option value="0">공통</option>
 													<option value="1">컴퓨터공학과</option>
 													<option value="2">경영학과</option>
 													<option value="3">경제학과</option>
@@ -118,12 +118,12 @@
 										<div class="form-group row ">
 											<label class="control-label col-sm-2">대상학년</label>
 											<div class="col-sm-10">
-												<select name="grade" value="${vo.grade}" id="grade" class="form-control" style="width: 30%;" required>
-													<option selected="">공통</option>
-													<option>1학년</option>
-													<option>2학년</option>
-													<option>3학년</option>
-													<option>4학년</option>
+												<select name="grade"  id="grade" class="form-control" style="width: 30%;" required>
+													<option value="공통" selected="">공통</option>
+													<option value="1학년">1학년</option>
+													<option value="2학년">2학년</option>
+													<option value="3학년">3학년</option>
+													<option value="4학년">4학년</option>
 												</select>
 											</div>
 										</div>
@@ -142,11 +142,11 @@
 										<div class="form-group row">
 											<label class="control-label col-sm-2">분반</label>
 											<div class="col-sm-10">
-												<select name="division" value="${vo.division}" id="division" style="width: 30%;" class="form-control" required>
-													<option selected="">-</option>
-													<option>1분반</option>
-													<option>2분반</option>
-													<option>3분반</option>
+												<select name="division" id="division" style="width: 30%;" class="form-control" required>
+													<option value="-" selected="">-</option>
+													<option value="1분반">1분반</option>
+													<option value="2학년">2분반</option>
+													<option value="3학년">3분반</option>
 												</select>
 											</div>
 										</div>
@@ -159,11 +159,11 @@
 										<div class="form-group row">
 											<label for="password" class="control-label col-sm-2">구분</label>
 											<div class="col-sm-10">
-												<select name="section" value="${vo.section}" id="section" style="width: 30%;" class="form-control" required>
-													<option selected="">기타</option>
-													<option>전공</option>
-													<option>전공기초</option>
-													<option>교양</option>
+												<select name="section"  id="section" style="width: 30%;" class="form-control" required>
+													<option value="기타" selected="">기타</option>
+													<option value="전공">전공</option>
+													<option value="전공기초">전공기초</option>
+													<option value="교양">교양</option>
 												</select>
 											</div>
 										</div>
@@ -181,13 +181,13 @@
 											</div>
 										</div>
 									</form>
-										<div class="form-group row">
-											<div class="offset-sm-2 col-sm-10 pull-right">
+									<div class="form-group row">
+										<div class="offset-sm-2 col-sm-10 pull-right">
 
-												<button class="btn btn-primary" onclick="fn_update();">저장</button>
-												<button class="btn btn-primary" onclick="history.back(-1);return false;">취소</button>
-											</div>
+											<button class="btn btn-primary" onclick="fn_update();">저장</button>
+											<button class="btn btn-primary" onclick="history.back(-1);return false;">취소</button>
 										</div>
+									</div>
 
 
 								</div>
@@ -206,6 +206,11 @@
 
 		<!-- 관리자만 볼수있는 코드 -->
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
+			<input type="hidden" id="professor_id" value="${professor.id}">
+			<input type="hidden" id="professor_id" value="${professor.id}">
+			<input type="hidden" id="professor_id" value="${professor.id}">
+			<input type="hidden" id="professor_id" value="${professor.id}">
+			<input type="hidden" id="professor_id" value="${professor.id}">
 			<input type="hidden" id="professor_id" value="${professor.id}">
 		</sec:authorize>
 
@@ -226,6 +231,13 @@
 
 	<script type="text/javascript">
 	
+	$(document).ready(function(){
+		$("#semester").val("${vo.semester}").prop("selected",true);
+		$("#dept_code").val("${vo.dept_code}").prop("selected",true);
+		$("#grade").val("${vo.grade}").prop("selected",true);
+		$("#division").val("${vo.division}").prop("selected",true);
+		$("#section").val("${vo.section}").prop("selected",true);
+	});
 	function fn_update() {
 		//validation
 
@@ -289,7 +301,7 @@
 			},
 
 			success : function(data) {
-				swal("Good job!","성공적으로 저장되었습니다.","success").then((value) => {
+				swal("성공적으로 저장되었습니다.", "" ,"success").then((value) => {
 					if(value){
 						document.location.href = "/professorLecture/lecture-list";
 					}
