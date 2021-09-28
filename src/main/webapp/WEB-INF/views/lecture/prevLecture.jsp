@@ -66,19 +66,19 @@
 					<div class="justify-content-start p-md-0" style="float:left;">
 					<form class="form-inline">
 							<label>수강년도</label>
-							 <select id="lecture_year" value="${lecture_year}" style="margin-left:10px;">
-								<option selected="">2021</option>
-								<option>2020</option>
-								<option>2019</option>
-								<option>2018</option>
+							 <select id="lecture_year"  style="margin-left:10px;">
+								<option value="2021" selected="">2021</option>
+								<option value="2020">2020</option>
+								<option value="2019">2019</option>
+								<option value="2018">2018</option>
 							</select> 
 							
 							<label style="margin-left:20px;" >학기</label> 
-							<select id="semester" style="margin-left:10px;" value="${semester}">
-								<option selected="">1학기</option>
-								<option>2학기</option>
-								<option>여름계절학기</option>
-								<option>겨울계절학기</option>
+							<select id="semester" style="margin-left:10px;">
+								<option value="1학기" selected="">1학기</option>
+								<option value="2학기">2학기</option>
+								<option value="여름계절학기">여름계절학기</option>
+								<option value="겨울계쩔학기">겨울계절학기</option>
 							</select>
 							
 							<button id="searchBtn" type="button" class="btn btn-primary" style="margin-left:15px;" >조회</button>
@@ -175,8 +175,11 @@
         Main wrapper end
     ***********************************-->
 	<script>
-		var lecture_year = $("#lecture_year").val(lecture_year).attr("selected", "selected");;
-		var semester = $("#semester").val(semester).attr("selected", "selected");
+	//검색결과저장, select 초기화
+	$(document).ready(function(){
+		$("#lecture_year").val("${year}").prop("selected",true);
+		$("#semester").val("${semester}").prop("selected",true);
+	});
 	
 		
 		$('#searchBtn')
