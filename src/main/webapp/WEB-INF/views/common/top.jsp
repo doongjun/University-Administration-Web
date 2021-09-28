@@ -10,11 +10,6 @@
                 <img class="brand-title" src="../resources/images/metatext.png" alt="" style="max-width:500px; margin-left: -12px;">
             </a>
             
-            <div class="nav-control">
-                <div class="hamburger">
-                    <span class="line"></span><span class="line"></span><span class="line"></span>
-                </div>
-            </div>
         </div>
         <!--**********************************
             Nav header end
