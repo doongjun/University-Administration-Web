@@ -41,14 +41,14 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>My Page</h4>
-							<p class="mb-1">${member.name }관리자</p>
+							<h4 style="font-weight:bold;">내 정보</h4>
+							<p class="mb-1">${member.name } 관리자</p>
 						</div>
 					</div>
 					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="javascript:void(0)">학적</a></li>
-							<li class="breadcrumb-item active"><a href="javascript:void(0)">내 학적 정보</a></li>
+							<li class="breadcrumb-item"><a href="javascript:void(0)">마이페이지</a></li>
+							<li class="breadcrumb-item active"><a href="javascript:void(0)">내 정보</a></li>
 						</ol>
 					</div>
 				</div>
@@ -57,7 +57,7 @@
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Info</h4>
+								<h4 class="card-title" style="font-weight:bold;">관리자 정보</h4>
 							</div>
 							<div class="card-body">
 								<div class="form-validation">
@@ -65,7 +65,7 @@
 										<div class="row">
 											<div class="col-xl-6">
 												<div class="form-group row">
-													<label class="col-lg-4 col-form-label">Admin Name <span class="text-danger">*</span>
+													<label class="col-lg-4 col-form-label">관리자 이름 <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
 														<input type="text" class="form-control" value="${admin.name }" readonly>
@@ -102,7 +102,7 @@
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-lg-4 col-form-label">email <span class="text-danger">*</span>
+													<label class="col-lg-4 col-form-label">Email <span class="text-danger">*</span>
 													</label>
 													<div class="col-lg-6">
 														<input type="text" id="email" class="form-control" name="email" value="${admin.email }">
@@ -113,7 +113,7 @@
 									</form>
 									<div class="form-group row">
 										<div class="col-lg-2 ml-auto">
-										<button class="btn btn-primary" onclick="fn_revise();">Submit</button>
+										<button class="btn btn-primary" onclick="fn_revise();">수정</button>
 										</div>
 									</div>
 								</div>
