@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import kr.co.metanet.university.domain.LectureVO;
 import kr.co.metanet.university.domain.MemberProfessor;
 import kr.co.metanet.university.domain.MemberStudent;
+import kr.co.metanet.university.domain.StudentLectureVO;
 import kr.co.metanet.university.service.MemberService;
 import kr.co.metanet.university.service.ProfessorLectureService;
 import kr.co.metanet.university.service.ProfessorStudentService;
@@ -67,10 +68,26 @@ public class ProfessorLectureController {
 		return "professorLecture/lecture-list";
 	}
 	
+	@GetMapping("/score-lecture-list")
+	public String scoreLectureList(Principal principal, Model model, HttpSession session) {
+		String loginCode = principal.getName();
+		MemberProfessor professor = memberService.getProfessorByCode(loginCode);
+		session.setAttribute("professor",professor);
+		
+		List<LectureVO> list = lectureService.getAllLecture(professor.getId());
+		model.addAttribute("vo",list);
+		return "professorLecture/score-lecture-list";
+	}
+	
+	
 	@GetMapping("/student-list")
 	public String studentlist(@RequestParam("lecture_id") int lecture_id, Model model) {
 		List<MemberStudent> list = studentService.getAllStudent(lecture_id);
+		List<StudentLectureVO> list2 = studentService.getAllScore(lecture_id);
 		model.addAttribute("vo",list);
+		model.addAttribute("svo",list2);
+		System.out.println(list2.get(0).getMidterm_exam());
+		System.out.println(list2.get(0));
 		model.addAttribute("lecture_id",lecture_id);
 		return "professorLecture/student-list";
 	}
