@@ -52,7 +52,6 @@
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
 							<h4>학사 공지</h4>
-							<p class="mb-0">메타대학교 학사공지</p>
 						</div>
 					</div>
 					<div
@@ -74,7 +73,7 @@
 							<form action="" id="write_board" method="post">
 
 
-								<div class="card-body">
+								<div class="card-body"style="text-align: center">
 									<div class="col-lg-2"
 										style="float: left; margin-bottom: 10px; margin-left: 0px; padding-left: -15px">
 										<select name="b_sort" id="single-select b_sort"
@@ -94,12 +93,13 @@
 								
 								<br>
 								
-								<div class="card-body">
+								<div class="card-body" >
 									<!-- ckeditor 추가부분 -->
 									<div class="row justify-content-md-center">
-										<div class="col_c" style="margin-bottom: 30px">
-											<div class="input-group">
-												<textarea class="ckeditor" id="b_content" name="b_content"  value="<c:out value='${vo.b_content}'/>">${vo.b_content}</textarea>
+										<div class="col_c" style="margin-bottom: 30px;" >
+											<div class="input-group" >
+											
+												<textarea class="ckeditor" id="b_content" name="b_content" style="width: 1500px; height: 500px" value="<c:out value='${vo.b_content}'/>">${vo.b_content}</textarea>
 												<script type="text/javascript">
 													$(function() {
 														CKEDITOR
@@ -124,7 +124,9 @@
 									<input type="hidden" name="b_writer_code" value="${member.id}" />
 									<input type="hidden" name="b_no" value="${vo.b_no}"/>
 									<!-- 버튼추가 -->
-									<button type="submit" class="btn btn-primary" id="modify_button">등록</button>
+									<div class="card-body" style="text-align:center">
+									<button type="submit" class="btn btn-primary" id="modify_button" >등록</button>
+									</div>
 								</div>
 							</form>
 
