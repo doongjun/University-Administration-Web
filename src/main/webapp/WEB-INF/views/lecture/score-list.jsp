@@ -48,7 +48,7 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>성적조회</h4>
+							<h4>성적 조회</h4>
 						</div>
 					</div>
 					<div
@@ -56,7 +56,7 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="javascript:void(0)">강의관리</a></li>
 							<li class="breadcrumb-item active"><a
-								href="javascript:void(0)">성적조회</a></li>
+								href="javascript:void(0)">성적 조회</a></li>
 						</ol>
 					</div>
 				</div>
@@ -66,20 +66,22 @@
 				<div class="row page-titles mx-0">
 					<div class="justify-content-start p-md-0" style="float:left;">
 					<form class="form-inline">
-							<label>강의년도</label>
-							 <select id="lecture_year" value="${lecture_year}" style="margin-left:10px;">
-								<option selected="">2021</option>
-								<option>2020</option>
-								<option>2019</option>
-								<option>2018</option>
+							<label>수강년도</label>
+							 <select id="lecture_year" class="form-control" value="${lecture_year}" style="margin-left:10px;">
+								<option value="2021" selected="">2021</option>
+								<option value="2020">2020</option>
+								<option value="2019">2019</option>
+								<option value="2018">2018</option>
+								<option value="2017">2017</option>
+								<option value="2016">2016</option>
 							</select> 
 							
 							<label style="margin-left:20px;" >학기</label> 
-							<select id="semester" style="margin-left:10px;" value="${semester}">
-								<option selected="">1학기</option>
-								<option>2학기</option>
-								<option>여름계절학기</option>
-								<option>겨울계절학기</option>
+							<select id="semester" class="form-control" style="margin-left:10px;" value="${semester}">
+								<option value="1학기"selected="">1학기</option>
+								<option value="2학기">2학기</option>
+								<option value="여름계절학기">여름계절학기</option>
+								<option value="겨울계절학기">겨울계절학기</option>
 							</select>
 							
 							<button id="searchBtn" type="button" class="btn btn-primary" style="margin-left:15px;" >조회</button>
@@ -90,6 +92,7 @@
 
 				<div class="row">
 					<div class="col-12">
+					<div class="card">
 							<div class="card-body">
 								<input id="student_id" name="student_id" type="hidden" value="${student_id}">
 								<div class="table-responsive">
@@ -129,7 +132,11 @@
 											</c:forEach>
 										</tbody>
 									</table>
+									<c:if test="${empty vo}">
+												  	<div style="text-align: center; margin-top: 10px;">검색결과가 없습니다</div>
+									</c:if>
 								</div>
+							</div>
 							</div>
 						</div>
 					</div>
@@ -199,7 +206,13 @@
 			var lecture_year = document.getElementById('lecture_year').value;
 			var semester = document.getElementById('semester').value;
 			console.log(student_id +","+ lecture_year + ','+semester);
+			if(lecture_year == ""){
+				swal("수강년도를 선택하세요");
+			}else if(semester == ""){
+				swal("학기를 선택하세요");
+			}else{
 			location.href = "/lecture/get-score-list?student_id="+student_id+"&lecture_year="+lecture_year+"&semester="+semester ;
+			}
 		
 		});
 
