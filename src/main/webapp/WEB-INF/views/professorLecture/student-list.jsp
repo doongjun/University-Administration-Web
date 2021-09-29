@@ -48,7 +48,7 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>성적 입력</h4>
+							<h4 style="font-weight:bold;">성적 입력</h4>
 						</div>
 					</div>
 					<div
@@ -67,7 +67,7 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">수강생 관리</h4>
+								<h4 class="card-title" style="font-weight:bold;">수강생 관리</h4>
 								<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 									<button id="showScoreBtn" name="showScoreBtn" type="button" class="btn btn-primary ">성적입력</button>
 									<button id="inputScoreBtn" style="margin-left: 5px; display: none; " name="inputScoreBtn" type="button" class="btn btn-primary">성적저장</button>
@@ -127,7 +127,8 @@
 													 </td>
 													<td style="display:none;width:7%;">
 														<select id="score${cnt.count}" id="score${cnt.count}" class="form-control">
-															<option value="A+" selected="">A+</option>
+															<option selected=""></option>
+															<option value="A+">A+</option>
 															<option value="A">A</option>
 															<option value="B+">B+</option>
 															<option value="B">B</option>
@@ -144,8 +145,10 @@
 										</tbody>
 									</table>
 								</div>
-								
 									</form>
+									<c:if test="${empty vo}">
+												  	<div style="text-align: center; margin-top: 10px;">수강생이 없습니다</div>
+									</c:if>
 									</div>
 							</div>
 						</div>

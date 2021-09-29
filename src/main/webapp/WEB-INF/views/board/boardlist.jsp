@@ -49,9 +49,7 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-
-							<h4>학사 공지</h4>
-
+							<h4 style="font-weight:bold;">학사 공지</h4>
 						</div>
 					</div>
 					<div
@@ -71,7 +69,7 @@
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">학사공지</h4>
+								<h4 class="card-title" style="font-weight:bold;">학사공지</h4>
 							</div>
 							
 							<div class="card-body">

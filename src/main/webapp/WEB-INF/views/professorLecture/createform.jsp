@@ -45,7 +45,7 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>강의 등록</h4>
+							<h4 style="font-weight:bold;">강의 등록</h4>
 						</div>
 					</div>
 					<div
@@ -53,7 +53,7 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="javascript:void(0)">강의관리</a></li>
 							<li class="breadcrumb-item active"><a
-								href="javascript:void(0)">강의 등록</a></li>
+								href="javascript:void(0)">새 강의 등록</a></li>
 						</ol>
 					</div>
 				</div>
@@ -65,7 +65,7 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">강의등록</h4>
+								<h4 class="card-title" style="font-weight:bold;">강의등록</h4>
 							</div>
 							<div class="card-body">
 								<div class="basic-form">
@@ -103,7 +103,8 @@
 											<div class="col-sm-10">
 												<select name="dept_code" id="dept_code"
 													class="form-control" style="width:30%;" >
-													<option value="0" selected="">공통</option>
+													<option selected=""></option>
+													<option value="0">공통</option>
 													<option value="1">컴퓨터공학과</option>
 													<option value="2">경영학과</option>
 													<option value="3">경제학과</option>
@@ -131,7 +132,8 @@
 											<label class="control-label col-sm-2">대상학년</label>
 											<div class="col-sm-10">
 												<select name="grade" id="grade" class="form-control" style="width:30%;" required>
-													<option selected="">공통</option>
+													<option selected=""></option>
+													<option>공통</option>
 													<option>1학년</option>
 													<option>2학년</option>
 													<option>3학년</option>
@@ -175,7 +177,8 @@
 											<label for="password" class="control-label col-sm-2">구분</label>
 											<div class="col-sm-10">
 												<select name="section" id="section" style="width:30%;" class="form-control" required>
-													<option selected="">기타</option>
+													<option selected=""></option>
+													<option >기타</option>
 													<option>전공</option>
 													<option>전공기초</option>
 													<option>교양</option>
@@ -247,7 +250,7 @@
 	
 		function fn_create() {
 			//validation
-			if ($("#lecture_code").val() == ""){
+			if ($("#lecture_code").val() == "" || $("#lecture_code").val() == "예)000000"){
 				swal("강의번호를 입력해주세요");
 				$("input[name='lecture_code']").focus();
 				return false;
@@ -267,15 +270,15 @@
 				swal("대상학년을 선택해주세요");
 				$("select[name='grade']").focus();
 				return false;
-			}else if ($("input[name='classroom']").val() == ""){
+			}else if ($("input[name='classroom']").val() == "" || $("input[name='classroom']").val() == "예) 000관 000호"){
 				swal("강의실을 입력해주세요");
 				$("input[name='classroom']").focus();
 				return false;
-			}else if ($("input[name='lecture_time']").val() == ""){
+			}else if ($("input[name='lecture_time']").val() == "" || $("input[name='lecture_time']").val() == "예) 수 1,2,3"){
 				swal("강의시간을 입력해주세요");
 				$("input[name='lecture_time']").focus();
 				return false;
-			}else if ($("select[name='division']").val() == ""){
+			}else if ($("select[name='division']").val() == "" ){
 				swal("분반을 선택해주세요");
 				$("select[name='division']").focus();
 				return;
@@ -291,7 +294,7 @@
 				swal("수강정원을 입력해주세요");
 				$("input[name='student_full']").focus();
 				return;
-			}else if ($("input[name='remarks']").val() == ""){
+			}else if ($("input[name='remarks']").val() == "" || $("input[name='remarks']").val() == "생략불가능. 최대 30자"){
 				swal("비고를 입력해주세요");
 				$("input[name='remarks']").focus();
 				return false;
