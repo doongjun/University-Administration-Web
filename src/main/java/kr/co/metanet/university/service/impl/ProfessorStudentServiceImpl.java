@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.metanet.university.domain.MemberStudent;
+import kr.co.metanet.university.domain.StudentLectureVO;
 import kr.co.metanet.university.mapper.ProfessorStudentMapper;
 import kr.co.metanet.university.service.ProfessorStudentService;
 
@@ -42,6 +43,11 @@ public class ProfessorStudentServiceImpl implements ProfessorStudentService {
 		map.put("student_id", student_id);
 		map.put("lecture_id", lecture_id);
 		return mapper.deleteStudent(map);
+	}
+
+	@Override
+	public List<StudentLectureVO> getAllScore(int lecture_id) {
+		return mapper.getAllScore(lecture_id);
 	}
 
 }

@@ -46,13 +46,13 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>강의내역조회</h4>
+							<h4>강의관리</h4>
 						</div>
 					</div>
 					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="javascript:void(0)">강의관리</a></li>
-							<li class="breadcrumb-item active"><a href="javascript:void(0)">강의내역조회</a></li>
+							<li class="breadcrumb-item"><a href="javascript:void(0)">수강생 관리</a></li>
+							<li class="breadcrumb-item active"><a href="javascript:void(0)">성적입력</a></li>
 						</ol>
 					</div>
 				</div>
@@ -63,7 +63,7 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">내강의목록</h4>
+								<h4 class="card-title">강의선택</h4>
 							</div>
 							<div class="card-body">
 								<div class="row-sm-8" style="overflow-y:scroll; width:100%; height:650px;">
@@ -77,7 +77,7 @@
 													<th>학년</th>
 													<th>강의이름</th>
 													<th>구분</th>
-													<th>관리</th>
+													<th>성적관리</th>
 												</tr>
 											</thead>
 											<tbody style="color: black; text-align: center;">
@@ -92,8 +92,7 @@
 														<td>${vo.lecture_name}</td>
 														<td>${vo.section}</td>
 														<td>
-															<button name="" id="updateBtn${cnt.count}" type="button" class="btn btn-danger">수정</button>
-															<button name="" id="deleteBtn${cnt.count}" type="button" class="btn btn-danger">삭제</button>
+															<button name="" id="studentBtn${cnt.count}" type="button" class="btn btn-danger">수강생조회</button>
 														</td>
 													</tr>
 												</c:forEach>
@@ -191,15 +190,6 @@
 		console.log(lecture_cnt);
 
 		for (var i = 1; i <= lecture_cnt; i++) {
-			$("#updateBtn" + i)
-					.click(
-							function() {
-								id = $(this).closest("tr").find("td:eq(0)")
-										.text();
-								console.log(id);
-								document.location.href = "/professorLecture/updateform?id="
-										+ id;
-							});
 
 			$("#deleteBtn" + i).click(function() {
 				id = $(this).closest("tr").find("td:eq(0)").text();
@@ -207,7 +197,15 @@
 				modal.modal("show");
 			});
 
-			
+			$("#studentBtn" + i)
+					.click(
+							function() {
+								id = $(this).closest("tr").find("td:eq(0)")
+										.text();
+								console.log(id);
+								document.location.href = "/professorLecture/student-list?lecture_id="
+										+ id;
+							});
 		}
 
 		modalDeleteBtn.click(function() {
