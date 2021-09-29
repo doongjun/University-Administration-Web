@@ -23,9 +23,9 @@
             padding: 0, 0; 
             background-image: url('../resources/images/meta.png'), url('../resources/images/meteuniv.png');
             min-height: 100%, 100%;
-            background-position:50% 0px, 50% 12%;
+            background-position:50% 10%, 50% 20%;
             background-repeat: no-repeat, no-repeat;
-            background-size: 150px, 300px;
+            background-size: 150px, 220px;
         }
     </style>
 </head>
