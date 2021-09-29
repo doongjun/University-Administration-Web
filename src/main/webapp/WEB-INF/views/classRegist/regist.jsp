@@ -258,7 +258,7 @@
 	
 	<input type="hidden" id="s_id" value="${member.id}">
 	
-	<form action="/classRegist/regist" method="get" id="actionForm">
+	<form action="" method="get" id="actionForm">
 		<input type="hidden" name="pageNum" value="${pageVo.cri.pageNum}" />
 		<input type="hidden" name="amount" value="${pageVo.cri.amount}" />
 		<input type="hidden" name="flag" value="${pageVo.cri.flag}" />
