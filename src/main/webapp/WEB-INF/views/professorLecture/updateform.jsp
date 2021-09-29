@@ -257,31 +257,31 @@
 			swal("대상학년을 선택해주세요");
 			$("select[name='grade']").focus();
 			return false;
-		}else if ($("input[name='classroom']").val() == ""){
+		}else if ($("input[name='classroom']").val() == "" || $("input[name='classroom']").val() == "예) 000관 000호"){
 			swal("강의실을 입력해주세요");
 			$("input[name='classroom']").focus();
 			return false;
-		}else if ($("input[name='lecture_time']").val() == ""){
+		}else if ($("input[name='lecture_time']").val() == "" || $("input[name='lecture_time']").val() == "예) 수 1,2,3"){
 			swal("강의시간을 입력해주세요");
 			$("input[name='lecture_time']").focus();
 			return false;
-		}else if ($("select[name='division']").val() == ""){
+		}else if ($("select[name='division']").val() == "" ){
 			swal("분반을 선택해주세요");
 			$("select[name='division']").focus();
-			return false;
+			return;
 		}else if ($("input[name='credit']").val() == ""){
 			swal("학점을 입력해주세요");
 			$("input[name='credit']").focus();
-			return false;
+			return;
 		}else if ($("select[name='section']").val() == ""){
 			swal("구분을 선택해주세요");
 			$("select[name='section']").focus();
-			return false;
+			return;
 		}else if ($("input[name='student_full']").val() == ""){
 			swal("수강정원을 입력해주세요");
 			$("input[name='student_full']").focus();
-			return false;
-		}else if ($("input[name='remarks']").val() == ""){
+			return;
+		}else if ($("input[name='remarks']").val() == "" || $("input[name='remarks']").val() == "생략불가능. 최대 30자"){
 			swal("비고를 입력해주세요");
 			$("input[name='remarks']").focus();
 			return false;

@@ -41,8 +41,8 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>등록금 고지서</h4>
-							<span class="ml-1">학생</span>
+							<h4 style="font-weight:bold;">등록금 고지서</h4>
+							<span class="ml-1">학적 관리</span>
 						</div>
 
 					</div>
@@ -57,11 +57,12 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Tuition</h4>
+								<h4 class="card-title" style="font-weight:bold;">등록금 고지서 미리보기</h4>
 							</div>
 							<div class="card-body">
 								<label>${fileName }</label>
-								<iframe src="${saveFilePath }" style="width:1350px;height:700px;"></iframe>
+								<br>
+								<iframe src="${saveFilePath }" style="width:102em;height:700px;"></iframe>
 							</div>
 						</div>
 					</div>

@@ -41,7 +41,7 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>학생 관리</h4>
+							<h4 style="font-weight:bold;">학생 관리</h4>
 							<span class="ml-1">관리자</span>
 						</div>
 
@@ -57,7 +57,7 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Student List</h4>
+								<h4 class="card-title" style="font-weight:bold;">학생 목록</h4>
 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#studentAddModal">학생 추가</button>
 							</div>
 							<div class="card-body">
@@ -187,9 +187,9 @@
 								</form>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-danger" onclick="fn_delete();">Delete</button>
-								<button type="button" class="btn btn-primary" onclick="fn_revise();">Save changes</button>
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-danger" onclick="fn_delete();">삭제</button>
+								<button type="button" class="btn btn-primary" onclick="fn_revise();">수정</button>
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 
 							</div>
 						</div>
@@ -299,8 +299,8 @@
 									</div>
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn btn-primary" onclick="fn_regist();">Add</button>
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-primary" onclick="fn_regist();">추가</button>
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 								</div>
 							</form>
 						</div>

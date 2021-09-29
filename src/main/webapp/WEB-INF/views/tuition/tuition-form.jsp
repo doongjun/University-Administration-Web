@@ -41,7 +41,7 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>등록금 고지서 등록</h4>
+							<h4 style="font-weight:bold;">등록금 고지서 관리</h4>
 							<span class="ml-1">관리자</span>
 						</div>
 
@@ -49,7 +49,7 @@
 					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="javascript:void(0)">학적</a></li>
-							<li class="breadcrumb-item active"><a href="javascript:void(0)">등록금 고지서 등록</a></li>
+							<li class="breadcrumb-item active"><a href="javascript:void(0)">등록금 고지서 관리</a></li>
 						</ol>
 					</div>
 				</div>
@@ -57,7 +57,7 @@
 					<div class="col-xl-6 col-xxl-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Tuition file upload</h4>
+								<h4 class="card-title" style="font-weight:bold;">등록금 파일 업로드</h4>
 							</div>
 							<div class="card-body">
 								<div class="basic-form custom_file_input">
@@ -68,7 +68,7 @@
 										</div>
 										<label>등록금 고지서</label>
 										<div class="custom-file">
-											<input id="input-tuition" type="file" name="file" class="custom-file-input"> <label id="label-tuition" class="custom-file-label">Choose File</label>
+											<input id="input-tuition" type="file" name="file" class="custom-file-input"> <label id="label-tuition" class="custom-file-label">파일 선택</label>
 										</div>
 										<label></label>
 										<div class="input-group-append">
@@ -102,7 +102,7 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Tuition File List</h4>
+								<h4 class="card-title" style="font-weight:bold;">등록금 파일 목록</h4>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
@@ -150,13 +150,13 @@
 							<div class="modal-footer">
 								<form action="/tuition/download-tuition">
 									<input id="downloadCodeVal" type="hidden" name="code">
-									<button type="submit" class="btn btn-primary" onclick="">Download</button>
+									<button type="submit" class="btn btn-primary" onclick="">다운로드</button>
 								</form>
 								<form action="/tuition/delete-tuition">
 									<input id="deleteCodeVal" type="hidden" name="code">
-									<button type="submit" class="btn btn-danger">Delete</button>
+									<button type="submit" class="btn btn-danger">삭제</button>
 								</form>
-								<button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-dark" data-dismiss="modal">닫기</button>
 							</div>
 						</div>
 					</div>
