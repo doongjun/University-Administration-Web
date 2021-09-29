@@ -100,6 +100,9 @@
 											</tbody>
 										</table>
 									</div>
+									<c:if test="${empty vo}">
+												  	<div style="text-align: center; margin-top: 10px;">강의가 없습니다</div>
+									</c:if>
 								</div>
 							</div>
 						</div>

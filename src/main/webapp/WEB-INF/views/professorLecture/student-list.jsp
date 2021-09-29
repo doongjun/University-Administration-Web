@@ -127,7 +127,8 @@
 													 </td>
 													<td style="display:none;width:7%;">
 														<select id="score${cnt.count}" id="score${cnt.count}" class="form-control">
-															<option value="A+" selected="">A+</option>
+															<option selected=""></option>
+															<option value="A+">A+</option>
 															<option value="A">A</option>
 															<option value="B+">B+</option>
 															<option value="B">B</option>
@@ -144,8 +145,10 @@
 										</tbody>
 									</table>
 								</div>
-								
 									</form>
+									<c:if test="${empty vo}">
+												  	<div style="text-align: center; margin-top: 10px;">수강생이 없습니다</div>
+									</c:if>
 									</div>
 							</div>
 						</div>
