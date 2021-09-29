@@ -4,7 +4,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
-	<link href="../resources/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+<link href="../resources/vendor/sweetalert2/dist/sweetalert2.min.css"
+	rel="stylesheet">
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 <body>
@@ -73,7 +74,42 @@
 							<div class="card-header">
 								<h4 class="card-title">학사공지</h4>
 							</div>
-							
+							<!-- 검색창
+									<div class="basic-form"> -->
+							<div class="card-body">
+								<form action="" id="searchForm" class="">
+									<div class="col-lg-2" style="float: left; padding-left: 0px">
+										<select name="sort" id="type" class="form-control">
+											<option value="">분류</option>
+											<option value="제목"
+												<c:out value="${BoardPageVO.cri.sort=='제목'?'selected':''}"/>>제목</option>
+											<option value="내용"
+												<c:out value="${BoardPageVO.cri.sort=='내용'?'selected':''}"/>>내용</option>
+											<option value="작성자"
+												<c:out value="${BoardPageVO.cri.sort=='작성자'?'selected':''}"/>>작성자</option>
+										</select>
+									</div>
+									<div class="col-lg-2" style="float: left; margin-left: -20px">
+										<input type="text" name="keyword" class="form-control"
+											placeholder="검색어를 입력하세요." value="" />
+									</div>
+									<input type="hidden" name="page"
+										value="${BoardPageVO.cri.page}" />
+									<button name="rep-btn" type="button" class="btn btn-primary"
+										style="float: left" id="search_btn">검색</button>
+
+									<!-- 관리자용 작성버튼 -->
+									<div class="col-lg-2" style="float: right; margin-left: 350px; margin-right:-100px">
+									<sec:authorize access="hasRole('ROLE_ADMIN')">
+										<button type="button" class="btn btn-primary" id="write_btn"
+											onclick="location.href='write'">글쓰기</button>
+									</sec:authorize>
+									</div>
+								</form>
+
+
+							</div>
+
 							<div class="card-body">
 
 
@@ -81,27 +117,30 @@
 								<!-- 테이블 시작 -->
 								<div class="table-responsive">
 									<table class="table table-responsive-sm">
-										<thead>
-											<tr style="color :black">
+										<thead class="table-light"
+											style="color: white; background-color: gray; text-align: center;">
+											<tr>
 												<th>번호</th>
+												<th>분류</th>
 												<th>제목</th>
 												<th>작성자</th>
 												<th>등록일</th>
 												<th>조회수</th>
 											</tr>
 										</thead>
-										<tbody style="color :black">
+										<tbody style="color: black">
 											<!-- DB에서 데이터 받아오기 -->
 											<c:forEach var="vo" items="${list}">
 												<tr>
-													<th>${vo.b_no}</th>
+													<td style="text-align: center;">${vo.b_no}</td>
+													<td style="text-align: center;">${vo.b_sort}</td>
 													<td><a class="viewarticle"
-														href='<c:out value="${vo.b_no}"/>' style="color :black">[${vo.b_sort}]
+														href='<c:out value="${vo.b_no}"/>' style="color: black">
 															${vo.b_title}</a></td>
-													<td>${vo.writer}</td>
-													<td><fmt:formatDate value="${vo.b_sysdate}"
-															pattern="yyyy-MM-dd" /></td>
-													<td>${vo.b_views}</td>
+													<td style="text-align: center;">${vo.writer}</td>
+													<td style="text-align: center;"><fmt:formatDate
+															value="${vo.b_sysdate}" pattern="yyyy-MM-dd" /></td>
+													<td style="text-align: center;">${vo.b_views}</td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -116,38 +155,44 @@
 									<div class="basic-form"> -->
 							<div class="card-body">
 								<form action="" id="searchForm" class="">
-								<div class="col-lg-2"
-									style="float: left; margin-bottom: 10px; margin-left: 0px; padding-left: -15px">
-									<select name="sort" id="type" class="form-control">
-									<option value="">분류</option>
-									<option value="제목"<c:out value="${BoardPageVO.cri.sort=='제목'?'selected':''}"/>>제목</option>
-									<option value="내용"<c:out value="${BoardPageVO.cri.sort=='내용'?'selected':''}"/>>내용</option>
-									<option value="작성자"<c:out value="${BoardPageVO.cri.sort=='작성자'?'selected':''}"/>>작성자</option>
-									</select>
-								</div>
-								<div class="col-lg-3" style="float: left; margin-right: 6px">
-									<input type="text" name="keyword" class="form-control"
-										placeholder="검색어를 입력하세요" value="" />
-								</div>
-								<input type="hidden" name="page" value="${BoardPageVO.cri.page}"/>
-								<button name="rep-btn" type="button" class="btn btn-primary"
-									style="float: left" id="search_btn">검색</button>
-							</form>
-							</div>
-							<div class="card-body"style="text-align:right">
-								<!-- 관리자용 작성버튼 -->
-								<sec:authorize access="hasRole('ROLE_ADMIN')">
-								
-							
-									<button type="button" class="btn btn-primary" id="write_btn"
-										onclick="location.href='write'">글쓰기</button>	
-								</sec:authorize>
+									<div class="col-lg-2"
+										style="float: left; margin-bottom: 10px; margin-left: 0px; padding-left: -15px">
+										<select name="sort" id="type" class="form-control">
+											<option value="">분류</option>
+											<option value="제목"
+												<c:out value="${BoardPageVO.cri.sort=='제목'?'selected':''}"/>>제목</option>
+											<option value="내용"
+												<c:out value="${BoardPageVO.cri.sort=='내용'?'selected':''}"/>>내용</option>
+											<option value="작성자"
+												<c:out value="${BoardPageVO.cri.sort=='작성자'?'selected':''}"/>>작성자</option>
+										</select>
+									</div>
+									<div class="col-lg-2" style="float: left; margin-left: -20px">
+										<input type="text" name="keyword" class="form-control"
+											placeholder="검색어를 입력하세요." value="" />
+									</div>
+									<input type="hidden" name="page"
+										value="${BoardPageVO.cri.page}" />
+									<button name="rep-btn" type="button" class="btn btn-primary"
+										style="float: left" id="search_btn">검색</button>
+								</form>
+
+
+							<!-- 관리자용 작성버튼 -->
+									<div class="col-lg-2" style="float: right; margin-left: 350px; margin-right:-100px">
+									<sec:authorize access="hasRole('ROLE_ADMIN')">
+										<button type="button" class="btn btn-primary" id="write_btn"
+											onclick="location.href='write'">글쓰기</button>
+									</sec:authorize>
+									</div>
+								</form>
+
 
 							</div>
 							<!-- 페이징 부분-->
 
-							
-								<div class="card-body" style= "text-align:center">
+
+							<div class="card-body" style= "text-align:center">
 									<ul class="btn-group mr-2 mb-2">
 
 										<c:if test="${BoardPageVO.prev}">
@@ -158,9 +203,9 @@
 
 										<c:forEach var="i" begin="${BoardPageVO.startPage}"
 											end="${BoardPageVO.endPage}">
-											<li class="mypage-item"><a href="${i}"
-												class="mypage-link ${BoardVO.cri.page==i?'activecolor':''}">
-													<button type="button" class="btn btn-primary">${i}</button>
+											<li class="mypage-item" style="padding: 0 3px"><a href="${i}"
+												class="mypage-link ${BoardVO.cri.page==i?'active':''}">
+													${i}
 											</a></li>
 										</c:forEach>
 
@@ -172,14 +217,39 @@
 
 									</ul>
 
-								</div>
-								<!--  -->
-								<form method="get" id="actionForm">
-									<input type="hidden" name="sort" value="${BoardPageVO.cri.sort}" />
-									<input type="hidden" name="keyword" value="${BoardPageVO.cri.keyword}" />
-									<input type="hidden" name="page" value="${BoardPageVO.cri.page}" />
-								</form>
 							
+								<div class="card-tools">
+									<ul class="pagination pagination-sm float-right">
+										<!-- 이전페이지 -->
+										<c:if test="${BoardPageVO.prev}">
+											<li class="page-item"><a href="${BoardPageVO.startPage-1}"
+												class="page-link">&laquo;</a></li>
+										</c:if>
+										<!-- 페이지 (1,2,3,...) -->
+										<c:forEach var="idx" begin="${BoardPageVO.startPage}"
+											end="${pageVo.endPage}">
+											<li class="page-item ${BoardPageVO.cri.page==i?'active':''}">
+												<a href="${i}" class="page-link">${i}</a>
+											</li>
+										</c:forEach>
+										<!-- 다음 페이지 -->
+										<c:if test="${BoardPageVO.next}">
+											<li class="page-item"><a href="${BoardPageVO.endPage+1}"
+												class="page-link">&raquo;</a></li>
+										</c:if>
+									</ul>
+								</div>
+							
+								</div>
+
+							<!--  -->
+							<form method="get" id="actionForm">
+								<input type="hidden" name="sort" value="${BoardPageVO.cri.sort}" />
+								<input type="hidden" name="keyword"
+									value="${BoardPageVO.cri.keyword}" /> <input type="hidden"
+									name="page" value="${BoardPageVO.cri.page}" />
+							</form>
+
 						</div>
 
 
@@ -239,12 +309,10 @@
 
 	<script src="/resources/js/boardlist.js"></script>
 	<script>
-		
 		/*아작스 시도하다가 실패*/
 		let result = '${result}';
-		
 	</script>
-	
+
 </body>
 
 </html>

@@ -50,7 +50,6 @@
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
 							<h4>학사 공지</h4>
-							<p class="mb-0">메타대학교 학사공지</p>
 						</div>
 					</div>
 					<div
@@ -70,32 +69,51 @@
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">[${vo.b_no}] ${vo.b_title}</h4>
-								<ol style="color: black">
-									<li><p class="mb-0">작성자 : ${vo.writer}</p></li>
-									<li><p class="mb-0">
-											등록일 :
-											<fmt:formatDate value="${vo.b_sysdate}" pattern="yyyy-MM-dd" />
-										</p></li>
-									<li><p class="mb-0">조회수 : ${vo.b_views}</p></li>
-								</ol>
-							</div>
+								<div class="table-responsive">
+									<table class="table table-responsive-sm" style=" border: 1px solid #eaeaea;">
+											<tbody style="color: black">
+											<tr>
+												<td style="color: white; background-color: gray; text-align: center;">제목</td>
+												<td colspan="5">${vo.b_title}</td>
+											</tr>
+											<tr>
+												<td style="color: white; background-color: gray; text-align: center;">작성자</td>
+												<td style="width:50%">${vo.writer}</td>
+												<td style="color: white; background-color: gray; text-align: center; width:8%">조회수</td>
+												<td>${vo.b_views}</td>
+												<td style="color: white; background-color: gray; text-align: center; width:8%">등록일</td>
+												<td><fmt:formatDate
+															value="${vo.b_sysdate}" pattern="yyyy-MM-dd" /></td>
+											</tr>
+											<tr></tr>
+											
+											</tbody>
+										
+									</table>
 
+
+
+								</div>
+
+							</div>
+							<div></div>
+							<br>
 							<!-- ckeditor 추가부분 -->
-							<div class="row justify-content-md-center" style="color:black">
+							<div class="row justify-content-md-center" style="">
 								<div class="col_c" style="margin-bottom: 30px">
-									<div class="input-group">
-										<textarea class="form-control" id="b_content" 
-											readonly="readonly" name="content"
-											style="display:none">${vo.b_content}</textarea>
+									<div class="input-group"
+										style="height: 500px; width: 1115px; white-space: pre-wrap; color: black;">
+
+										<textarea class="form-control" id="b_content"
+											readonly="readonly" name="content" style="display: none">${vo.b_content}</textarea>
 										<script>
 										val = $("#b_content").val();
 										document.write(val);
+										console.log(val);
 										var input = document.getElementById("input-group");
-										input.innerHTML = "<b><font color='red'>"+val+"</font></b>";
-										console.log(input);
+										//input.innerHTML = "<b><font color='red'>"+val+"</font></b>";
+										//console.log(input);
 										</script>
-
 
 									</div>
 								</div>
