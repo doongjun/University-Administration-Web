@@ -48,15 +48,15 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>수강생 관리</h4>
+							<h4>성적 입력</h4>
 						</div>
 					</div>
 					<div
 						class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="javascript:void(0)">강의관리</a></li>
+							<li class="breadcrumb-item"><a href="javascript:void(0)">수강생관리</a></li>
 							<li class="breadcrumb-item active"><a
-								href="javascript:void(0)">수강생관리</a></li>
+								href="javascript:void(0)">성적 입력</a></li>
 						</ol>
 					</div>
 				</div>
@@ -88,12 +88,12 @@
 												<th>이름</th>
 												<th>학년</th>
 												<th id="delete">관리</th>
-												<th id="score" style="display:none;">중간</th>
-												<th id="score" style="display:none;">기말</th>
-												<th id="score" style="display:none;">과제</th>
-												<th id="score" style="display:none;">출석</th>
-												<th id="score" style="display:none;">총점</th>
-												<th id="score" style="display:none;">학점</th>
+												<th style="display:none;">중간</th>
+												<th style="display:none;">기말</th>
+												<th style="display:none;">과제</th>
+												<th style="display:none;">출석</th>
+												<th style="display:none;">총점</th>
+												<th style="display:none;">학점</th>
 											</tr>
 										</thead>
 										<tbody style="color: black; text-align: center;">
@@ -111,31 +111,31 @@
 															class="btn btn-danger">삭제</button>
 													</td>
 													<td style="display:none;width:10%;">
-														<input id="midterm_exam${cnt.count}" style="width:60%" name="midterm_exam${cnt.count}" type="number" placeholder="0" onchange="calculate(${cnt.count})">
+														<input id="midterm_exam${cnt.count}" style="width:60%" value="${svo[cnt.index].midterm_exam}" name="midterm_exam${cnt.count}" type="number"  onchange="calculate(${cnt.count})">
 													 </td>
 													<td style="display:none;width:10%;"> 
-														<input id="final_exam${cnt.count}" style="width:60%" name="final_exam${cnt.count}" type="number" placeholder="0" onchange="calculate(${cnt.count})">
+														<input id="final_exam${cnt.count}" style="width:60%" value="${svo[cnt.index].final_exam}" name="final_exam${cnt.count}" type="number"  onchange="calculate(${cnt.count})">
 													</td>
 													<td style="display:none;width:10%;">
-														<input id="assignment${cnt.count}" style="width:60%" name="assignment${cnt.count}" type="number" placeholder="0" onchange="calculate(${cnt.count})">
+														<input id="assignment${cnt.count}" style="width:60%" value="${svo[cnt.index].assignment}" name="assignment${cnt.count}" type="number" onchange="calculate(${cnt.count})">
 													 </td>
 													<td style="display:none;width:10%;">
-														<input id="attendance${cnt.count}" style="width:60%" name="attendance${cnt.count}" type="number" placeholder="0" onchange="calculate(${cnt.count})">
+														<input id="attendance${cnt.count}" style="width:60%" value="${svo[cnt.index].attendance}" name="attendance${cnt.count}" type="number"  onchange="calculate(${cnt.count})">
 													 </td>
 													<td style="display:none;width:10%;">
-														<input id="total${cnt.count}" style="width:60%" name="total${cnt.count}" type="number">
+														<input id="total${cnt.count}" style="width:60%" value="${svo[cnt.index].total}" name="total${cnt.count}" type="number">
 													 </td>
-													<td id="score" style="display:none;width:7%;">
-														<select name="score${cnt.count}" id="inputScore" class="form-control">
-															<option selected="">A+</option>
-															<option>A</option>
-															<option>B+</option>
-															<option>B</option>
-															<option>C+</option>
-															<option>C</option>
-															<option>D+</option>
-															<option>D</option>
-															<option>F</option>
+													<td style="display:none;width:7%;">
+														<select id="score${cnt.count}" id="score${cnt.count}" class="form-control">
+															<option value="A+" selected="">A+</option>
+															<option value="A">A</option>
+															<option value="B+">B+</option>
+															<option value="B">B</option>
+															<option value="C+">C+</option>
+															<option value="C">C</option>
+															<option value="D+">D+</option>
+															<option value="D">D</option>
+															<option value="F">F</option>
 														</select>
 													</td>
 													
@@ -228,6 +228,28 @@
 	<script src="../resources/js/plugins-init/fullcalendar-init.js"></script>
 
 	<script>
+	
+	var lecture_cnt = "${fn:length(vo)}";
+	console.log(lecture_cnt);
+	
+	let modal = $(".modal");
+
+	var modalDeleteBtn = $("#modalDeleteBtn");
+
+	var lecture_id = document.getElementById('lecture_id').value;
+	console.log(lecture_id);
+	
+
+	$(document).ready(function(){
+		for (var i = 0; i < lecture_cnt; i++) {
+			var score = "${svo[i].score}";
+			console.log("실행되나")
+			console.log(score+","+i);
+			//var score = "${svo[0].score}";
+			$("#score"+(i+1)).val(score).prop("selected",true);
+		}});
+
+	
 		//성적입력버튼처리
 		$('#showScoreBtn').click(function(){
 			
@@ -241,6 +263,12 @@
 			$('td:nth-child(10),th:nth-child(9)').show();
 			$('td:nth-child(11),th:nth-child(10)').show();
 			$('td:nth-child(12),th:nth-child(11)').show();
+			
+			
+			console.log("${svo[0].total}");
+			console.log("${svo[0].midterm_exam}");
+			console.log("${svo[1].total}");
+			console.log("${svo[1].midterm_exam}");
 			
 		});
 		
@@ -259,10 +287,7 @@
 					},
 
 					success : function(data) {
-/* 						alert("성공적으로 저장되었습니다.");
-						location.replace(location.href); //post 데이터 포함하지않고 새로고침
-						 */
-						swal("Good job!","성공적으로 저장되었습니다.","success").then((value) => {
+						swal("성공적으로 저장되었습니다.","","success").then((value) => {
 							if(value){
 								location.replace(location.href);
 							}
@@ -283,15 +308,6 @@
 		}
 		
 		
-		let modal = $(".modal");
-
-		var modalDeleteBtn = $("#modalDeleteBtn");
-
-		var lecture_id = document.getElementById('lecture_id').value;
-		console.log(lecture_id);
-
-		var lecture_cnt = "${fn:length(vo)}";
-		console.log(lecture_cnt);
 
 		for (var i = 1; i <= lecture_cnt; i++) {
 			$("#deleteBtn" + i).click(function() {

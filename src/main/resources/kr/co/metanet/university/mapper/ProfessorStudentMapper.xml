@@ -10,6 +10,16 @@
 		AND mr.member_id = m.id
 		ORDER BY s.department_code ASC, s.grade DESC, m.name ASC   
 	</select>
+
+	<select id="getAllScore" parameterType="int" resultType="kr.co.metanet.university.domain.StudentLectureVO">
+		select sl.student_id, sl.lecture_id, sl.score,
+		sl.midterm_exam,sl.final_exam,sl.attendance,sl.total,sl.assignment 
+		FROM student s, department d, member m, student_lecture sl, member_role mr
+		WHERE s.id = sl.student_id AND sl.lecture_id = #{lecture_id}
+		AND m.id = s.id AND d.department_code = s.department_code
+		AND mr.member_id = m.id
+		ORDER BY s.department_code ASC, s.grade DESC, m.name ASC
+	</select>
 	
 	<update id="updateScore" parameterType="Map">
 		UPDATE STUDENT_LECTURE
@@ -23,5 +33,7 @@
 		WHERE student_id = #{student_id} and lecture_id = #{lecture_id}
 	</delete>
 
+
+	
 
 </mapper>

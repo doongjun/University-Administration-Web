@@ -29,10 +29,10 @@
 	                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
 	                                class="icon icon-app-store"></i><span class="nav-text">강의 관리</span></a>
 	                        <ul aria-expanded="false">
-	                            <li><a href="/lecture/syllabus">강의계획서조회</a></li>
-	                            <li><a href="/lecture/prevLecture">수강내역조회</a>
+	                            <li><a href="/lecture/syllabus">강의계획서 조회</a></li>
+	                            <li><a href="/lecture/prevLecture">수강내역 조회</a>
 	                            </li>
-	                            <li><a href="/lecture/score-list">성적조회</a></li>
+	                            <li><a href="/lecture/score-list">성적 조회</a></li>
 	                        </ul>
 	                    </li>
 	                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
@@ -65,8 +65,9 @@
 	                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
 	                                class="icon icon-single-04"></i><span class="nav-text">강의관리</span></a>
 	                        <ul aria-expanded="false">
-	                            <li><a href="/professorLecture/createform">강의등록</a></li>
-	                            <li><a href="/professorLecture/lecture-list">강의조회</a></li>
+	                            <li><a href="/professorLecture/createform">새 강의등록</a></li>
+	                            <li><a href="/professorLecture/score-lecture-list">성적 입력</a></li>
+	                            <li><a href="/professorLecture/lecture-list">내 강의 관리</a></li>
 	                        </ul>
 	                    </li>
 					</c:if>

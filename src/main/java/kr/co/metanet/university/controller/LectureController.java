@@ -21,7 +21,7 @@ import kr.co.metanet.university.domain.StudentLectureVO;
 import kr.co.metanet.university.domain.Tuition;
 import kr.co.metanet.university.service.LectureService;
 import kr.co.metanet.university.service.MemberService;
-
+import kr.co.metanet.university.service.ProfessorStudentService;
 import kr.co.metanet.university.service.TuitionService;
 import lombok.extern.log4j.Log4j2;
 import kr.co.metanet.university.util.Utility;
