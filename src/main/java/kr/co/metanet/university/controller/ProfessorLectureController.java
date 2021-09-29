@@ -86,8 +86,6 @@ public class ProfessorLectureController {
 		List<StudentLectureVO> list2 = studentService.getAllScore(lecture_id);
 		model.addAttribute("vo",list);
 		model.addAttribute("svo",list2);
-		System.out.println(list2.get(0).getMidterm_exam());
-		System.out.println(list2.get(0));
 		model.addAttribute("lecture_id",lecture_id);
 		return "professorLecture/student-list";
 	}
