@@ -28,13 +28,11 @@
 		update board set b_views=#{b_views} where b_no=#{b_no}
 	</update>
 
-	<!-- 게시글 조회 -->
+	<!-- 게시글 조회 : 뷰 이용 -->
 	<select id="view" resultType="kr.co.metanet.university.domain.BoardVO">
-		select b.b_no, b.b_title, b.b_content, b.b_sysdate,
-		b.b_views, a.division as writer
-		from board b, admin a, member m
-		where
-		b.b_writer_code=m.id and a.code=m.code and b.b_no=#{b_no}
+		select b_no, b_title, b_content, b_sysdate, b_views, writer 
+		from b_view 
+		where b_no=#{b_no}
 	</select>
 
 	<!-- 전체 게시글 수 계산 -->

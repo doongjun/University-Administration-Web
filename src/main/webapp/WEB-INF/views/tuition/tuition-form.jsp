@@ -92,7 +92,7 @@
                                 </p>
                             </div>
                             <div class="card-footer">
-                                <p class="card-text d-inline">제육 대학교</p>
+                                <p class="card-text d-inline">메타 대학교</p>
                                 <a href="/board/boardlist" class="card-link float-right">Board link</a>
                             </div>
                         </div>

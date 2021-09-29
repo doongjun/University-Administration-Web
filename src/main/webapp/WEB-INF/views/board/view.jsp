@@ -5,6 +5,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+
 <body>
 
 	<!--*******************
@@ -49,7 +50,7 @@
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
 							<h4>학사 공지</h4>
-							<p class="mb-0">제육대학교 학사공지</p>
+							<p class="mb-0">메타대학교 학사공지</p>
 						</div>
 					</div>
 					<div
@@ -70,7 +71,7 @@
 						<div class="card">
 							<div class="card-header">
 								<h4 class="card-title">[${vo.b_no}] ${vo.b_title}</h4>
-								<ol>
+								<ol style="color: black">
 									<li><p class="mb-0">작성자 : ${vo.writer}</p></li>
 									<li><p class="mb-0">
 											등록일 :
@@ -81,21 +82,20 @@
 							</div>
 
 							<!-- ckeditor 추가부분 -->
-							<div class="row justify-content-md-center">
+							<div class="row justify-content-md-center" style="color:black">
 								<div class="col_c" style="margin-bottom: 30px">
 									<div class="input-group">
-										<textarea class="form-control" id="b_content"
-											readonly="readonly">${vo.b_content}</textarea>
-										<script type="text/javascript">
-											$(function() {
-												CKEDITOR
-														.replace(
-																'b_content',
-																{
-																	customConfig : '../resources/ckeditor/config.js'
-																});
-											});
-										</script>
+										<textarea class="form-control" id="b_content" 
+											readonly="readonly" name="content"
+											style="display:none">${vo.b_content}</textarea>
+										<script>
+
+										val = $("textarea#b_content").val();
+										document.write(val);
+
+
+											</script>
+
 
 									</div>
 								</div>
@@ -105,23 +105,21 @@
 
 
 							<div class="card-body">
-								<button type="button" class="btn btn-primary" id="list_btn"
-									>목록</button>
+								<button type="button" class="btn btn-primary" id="list_btn">목록</button>
 								<sec:authorize access="hasRole('ROLE_ADMIN')">
 									<!-- 추후 글 작성자 전용 -->
-									
-										<button type="button" class="btn btn-light"
-											id="modify_btn">수정</button>
-										<button type="button" class="btn btn-dark" id="del_btn">삭제</button>
-									
+
+									<button type="button" class="btn btn-light" id="modify_btn">수정</button>
+									<button type="button" class="btn btn-dark" id="del_btn">삭제</button>
+
 								</sec:authorize>
 							</div>
 
 							<form id="viewForm" action="" method="get">
-							<input type="hidden" name="b_writer_code" value="${member.id}" />
+								<input type="hidden" name="b_writer_code" value="${member.id}" />
 								<input type="hidden" id="b_no" name="b_no" value="${vo.b_no}">
 							</form>
-<!-- onclick="location.href='/board/boardlist'"
+							<!-- onclick="location.href='/board/boardlist'"
  onclick="location.href='modify'"
  -->
 						</div>
@@ -181,102 +179,93 @@
 	<!-- ckeditor -->
 	<script src="../resources/ckeditor/ckeditor.js"></script>
 
+
 	<script>
-		let viewForm = $("#viewForm");
-		//sweetalert-warning 추가예정
-		//Modify버튼 클릭시  get방식 /board/modify
-		$("#modify_btn").click(function(e) {
-			
-			e.preventDefault();
-			
-			swal({
-				text : '글을 수정하시겠습니까?',
-				icon:'info',
-				closeOnclickOutside : false,
-				buttons:{
-					cancle:{
-						text : '취소',
-						value:false
-					},
-					confirm:{
-						text : '수정',
-						value : true
-					}
-				}
-			}).then((result) => {
-				if(result){
-					
-					viewForm.attr('action', '/board/modify');
-					viewForm.submit();
-							
-				}else{
-					return;
-				}
-			});
-			
-			
-		})
-		
-		
-		//List버튼 클릭시 get /board/boardlist
-		$("#list_btn").click(function() {
-			viewForm.find("input[name='b_no']").remove();
-			viewForm.find("input[name='b_writer_code']").remove();
-			viewForm.find("input[name='b_view']").remove();
-			viewForm.attr('action', '/board/boardlist');
-			viewForm.submit();
-		})
-		
-		//delete 버튼 클릭시  post방식 /board/delete
-		$("#del_btn").click(function(e) {
-			e.preventDefault();
-			
-			swal({
-				text : '글을 삭제하시겠습니까?',
-				icon:'warning',
-				closeOnclickOutside : false,
-				buttons:{
-					cancle:{
-						text : '취소',
-						value:false
-					},
-					confirm:{
-						text : '삭제',
-						value : true
-					}
-				}
-			}).then((result) => {
-				if(result){
-					swal('글 삭제','글을 삭제합니다','success',{
-					closeOnclickOutside : false
-					
-					})
-					viewForm.attr("method","POST");
-					viewForm.attr('action', '/board/delete');
-					viewForm.submit();
-							
-				}else{
-					return;
-				}
-			});
-			
-			
-		})
-		
-	</script>
+      let viewForm = $("#viewForm");
+      //sweetalert-warning 추가예정
+      //Modify버튼 클릭시  get방식 /board/modify
+      $("#modify_btn").click(function(e) {
+         
+         e.preventDefault();
+         
+         swal({
+            text : '글을 수정하시겠습니까?',
+            icon:'info',
+            closeOnclickOutside : false,
+            buttons:{
+               cancle:{
+                  text : '취소',
+                  value:false
+               },
+               confirm:{
+                  text : '수정',
+                  value : true
+               }
+            }
+         }).then((result) => {
+            if(result){
+               
+               viewForm.attr('action', '/board/modify');
+               viewForm.submit();
+                     
+            }else{
+               return;
+            }
+         });
+         
+         
+      })
+      
+      
+      //List버튼 클릭시 get /board/boardlist
+      $("#list_btn").click(function() {
+    	  
+         viewForm.find("input[name='b_no']").remove();
+         viewForm.find("input[name='b_writer_code']").remove();
+         viewForm.find("input[name='b_view']").remove();
+         viewForm.attr('action', '/board/boardlist');
+         viewForm.submit();
+      })
+      
+      //delete 버튼 클릭시  post방식 /board/delete
+      $("#del_btn").click(function(e) {
+         e.preventDefault();
+         
+         swal({
+            text : '글을 삭제하시겠습니까?',
+            icon:'warning',
+            closeOnclickOutside : false,
+            buttons:{
+               cancle:{
+                  text : '취소',
+                  value:false
+               },
+               confirm:{
+                  text : '삭제',
+                  value : true
+               }
+            }
+         }).then((result) => {
+            if(result){
+               swal('글 삭제','글을 삭제합니다','success',{
+               closeOnclickOutside : false
+               
+               })
+               viewForm.attr("method","POST");
+               viewForm.attr('action', '/board/delete');
+               viewForm.submit();
+                     
+            }else{
+               return;
+            }
+         });
+         
+         
+      })
+      
+   </script>
 
-	<!-- 구글링 깃허브 -->
-	<script
-		src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="//feather.aviary.com/imaging/v3/editor.js"></script>
 
-	<script src="//unpkg.com/grapesjs@0.10.7/dist/grapes.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/grapesjs-plugin-export@0.1.5/dist/grapesjs-plugin-export.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.9.2/ckeditor.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/grapesjs-plugin-ckeditor@0.0.9/dist/grapesjs-plugin-ckeditor.min.js"></script>
 
 
 

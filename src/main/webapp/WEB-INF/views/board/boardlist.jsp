@@ -6,7 +6,12 @@
 	prefix="sec"%>
 	<link href="../resources/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-
+<style type="text/css">
+		@FONT-FACE {
+			font-family: 'DoHyeon';
+			src:url("/resources/fonts/DoHyeon-Regular.ttf");
+		}
+		  </style>
 <body>
 
 	<!--*******************
@@ -49,8 +54,10 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
+
 							<h4>학사 공지</h4>
-							<p class="mb-0">제육대학교 학사공지</p>
+							<p class="mb-0">메타대학교 학사공지</p>
+
 						</div>
 					</div>
 					<div
@@ -72,6 +79,7 @@
 							<div class="card-header">
 								<h4 class="card-title">학사공지</h4>
 							</div>
+							
 							<div class="card-body">
 
 
@@ -132,18 +140,20 @@
 									style="float: left" id="search_btn">검색</button>
 							</form>
 							</div>
-							<div class="card-body" style="">
+							<div class="card-body"style="text-align:right">
 								<!-- 관리자용 작성버튼 -->
 								<sec:authorize access="hasRole('ROLE_ADMIN')">
+								
+							
 									<button type="button" class="btn btn-primary" id="write_btn"
-										onclick="location.href='write'">글쓰기</button>
+										onclick="location.href='write'">글쓰기</button>	
 								</sec:authorize>
 
 							</div>
 							<!-- 페이징 부분-->
 
-							<div class="col-xl-6">
-								<div class="card-body">
+							
+								<div class="card-body" style= "text-align:center">
 									<ul class="btn-group mr-2 mb-2">
 
 										<c:if test="${BoardPageVO.prev}">
@@ -175,7 +185,7 @@
 									<input type="hidden" name="keyword" value="${BoardPageVO.cri.keyword}" />
 									<input type="hidden" name="page" value="${BoardPageVO.cri.page}" />
 								</form>
-							</div>
+							
 						</div>
 
 
@@ -238,8 +248,7 @@
 		
 		/*아작스 시도하다가 실패*/
 		let result = '${result}';
-		var csrfHeaderName = "${_csrf.headerName}";
-		var csrfTokenValue = "${_csrf.token}";
+		
 	</script>
 	
 </body>

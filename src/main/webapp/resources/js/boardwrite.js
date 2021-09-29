@@ -58,3 +58,29 @@ $("button[type='submit']").click(function(e){
 	
 	
 	})
+	
+$("#list_button").click(function(e){
+	e.preventDefault();
+	swal({
+		text : '글 작성을 취소하시겠습니까?',
+		icon:'info',
+		closeOnclickOutside : false,
+		buttons:{
+			cancle:{
+				text : '취소',
+				value:false
+			},
+			confirm:{
+				text : '네',
+				value : true
+			}
+		}
+	}).then((result) => {
+		if(result){
+		$(location).attr('href', '/board/boardlist');
+					
+		}else{
+			return;
+		}
+	});
+	})

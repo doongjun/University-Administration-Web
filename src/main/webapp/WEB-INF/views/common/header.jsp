@@ -15,10 +15,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>제육대학교 - 학사관리시스템 </title>
+    <title>메타대학교 - 학사관리시스템 </title>
     
     <!-- Favicon icon -->
-    <link rel="icon" type="/image/png" sizes="16x16" href="../resources/images/favicon.png">
+    <link rel="icon" type="/image/png" sizes="32x32" href="../resources/images/meta.png">
     <link rel="stylesheet" href="../resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="../resources/vendor/owl-carousel/css/owl.theme.default.min.css">
     <link href="../resources/vendor/fullcalendar/css/fullcalendar.min.css" rel="stylesheet">
