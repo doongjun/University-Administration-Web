@@ -401,7 +401,7 @@
 					alert("code:"+request.status+"\n"+"error:"+error);
 				},
 				success : function(data) {
-					swal("학생 삭제 완료","제육대학교 학생", "success").then((value) => {
+					swal("학생 삭제 완료","메타대학교 학생", "success").then((value) => {
 						if(value){
 							document.location.href="/members/student-list";
 						}
@@ -459,7 +459,7 @@
 							}
 						});
 					}else{
-						swal("학생 수정 완료","제육대학교 학생", "success").then((value) => {
+						swal("학생 수정 완료","메타대학교 학생", "success").then((value) => {
 							if(value){
 								document.location.href="/members/student-list";
 							}
@@ -520,7 +520,7 @@
 							}
 						});
 					}else{
-						swal("학생 추가 완료","제육대학교 학생", "success").then((value) => {
+						swal("학생 추가 완료","메타대학교 학생", "success").then((value) => {
 							if(value){
 								document.location.href="/members/student-list";
 							}

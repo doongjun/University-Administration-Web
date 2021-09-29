@@ -16,6 +16,18 @@
 	
 	<!-- SweetAlert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+    <style>
+        body {
+            border: 0, 0;
+            padding: 0, 0; 
+            background-image: url('../resources/images/meta.png'), url('../resources/images/meteuniv.png');
+            min-height: 100%, 100%;
+            background-position:50% 0px, 50% 12%;
+            background-repeat: no-repeat, no-repeat;
+            background-size: 150px, 300px;
+        }
+    </style>
 </head>
 
 <body class="h-100">
@@ -39,7 +51,7 @@
                                         </div>
                                         <div class="form-row d-flex justify-content-between mt-4 mb-2">
                                             <div class="form-group">
-                                                <a href="page-forgot-password.html">Forgot Password?</a>
+                                               
                                             </div>
                                         </div>
                                         <div class="text-center">

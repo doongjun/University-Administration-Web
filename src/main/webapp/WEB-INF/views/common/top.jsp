@@ -5,12 +5,11 @@
 <body>
 		<div class="nav-header">
             <a href="/board/boardlist" class="brand-logo">
-                <img class="logo-abbr" src="../resources/images/logo.png" alt="">
-                <img class="logo-compact" src="../resources/images/logo-text.png" alt="">
-                <div style="margin-left:10px;">
-                	제육 대학교
-                </div>
+                <img class="logo-abbr" src="../resources/images/meta.png" alt="" style="max-width:50px; margin-left:12px; margin-top:6px;">
+                <img class="logo-compact" src="../resources/images/metatext.png" alt="">
+                <img class="brand-title" src="../resources/images/metatext.png" alt="" style="max-width:500px; margin-left: -12px;">
             </a>
+            
         </div>
         <!--**********************************
             Nav header end
