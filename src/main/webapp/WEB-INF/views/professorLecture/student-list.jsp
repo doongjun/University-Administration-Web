@@ -126,8 +126,8 @@
 														<input id="total${cnt.count}" style="width:60%" value="${svo[cnt.index].total}" name="total${cnt.count}" type="number">
 													 </td>
 													<td style="display:none;width:7%;">
-														<select id="score${cnt.count}" id="score${cnt.count}" class="form-control">
-															<option selected=""></option>
+														<select id="score${cnt.count}" name="score${cnt.count}" class="form-control">
+															<option></option>
 															<option value="A+">A+</option>
 															<option value="A">A</option>
 															<option value="B+">B+</option>
@@ -141,6 +141,7 @@
 													</td>
 													
 												</tr>
+												<input id="stemp${cnt.count}" name="stemp${cnt.count}" value="${svo[cnt.index].score}" type="hidden">
 											</c:forEach>
 										</tbody>
 									</table>
@@ -243,13 +244,14 @@
 	console.log(lecture_id);
 	
 
+	
 	$(document).ready(function(){
 		for (var i = 0; i < lecture_cnt; i++) {
-			var score = "${svo[i].score}";
-			console.log("실행되나")
-			console.log(score+","+i);
-			//var score = "${svo[0].score}";
-			$("#score"+(i+1)).val(score).prop("selected",true);
+			//var score = "${svo[i].score}"; js변수로 접근안됨
+			var stemp = document.getElementById('stemp'+(i+1)).value;
+			console.log("stemp값:"+stemp);
+			console.log($("#stemp"+(i+1)).val());
+			$("#score"+(i+1)).val(stemp).prop("selected",true);
 		}});
 
 	
