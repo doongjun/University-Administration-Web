@@ -6,12 +6,7 @@
 	prefix="sec"%>
 	<link href="../resources/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-<style type="text/css">
-		@FONT-FACE {
-			font-family: 'DoHyeon';
-			src:url("/resources/fonts/DoHyeon-Regular.ttf");
-		}
-		  </style>
+
 <body>
 
 	<!--*******************
@@ -54,10 +49,7 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-
 							<h4 style="font-weight:bold;">학사 공지</h4>
-							<p class="mb-0">메타대학교 학사공지</p>
-
 						</div>
 					</div>
 					<div
