@@ -18,8 +18,8 @@
 		<![CDATA[ 	
 		        b.b_writer_code=m.id and a.code=m.code
 		        order by b_no desc)
-		     where rownum <=(#{page}*20))
-		 where rn > ((#{page}-1)*20)    
+		     where rownum <=(#{page}*10))
+		 where rn > ((#{page}-1)*10)    
 		 ]]>
 	</select>
 
