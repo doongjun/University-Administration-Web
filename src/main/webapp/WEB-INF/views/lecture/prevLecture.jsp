@@ -47,7 +47,7 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>수강내역 조회</h4>
+							<h4 style="font-weight:bold;">이전 수강내역 조회</h4>
 						</div>
 					</div>
 					<div
@@ -55,7 +55,7 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="javascript:void(0)">강의관리</a></li>
 							<li class="breadcrumb-item active"><a
-								href="javascript:void(0)">이전수강내역 조회</a></li>
+								href="javascript:void(0)">이전 수강내역 조회</a></li>
 						</ol>
 					</div>
 				</div>
@@ -66,15 +66,17 @@
 					<div class="justify-content-start p-md-0" style="float:left;">
 					<form class="form-inline">
 							<label>수강년도</label>
-							 <select id="lecture_year"  style="margin-left:10px;">
+							 <select id="lecture_year" class="form-control" style="margin-left:10px;">
 								<option value="2021" selected="">2021</option>
 								<option value="2020">2020</option>
 								<option value="2019">2019</option>
 								<option value="2018">2018</option>
+								<option value="2017">2017</option>
+								<option value="2016">2016</option>
 							</select> 
 							
 							<label style="margin-left:20px;" >학기</label> 
-							<select id="semester" style="margin-left:10px;">
+							<select id="semester" class="form-control" style="margin-left:10px;">
 								<option value="1학기" selected="">1학기</option>
 								<option value="2학기">2학기</option>
 								<option value="여름계절학기">여름계절학기</option>
@@ -96,7 +98,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">이전수강내역</h4>
+                                <h4 class="card-title">이전 수강 내역</h4>
                             </div>
                             <div class="card-body">
                             	<div class="row-sm-8" style="overflow-y:scroll; width:100%; height:650px;">
@@ -135,6 +137,9 @@
 											</c:forEach>
 										</tbody>
 									</table>
+									<c:if test="${empty vo}">
+												  	<div style="text-align: center; margin-top: 10px;">검색결과가 없습니다</div>
+									</c:if>
                                 </div>
                                 </div>
                             </div>
@@ -192,11 +197,16 @@
 							var semester = document.getElementById('semester').value;
 							console.log(student_id + "," + lecture_year + ','
 									+ semester);
+							if(lecture_year == ""){
+								swal("수강년도를 선택하세요");
+							}else if(semester == ""){
+								swal("학기를 선택하세요");
+							}else{
 							location.href = "/lecture/selected-prevLecture?student_id="
 									+ student_id
 									+ "&lecture_year="
 									+ lecture_year + "&semester=" + semester;
-
+							}
 						});
 	</script>
 	<!--**********************************
