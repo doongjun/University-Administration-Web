@@ -34,9 +34,7 @@ $(function(){
          type:'post',
          processData:false,
          contentType:false,
-         //beforeSend:function(xhr){
-            //xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
-         //},
+         
          data:b_noval,
          success:function(result){
             console.log("아작스성공성공성공성공"+result);
@@ -45,12 +43,7 @@ $(function(){
             actionForm.attr('action','view');
             actionForm.submit();
          },
-         //error:function(xhr,status,error){
-            //console.log("아작스에러에러에러에러");
-         //}
-           //error:function(request,status,error){
-       // alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-       //}
+         
       });
       
       

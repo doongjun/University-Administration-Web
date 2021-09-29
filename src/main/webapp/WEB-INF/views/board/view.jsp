@@ -89,12 +89,12 @@
 											readonly="readonly" name="content"
 											style="display:none">${vo.b_content}</textarea>
 										<script>
-
-										val = $("textarea#b_content").val();
+										val = $("#b_content").val();
 										document.write(val);
-
-
-											</script>
+										var input = document.getElementById("input-group");
+										input.innerHTML = "<b><font color='red'>"+val+"</font></b>";
+										console.log(input);
+										</script>
 
 
 									</div>
