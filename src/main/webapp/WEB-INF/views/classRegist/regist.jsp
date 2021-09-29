@@ -46,7 +46,7 @@
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
-                            <h4>수강 신청</h4>
+                            <h4 style="font-weight:bold;">수강신청</h4>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -258,7 +258,7 @@
 	
 	<input type="hidden" id="s_id" value="${member.id}">
 	
-	<form action="/classRegist/regist" method="get" id="actionForm">
+	<form action="" method="get" id="actionForm">
 		<input type="hidden" name="pageNum" value="${pageVo.cri.pageNum}" />
 		<input type="hidden" name="amount" value="${pageVo.cri.amount}" />
 		<input type="hidden" name="flag" value="${pageVo.cri.flag}" />

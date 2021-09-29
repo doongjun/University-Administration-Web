@@ -41,8 +41,8 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>Change Password</h4>
-							<p class="mb-1">비밀번호 변경</p>
+							<h4 style="font-weight:bold;">비밀번호 변경</h4>
+							<p class="mb-1">학적 관리</p>
 						</div>
 					</div>
 					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -87,8 +87,8 @@
 													</div>
 												</div>
 												<div class="form-group row">
-													<div class="col-lg-8 ml-auto">
-														<button type="submit" class="btn btn-primary">Submit</button>
+													<div class="col-lg-4 ml-auto">
+														<button type="submit" class="btn btn-primary">변경</button>
 													</div>
 												</div>
 											</div>

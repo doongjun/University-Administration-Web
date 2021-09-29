@@ -48,7 +48,7 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>성적 조회</h4>
+							<h4 style="font-weight:bold;">성적조회</h4>
 						</div>
 					</div>
 					<div
