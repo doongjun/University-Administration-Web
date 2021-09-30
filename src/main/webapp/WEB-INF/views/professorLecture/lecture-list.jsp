@@ -92,7 +92,7 @@
 														<td>${vo.lecture_name}</td>
 														<td>${vo.section}</td>
 														<td>
-															<button name="" id="updateBtn${cnt.count}" type="button" class="btn btn-warning">수정</button>
+															<button name="" id="updateBtn${cnt.count}" type="button" class="btn btn-primary">수정</button>
 															<button name="" id="deleteBtn${cnt.count}" type="button" class="btn btn-danger">삭제</button>
 														</td>
 													</tr>
