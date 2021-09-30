@@ -198,7 +198,6 @@
 												href="${BoardPageVO.startPage-1}" class="mypage-link"><button
 														type="button" class="btn btn-primary"> << </button></a></li>
 										</c:if>
-
 										<c:forEach var="i" begin="${BoardPageVO.startPage}" end="${BoardPageVO.endPage}">
 											<li class="mypage-item" style="padding: 0 3px">
 												<a href="${i}" class="mypage-link ${BoardPageVO.cri.page==i?'active':''}"> ${i} </a>
