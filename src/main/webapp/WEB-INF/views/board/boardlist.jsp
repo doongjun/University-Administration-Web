@@ -157,9 +157,11 @@
 									<ul class="btn-group mr-2 mb-2">
 
 										<c:if test="${BoardPageVO.prev}">
-											<li class="mypage-item prev"><a
-												href="${BoardPageVO.startPage-1}" class="mypage-link"><button
-														type="button" class="btn btn-primary"> << </button></a></li>
+											<li class="mypage-item prev">
+												<a href="${BoardPageVO.startPage-1}" class="mypage-link">
+													&laquo;
+												</a>
+											</li>
 										</c:if>
 
 										<c:forEach var="i" begin="${BoardPageVO.startPage}" end="${BoardPageVO.endPage}">
@@ -169,9 +171,11 @@
 										</c:forEach>
 
 										<c:if test="${BoardPageVO.next}">
-											<li class="mypage-item next"><a
-												href="${BoardPageVO.endPage+1}" class="mypage-link"><button
-														type="button" class="btn btn-primary"> >> </button></a></li>
+											<li class="mypage-item next">
+												<a href="${BoardPageVO.endPage+1}" class="mypage-link">
+													&raquo;
+												</a>
+											</li>
 										</c:if>
 
 									</ul>
