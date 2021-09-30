@@ -108,7 +108,7 @@
 																.replace(
 																	'b_content',
 								{
-									customConfig : '../resources/ckeditor/configg.js'
+									customConfig : '../resources/ckeditor/config.js'
 								});
 													});
 													if (CKEDITOR.instances.b_content
