@@ -6,7 +6,7 @@
 		SELECT m.ID, m.NAME, mr.ROLE_NAME, m.code, m.PASSWORD, d.DEPARTMENT_NAME, s.GRADE, s.BIRTHDAY, s.ACADEMIC_STATUS, s.ADMISSION_DATE, s.EMAIL, s.PHONE
 		FROM student s, department d, member m, student_lecture sl, member_role mr
 		WHERE s.id = sl.student_id AND sl.lecture_id = #{lecture_id}
-		AND m.id = s.id AND d.department_code = s.department_code
+		AND m.code = s.code AND d.department_code = s.department_code
 		AND mr.member_id = m.id
 		ORDER BY s.department_code ASC, s.grade DESC, m.name ASC   
 	</select>
@@ -16,7 +16,7 @@
 		sl.midterm_exam,sl.final_exam,sl.attendance,sl.total,sl.assignment 
 		FROM student s, department d, member m, student_lecture sl, member_role mr
 		WHERE s.id = sl.student_id AND sl.lecture_id = #{lecture_id}
-		AND m.id = s.id AND d.department_code = s.department_code
+		AND m.code = s.code AND d.department_code = s.department_code
 		AND mr.member_id = m.id
 		ORDER BY s.department_code ASC, s.grade DESC, m.name ASC
 	</select>
