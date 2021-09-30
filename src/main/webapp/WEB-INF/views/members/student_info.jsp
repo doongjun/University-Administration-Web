@@ -127,7 +127,7 @@
 													</label>
 													<div class="col-lg-6">
 														<fmt:formatDate var="birthday" value="${member.birthday}" pattern="yyyy-MM-dd" />
-														<input type="text" class="form-control" value="${birthday}" readonly>
+														<input type="date" class="form-control" value="${birthday}" readonly>
 													</div>
 												</div>
 											</div>
