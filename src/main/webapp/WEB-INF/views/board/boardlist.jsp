@@ -152,8 +152,7 @@
 							
 							<!-- 페이징 부분-->
 
-
-							<div class="card-body" style= "text-align:center">
+<div class="card-body" style= "text-align:center">
 									<ul class="btn-group mr-2 mb-2">
 
 										<c:if test="${BoardPageVO.prev}">
