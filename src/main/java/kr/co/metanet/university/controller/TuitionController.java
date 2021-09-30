@@ -77,6 +77,8 @@ public class TuitionController {
 		params.put("filePath", ATTACH_PATH);
 		params.put("fileSize", file.getSize());
 		params.put("contentType", file.getContentType());
+		
+		ra.addFlashAttribute("message", "uploadOk");
 
 		try (FileOutputStream fos = new FileOutputStream(ROOT_PATH + ATTACH_PATH + file.getOriginalFilename());
 				InputStream is = file.getInputStream();) {
@@ -121,7 +123,7 @@ public class TuitionController {
 	
 	//등록금 파일 삭제(관리자)
 	@GetMapping("/delete-tuition")
-	public String deleteTuitionByCode(HttpServletRequest request, @RequestParam(name = "code") String code) {
+	public String deleteTuitionByCode(HttpServletRequest request, @RequestParam(name = "code") String code, RedirectAttributes ra) {
 		final String ROOT_PATH = request.getSession().getServletContext().getRealPath("/");
 		
 		Tuition tuition = tuitionService.selectTuition(code);
@@ -144,10 +146,12 @@ public class TuitionController {
 			log.info("=============");
 			log.info("파일을 삭제합니다.");
 			log.info("=============");
+			ra.addFlashAttribute("message", "deleteOk");
 		}else {
 			log.info("=============");
 			log.info("파일이 존재하지 않습니다.");
 			log.info("=============");
+			ra.addFlashAttribute("message", "fail");
 		}
 		return "redirect:/tuition/tuition-form";
 		

@@ -209,6 +209,10 @@
 			swal("등록금 고지서 등록 실패","해당 학생이 존재하지 않습니다.","error");
 		} else if (msg === "overFile") {
 			swal("등록금 고지서 등록 실패","해당 학생은 파일이 이미 등록되어 있습니다.","warning");
+		} else if (msg === "uploadOk"){
+			swal("등록금 고지서 업로드 완료", "" ,"success");
+		} else if (msg === "deleteOk"){
+			swal("등록금 고지서 삭제 완료","","success");
 		}
 
 		$(document).ready(
