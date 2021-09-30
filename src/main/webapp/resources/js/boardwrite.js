@@ -46,14 +46,12 @@ $("button[type='submit']").click(function(e){
 			swal('글 작성','글을 작성합니다','success',{
 			closeOnclickOutside : false
 			
-			})
-		var form=$("#write_board");
+			}).then(function(){
+				var form=$("#write_board");
 		form.attr("action","write");
 		form.submit();
-					
-		}else{
-			return;
-		}
+			})
+			}
 	});
 	
 	
