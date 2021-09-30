@@ -199,12 +199,10 @@
 														type="button" class="btn btn-primary"> << </button></a></li>
 										</c:if>
 
-										<c:forEach var="i" begin="${BoardPageVO.startPage}"
-											end="${BoardPageVO.endPage}">
-											<li class="mypage-item" style="padding: 0 3px"><a href="${i}"
-												class="mypage-link ${BoardVO.cri.page==i?'active':''}">
-													${i}
-											</a></li>
+										<c:forEach var="i" begin="${BoardPageVO.startPage}" end="${BoardPageVO.endPage}">
+											<li class="mypage-item" style="padding: 0 3px">
+												<a href="${i}" class="mypage-link ${BoardPageVO.cri.page==i?'active':''}"> ${i} </a>
+											</li>
 										</c:forEach>
 
 										<c:if test="${BoardPageVO.next}">
@@ -214,29 +212,6 @@
 										</c:if>
 
 									</ul>
-
-							
-								<div class="card-tools">
-									<ul class="pagination pagination-sm float-right">
-										<!-- 이전페이지 -->
-										<c:if test="${BoardPageVO.prev}">
-											<li class="page-item"><a href="${BoardPageVO.startPage-1}"
-												class="page-link">&laquo;</a></li>
-										</c:if>
-										<!-- 페이지 (1,2,3,...) -->
-										<c:forEach var="idx" begin="${BoardPageVO.startPage}"
-											end="${pageVo.endPage}">
-											<li class="page-item ${BoardPageVO.cri.page==i?'active':''}">
-												<a href="${i}" class="page-link">${i}</a>
-											</li>
-										</c:forEach>
-										<!-- 다음 페이지 -->
-										<c:if test="${BoardPageVO.next}">
-											<li class="page-item"><a href="${BoardPageVO.endPage+1}"
-												class="page-link">&raquo;</a></li>
-										</c:if>
-									</ul>
-								</div>
 							
 								</div>
 
