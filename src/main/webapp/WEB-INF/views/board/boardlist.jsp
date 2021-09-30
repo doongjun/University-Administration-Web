@@ -149,68 +149,30 @@
 								</div>
 							</div>
 
-							<!-- 검색창
-									<div class="basic-form"> -->
-							<div class="card-body">
-								<form action="" id="searchForm" class="">
-									<div class="col-lg-2"
-										style="float: left; margin-bottom: 10px; margin-left: 0px; padding-left: -15px">
-										<select name="sort" id="type" class="form-control">
-											<option value="">분류</option>
-											<option value="제목"
-												<c:out value="${BoardPageVO.cri.sort=='제목'?'selected':''}"/>>제목</option>
-											<option value="내용"
-												<c:out value="${BoardPageVO.cri.sort=='내용'?'selected':''}"/>>내용</option>
-											<option value="작성자"
-												<c:out value="${BoardPageVO.cri.sort=='작성자'?'selected':''}"/>>작성자</option>
-										</select>
-									</div>
-									<div class="col-lg-2" style="float: left; margin-left: -20px">
-										<input type="text" name="keyword" class="form-control"
-											placeholder="검색어를 입력하세요." value="" />
-									</div>
-									<input type="hidden" name="page"
-										value="${BoardPageVO.cri.page}" />
-									<button name="rep-btn" type="button" class="btn btn-primary"
-										style="float: left" id="search_btn">검색</button>
-								</form>
-
-
-							<!-- 관리자용 작성버튼 -->
-									<div class="col-lg-2" style="float: right; margin-left: 350px; margin-right:-100px">
-									<sec:authorize access="hasRole('ROLE_ADMIN')">
-										<button type="button" class="btn btn-primary" id="write_btn"
-											onclick="location.href='write'">글쓰기</button>
-									</sec:authorize>
-									</div>
-								</form>
-
-
-							</div>
+							
 							<!-- 페이징 부분-->
 
-
-							<div class="card-body" style= "text-align:center">
+<div class="card-body" style= "text-align:center">
 									<ul class="btn-group mr-2 mb-2">
 
 										<c:if test="${BoardPageVO.prev}">
-											<li class="mypage-item prev"><a
-												href="${BoardPageVO.startPage-1}" class="mypage-link"><button
-														type="button" class="btn btn-primary"> << </button></a></li>
+											<li class="mypage-item prev" style="padding: 0 3px"><a
+												href="${BoardPageVO.startPage-1}" class="mypage-link"> << </a></li>
 										</c:if>
+
 										<c:forEach var="i" begin="${BoardPageVO.startPage}" end="${BoardPageVO.endPage}">
 											<li class="mypage-item" style="padding: 0 3px">
 												<a href="${i}" class="mypage-link ${BoardPageVO.cri.page==i?'active':''}"> ${i} </a>
-											</li>
+
 										</c:forEach>
 
 										<c:if test="${BoardPageVO.next}">
-											<li class="mypage-item next"><a
-												href="${BoardPageVO.endPage+1}" class="mypage-link"><button
-														type="button" class="btn btn-primary"> >> </button></a></li>
+											<li class="mypage-item next" style="padding: 0 3px"><a
+												href="${BoardPageVO.endPage+1}" class="mypage-link"> >> </a></li>
 										</c:if>
 
 									</ul>
+
 							
 								</div>
 

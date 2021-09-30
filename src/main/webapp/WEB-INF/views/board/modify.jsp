@@ -78,8 +78,6 @@
 										style="float: left; margin-bottom: 10px; margin-left: 0px; padding-left: -15px">
 										<select name="b_sort" id="single-select b_sort"
 											class="form-control">
-											<option value="${vo.b_sort}"selected>${vo.b_sort}</option>
-											
 											<option value="학사">학사</option>
 											<option value="행정">행정</option>
 											<option value="행사">행사</option>
