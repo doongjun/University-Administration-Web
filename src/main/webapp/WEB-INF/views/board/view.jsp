@@ -270,19 +270,17 @@
                swal('글 삭제','글을 삭제합니다','success',{
                closeOnclickOutside : false
                
-               })
+               }).then(function(){
                viewForm.attr("method","POST");
                viewForm.attr('action', '/board/delete');
                viewForm.submit();
-                     
-            }else{
-               return;
-            }
-         });
-         
-         
-      })
-      
+               })
+       		
+    		}
+    	});
+    	
+    	
+    	})
    </script>
 
 
