@@ -92,7 +92,7 @@
 														<td>${vo.lecture_name}</td>
 														<td>${vo.section}</td>
 														<td>
-															<button name="" id="studentBtn${cnt.count}" type="button" class="btn btn-danger">수강생조회</button>
+															<button name="" id="studentBtn${cnt.count}" type="button" class="btn btn-primary">수강생조회</button>
 														</td>
 													</tr>
 												</c:forEach>

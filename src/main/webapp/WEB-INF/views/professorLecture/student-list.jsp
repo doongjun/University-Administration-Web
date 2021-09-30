@@ -198,7 +198,7 @@
 				</div>
 				<div class="modal-body"
 					style="margin-top: 10px; color: black; text-align: center;">
-					<p>해당학생을 강의에서 삭제하시겠습니까? 강의와 관련된 정보가 삭제되며 수강할수 없게됩니다.</p>
+					<p>해당 학생을 강의에서 삭제하시겠습니까? 강의와 관련된 정보가 삭제되며 수강할 수 없게됩니다.</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" id="modalDeleteBtn">확인</button>
@@ -260,6 +260,7 @@
 			
 			$('#cancelBtn').show();
 			$('#inputScoreBtn').show();
+			$('#showScoreBtn').hide();
 			
 			$('td:nth-child(6),th:nth-child(5)').hide();
 			$('td:nth-child(7),th:nth-child(6)').show();
@@ -269,11 +270,6 @@
 			$('td:nth-child(11),th:nth-child(10)').show();
 			$('td:nth-child(12),th:nth-child(11)').show();
 			
-			
-			console.log("${svo[0].total}");
-			console.log("${svo[0].midterm_exam}");
-			console.log("${svo[1].total}");
-			console.log("${svo[1].midterm_exam}");
 			
 		});
 		
