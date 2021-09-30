@@ -251,7 +251,7 @@
 			var stemp = document.getElementById('stemp'+(i+1)).value;
 			console.log("stemp값:"+stemp);
 			console.log($("#stemp"+(i+1)).val());
-			if(stemp = "-"){
+			if(stemp == "-"){
 				$("#score"+(i+1)).val("-").prop("selected",true);
 			}else{
 			$("#score"+(i+1)).val(stemp).prop("selected",true);
@@ -294,7 +294,21 @@
 					success : function(data) {
 						swal("성공적으로 저장되었습니다.","","success").then((value) => {
 							if(value){
-								location.replace(location.href);
+								//location.replace(location.href);
+			$('#cancelBtn').hide();
+			$('#inputScoreBtn').hide();
+			$('#showScoreBtn').show();
+			
+			$('td:nth-child(6),th:nth-child(5)').show();
+			$('td:nth-child(7),th:nth-child(6)').hide();
+			$('td:nth-child(8),th:nth-child(7)').hide();
+			$('td:nth-child(9),th:nth-child(8)').hide();
+			$('td:nth-child(10),th:nth-child(9)').hide();
+			$('td:nth-child(11),th:nth-child(10)').hide();
+			$('td:nth-child(12),th:nth-child(11)').hide();
+		
+								$('#inputScoreBtn').hide();
+								
 							}
 						});
 				}
