@@ -51,11 +51,11 @@
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a href="/members/mypage" class="dropdown-item">
                                         <i class="icon-user"></i>
-                                        <span class="ml-2">Profile </span>
+                                        <span class="ml-2">마이페이지 </span>
                                     </a>
                                     <a href="/logout" class="dropdown-item">
                                         <i class="icon-key"></i>
-                                        <span class="ml-2">Logout </span>
+                                        <span class="ml-2">로그아웃 </span>
                                     </a>
                                 </div>
                             </li>
