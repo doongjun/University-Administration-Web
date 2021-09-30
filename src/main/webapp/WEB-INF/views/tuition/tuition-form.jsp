@@ -42,7 +42,6 @@
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
 							<h4 style="font-weight:bold;">등록금 고지서 관리</h4>
-							<span class="ml-1">관리자</span>
 						</div>
 
 					</div>
