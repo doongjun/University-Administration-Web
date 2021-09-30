@@ -46,13 +46,13 @@ $("button[type='submit']").click(function(e){
 			swal('글 수정','글을 수정합니다','success',{
 			closeOnclickOutside : false
 			
-			})
-		var form=$("#write_board");
+			}).then(function(){
+				var form=$("#write_board");
 		form.attr("action","modify");
 		form.submit();
+			})
+		
 					
-		}else{
-			return;
 		}
 	});
 	
