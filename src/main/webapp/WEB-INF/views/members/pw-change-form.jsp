@@ -42,7 +42,6 @@
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
 							<h4 style="font-weight:bold;">비밀번호 변경</h4>
-							<p class="mb-1">학적 관리</p>
 						</div>
 					</div>
 					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -58,7 +57,7 @@
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Password</h4>
+								<h4 class="card-title">비밀번호 입력</h4>
 							</div>
 							<div class="card-body">
 								<div class="form-validation"><!--  onsubmit="return fn_submit();"-->

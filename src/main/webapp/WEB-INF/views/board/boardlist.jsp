@@ -97,7 +97,7 @@
 										style="float: left" id="search_btn">검색</button>
 
 									<!-- 관리자용 작성버튼 -->
-									<div class="col-lg-2" style="float: right; margin-left: 350px; margin-right:-100px">
+									<div class="col-lg-2" style="float: right; margin-left: 350px; margin-right:-11em">
 									<sec:authorize access="hasRole('ROLE_ADMIN')">
 										<button type="button" class="btn btn-primary" id="write_btn"
 											onclick="location.href='write'">글쓰기</button>
