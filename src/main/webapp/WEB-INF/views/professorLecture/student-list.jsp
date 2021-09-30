@@ -54,7 +54,7 @@
 					<div
 						class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="javascript:void(0)">수강생관리</a></li>
+							<li class="breadcrumb-item"><a href="javascript:void(0)">수강생 관리</a></li>
 							<li class="breadcrumb-item active"><a
 								href="javascript:void(0)">성적 입력</a></li>
 						</ol>
@@ -67,7 +67,7 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title" style="font-weight:bold;">수강생 관리</h4>
+								<h4 class="card-title" style="font-weight:bold;">수강생 리스트&nbsp;&nbsp;|&nbsp;&nbsp;${lecture_name}</h4>
 								<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 									<button id="showScoreBtn" name="showScoreBtn" type="button" class="btn btn-primary ">성적입력</button>
 									<button id="inputScoreBtn" style="margin-left: 5px; display: none; " name="inputScoreBtn" type="button" class="btn btn-primary">성적저장</button>

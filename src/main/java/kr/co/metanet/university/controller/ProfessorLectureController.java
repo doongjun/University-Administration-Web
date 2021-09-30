@@ -84,6 +84,8 @@ public class ProfessorLectureController {
 	public String studentlist(@RequestParam("lecture_id") int lecture_id, Model model) {
 		List<MemberStudent> list = studentService.getAllStudent(lecture_id);
 		List<StudentLectureVO> list2 = studentService.getAllScore(lecture_id);
+		LectureVO lecture = lectureService.getLecture(lecture_id);
+		model.addAttribute("lecture_name", lecture.getLecture_name());
 		model.addAttribute("vo",list);
 		model.addAttribute("svo",list2);
 		model.addAttribute("lecture_id",lecture_id);

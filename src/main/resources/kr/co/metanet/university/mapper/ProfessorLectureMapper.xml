@@ -6,7 +6,7 @@
 	SELECT * 
 	FROM LECTURE 
 	WHERE PROFESSOR_ID = #{professor_id}
-	ORDER BY lecture_year, semester DESC
+	ORDER BY lecture_year DESC, semester DESC
 	</select>
 	
 	<select id="getNowALLLecture" parameterType="hashMap" resultType="kr.co.metanet.university.domain.LectureVO">

@@ -56,7 +56,10 @@
 	                            <li><a href="/professorLecture/lecture-list">내 강의 관리</a></li>
 	                        </ul>
 	                    </li>
-	                    <li><a class="has-arrow" href="/professorLecture/score-lecture-list" aria-expanded="false"  ><span class="nav-text">성적입력</span></a>
+	                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><span class="nav-text">성적 관리</span></a>
+	                    	<ul aria-expanded="false">
+	                            <li><a href="/professorLecture/score-lecture-list">성적 입력</a></li>
+	                        </ul>
 	                    </li>
 	                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><span class="nav-text">마이페이지</span></a>
 	                        <ul aria-expanded="false">
