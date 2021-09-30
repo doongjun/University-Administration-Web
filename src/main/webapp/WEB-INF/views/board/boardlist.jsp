@@ -202,7 +202,7 @@
 										<c:forEach var="i" begin="${BoardPageVO.startPage}"
 											end="${BoardPageVO.endPage}">
 											<li class="mypage-item" style="padding: 0 3px"><a href="${i}"
-												class="mypage-link ${BoardVO.cri.page==i?'active':''}">
+												class="mypage-link ${BoardPageVO.cri.page==i?'active':''}">
 													${i}
 											</a></li>
 										</c:forEach>
