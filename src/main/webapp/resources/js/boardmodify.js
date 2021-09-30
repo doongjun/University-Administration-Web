@@ -44,15 +44,13 @@ $("button[type='submit']").click(function(e){
 	}).then((result) => {
 		if(result){
 			swal('글 수정','글을 수정합니다','success',{
-			closeOnclickOutside : false
-			
+			closeOnclickOutside : false		
 			}).then(function(){
 				var form=$("#write_board");
-		form.attr("action","modify");
-		form.submit();
+				form.attr("action","modify");
+				form.submit();
 			})
 		
-					
 		}
 	});
 	
