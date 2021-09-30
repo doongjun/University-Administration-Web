@@ -10,7 +10,7 @@
 	
 	<insert id="insert">
 		insert into student_lecture(student_id, lecture_id, score, enrolment)
-		values(#{student_id}, #{lecture_id}, 'x', 1)
+		values(#{student_id}, #{lecture_id}, '-', 1)
 	</insert>
 	
 	<delete id="delete">
