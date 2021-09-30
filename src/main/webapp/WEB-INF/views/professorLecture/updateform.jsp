@@ -153,7 +153,7 @@
 										<div class="form-group row">
 											<label for="password" class="control-label col-sm-2">학점</label>
 											<div class="col-sm-10">
-												<input name="credit" vid="credit" alue="${vo.credit}" type="number" style="width: 30%;" min="1" max="3" class="form-control" placeholder="3" required>
+												<input name="credit" vid="credit" alue="${vo.credit}" type="number" style="width: 30%;" min="1" max="3" class="form-control" required>
 											</div>
 										</div>
 										<div class="form-group row">
