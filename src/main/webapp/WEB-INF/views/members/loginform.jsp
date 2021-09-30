@@ -21,11 +21,11 @@
         body {
             border: 0, 0;
             padding: 0, 0; 
-            background-image: url('../resources/images/meta.png'), url('../resources/images/meteuniv.png');
+            background-image: url('../resources/images/meta.png'), url('../resources/images/metauniv.png'),  url('../resources/images/sky.jpg');
             min-height: 100%, 100%;
             background-position:50% 10%, 50% 20%;
             background-repeat: no-repeat, no-repeat;
-            background-size: 150px, 220px;
+            background-size: 150px, 220px, 1950px;
         }
     </style>
 </head>
@@ -39,14 +39,14 @@
                         <div class="row no-gutters">
                             <div class="col-xl-12">
                                 <div class="auth-form">
-                                    <h4 class="text-center mb-4">Login</h4>
+                                    <h4 class="text-center mb-4">로그인</h4>
                                     <form method="post" action="/authenticate" onsubmit="return fn_login();">
                                         <div class="form-group">
-                                            <label><strong>ID</strong></label>
+                                            <label><strong>아이디</strong></label>
                                             <input type="text" id="code" name="code" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label><strong>Password</strong></label>
+                                            <label><strong>비밀번호</strong></label>
                                             <input type="password" id="password" name="password" class="form-control">
                                         </div>
                                         <div class="form-row d-flex justify-content-between mt-4 mb-2">
