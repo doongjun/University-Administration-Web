@@ -12,7 +12,7 @@ ___
 ___
 ### :date: 프로젝트 진행 기간
 - 2021.9.14 ~ 2021.9.29
-<img src="https://user-images.githubusercontent.com/66319788/136737884-6ac5e28d-d350-44aa-83ae-d14870a79eb3.JPG" width="800px"></img>
+- <img src="https://user-images.githubusercontent.com/66319788/136737884-6ac5e28d-d350-44aa-83ae-d14870a79eb3.JPG" width="800px"></img>
 
 ### :smile: 팀원
 <img src="https://user-images.githubusercontent.com/66319788/136737635-6148dc19-ad87-44b9-895f-196846d026a7.JPG" width="600px"></img>
