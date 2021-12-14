@@ -33,6 +33,6 @@ ___
 <br>
 
 # 🖵 구현 화면
-## 👦 학생 User 👉[클릭](./footage/student.md)
-## 👮 관리자 User 👉[클릭](./footage/admin.md)
-## 👴 교수 User 👉[클릭](./footage/professor.md)
+## 👦 학생 User 👉[클릭](./docs/student.md)
+## 👮 관리자 User 👉[클릭](./docs/admin.md)
+## 👴 교수 User 👉[클릭](./docs/professor.md)
