@@ -30,5 +30,9 @@ ___
 ### :mag: ERD
 <img src="https://user-images.githubusercontent.com/66319788/136738256-49b55164-9325-4816-b742-a9f9d15c0c18.JPG" width="600px"></img>
 
-### :closed_lock_with_key: 로그인 화면
-<img src="https://user-images.githubusercontent.com/66319788/136738395-88ad0ebd-114f-4da4-a4fd-80137eabc944.jpg" width="600px"></img>
+<br>
+
+# 🖵 구현 화면
+## 👦 학생 User 👉[클릭](./student.md)
+## 👮 관리자 User 👉[클릭](./admin.md)
+## 👴 교수 User 👉[클릭](./professor.md)
